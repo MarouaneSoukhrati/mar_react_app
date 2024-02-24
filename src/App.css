@@ -28,6 +28,73 @@
   color: #61dafb;
 }
 
+.game{
+  margin-top: 50px;
+  display: flex;
+  justify-content: space-between;
+  width: 450px;
+
+  .info-display{
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .next-displayer{
+    margin-top: -24px;
+  }
+
+}
+
+.mybox{
+  margin-top: 50px;
+
+  .top_index{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 80px;
+  }
+
+  .titre_index{
+    display: flex;
+    justify-content: space-between;
+    width: 200px;
+    margin: auto;
+    color: #61dafb;
+  }
+
+  .first_category{
+    .titre_item{
+      size: 20px;
+      color: #61dafb;
+    }
+    .class_item{
+      display: flex;
+      justify-content: space-between;
+      margin: auto;
+      width: 300px;
+    }
+  }
+
+  .second_category{
+    .titre_item{
+      size: 20px;
+      color:#61dafb
+    }
+    .class_item{
+      display: flex;
+      justify-content: space-between;
+      margin: auto;
+      width: 300px;
+    }
+  }
+}
+
+.square{
+  font-size: 24px;
+  width: 70px;
+  height: 70px;
+}
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
