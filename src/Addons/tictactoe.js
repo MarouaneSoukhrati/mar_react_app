@@ -83,7 +83,7 @@ export default function Game(){
     return(
         <div className="game">
             <div className="info-display">
-                <StatusShow className="next-displayer" xIsNext={xIsNext} squares={currentSquares}/>
+                <StatusShow xIsNext={xIsNext} squares={currentSquares}/>
                 <div className="game-info">
                     <ol>{moves}</ol>
                 </div>
@@ -95,7 +95,7 @@ export default function Game(){
     );
 }
 
-function StatusShow({className, xIsNext, squares}){
+function StatusShow({xIsNext, squares}){
     const winner = calculateWinner(squares);
     let status;
     if(winner){
