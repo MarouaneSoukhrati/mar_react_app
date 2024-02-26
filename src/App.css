@@ -47,18 +47,35 @@
 
 .mybox{
   margin-top: 50px;
+  margin-bottom: 60px;
 
   .top_index{
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     height: 80px;
+    .redradio_button{
+      background-color:rgb(209, 34, 34);
+      color: white;
+      height: 30px;
+      width: 200px;
+      margin: auto;
+      border-radius: 20px;
+    }
+    .yellowradio_button{
+      background-color:yellow;
+      height: 30px;
+      width: 200px;
+      margin: auto;
+      border-radius: 20px;
+    }
+
   }
 
   .titre_index{
     display: flex;
     justify-content: space-between;
-    width: 200px;
+    width: 250px;
     margin: auto;
     color: #61dafb;
   }
@@ -72,7 +89,7 @@
       display: flex;
       justify-content: space-between;
       margin: auto;
-      width: 300px;
+      width: 250px;
     }
   }
 
@@ -85,7 +102,7 @@
       display: flex;
       justify-content: space-between;
       margin: auto;
-      width: 300px;
+      width: 250px;
     }
   }
 }
