@@ -1,7 +1,7 @@
 import logo from './logo.svg';
 import './App.css';
 import Game from './Addons/tictactoe';
-import Mylister from './Addons/mylist';
+import Mybox from './Addons/mylist';
 
 function App() {
   return (
@@ -20,7 +20,7 @@ function App() {
           Learn To code
         </a>
         <Game/>
-        <Mylister/>
+        <Mybox/>
       </header>
     </div>
   );
