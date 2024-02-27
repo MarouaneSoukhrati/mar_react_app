@@ -18,6 +18,10 @@
 .env.test.local
 .env.production.local
 
+.codesandbox/
+.devcontainer/
+.github/
+
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
