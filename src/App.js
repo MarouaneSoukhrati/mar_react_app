@@ -1,16 +1,12 @@
-import logo from './logo.svg';
-import './App.css';
-import Game from './Addons/tictactoe';
-import Mylister from './Addons/mylist';
+import logo from "./logo.svg";
+import "./App.css";
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Tic-Tac-Toe Game.
-        </p>
+        <p>Tic-Tac-Toe Game.</p>
         <a
           className="App-link"
           href="https://google.com"
@@ -19,8 +15,6 @@ function App() {
         >
           Learn To code
         </a>
-        <Game/>
-        <Mylister/>
       </header>
     </div>
   );

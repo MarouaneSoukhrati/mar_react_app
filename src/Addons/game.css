@@ -1,0 +1,37 @@
+.game {
+  background-color: #282c34;
+}
+
+.game-header {
+  display: flex;
+  justify-content: space-between;
+  width: 480px;
+  margin: -200px auto auto auto;
+  padding: 100px;
+}
+
+.info-display {
+  display: flex;
+  flex-direction: column;
+}
+
+.list-board {
+  background-color: #61dafb;
+}
+
+.moves-list {
+  color: #61dafb;
+}
+
+.next-displayer {
+  font-size: 25px;
+  color: #61dafb;
+}
+
+.square {
+  font-size: 24px;
+  width: 70px;
+  height: 70px;
+  border-radius: 50px;
+  background-color: yellow;
+}
