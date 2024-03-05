@@ -81,9 +81,9 @@ export default function Game() {
     }
     return (
       <li key={move}>
-        <button className="list-board" onClick={() => jumpTo(move)}>
+        <div className="list-board" onClick={() => jumpTo(move)}>
           {description}
-        </button>
+        </div>
       </li>
     );
   });
@@ -92,9 +92,13 @@ export default function Game() {
     <div className="game">
       <header className="game-header">
         <div className="info-display">
-          <StatusShow xIsNext={xIsNext} squares={currentSquares} />
+          <StatusShow
+            className="next-displayer"
+            xIsNext={xIsNext}
+            squares={currentSquares}
+          />
           <div className="moves-list">
-            <ol>{moves}</ol>
+            <ul>{moves}</ul>
           </div>
         </div>
         <div>
@@ -111,7 +115,7 @@ export default function Game() {
   );
 }
 
-function StatusShow({ xIsNext, squares }) {
+function StatusShow({ xIsNext, squares, className }) {
   const winner = calculateWinner(squares);
   let status;
   if (winner) {
@@ -119,7 +123,7 @@ function StatusShow({ xIsNext, squares }) {
   } else {
     status = "Next player: " + (xIsNext ? "X" : "O");
   }
-  return <div className="next-displayer">{status}</div>;
+  return <div className={className}>{status}</div>;
 }
 
 function calculateWinner(squares) {

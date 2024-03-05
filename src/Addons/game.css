@@ -16,7 +16,8 @@
 }
 
 .list-board {
-  background-color: #61dafb;
+  background-color: transparent;
+  cursor: pointer;
 }
 
 .moves-list {
@@ -26,6 +27,9 @@
 .next-displayer {
   font-size: 25px;
   color: #61dafb;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
 }
 
 .square {
@@ -34,4 +38,5 @@
   height: 70px;
   border-radius: 50px;
   background-color: yellow;
+  cursor: crosshair;
 }
