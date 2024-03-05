@@ -6,7 +6,7 @@ function App() {
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
-        <p>Tic-Tac-Toe Game.</p>
+        <p className="gamename">Tic-Tac-Toe Game.</p>
         <a
           className="App-link"
           href="https://google.com"
