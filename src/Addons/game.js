@@ -11,7 +11,7 @@ function Square({ value, onSquareClick }) {
 
 function Board({ xIsNext, squares, onPlay }) {
   function handleClick(i) {
-    if (calculateWinner(squares) || squares[i] !== ".") {
+    if (calculateWinner(squares) || squares[i]) {
       return;
     }
     const nextSquares = squares.slice();
@@ -34,7 +34,7 @@ function Board({ xIsNext, squares, onPlay }) {
           ></Square>
         ))}
       </div>
-      <div>
+      <div className="board-row">
         {squares.slice(3, 6).map((element, index) => (
           <Square
             value={element}
@@ -42,7 +42,7 @@ function Board({ xIsNext, squares, onPlay }) {
           ></Square>
         ))}
       </div>
-      <div>
+      <div className="board-row">
         {squares.slice(6, 9).map((element, index) => (
           <Square
             value={element}
@@ -79,7 +79,7 @@ function calculateWinner(squares) {
   for (let i = 0; i < lines.length; i++) {
     const [a, b, c] = lines[i];
     if (
-      squares[a] !== "." &&
+      squares[a] &&
       squares[a] === squares[b] &&
       squares[a] === squares[c]
     ) {
@@ -90,8 +90,9 @@ function calculateWinner(squares) {
 }
 
 export default function Game() {
-  const [history, setHistory] = useState([Array(9).fill(".")]);
+  const [history, setHistory] = useState([Array(9).fill(null)]);
   const [currentMove, setCurrentMove] = useState(0);
+  //const [stopColorArray, setStopColorArray] = useState(['red','red','red','red','red','red','red','red','red']);
 
   const xIsNext = currentMove % 2 === 0;
   const currentSquares = history[currentMove];
@@ -123,8 +124,35 @@ export default function Game() {
     );
   });
 
+  /*function handleStopClick(index){
+    let colorArray = [...stopColorArray];
+    colorArray[index] = colorArray[index] === 'red' ? 'yellow' : 'red';
+    setStopColorArray(colorArray);
+  }
+*/
+
+let texts = [
+  ["Titre1", "My first text is text1 text2 text3 text4 ..."],
+  ["Titre1", "My first text is text1 text2 text3 text4 ..."],
+  ["Titre1", "My first text is text1 text2 text3 text4 ..."],
+  ["Titre1", "My first text is text1 text2 text3 text4 ..."],
+  ["Titre1", "My first text is text1 text2 text3 text4 ..."],
+  ["Titre1", "My first text is text1 text2 text3 text4 ..."],
+  ["Titre1", "My first text is text1 text2 text3 text4 ..."],
+  ["Titre1", "My first text is text1 text2 text3 text4 ..."],
+  ["Titre1", "My first text is text1 text2 text3 text4 ..."],
+]
+
+  let stopList = [0,1,2,3,4,5,6,7,8].map(e => <div className={"stop"+e}><div className="stopBulletSpace"><div>{texts[e][0]}</div><div className="stopBullet"></div></div><div>{texts[e][1]}</div></div>);       
+  //style={{backgroundColor:stopColorArray[e]}} onClick={() => handleStopClick(e)}
+  
+
   return (
     <div className="game">
+      <div className="path-img">
+        <img src="https://i.ibb.co/MkvF1mr/path.png" alt="path"/>
+        {stopList}
+      </div>
       <header className="game-header">
         <div className="info-display">
           <StatusShow
