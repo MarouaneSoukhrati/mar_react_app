@@ -78,11 +78,7 @@ function calculateWinner(squares) {
   ];
   for (let i = 0; i < lines.length; i++) {
     const [a, b, c] = lines[i];
-    if (
-      squares[a] &&
-      squares[a] === squares[b] &&
-      squares[a] === squares[c]
-    ) {
+    if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
       return squares[a];
     }
   }
@@ -131,26 +127,33 @@ export default function Game() {
   }
 */
 
-let texts = [
-  ["Titre1", "My first text is text1 text2 text3 text4 ..."],
-  ["Titre1", "My first text is text1 text2 text3 text4 ..."],
-  ["Titre1", "My first text is text1 text2 text3 text4 ..."],
-  ["Titre1", "My first text is text1 text2 text3 text4 ..."],
-  ["Titre1", "My first text is text1 text2 text3 text4 ..."],
-  ["Titre1", "My first text is text1 text2 text3 text4 ..."],
-  ["Titre1", "My first text is text1 text2 text3 text4 ..."],
-  ["Titre1", "My first text is text1 text2 text3 text4 ..."],
-  ["Titre1", "My first text is text1 text2 text3 text4 ..."],
-]
+  let texts = [
+    ["Titre1", "My first text is text1 text2 text3 text4 ..."],
+    ["Titre1", "My first text is text1 text2 text3 text4 ..."],
+    ["Titre1", "My first text is text1 text2 text3 text4 ..."],
+    ["Titre1", "My first text is text1 text2 text3 text4 ..."],
+    ["Titre1", "My first text is text1 text2 text3 text4 ..."],
+    ["Titre1", "My first text is text1 text2 text3 text4 ..."],
+    ["Titre1", "My first text is text1 text2 text3 text4 ..."],
+    ["Titre1", "My first text is text1 text2 text3 text4 ..."],
+    ["Titre1", "My first text is text1 text2 text3 text4 ..."],
+  ];
 
-  let stopList = [0,1,2,3,4,5,6,7,8].map(e => <div className={"stop"+e}><div className="stopBulletSpace"><div>{texts[e][0]}</div><div className="stopBullet"></div></div><div>{texts[e][1]}</div></div>);       
+  let stopList = [0, 1, 2, 3, 4, 5, 6, 7, 8].map((e) => (
+    <div className={"stop" + e}>
+      <div className="stopBulletSpace">
+        <div>{texts[e][0]}</div>
+        <div className="stopBullet"></div>
+      </div>
+      <div>{texts[e][1]}</div>
+    </div>
+  ));
   //style={{backgroundColor:stopColorArray[e]}} onClick={() => handleStopClick(e)}
-  
 
   return (
     <div className="game">
       <div className="path-img">
-        <img src="https://i.ibb.co/MkvF1mr/path.png" alt="path"/>
+        <img src="https://i.ibb.co/MkvF1mr/path.png" alt="path" />
         {stopList}
       </div>
       <header className="game-header">
@@ -169,7 +172,7 @@ let texts = [
             {...{
               xIsNext: xIsNext,
               squares: currentSquares,
-              onPlay: handlePlay
+              onPlay: handlePlay,
             }}
           />
         </div>
