@@ -129,8 +129,6 @@ let texts = {
     Titre8: "My first text is text1 text2 text3 text4 ...",
     Titre9: "My first text is text1 text2 text3 text4 ...",
   }
-
-  let a = 0;
 <<<<<<< HEAD
 
   let stopList = [0,1,2,3,4,5,6,7,8].map(e => <div className={"stop"+e}><div className="stopBulletSpace"><div>{Object.keys(texts)[e]}</div><div className="stopBullet"></div></div><div>{texts["Titre"+(e+1)]}</div></div>);       
