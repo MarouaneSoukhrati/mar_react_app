@@ -1,21 +1,14 @@
-import logo from "./logo.svg";
 import "./App.css";
+import Aheader from './Component/Aheader';
+import Abody from './Component/Abody';
+import Afooter from './Component/Afooter';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p className="gamename">Tic-Tac-Toe Game.</p>
-        <a
-          className="App-link"
-          href="https://google.com"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn To code
-        </a>
-      </header>
+      <Aheader/>
+      <Abody/>
+      <Afooter/>
     </div>
   );
 }

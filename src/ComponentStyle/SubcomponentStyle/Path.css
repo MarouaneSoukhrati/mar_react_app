@@ -1,0 +1,119 @@
+.path-wrapper{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 50px;
+}
+
+.path-img {
+  position: relative;
+}
+
+.stopBulletSpace {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.stopBullet {
+  background-color: yellow;
+  border: 4px solid;
+  border-color: #61dafb;
+  height: 16px;
+  width: 16px;
+  border-radius: 50px;
+  display: none;
+}
+
+.stop0 {
+  left: 75px;
+  top: 81px;
+}
+
+.stop1 {
+  left: 166px;
+  top: 138px;
+}
+
+.stop2 {
+  left: 234px;
+  top: 226px;
+}
+
+.stop3 {
+  left: 319px;
+  top: 178px;
+}
+
+.stop4 {
+  left: 431px;
+  top: 102px;
+}
+
+.stop5 {
+  left: 415px;
+  top: 210px;
+}
+
+.stop6 {
+  left: 292px;
+  top: 325px;
+}
+
+.stop7 {
+  left: 421px;
+  top: 350px;
+}
+
+.stop8 {
+  left: 526px;
+  top: 266px;
+}
+
+.stop0,
+.stop1,
+.stop2,
+.stop3,
+.stop4,
+.stop5,
+.stop6,
+.stop7,
+.stop8 {
+  position: absolute;
+  height: 10px;
+  width: 10px;
+  border-radius: 50px;
+  font-size: 0px;
+}
+
+.stop0:hover,
+.stop1:hover,
+.stop2:hover,
+.stop3:hover,
+.stop4:hover,
+.stop5:hover,
+.stop6:hover,
+.stop7:hover,
+.stop8:hover {
+  height: 100px;
+  width: 100px;
+  border-radius: 15px;
+  background-color: orange;
+  font-size: 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 18px;
+}
+
+.stop0:hover .stopBullet,
+.stop1:hover .stopBullet,
+.stop2:hover .stopBullet,
+.stop3:hover .stopBullet,
+.stop4:hover .stopBullet,
+.stop5:hover .stopBullet,
+.stop6:hover .stopBullet,
+.stop7:hover .stopBullet,
+.stop8:hover .stopBullet {
+  display: block;
+}
