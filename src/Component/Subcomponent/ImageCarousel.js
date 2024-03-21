@@ -2,42 +2,40 @@ import '../../ComponentStyle/SubcomponentStyle/ImageCarousel.css';
 import { useState } from "react";
 import { motion } from 'framer-motion';
 
-import carouselLogo from "../../Logos/ImageCarousel.svg";
+import Tariq from '../../Logos/Tariq.svg'
+import Abdel from '../../Logos/Abdel.svg'
+import Abbas from '../../Logos/Abbas.svg'
+import Arthephius from '../../Logos/Arthephius.svg'
+import Ibnbattuta from '../../Logos/Ibnbattuta.svg'
+import Averroes from '../../Logos/Averroes.svg'
 
 let imgList = [
-  require('../../Logos/PathLogo.svg'),
-  require('../../Logos/PathLogo.svg'),
-  require('../../Logos/PathLogo.svg'),
+  Tariq,
+  Abdel,
+  Abbas,
+  Arthephius,
+  Ibnbattuta,
+  Averroes,
+];
+
+let titleList = [
+  "Tariq Ibn Ziyad",
+  "Abd Al Rahman I",
+  "Abbas Ibn Firnas",
+  "Arthephius",
+  "Ibn Battuta",
+  "Averroes",
 ];
 
 export default function ImageCarousel() {
   const [imgIndex, setImgIndex] = useState(0);
   return (
     <div className="imgCar-wrapper">
-      <div className="imgCar">
+        <h1 className='imgCar-titles'>{titleList[imgIndex]}</h1>
         <img className="imgCar-images" src={imgList[imgIndex]} alt="Images" />
-        <img className="imgCar-broadcastspace" src={carouselLogo} alt="Broadcast-space" />
         <div className="switchButtons">
-        <motion.button
-          className="swleft" whileTap={{rotate:90, scale:1.3}}
-          onClick={() =>
-            setImgIndex(
-              imgIndex - 1 < 0
-                ? imgList.length - 1
-                : imgIndex - 1,
-            )
-          }
-        >
-          {"<"}
-        </motion.button>
-        <motion.button
-          className="swright" whileTap={{rotate:-90, scale:1.3}}
-          onClick={() => setImgIndex((imgIndex + 1) % imgList.length)}
-        >
-          {">"}
-        </motion.button>
-      </div>
-      </div>
+          {imgList.map((e,index) => <motion.div whileHover={{scale:1.50}} className={index===imgIndex? "activeswitchDot": "switchDot"} onClick={() => setImgIndex(index)}></motion.div>)}
+         </div>
     </div>
   );
 }
