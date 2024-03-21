@@ -18,7 +18,7 @@ let imgList = [
   Averroes,
 ];
 
-let titleList = [
+let imgTitleList = [
   "Tariq Ibn Ziyad",
   "Abd Al Rahman I",
   "Abbas Ibn Firnas",
@@ -31,7 +31,7 @@ export default function ImageCarousel() {
   const [imgIndex, setImgIndex] = useState(0);
   return (
     <div className="imgCar-wrapper">
-        <h1 className='imgCar-titles'>{titleList[imgIndex]}</h1>
+        <h1 className='imgCar-titles'>{imgTitleList[imgIndex]}</h1>
         <img className="imgCar-images" src={imgList[imgIndex]} alt="Images" />
         <div className="switchButtons">
           {imgList.map((e,index) => <motion.div whileHover={{scale:1.50}} className={index===imgIndex? "activeswitchDot": "switchDot"} onClick={() => setImgIndex(index)}></motion.div>)}
