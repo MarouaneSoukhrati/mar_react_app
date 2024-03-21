@@ -5,18 +5,24 @@
     padding: 10px;
 }
 
+.img-wrapper{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
 .fam-tree{
     width: 500px;
-    background: linear-gradient(180deg,#FF0000, #FFFF00);
     border-radius: 20px;
-    padding: 15px;
+    border: solid 2px white;
+    padding: 10px;
 }
 
 .fam-txt{
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 10px;
+    padding: 60px 0px 0px 0px;
     text-align: center;
 }
   
@@ -24,7 +30,6 @@
     color:white;
     font-size: 20px;
     width: 500px;
-    padding: 60px 15px 15px 15px;
 }
   
 .moorbutton{
@@ -32,7 +37,6 @@
     color: green;
     background-color: red;
     padding: 15px;
-    border-radius: 20px;
     border: solid 2px white;
     font-size: 20px;
     font-weight: 500;

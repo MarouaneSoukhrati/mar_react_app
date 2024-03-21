@@ -1,4 +1,5 @@
 import '../../ComponentStyle/SubcomponentStyle/FamilyTree.css';
+import ImageCarousel from './ImageCarousel';
 import { motion } from 'framer-motion';
 
 import familyTree from "../../Logos/familyTree.svg";
@@ -8,7 +9,10 @@ let Desctext = "The term Moor is an exonym first used by Christian Europeans to 
 export default function FamilyTree() {
   return (
     <div className="fam-wrapper">
-        <img className="fam-tree" src={familyTree} alt="Family-tree" />
+        <div className="img-wrapper">
+          <img className="fam-tree" src={familyTree} alt="Family-tree" />
+          <ImageCarousel/>
+        </div>
         <div className="fam-txt">
             <p className="moorparag">{Desctext}</p>
             <motion.a whileHover={{opacity:0.4}} className="moorbutton" href="https://en.wikipedia.org/wiki/Moors" target="_blank" rel="noopener noreferrer">Learn more</motion.a>
