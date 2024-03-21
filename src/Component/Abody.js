@@ -4,7 +4,7 @@ import FamilyTree from './Subcomponent/FamilyTree';
 import ImageCarousel from './Subcomponent/ImageCarousel';
 import Path from './Subcomponent/Path';
 
-export default function Abody(){
+export default function Abody(reflist){
     return(
       <div className="App-body">
         <FamilyTree/>
