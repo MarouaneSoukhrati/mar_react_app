@@ -15,7 +15,7 @@ export default function Abody(reflist){
           <Path/>
           <img className="Capsule" src={Capsule} alt="Capsule" />
         </div>
-        <motion.button className='mobility' initial={{x:-900}} whileHover={{opacity:0.4}} animate={{x:340, y:-110, transition: {duration:5}}}>Learn more</motion.button>
+        <motion.button className='mobility' initial={{x:-900}} whileHover={{opacity:0.4}} animate={{x:344, y:-110, transition: {duration:5}}}>Learn more</motion.button>
       </div>
     );
 }

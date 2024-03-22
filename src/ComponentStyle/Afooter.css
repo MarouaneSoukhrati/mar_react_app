@@ -1,6 +1,71 @@
-.App-footer{
-    color: white;
+.App-footer {
     display: flex;
-    justify-content: center;
-    padding-bottom: 50px;
+    flex-direction: column;
+    justify-content: space-evenly;
+    color: white;
+    background-color: #282c3455;
+}
+  
+.footer-wrapper {
+    padding: 80px 250px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+  
+.logo-section {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    padding-right: 100px;
+}
+  
+.social-media-wrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    margin-top: -12px;
+}
+  
+.social-media-logo {
+    height: 20px;
+    width: 20px;
+    margin: 10px;
+}
+  
+.lister-section {
+    display: flex;
+    flex-direction: row;
+}
+  
+.lister-item {
+    display: flex;
+    flex-direction: column;
+    padding: 30px;
+}
+  
+.lister-item-list {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+}  
+
+.lister-item-title {
+    padding: 10px;
+}  
+
+.footer-item{
+    padding-bottom: 5px;
+    color: #FFFFFF55;
+}
+
+.copyright{
+    text-align: center;
+    width: max-content;
+}
+
+.marouane-logo{
+    width: 150px;
 }
