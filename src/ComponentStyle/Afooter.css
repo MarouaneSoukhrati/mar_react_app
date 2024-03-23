@@ -1,71 +1,73 @@
 .App-footer {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
-    color: white;
-    background-color: #282c3455;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  color: white;
+  background-color: #282c3455;
+  border-radius: 100% 100% 0% 0%/ 100% 100% 0% 0%;
 }
-  
+
 .footer-wrapper {
-    padding: 80px 250px;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
+  padding: 80px 250px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
 }
-  
+
 .logo-section {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
-    align-items: center;
-    padding-right: 100px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  padding-right: 100px;
 }
-  
+
 .social-media-wrapper {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
-    align-items: center;
-    margin-top: -12px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+  background-color: #ffffff20;
+  border-radius: 15px;
 }
-  
+
 .social-media-logo {
-    height: 20px;
-    width: 20px;
-    margin: 10px;
+  height: 20px;
+  width: 20px;
+  margin: 10px;
 }
-  
+
 .lister-section {
-    display: flex;
-    flex-direction: row;
+  display: flex;
+  flex-direction: row;
 }
-  
+
 .lister-item {
-    display: flex;
-    flex-direction: column;
-    padding: 30px;
+  display: flex;
+  flex-direction: column;
+  padding: 30px;
 }
-  
+
 .lister-item-list {
-    display: flex;
-    flex-direction: column;
-    padding: 10px;
-}  
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+}
 
 .lister-item-title {
-    padding: 10px;
-}  
-
-.footer-item{
-    padding-bottom: 5px;
-    color: #FFFFFF55;
+  padding: 10px;
 }
 
-.copyright{
-    text-align: center;
-    width: max-content;
+.footer-item {
+  padding-bottom: 5px;
+  color: #ffffff55;
 }
 
-.marouane-logo{
-    width: 150px;
+.copyright {
+  text-align: center;
+  width: max-content;
+}
+
+.marouane-logo {
+  width: 150px;
 }
