@@ -1,44 +1,46 @@
-.big-navbar{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    width: 1300px;
-    font-size: 15px;
-    color: white;
-}
-  
-.navbar{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
-    align-items: center;
-    width: 300px;
-}
-  
-.nav-element{
-    border: solid 1px;
-    border-radius: 15px;
-    padding: 8px;
+.big-navbar {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 1300px;
+  font-size: 15px;
+  color: white;
 }
 
-.nav-element:hover{
-    background-color: red;
-    color: yellow;
-    cursor: pointer;
+.navbar {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 330px;
 }
 
-.lang-en, .lang-fr, .lang-es{
-    cursor: pointer;
-    height: 10px;
-    margin: 10px;
+.nav-element {
+  border: solid 1px;
+  border-radius: 15px;
+  padding: 8px;
 }
-  
-.langbar{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
-    align-items: center;
-    width: 120px;
-    font-size: 15px;
+
+.nav-element:hover {
+  background-color: red;
+  color: yellow;
+  cursor: pointer;
+}
+
+.lang-en,
+.lang-fr,
+.lang-es {
+  cursor: pointer;
+  height: 10px;
+  margin: 10px;
+}
+
+.langbar {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 120px;
+  font-size: 15px;
 }

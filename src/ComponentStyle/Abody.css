@@ -1,39 +1,65 @@
-.App-body{
-    padding-bottom: 50px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+.App-body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
-.App-body-history{
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    padding: 10px;
-    margin-left: -100px;
+.App-body-history {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 10px;
+  margin-left: -100px;
 }
 
-.App-body-capsule{
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    padding: 10px;
+.App-body-capsule {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 10px;
 }
 
-.mobility{
-    background-color: yellow;
-    padding: 15px;
-    border: solid 2px white;
-    font-size: 20px;
-    font-weight: 500;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 50px;
-    height: 20px;
-    width: 200px;
+.mobility {
+  background-color: yellow;
+  padding: 15px;
+  border: solid 2px white;
+  font-size: 20px;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50px;
+  height: 20px;
+  width: 200px;
 }
 
-.Capsule{
-    height: 300px;
+.Capsule {
+  height: 300px;
+}
+
+.Moor-logo {
+  height: 400px;
+  pointer-events: none;
+}
+
+.moor-title {
+  color: yellow;
+  font-size: 30px;
+  padding: 50px 0px 0px 0px;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .Moor-logo {
+    animation: Moor-logo-spin infinite 20s linear;
+  }
+}
+
+@keyframes Moor-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
