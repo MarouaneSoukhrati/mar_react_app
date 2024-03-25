@@ -1,3 +1,5 @@
+import "../../ComponentStyle/SubcomponentStyle/About.css";
+
 export default function About() {
   return (
     <header className="App-about">

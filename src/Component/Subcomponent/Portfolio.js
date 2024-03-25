@@ -1,3 +1,5 @@
+import "../../ComponentStyle/SubcomponentStyle/Portfolio.css";
+
 export default function Portfolio() {
   return (
     <header className="App-portfolio">
