@@ -20,6 +20,9 @@
   border: solid 1px;
   border-radius: 15px;
   padding: 8px;
+  background-color: transparent;
+  color: white;
+  text-decoration: none;
 }
 
 .nav-element:hover {
