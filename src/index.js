@@ -4,8 +4,12 @@ import ReactDOM from "react-dom/client";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import FamilyTree from "./Component/Subcomponent/FamilyTree";
+
 import ErrorPage from "./Component/Aerror";
+import Abody from "./Component/Abody";
+import Portfolio from "./Component/Subcomponent/Portfolio";
+import About from "./Component/Subcomponent/About";
+import Contact from "./Component/Subcomponent/Contact";
 
 const router = createBrowserRouter([
   {
@@ -14,8 +18,20 @@ const router = createBrowserRouter([
     errorElement: <ErrorPage />,
     children: [
       {
+        path: "/",
+        element: <Abody />,
+      },
+      {
+        path: "/portfolio",
+        element: <Portfolio />,
+      },
+      {
         path: "/about",
-        element: <FamilyTree />,
+        element: <About />,
+      },
+      {
+        path: "/contact",
+        element: <Contact />,
       },
     ],
   },

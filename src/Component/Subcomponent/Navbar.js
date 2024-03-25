@@ -10,12 +10,18 @@ export default function Navbar() {
   return (
     <div className="big-navbar">
       <div className="navbar">
-        <div className="nav-element">Home</div>
-        <div className="nav-element">Portfolio</div>
+        <Link className="nav-element" to="/">
+          <div>Home</div>
+        </Link>
+        <Link className="nav-element" to="/portfolio">
+          <div>Portfolio</div>
+        </Link>
         <Link className="nav-element" to="/about">
           <div>About</div>
         </Link>
-        <div className="nav-element">Contact</div>
+        <Link className="nav-element" to="/contact">
+          <div>Contact</div>
+        </Link>
       </div>
       <div className="langbar">
         <img src={UkFlagLogo} className="lang-en" alt="UkFlag" /> EN
