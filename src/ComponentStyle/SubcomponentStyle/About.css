@@ -71,3 +71,117 @@
   flex-direction: column;
   align-items: center;
 }
+
+.map-style{
+  width: 500px;
+  height: 330px;
+}
+
+.stopBulletSpace {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.stopBullet {
+  background-color: yellow;
+  border: 4px solid #61dafb;;
+  height: 16px;
+  width: 16px;
+  border-radius: 50px;
+  display: none;
+}
+
+.stopm0 {
+  left: 333px;
+  top: 85px;
+}
+
+.stopm1 {
+  left: 290px;
+  top: 150px;
+}
+
+.stopm2 {
+  left: 246px;
+  top: 215px;
+}
+
+.stopm3 {
+  left: 379px;
+  top: 213px;
+}
+
+.stopm4 {
+  left: 215px;
+  top: 132px;
+}
+
+.stopm5 {
+  left: 399px;
+  top: 136px;
+}
+
+.stopm6 {
+  left: 84px;
+  top: 177px;
+}
+
+.stopm7 {
+  left: 270px;
+  top: 76px;
+}
+
+.stopm8 {
+  left: 85px;
+  top: 91px;
+}
+
+.stopm0,
+.stopm1,
+.stopm2,
+.stopm3,
+.stopm4,
+.stopm5,
+.stopm6,
+.stopm7,
+.stopm8 {
+  position: absolute;
+  height: 10px;
+  width: 10px;
+  border-radius: 50px;
+  font-size: 0px;
+  background-color: yellow;
+}
+
+.stopm0:hover,
+.stopm1:hover,
+.stopm2:hover,
+.stopm3:hover,
+.stopm4:hover,
+.stopm5:hover,
+.stopm6:hover,
+.stopm7:hover,
+.stopm8:hover {
+  height: 100px;
+  width: 100px;
+  border-radius: 15px;
+  background-color: gray;
+  font-size: 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 18px;
+}
+
+.stopm0:hover .stopBullet,
+.stopm1:hover .stopBullet,
+.stopm2:hover .stopBullet,
+.stopm3:hover .stopBullet,
+.stopm4:hover .stopBullet,
+.stopm5:hover .stopBullet,
+.stopm6:hover .stopBullet,
+.stopm7:hover .stopBullet,
+.stopm8:hover .stopBullet {
+  display: block;
+}

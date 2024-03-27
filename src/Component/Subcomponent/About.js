@@ -1,5 +1,6 @@
 import "../../ComponentStyle/SubcomponentStyle/About.css";
 import { motion } from "framer-motion";
+import Path from "./Path"
 
 import AlAmana from "../../Logos/AlAmana.svg";
 import CpgeTanger from "../../Logos/CpgeTanger.svg";
@@ -68,6 +69,26 @@ let timelineGraphic = [0, 1, 2, 3, 4, 5, 6].map((e, index) => {
   );
 });
 
+let texts = {
+  Titre1: "My first text is text1 text2 text3 text4 ...",
+  Titre2: "My first text is text1 text2 text3 text4 ...",
+  Titre3: "My first text is text1 text2 text3 text4 ...",
+  Titre4: "My first text is text1 text2 text3 text4 ...",
+  Titre5: "My first text is text1 text2 text3 text4 ...",
+  Titre6: "My first text is text1 text2 text3 text4 ...",
+  Titre7: "My first text is text1 text2 text3 text4 ...",
+  Titre8: "My first text is text1 text2 text3 text4 ...",
+  Titre9: "My first text is text1 text2 text3 text4 ...",
+}
+let stopList = [0,1,2,3,4,5,6,7,8].map(e => 
+        <div className={"stopm"+e}>
+            <div className="stopBulletSpace">
+              <div>{Object.keys(texts)[e]}</div>
+              <div className="stopBullet"></div>
+            </div>
+            <div>{texts["Titre"+(e+1)]}</div>
+        </div>);
+
 export default function About() {
   return (
     <header className="App-about">
@@ -76,7 +97,7 @@ export default function About() {
       <div className="about-section">
         <div className="about-imgside">
           <h1>About</h1>
-          <img src={AboutMap} alt="About-Map" style={{ width: "500px" }} />
+          <Path stopList={stopList} pathLogo={AboutMap} pathLogoStyle="map-style"/>
         </div>
         <div className="about-txtside">
           <h2>About paragraph</h2>

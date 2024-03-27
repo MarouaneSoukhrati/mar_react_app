@@ -49,6 +49,10 @@
   padding: 50px 0px 0px 0px;
 }
 
+.moor-style{
+  width: 638px;
+}
+
 @media (prefers-reduced-motion: no-preference) {
   .Moor-logo {
     animation: Moor-logo-spin infinite 20s linear;
