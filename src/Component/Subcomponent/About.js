@@ -80,7 +80,7 @@ export default function About() {
         </div>
         <div className="about-txtside">
           <h2>About paragraph</h2>
-          <p>para para para para para para para para para</p>
+          <p>para para para para para para para para para para</p>
         </div>
       </div>
     </header>
