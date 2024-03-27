@@ -53,6 +53,7 @@ let timelineGraphic = [0, 1, 2, 3, 4, 5, 6].map((e, index) => {
           whileHover={{ scale: 1.5, backgroundColor: "blue" }}
           href={LinksList[index]}
           target="_blank"
+          rel="noreferrer"
         >
           <div className="timeline-mincircle" />
         </motion.a>
