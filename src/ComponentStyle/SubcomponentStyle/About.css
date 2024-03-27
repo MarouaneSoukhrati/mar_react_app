@@ -13,6 +13,9 @@
   justify-content: center;
   align-items: center;
   padding: 50px;
+  background-color: #ffffff11;
+  border-radius: 15px;
+  margin-bottom: 50px;
 }
 
 .about-timeline {
@@ -21,6 +24,7 @@
   justify-content: center;
   align-items: center;
   padding: 50px;
+  border-radius: 15px;
 }
 
 .about-imgside {

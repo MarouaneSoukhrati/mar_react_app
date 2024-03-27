@@ -20,17 +20,42 @@ let eventList = [
   Ensisa,
 ];
 
+let datesList = [
+  "2003-2015",
+  "2015-2017",
+  "2017-2018",
+  "2018-2019",
+  "2019-2020",
+  "2020-2023",
+  "2023-2024",
+];
+
+let LinksList = [
+  "https://amana.ac.ma/",
+  "https://www.cpge.ac.ma/SITECPGE/LMH-TA/Resultat.aspx",
+  "http://www.prepamantes.fr/",
+  "https://enseirb-matmeca.bordeaux-inp.fr/fr",
+  "https://www.u-bordeaux.fr/",
+  "https://ensem.univ-lorraine.fr/",
+  "https://www.ensisa.uha.fr/",
+];
+
 let timelineGraphic = [0, 1, 2, 3, 4, 5, 6].map((e, index) => {
   return (
     <>
       <div className="timeline-line" />
       <div className="timeline-event">
-        <motion.div
+        <div style={{ fontSize: "10px", paddingBottom: "10px" }}>
+          {datesList[index]}
+        </div>
+        <motion.a
           className="timeline-circle"
           whileHover={{ scale: 1.5, backgroundColor: "blue" }}
+          href={LinksList[index]}
+          target="_blank"
         >
           <div className="timeline-mincircle" />
-        </motion.div>
+        </motion.a>
         <img
           src={eventList[index]}
           style={{ height: "30px", width: "70px" }}
