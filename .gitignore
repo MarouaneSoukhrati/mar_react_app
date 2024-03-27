@@ -21,6 +21,8 @@
 .codesandbox/
 .devcontainer/
 .github/
+.replit
+replit.nix
 
 npm-debug.log*
 yarn-debug.log*
