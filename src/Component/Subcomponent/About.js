@@ -45,6 +45,8 @@ let timelineGraphic = [0, 1, 2, 3, 4, 5, 6].map((e, index) => {
 export default function About() {
   return (
     <header className="App-about">
+      <h1>Academic Trajectory</h1>
+      <div className="about-timeline">{timelineGraphic}</div>
       <div className="about-section">
         <div className="about-imgside">
           <h1>About</h1>
@@ -55,8 +57,6 @@ export default function About() {
           <p>para para para para para para para para para</p>
         </div>
       </div>
-      <h1>Academic Trajectory</h1>
-      <div className="about-timeline">{timelineGraphic}</div>
     </header>
   );
 }

@@ -25,18 +25,33 @@
   text-decoration: none;
 }
 
+.nav-element-active {
+  border: solid 1px;
+  border-radius: 15px;
+  padding: 8px;
+  background-color: red;
+  color: yellow;
+  text-decoration: none;
+}
+
 .nav-element:hover {
   background-color: red;
   color: yellow;
   cursor: pointer;
 }
 
-.lang-en,
-.lang-fr,
-.lang-es {
+.lang {
   cursor: pointer;
   height: 10px;
   margin: 10px;
+}
+
+.lang-active {
+  cursor: pointer;
+  height: 10px;
+  margin: 10px;
+  border: solid 3px white;
+  border-radius: 50px;
 }
 
 .langbar {
