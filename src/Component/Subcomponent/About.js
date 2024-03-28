@@ -10,6 +10,7 @@ import UnivBdx from "../../Logos/UnivBdx.svg";
 import Ensem from "../../Logos/Ensem.svg";
 import Ensisa from "../../Logos/Ensisa.svg";
 import AboutMap from "../../Logos/AboutMap.svg";
+import AboutMap2 from "../../Logos/AboutMap2.svg";
 
 let eventList = [
   AlAmana,
@@ -55,6 +56,7 @@ let timelineGraphic = [0, 1, 2, 3, 4, 5, 6].map((e, index) => {
           href={LinksList[index]}
           target="_blank"
           rel="noreferrer"
+          style={{marginBottom: "10px"}}
         >
           <div className="timeline-mincircle" />
         </motion.a>
@@ -80,7 +82,7 @@ let texts = {
   Titre8: "My first text is text1 text2 text3 text4 ...",
   Titre9: "My first text is text1 text2 text3 text4 ...",
 }
-let stopList = [0,1,2,3,4,5,6,7,8].map(e => 
+let stopList = [0,1,2,3,4,5,6].map(e => 
         <div className={"stopm"+e}>
             <div className="stopBulletSpace">
               <div>{Object.keys(texts)[e]}</div>
@@ -93,15 +95,15 @@ export default function About() {
   return (
     <header className="App-about">
       <h1>Academic Trajectory</h1>
-      <div className="about-timeline">{timelineGraphic}</div>
+      <p>para para para para para para para para para para</p>
       <div className="about-section">
-        <div className="about-imgside">
-          <h1>About</h1>
-          <Path stopList={stopList} pathLogo={AboutMap} pathLogoStyle="map-style"/>
+        <div className="about-chartside">
+          <div className="about-timeline">{timelineGraphic.slice(0,2)}</div>
+          <div className="about-timeline">{timelineGraphic.slice(2)}</div>
         </div>
-        <div className="about-txtside">
-          <h2>About paragraph</h2>
-          <p>para para para para para para para para para para</p>
+        <div className="about-imgside">
+          <Path stopList={stopList} pathLogo={AboutMap} pathLogoStyle="map-style"/>
+          <Path stopList={stopList} pathLogo={AboutMap2} pathLogoStyle="map-style"/>
         </div>
       </div>
     </header>
