@@ -23,7 +23,6 @@
 .github/
 .replit
 replit.nix
-setPath.bat
 
 npm-debug.log*
 yarn-debug.log*

@@ -30,8 +30,8 @@ let imgStyleList = [
   1,
 ];
 
-let Desctext =
-  "The term Moor is an exonym first used by Christian Europeans to designate the Muslim populations of the Maghreb, al-Andalus (Iberian Peninsula), Sicily and Malta during the Middle Ages.";
+let Desctext = "The term Moor is an exonym first used by Christian Europeans to designate the Muslim populations of the Maghreb";
+Desctext += ", al-Andalus (Iberian Peninsula), Sicily and Malta during the Middle Ages.";
 
 export default function FamilyTree() {
   return (

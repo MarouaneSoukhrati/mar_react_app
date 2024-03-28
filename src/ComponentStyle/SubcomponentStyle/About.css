@@ -70,8 +70,13 @@
 }
 
 .map-style{
-  width: 500px;
-  height: 400px;
+  width: 614px;
+  height: 510px;
+}
+
+.map-style2{
+  width: 444px;
+  height: 426px;
 }
 
 .stopBulletSpace {
@@ -90,50 +95,38 @@
 }
 
 .stopm0 {
-  left: 333px;
-  top: 85px;
+  left: 273px;
+  top: 141px;
 }
 
 .stopm1 {
-  left: 290px;
-  top: 150px;
+  left: 196px;
+  top: 342px;
 }
 
 .stopm2 {
-  left: 246px;
-  top: 215px;
+  left: 422px;
+  top: 154px;
 }
 
 .stopm3 {
-  left: 379px;
-  top: 213px;
+  left: 456px;
+  top: 189px;
 }
 
-.stopm4 {
-  left: 215px;
-  top: 132px;
-}
-
-.stopm5 {
-  left: 399px;
-  top: 136px;
-}
-
-.stopm6 {
-  left: 84px;
-  top: 177px;
+.stopt0 {
+  left: 241px;
+  top: 32px;
 }
 
 .stopm0,
 .stopm1,
 .stopm2,
 .stopm3,
-.stopm4,
-.stopm5,
-.stopm6 {
+.stopt0 {
   position: absolute;
-  height: 10px;
-  width: 10px;
+  height: 20px;
+  width: 20px;
   border-radius: 50px;
   font-size: 0px;
 }
@@ -142,9 +135,7 @@
 .stopm1:hover,
 .stopm2:hover,
 .stopm3:hover,
-.stopm4:hover,
-.stopm5:hover,
-.stopm6:hover {
+.stopt0:hover {
   height: 100px;
   width: 100px;
   border-radius: 15px;
@@ -160,8 +151,22 @@
 .stopm1:hover .stopBullet,
 .stopm2:hover .stopBullet,
 .stopm3:hover .stopBullet,
-.stopm4:hover .stopBullet,
-.stopm5:hover .stopBullet,
-.stopm6:hover .stopBullet {
+.stopt0:hover .stopBullet {
   display: block;
+}
+
+.aboutPara{
+  width: 900px; 
+  height: 3px;
+}
+
+.abouttxtimg{
+  display: flex;
+  flex-direction: row;
+  padding: 10px;
+}
+
+.marouane-aboutlogo{
+  width: 150px;
+  padding-right: 50px;
 }
