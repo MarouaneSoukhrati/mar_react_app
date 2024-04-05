@@ -10,7 +10,7 @@ import Abody from "./Component/Abody";
 import Portfolio from "./Component/Subcomponent/Portfolio";
 import About from "./Component/Subcomponent/About";
 import Contact from "./Component/Subcomponent/Contact";
-import Blog from "./Component/Subcomponent/Blog";
+import Academics from "./Component/Subcomponent/Academics";
 
 const router = createBrowserRouter([
   {
@@ -27,12 +27,12 @@ const router = createBrowserRouter([
         element: <Portfolio />,
       },
       {
-        path: "/about",
-        element: <About />,
+        path: "/academics",
+        element: <Academics />,
       },
       {
-        path: "/blog",
-        element: <Blog />,
+        path: "/about",
+        element: <About />,
       },
       {
         path: "/contact",

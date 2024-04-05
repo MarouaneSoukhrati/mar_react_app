@@ -17,9 +17,9 @@ export default function Navbar() {
     <div className="big-navbar">
       <div className="navbar">
         <NavLink className="nav-element" to="/"><div>Home</div></NavLink>
-        <NavLink className="nav-element" to="/portfolio"><div>Portfolio</div></NavLink>
         <NavLink className="nav-element" to="/about"><div>About</div></NavLink>
-        <NavLink className="nav-element" to="/blog"><div>Blog</div></NavLink>
+        <NavLink className="nav-element" to="/academics"><div>Academics</div></NavLink>
+        <NavLink className="nav-element" to="/portfolio"><div>Portfolio</div></NavLink>
         <NavLink className="nav-element" to="/contact"><div>Contact</div></NavLink>
       </div>
       <div className="langbar">
