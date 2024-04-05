@@ -10,6 +10,7 @@ import Abody from "./Component/Abody";
 import Portfolio from "./Component/Subcomponent/Portfolio";
 import About from "./Component/Subcomponent/About";
 import Contact from "./Component/Subcomponent/Contact";
+import Blog from "./Component/Subcomponent/Blog";
 
 const router = createBrowserRouter([
   {
@@ -28,6 +29,10 @@ const router = createBrowserRouter([
       {
         path: "/about",
         element: <About />,
+      },
+      {
+        path: "/blog",
+        element: <Blog />,
       },
       {
         path: "/contact",
