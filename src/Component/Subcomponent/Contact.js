@@ -1,9 +1,72 @@
 import "../../ComponentStyle/SubcomponentStyle/Contact.css";
 
+import React, { useRef } from "react";
+import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
+import "leaflet/dist/leaflet.css";
+import L from "leaflet"
+import {motion} from "framer-motion";
+
+import iconMarker from 'leaflet/dist/images/marker-icon.png'
+import iconRetina from 'leaflet/dist/images/marker-icon-2x.png'
+import iconShadow from 'leaflet/dist/images/marker-shadow.png'
+
+const icon = L.icon({ 
+  iconRetinaUrl:iconRetina, 
+  iconUrl: iconMarker, 
+  shadowUrl: iconShadow 
+});
+
+const SimpleMap = () => {
+  const mapRef = useRef(null);
+  const latitude = 47.73064;
+  const longitude = 7.31024;
+  const position = [latitude, longitude];
+
+  return ( 
+      <div className="map-wrapper">
+        <MapContainer center={[latitude, longitude]} zoom={13} ref={mapRef} style={{height: "500px", width: "600px", borderRadius:"15px"}}>
+          <TileLayer
+            attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+          />
+            <Marker position={position} icon={icon}>
+              <Popup>
+                ENSISA Mulhouse
+              </Popup>
+            </Marker>
+        </MapContainer>
+        <p>12 Rue des Frères Lumière, 68093 Mulhouse</p>
+      </div>
+  );
+};
+
+const ContactForm = () => {
+  return(
+    <form className="contact-form">
+      <h1 style={{marginLeft:"10px", color:"yellow"}}>Contact us :</h1>
+      <div>
+        <input type="text" placeholder="First Name"></input>
+        <input type="text" placeholder="Last Name"></input>
+      </div>
+      <input type="text" placeholder="Email"></input>
+      <input type="text" placeholder="Phone Number"></input>
+      <textarea type="text" placeholder="Message..." style={{height:"200px"}}></textarea>
+      <motion.input type="submit" value={"Send Message"} 
+                    style={{backgroundColor:"yellow", width:"200px", margin: "auto", marginTop:"20px", border:"solid 3px white", color: "black", padding:"10px"}}
+                    whileHover={{scale:1.1}}>
+      </motion.input>
+    </form>
+  );
+}
+
 export default function Contact() {
   return (
     <header className="App-contact">
-      <h1>Contact</h1>
+      <h1>Have a question ? Get in touch !</h1>
+      <div className="contact-field">
+        <ContactForm/>
+        <SimpleMap/>
+      </div>
     </header>
   );
 }
