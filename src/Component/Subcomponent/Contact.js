@@ -79,6 +79,9 @@ export default function Contact() {
     let newPop = 1 - popUpOn;
     setPopUpOn(newPop);
     e.preventDefault();
+    if( newPop === 1 ){
+      e.target.reset();
+    }
   }
   return (
     <header className="App-contact">
