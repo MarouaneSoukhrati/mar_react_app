@@ -5,6 +5,7 @@ import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import L from "leaflet"
 import {motion} from "framer-motion";
+import { SocialMediaWrapper } from "../Afooter"
 
 import iconMarker from 'leaflet/dist/images/marker-icon.png'
 import iconRetina from 'leaflet/dist/images/marker-icon-2x.png'
@@ -37,6 +38,7 @@ const SimpleMap = () => {
             </Marker>
         </MapContainer>
         <p>12 Rue des Frères Lumière, 68093 Mulhouse</p>
+        <SocialMediaWrapper/>
       </div>
   );
 };

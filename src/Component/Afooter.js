@@ -61,6 +61,12 @@ let Lister = Object.keys(listerNames).map((keyElem, index) => (
   </div>
 ));
 
+export function SocialMediaWrapper() {
+  return(
+    <div className="social-media-wrapper">{socialMediaList}</div>
+  );
+}
+
 export default function Afooter() {
   return (
     <div className="App-footer">
@@ -72,7 +78,7 @@ export default function Afooter() {
             alt="marouane-logo"
           />
           <p className="copyright">Mar One - All rights reserved © 2024</p>
-          <div className="social-media-wrapper">{socialMediaList}</div>
+          <SocialMediaWrapper/>
         </div>
         <div className="lister-section">{Lister}</div>
       </div>
