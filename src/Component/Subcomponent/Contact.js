@@ -1,6 +1,6 @@
 import "../../ComponentStyle/SubcomponentStyle/Contact.css";
 
-import React, { useRef } from "react";
+import React, { useState, useRef } from "react";
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import L from "leaflet"
@@ -9,6 +9,7 @@ import {motion} from "framer-motion";
 import iconMarker from 'leaflet/dist/images/marker-icon.png'
 import iconRetina from 'leaflet/dist/images/marker-icon-2x.png'
 import iconShadow from 'leaflet/dist/images/marker-shadow.png'
+import PopUpSuccess from "../../Logos/PopUpSuccess.svg";
 
 const icon = L.icon({ 
   iconRetinaUrl:iconRetina, 
@@ -40,9 +41,9 @@ const SimpleMap = () => {
   );
 };
 
-const ContactForm = () => {
+const ContactForm = ({handler}) => {
   return(
-    <form className="contact-form">
+    <form className="contact-form" onSubmit={handler}>
       <h1 style={{marginLeft:"10px", color:"yellow"}}>Contact us :</h1>
       <div>
         <input type="text" placeholder="First Name"></input>
@@ -59,12 +60,32 @@ const ContactForm = () => {
   );
 }
 
+const PopUp = ({handler}) => {
+  return(
+  <div className="PopUp">
+    <div className="MsgPopUp">
+      <p>Message sent with success</p>
+      <img src={PopUpSuccess} style={{width:"50px"}} alt="PopUp-Success"></img>
+    </div>
+    <div className="closePopUp"><button onClick={handler}>close</button></div>
+  </div>
+  );
+}
+
 export default function Contact() {
+  const [popUpOn, setPopUpOn] = useState(0);
+
+  function handlePopUp(e){
+    let newPop = 1 - popUpOn;
+    setPopUpOn(newPop);
+    e.preventDefault();
+  }
   return (
     <header className="App-contact">
+      {popUpOn === 1 && <PopUp handler={e => handlePopUp(e)}/>}
       <h1>Have a question ? Get in touch !</h1>
       <div className="contact-field">
-        <ContactForm/>
+        <ContactForm handler={e => handlePopUp(e)}/>
         <SimpleMap/>
       </div>
     </header>
