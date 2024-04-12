@@ -1,8 +1,32 @@
 .App-body {
   color: white;
   display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 100px;
+}
+
+.body-left {
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  padding: 100px;
+}
+
+.body-right {
+  color: white;
+  display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   padding: 100px;
 }
+
+.skills-area{
+  display: flex;
+  flex-direction: row;
+}
+

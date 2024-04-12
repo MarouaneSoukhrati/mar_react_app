@@ -2,7 +2,7 @@ import "../../ComponentStyle/SubcomponentStyle/Navbar.css";
 
 import UkFlagLogo from "../../Logos/UkFlag.svg";
 import FrFlagLogo from "../../Logos/FrFlag.svg";
-import EsFlagLogo from "../../Logos/EsFlag.svg";
+import CaFlagLogo from "../../Logos/CaFlag.svg";
 
 import { NavLink } from "react-router-dom";
 import { useState } from "react";
@@ -38,12 +38,12 @@ export default function Navbar() {
         />{" "}
         FR
         <img
-          src={EsFlagLogo}
+          src={CaFlagLogo}
           className={activeNav(2)}
-          alt="EsFlag"
+          alt="CaFlag"
           onClick={() => setIndexList([0, 0, 1])}
         />{" "}
-        ES
+        CA
       </div>
     </div>
   );
