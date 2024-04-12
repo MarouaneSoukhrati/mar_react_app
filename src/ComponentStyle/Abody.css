@@ -1,7 +1,7 @@
 .App-body {
   color: white;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   padding: 100px;
@@ -11,9 +11,11 @@
   color: white;
   display: flex;
   flex-direction: column;
-  justify-content: space-evenly;
   align-items: center;
   padding: 100px;
+  background-color: #FFFF0033;
+  border-radius: 25px;
+  margin: 20px 15px 20px 25px;
 }
 
 .body-right {
@@ -23,6 +25,9 @@
   justify-content: center;
   align-items: center;
   padding: 100px;
+  background-color: #FF000033;
+  border-radius: 25px;
+  margin: 20px 25px 20px 10px;
 }
 
 .skills-area{
@@ -30,3 +35,17 @@
   flex-direction: row;
 }
 
+.Exp-List, .Edu-List{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  width: max-content;
+}
+
+.body-wrapper{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  border-radius: 25px;
+  background-color: #FFFFFF33;
+}
