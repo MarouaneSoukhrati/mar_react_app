@@ -28,41 +28,42 @@ let EduList = [
   {school:"CPGE Saint-Exupéry", loc: "Mantes-La-Jolie", date:"2017-2018", description:"Undergraduate studies to prepare for competitive entry exams to engineering schools"},
 ];
 
+const experienceList = ExpList.map(e => { 
+  return <>
+          <h3 className="Exp-List"><img src={e.logo} style={{width:"40px", margin:"0px 10px 0px 0px"}} alt="img-cv"/> {e.corp + " - "} {e.date}</h3>
+          <h5>{e.title}</h5>
+          <p>{e.job}</p>
+        </>})
+
+const educationList = EduList.map(e => { 
+  return <>
+          <h2 style={{textAlign:"center"}}>{e.school}</h2>
+          <div className="Edu-List">{e.loc} {e.date}</div>
+          <div style={{textAlign:"center", marginBottom:"50px"}}>{e.description}</div>
+       </>})           
+
+const skillsListLeft = <>
+  <li>Web development</li>
+  <li>Web Design</li>
+  <li>Data analytics</li>
+  <li>Marketing</li>
+</>     
+
+const skillsListRight = <>
+  <li>IT/Software developement</li>
+  <li>Computation</li>
+  <li>Energy systems design</li>
+  <li>Complex Energy systems maintenance</li>
+</>           
+
+
 export default function Abody() {
   
-  const experienceList = ExpList.map(e => { 
-    return <>
-            <h3 className="Exp-List"><img src={e.logo} style={{width:"40px", margin:"0px 10px 0px 0px"}} alt="img-cv"/> {e.corp + " - "} {e.date}</h3>
-            <h5>{e.title}</h5>
-            <p>{e.job}</p>
-          </>})
-
-  const educationList = EduList.map(e => { 
-    return <>
-            <h2 style={{textAlign:"center"}}>{e.school}</h2>
-            <div className="Edu-List">{e.loc} {e.date}</div>
-            <div style={{textAlign:"center", marginBottom:"50px"}}>{e.description}</div>
-         </>})           
-
-  const skillsListLeft = <>
-    <li>Web development</li>
-    <li>Web Design</li>
-    <li>Data analytics</li>
-    <li>Marketing</li>
-  </>     
-  
-  const skillsListRight = <>
-    <li>IT/Software developement</li>
-    <li>Computation</li>
-    <li>Energy systems design</li>
-    <li>Complex Energy systems maintenance</li>
-  </>           
-
   return (
     <div className="App-body">
       <h1 style={{padding:"50px"}}>Curriculum Vitae</h1>
       <div className="body-wrapper">
-        <div className="body-left">
+        <div className="body-top">
           <img src={marouaneLogo} alt="img-cv"/>
           <h1 style={{margin: "90px 0px 60px 0px"}}>Marouane Soukhrati</h1>
           <h3>Computer Science Student</h3>
@@ -80,7 +81,7 @@ export default function Abody() {
             </ul>
           </div>
         </div>
-        <div className="body-right">
+        <div className="body-bottom">
           <h1 style={{margin: "50px 0px 90px 0px"}}>Past Experience</h1>
           <div>{experienceList}</div>
           <h1 style={{margin: "30px 0px 50px 0px"}}>Education</h1>

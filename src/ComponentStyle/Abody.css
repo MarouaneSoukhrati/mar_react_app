@@ -7,7 +7,7 @@
   padding: 100px;
 }
 
-.body-left {
+.body-top {
   color: white;
   display: flex;
   flex-direction: column;
@@ -15,10 +15,10 @@
   padding: 100px;
   background-color: #FFFF0033;
   border-radius: 25px;
-  margin: 20px 15px 20px 25px;
+  margin: 30px 30px 15px 30px;
 }
 
-.body-right {
+.body-bottom {
   color: white;
   display: flex;
   flex-direction: column;
@@ -27,7 +27,7 @@
   padding: 100px;
   background-color: #FF000033;
   border-radius: 25px;
-  margin: 20px 25px 20px 10px;
+  margin: 15px 30px 30px 30px;
 }
 
 .skills-area{
@@ -44,7 +44,7 @@
 
 .body-wrapper{
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: space-evenly;
   border-radius: 25px;
   background-color: #FFFFFF33;
