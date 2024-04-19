@@ -28,11 +28,15 @@ let imgStyleList = [
   "imgCar-images",
   "switchButtons",
   1,
+  "imgCar-images-wrapper",
 ];
 
-let Desctext = "The term Moor is an exonym first used by Christian Europeans to designate the Muslim populations of the Maghreb";
-Desctext += ", al-Andalus (Iberian Peninsula), Sicily and Malta during the Middle Ages.";
-Desctext += " Europeans of the Middle Ages and the early modern period variously applied the name to Arabs, Berbers, and Muslim Europeans."
+let Desctext =
+  "The term Moor is an exonym first used by Christian Europeans to designate the Muslim populations of the Maghreb";
+Desctext +=
+  ", al-Andalus (Iberian Peninsula), Sicily and Malta during the Middle Ages.";
+Desctext +=
+  " Europeans of the Middle Ages and the early modern period variously applied the name to Arabs, Berbers, and Muslim Europeans.";
 
 export default function FamilyTree() {
   return (
