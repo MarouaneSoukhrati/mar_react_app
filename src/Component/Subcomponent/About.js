@@ -2,44 +2,12 @@ import "../../ComponentStyle/SubcomponentStyle/About.css";
 import "../../ComponentStyle/SubcomponentStyle/Path.css";
 import FamilyTree from "./FamilyTree";
 import Path from "./Path";
-import AudioPlayer from "./AudioPlayer";
 
 import { motion } from "framer-motion";
 
 import MoorLogo from "../../Logos/MoorLogo.svg";
 import Capsule from "../../Logos/Capsule.svg";
 import pathLogo from "../../Logos/PathLogo.svg";
-
-let musicList1 = [
-  {
-    name: "Nice piano and ukulele",
-    author: "Royalty",
-    img: "https://www.bensound.com/bensound-img/buddy.jpg",
-    audio: "https://www.bensound.com/bensound-music/bensound-buddy.mp3",
-    duration: "2:02",
-  },
-  {
-    name: "Gentle acoustic",
-    author: "Acoustic",
-    img: "https://www.bensound.com/bensound-img/sunny.jpg",
-    audio: "https://www.bensound.com//bensound-music/bensound-sunny.mp3",
-    duration: "2:20",
-  },
-  {
-    name: "Corporate motivational",
-    author: "Corporate",
-    img: "https://www.bensound.com/bensound-img/energy.jpg",
-    audio: "https://www.bensound.com/bensound-music/bensound-energy.mp3",
-    duration: "2:59",
-  },
-  {
-    name: "Slow cinematic",
-    author: "Royalty",
-    img: "https://www.bensound.com/bensound-img/slowmotion.jpg",
-    audio: "https://www.bensound.com/bensound-music/bensound-slowmotion.mp3",
-    duration: "3:26",
-  },
-];
 
 let mobtxt =
   "Mobility is one of the hottest sectors, with start-ups and traditional OEMs constantly developing new technologies and transportation options.";
@@ -99,10 +67,6 @@ export default function About() {
           </motion.button>
         </div>
         <p className="mobpara">{mobtxt}</p>
-        <AudioPlayer
-          musicList={musicList1}
-          playlistName="Favorite Playlist :"
-        />
       </div>
     </div>
   );
