@@ -169,7 +169,7 @@ class CardProfile extends React.Component {
               Your browser does not support the audio element.
             </audio>
             <div className="img-wrap">
-              <img src={currentSong.img} />
+              <img src={currentSong.img} alt="currentSong" />
             </div>
             <span className="song-name">{currentSong.name}</span>
             <span className="song-autor">{currentSong.author}</span>
@@ -230,7 +230,7 @@ class CardProfile extends React.Component {
                   (index === key && pause ? "play-now" : "")
                 }
               >
-                <img className="track-img" src={music.img} />
+                <img className="track-img" src={music.img} alt="music.img" />
                 <div className="track-discr">
                   <span className="track-name">{music.name}</span>
                   <span className="track-author">{music.author}</span>
