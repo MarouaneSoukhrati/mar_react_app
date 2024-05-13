@@ -127,15 +127,6 @@ const skillsListRight = (
   </>
 );
 
-function DiffCard({ image, txt }) {
-  return (
-    <div className="diff-card">
-      <img className="diff-img" src={image} alt="img-cv" />
-      <p className="diff-txt">{txt}</p>
-    </div>
-  );
-}
-
 function Curiculum() {
   return (
     <>
@@ -187,21 +178,20 @@ function Curiculum() {
 export default function Abody() {
   return (
     <div className="App-body">
-      <div className="diff-wrapper">
-        <DiffCard
-          image={freelanceLogo}
-          txt="Why I'm looking for a co-op position ..."
-        />
-        <DiffCard
-          image={freelanceLogo}
-          txt="Why I'm looking for a co-op position ..."
-        />
-        <DiffCard
-          image={freelanceLogo}
-          txt="Why I'm looking for a co-op position ..."
-        />
-      </div>
       <Curiculum />
+      {/*
+          
+            function DiffCard({ image, txt }) {
+              return (
+                <div className="diff-card">
+                  <img className="diff-img" src={image} alt="img-cv" />
+                  <p className="diff-txt">{txt}</p>
+                </div>
+              );
+            }
+            <DiffCard image={freelanceLogo} txt="Why I'm looking for a co-op position ..."/>;
+          
+          */}
     </div>
   );
 }
