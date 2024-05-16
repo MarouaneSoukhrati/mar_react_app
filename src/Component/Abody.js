@@ -6,6 +6,7 @@ import phoneLogo from "../Logos/phoneLogo.svg";
 import mbpLogo from "../Logos/mbpLogo.svg";
 import daherLogo from "../Logos/daherLogo.svg";
 import freelanceLogo from "../Logos/freelanceLogo.svg";
+import uhaLogo from "../Logos/uhaLogo.svg";
 
 let aboutPara = [
   "I am interested in understanding and articulating everything via code.",
@@ -137,6 +138,10 @@ function Curiculum() {
           <h1 style={{ margin: "90px 0px 60px 0px" }}>Marouane Soukhrati</h1>
           <h3>Computer Science Student</h3>
           <div style={{ marginBottom: "10px" }}>
+            <img src={uhaLogo} style={{ width: "20px" }} alt="img-cv-uha" />{" "}
+            marouane.soukhrati@uha.fr
+          </div>
+          <div style={{ marginBottom: "10px" }}>
             <img src={gmailLogo} style={{ width: "20px" }} alt="img-cv" />{" "}
             soukhratimarouane@gmail.com
           </div>
@@ -146,7 +151,7 @@ function Curiculum() {
               style={{ width: "20px", margin: "-4px 0px" }}
               alt="img-cv"
             />{" "}
-            +33667569678
+            +33745493327
           </div>
           <h1 style={{ margin: "90px 0px 30px 0px" }}>About Me</h1>
           <p style={{ textAlign: "center", width: "645px" }}>{aboutPara}</p>
