@@ -103,6 +103,7 @@
   flex-direction: column;
   justify-content: space-between;
   padding: 18px;
+  color: white;
 }
 
 .stop0:hover .stopBullet,
