@@ -6,3 +6,49 @@
   align-items: center;
   padding: 100px;
 }
+
+.ai-section {
+  background-color: #ff000033;
+  padding: 50px;
+  border-radius: 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.ai-prompt-section {
+  background-color: #ffff0033;
+  border-radius: 15px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 10px 30px 10px 30px;
+}
+
+.aiInput {
+  background-color: transparent;
+  border: none;
+}
+
+.aiInput:focus {
+  outline: none;
+}
+
+.ai-buttons,
+.ai-buttons-ready {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-evenly;
+  width: 100px;
+}
+
+.ai-buttons-ready {
+  width: 150px;
+}
+
+.ai-image,
+.ai-audio,
+.ai-answer {
+  width: 50px;
+}
