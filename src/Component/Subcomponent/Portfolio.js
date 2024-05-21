@@ -1,7 +1,10 @@
 import "../../ComponentStyle/SubcomponentStyle/Portfolio.css";
 import { useState } from "react";
+import { motion } from "framer-motion";
 
-import rightArrow from "../../Logos/rightArrow.svg";
+import aiSend from "../../Logos/aiSend.svg";
+import aiAudio from "../../Logos/aiAudio.svg";
+import aiImage from "../../Logos/aiImage.svg";
 
 export default function Portfolio() {
   return (
@@ -23,19 +26,36 @@ function AiBot() {
       <h2>AI powered Chat Bot</h2>
       <div className="ai-prompt-section">
         <form name="userForm">
-          <input
+          <textarea
             className="aiInput"
-            type="text"
             name="userInput"
             placeholder="Enter a prompt here"
             onChange={handleInputChange}
           />
         </form>
         <div className={aiReadySubmit ? "ai-buttons-ready" : "ai-buttons"}>
-          <img className="ai-image" src={rightArrow} alt="right-arrow" />
-          <img className="ai-audio" src={rightArrow} alt="right-arrow" />
+          <motion.img
+            className="ai-image"
+            src={aiImage}
+            alt="ai-img"
+            whileHover={{ scale: 1.2 }}
+            whileTap={{ scale: 0.7 }}
+          />
+          <motion.img
+            className="ai-audio"
+            src={aiAudio}
+            alt="ai-audio"
+            whileHover={{ scale: 1.2 }}
+            whileTap={{ scale: 0.7 }}
+          />
           {aiReadySubmit && (
-            <img className="ai-answer" src={rightArrow} alt="right-arrow" />
+            <motion.img
+              className="ai-answer"
+              src={aiSend}
+              alt="ai-answer"
+              whileHover={{ scale: 1.2 }}
+              whileTap={{ scale: 0.7 }}
+            />
           )}
         </div>
       </div>

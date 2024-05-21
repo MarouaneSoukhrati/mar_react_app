@@ -17,7 +17,7 @@
 }
 
 .ai-prompt-section {
-  background-color: #ffff0033;
+  background-color: #ffffff;
   border-radius: 15px;
   display: flex;
   flex-direction: row;
@@ -28,10 +28,12 @@
 .aiInput {
   background-color: transparent;
   border: none;
-}
-
-.aiInput:focus {
   outline: none;
+  overflow: hidden;
+  color: black;
+  height: 30px;
+  width: 600px;
+  resize: none;
 }
 
 .ai-buttons,
@@ -44,11 +46,17 @@
 }
 
 .ai-buttons-ready {
-  width: 150px;
+  width: 160px;
 }
 
-.ai-image,
-.ai-audio,
+.ai-image {
+  width: 30px;
+}
+
+.ai-audio {
+  width: 60px;
+}
+
 .ai-answer {
-  width: 50px;
+  width: 30px;
 }
