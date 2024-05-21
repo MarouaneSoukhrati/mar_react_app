@@ -8,12 +8,13 @@
 }
 
 .ai-section {
-  background-color: #ff000033;
+  background-color: #ff0000;
   padding: 50px;
   border-radius: 15px;
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-top: 50px;
 }
 
 .ai-prompt-section {

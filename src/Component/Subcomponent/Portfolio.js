@@ -18,9 +18,16 @@ export default function Portfolio() {
 function AiBot() {
   const [aiQuest, setAiQuest] = useState("");
   const aiReadySubmit = aiQuest !== "";
+
   function handleInputChange(e) {
     setAiQuest(e.target.value);
   }
+
+  function handleKeyDown(e) {
+    e.target.style.height = "inherit";
+    e.target.style.height = `${e.target.scrollHeight}px`;
+  }
+
   return (
     <div className="ai-section">
       <h2>AI powered Chat Bot</h2>
@@ -31,6 +38,7 @@ function AiBot() {
             name="userInput"
             placeholder="Enter a prompt here"
             onChange={handleInputChange}
+            onKeyDown={handleKeyDown}
           />
         </form>
         <div className={aiReadySubmit ? "ai-buttons-ready" : "ai-buttons"}>
