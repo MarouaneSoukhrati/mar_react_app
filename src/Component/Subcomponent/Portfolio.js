@@ -75,6 +75,10 @@ function AiBot() {
     e.target.style.height = `${e.target.scrollHeight}px`;
   }
 
+  function handleMsg(){
+    setAiQuest("Sorry the chat bot is not working currently !");
+  }
+
   return (
     <div className="ai-section">
       <div className="aiBot-title">
@@ -93,6 +97,7 @@ function AiBot() {
             placeholder="Enter a prompt here ..."
             onChange={handleInputChange}
             onKeyDown={handleKeyDown}
+            value={aiQuest}
           />
         </form>
         <div className={aiReadySubmit ? "ai-buttons-ready" : "ai-buttons"}>
@@ -117,6 +122,7 @@ function AiBot() {
               alt="ai-answer"
               whileHover={{ scale: 1.2 }}
               whileTap={{ scale: 0.9 }}
+              onClick={handleMsg}
             />
           )}
         </div>
