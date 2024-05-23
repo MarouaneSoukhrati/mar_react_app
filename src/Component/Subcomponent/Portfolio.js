@@ -7,6 +7,7 @@ import aiAudio from "../../Logos/aiAudio.svg";
 import aiImage from "../../Logos/aiImage.svg";
 import leftArrow from "../../Logos/leftArrow.svg";
 import rightArrow from "../../Logos/rightArrow.svg";
+import marouaneLogo from "../../Logos/marouane-logo.svg";
 
 export default function Portfolio() {
   return (
@@ -16,7 +17,6 @@ export default function Portfolio() {
         <SideBar />
         <AiBot />
       </div>
-      API_KEY : {process.env.GOOGLEAI_KEY}
     </header>
   );
 }
@@ -79,11 +79,11 @@ function AiBot() {
     <div className="ai-section">
       <div className="aiBot-title">
         <img
-          src={process.env.PUBLIC_URL + "/m-icon.png"}
+          src={marouaneLogo}
           alt="marouaneLogo"
-          style={{ width: "25px", marginRight: "10px", marginLeft: "30px" }}
+          style={{ width: "60px", marginRight: "10px", marginLeft: "30px" }}
         />
-        <h2> - AI powered Chat Bot</h2>
+        <h2>AI powered Chat Bot :</h2>
       </div>
       <div className="ai-prompt-section">
         <form name="userForm">

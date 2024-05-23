@@ -16,14 +16,19 @@
   flex-direction: row;
   justify-content: space-evenly;
   align-items: stretch;
+  padding: 100px;
+  background-color: #ffffff11;
+  border-radius: 50px;
 }
 
 .ai-section {
-  background-color: #00ffff33;
+  background-color: #000000;
   padding: 50px;
-  border-radius: 0px 15px 15px 0px;
+  border-radius: 100px 100px 100px 100px;
   display: flex;
   flex-direction: column;
+  border: 3px solid white; 
+  margin:0px 0px 0px 50px;
 }
 
 .ai-prompt-section {
@@ -84,15 +89,18 @@
 
 .sidebar-section,
 .sidebar-section-ext {
-  background-color: #ffffff22;
+  background-color: #ff000099;
   display: flex;
   flex-direction: column;
-  border-radius: 15px 0px 0px 15px;
+  border-radius: 15px 0px 100px 100px;
   width: 150px;
+  padding-top: 50px;
+  border: 3px solid white;  
 }
 
 .sidebar-section-ext {
   width: 300px;
+  padding-top: 0px;
 }
 
 .ext-img {
