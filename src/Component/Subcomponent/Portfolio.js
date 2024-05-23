@@ -90,7 +90,7 @@ function AiBot() {
           <textarea
             className="aiInput"
             name="userInput"
-            placeholder="Enter a prompt here"
+            placeholder="Enter a prompt here ..."
             onChange={handleInputChange}
             onKeyDown={handleKeyDown}
           />

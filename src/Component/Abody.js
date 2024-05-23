@@ -81,7 +81,7 @@ let EduList = [
 
 const experienceList = ExpList.map((e) => {
   return (
-    <>
+    <div key={e.title}>
       <h3 className="Exp-List">
         <img
           src={e.logo}
@@ -92,13 +92,13 @@ const experienceList = ExpList.map((e) => {
       </h3>
       <h5>{e.title}</h5>
       <p>{e.job}</p>
-    </>
+    </div>
   );
 });
 
 const educationList = EduList.map((e) => {
   return (
-    <>
+    <div style={{ display: "flex", flexDirection: "column", alignItems: "center",}} key={e.description}>
       <h2 style={{ textAlign: "center" }}>{e.school}</h2>
       <div className="Edu-List">
         {e.loc} {e.date}
@@ -106,7 +106,7 @@ const educationList = EduList.map((e) => {
       <div style={{ textAlign: "center", marginBottom: "50px" }}>
         {e.description}
       </div>
-    </>
+    </div>
   );
 });
 
@@ -165,15 +165,7 @@ function Curiculum() {
           <h1 style={{ margin: "50px 0px 90px 0px" }}>Past Experience</h1>
           <div>{experienceList}</div>
           <h1 style={{ margin: "30px 0px 50px 0px" }}>Education</h1>
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
-            }}
-          >
-            {educationList}
-          </div>
+          {educationList}
         </div>
       </div>
     </>

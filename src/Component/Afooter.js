@@ -26,12 +26,13 @@ let socialMediaLinks = [
 
 let socialMediaList = socialMediaNamesList.map((name, index) => (
   <motion.a
+    key={name}
     href={socialMediaLinks[index]}
     target="_blank"
     rel="noreferrer"
     whileHover={{ scale: 1.5 }}
   >
-    <img className="social-media-logo" src={name} alt={name} />
+    <img className="social-media-logo" src={name} alt={name}/>
   </motion.a>
 ));
 
@@ -51,11 +52,11 @@ let listerNames = {
 };
 
 let Lister = Object.keys(listerNames).map((keyElem, index) => (
-  <div className="lister-item">
+  <div className="lister-item" key={keyElem}>
     <div className="lister-item-title">{keyElem}</div>
     <div className="lister-item-list">
       {listerNames[keyElem].map((item) => (
-        <div className="footer-item">{item}</div>
+        <div className="footer-item" key={item}>{item}</div>
       ))}
     </div>
   </div>
@@ -69,7 +70,7 @@ export function SocialMediaWrapper() {
 
 export default function Afooter() {
   return (
-    <div className="App-footer">
+    <div className="App-footer">  
       <div className="footer-wrapper">
         <div className="logo-section">
           <img
