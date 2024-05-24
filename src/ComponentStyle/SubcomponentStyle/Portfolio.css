@@ -19,6 +19,16 @@
   padding: 100px;
   background-color: #ffffff11;
   border-radius: 50px;
+  margin-bottom: 50px;
+}
+
+.Poker-part {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  padding: 100px;
+  background-color: #ffffff11;
+  border-radius: 50px;
 }
 
 .ai-section {

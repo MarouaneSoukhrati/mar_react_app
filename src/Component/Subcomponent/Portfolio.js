@@ -9,6 +9,8 @@ import leftArrow from "../../Logos/leftArrow.svg";
 import rightArrow from "../../Logos/rightArrow.svg";
 import marouaneLogo from "../../Logos/marouane-logo.svg";
 
+import PokerGame from "../Poker/Poker";
+
 export default function Portfolio() {
   return (
     <header className="App-portfolio">
@@ -16,6 +18,9 @@ export default function Portfolio() {
       <div className="Ai-part">
         <SideBar />
         <AiBot />
+      </div>
+      <div className="Poker-part">
+        <PokerGame/>
       </div>
     </header>
   );
