@@ -5,7 +5,7 @@ import PropTypes from "prop-types";
 
 const SliderWithLimits = ({ min, max, onChange }) => {
   const [minVal, setMinVal] = useState(min);
-  const [maxVal, setMaxVal] = useState(max);
+  const maxVal = max;
   const minValRef = useRef(min);
   const maxValRef = useRef(max);
   const range = useRef(null);
@@ -62,11 +62,6 @@ const SliderWithLimits = ({ min, max, onChange }) => {
         min={min}
         max={max}
         value={maxVal}
-        onChange={(event) => {
-          const value = Math.max(Number(event.target.value), minVal + 1);
-          setMaxVal(value);
-          maxValRef.current = value;
-        }}
         className="thumb thumb--right"
       />
 

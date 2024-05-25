@@ -20,7 +20,7 @@ export default function Portfolio() {
         <AiBot />
       </div>
       <div className="Poker-part">
-        <PokerGame/>
+        <PokerGame playersCount={4}/>
       </div>
     </header>
   );

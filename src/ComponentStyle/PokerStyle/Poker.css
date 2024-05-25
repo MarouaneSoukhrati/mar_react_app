@@ -3,6 +3,7 @@
     flex-direction: column;
     justify-content: space-evenly;
     align-items: center;
+    margin-left: 100px;
 }
 
 .poker-table {
@@ -12,7 +13,7 @@
     align-items: center;
     padding: 100px;
     background-color: #00ff0033;
-    border-radius: 50px;
+    border-radius: 200px;
     width: 600px;
     height: 250px;
 }
@@ -22,6 +23,9 @@
     flex-direction: row;
     justify-content: space-evenly;
     align-items: center;
+    padding: 30px 70px;
+    background-color: #ff000033;
+    border-radius: 50px;
 }
 
 .poker-card-deck{
@@ -29,9 +33,14 @@
     height: 100px;
 }
 
+.poker-card-plr{
+    width:40px;
+    height: 40px;
+}
+
 .poker-card-firstp{
-    width:50px;
-    height: 50px;
+    width:70px;
+    height: 70px;
 }
 
 .playerProfile{
@@ -43,14 +52,14 @@
 }
 
 .playerLogo{
-    width: 70px;
+    width: 50px;
     border-radius: 50px;
     margin-bottom: 10px;
 }
 
 .playerName{
-    color:black;
-    background-color: white;
+    color:white;
+    background-color: black;
     border-radius: 15px;
     padding: 7px;
     display: flex;
@@ -76,9 +85,7 @@
     justify-content: space-evenly;
     background-color: gray;
     border-radius: 15px;
-    padding: 20px 10px 40px 10px;
-    margin: 20px;
-    margin-right: 100px;
+    padding: 30px 10px;
 }
 
 .game-wrapper{
@@ -89,6 +96,13 @@
     padding: 100px;
     border-radius: 50px;
     background-color: #ff000011;
+}
+
+.bench-wrapper{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
 }
 
 .controls{
@@ -110,23 +124,34 @@
     cursor: pointer;
 }
 
+.name-button{
+    background-color: green;
+    width: 90px;
+    height: 30px;
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    border: 1px solid white;
+    cursor: pointer;
+    margin: 20px;
+}
+
 .firstPerson{
     display: flex;
     flex-direction: column;
     align-items: center;
+    padding-top: 30px;
 }
 
-.firstPersonCards{
+.playerCards{
     display: flex;
     flex-direction: row;
+    margin-top: 10px;
 }
 
-.BenchPlayerTitle{
-    padding-bottom: 15px;
-    color: black;
-    background-color: white;
+.first-p-name{
     border-radius: 15px;
-    display: flex;
-    align-items: center;
-    padding: 10px;
+    height: 20px;
+    text-align: center;
 }
