@@ -37,7 +37,7 @@
   .slider__left-value,
   .slider__right-value {
     color: #ffffff;
-    font-size: 12px;
+    font-size: 15px;
     margin-top: 20px;
   }
   
@@ -75,10 +75,10 @@
   
   /* For Chrome browsers */
   .thumb::-webkit-slider-thumb {
-    background-color: #000000;
+    background-color: #ff0000;
     border: none;
     border-radius: 50%;
-    box-shadow: 0 0 1px 1px #ffffff;
+    box-shadow: 0 0 5px 5px #ffffff;
     height: 18px;
     width: 18px;
     margin-top: 4px;
@@ -88,10 +88,10 @@
   
   /* For Firefox browsers */
   .thumb::-moz-range-thumb {
-    background-color: #000000;
+    background-color: #ff0000;
     border: none;
     border-radius: 50%;
-    box-shadow: 0 0 1px 1px #ffffff;
+    box-shadow: 0 0 5px 5px #ffffff;
     height: 18px;
     width: 18px;
     margin-top: 4px;

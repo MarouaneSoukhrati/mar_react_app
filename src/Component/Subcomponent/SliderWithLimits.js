@@ -3,7 +3,7 @@ import "../../ComponentStyle/SubcomponentStyle/SliderWithLimits.css";
 import React, { useCallback, useEffect, useState, useRef } from "react";
 import PropTypes from "prop-types";
 
-const SliderWithLimits = ({ min, max, onChange }) => {
+const SliderWithLimits = ({ min, max }) => {
   const [minVal, setMinVal] = useState(min);
   const maxVal = max;
   const minValRef = useRef(min);
@@ -39,8 +39,7 @@ const SliderWithLimits = ({ min, max, onChange }) => {
 
   // Get min and max values when their state changes
   useEffect(() => {
-    onChange({ min: minVal, max: maxVal });
-  }, [minVal, maxVal, onChange]);
+  }, [minVal, maxVal]);
 
   return (
     <div className="container">
@@ -57,13 +56,6 @@ const SliderWithLimits = ({ min, max, onChange }) => {
         className="thumb thumb--left"
         style={{ zIndex: minVal > max - 100 && "5" }}
       />
-      <input
-        type="range"
-        min={min}
-        max={max}
-        value={maxVal}
-        className="thumb thumb--right"
-      />
 
       <div className="slider">
         <div className="slider__track" />
@@ -78,7 +70,6 @@ const SliderWithLimits = ({ min, max, onChange }) => {
 SliderWithLimits.propTypes = {
   min: PropTypes.number.isRequired,
   max: PropTypes.number.isRequired,
-  onChange: PropTypes.func.isRequired
 };
 
 export default SliderWithLimits;

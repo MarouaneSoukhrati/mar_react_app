@@ -78,6 +78,29 @@
     font-size: 10px;
 }
 
+.playerTimerW{
+    font-size: 10px;
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color:white;
+}
+
+.playerTimer{
+    background-color: red;
+    color: yellow;
+    border: 3px solid yellow;
+    border-radius: 50%;
+    height: 30px;
+    width: 30px;
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    font-size: 10px;
+}
+
 .playersBench{
     display: flex;
     flex-direction: column;
@@ -109,12 +132,12 @@
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
-    width: 200px;
+    width: 240px;
 }
 
 .control-button{
     background-color: red;
-    width: 50px;
+    width: 60px;
     height: 30px;
     border-radius: 15px;
     display: flex;
