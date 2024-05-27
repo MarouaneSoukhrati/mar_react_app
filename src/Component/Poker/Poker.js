@@ -19,7 +19,7 @@ export default function PokerGame({playersCount}){
     let playersPot = playersNames.map(e => 10000);
     let playersBet = playersNames.map(e => 0);
     let playersCards = playersNames.map(e => [{cardType:"Clubs", cardNumber:generateCards("card1"), cardEmp:"plr"}, {cardType:"Clubs", cardNumber:generateCards("card2"), cardEmp:"plr"}])
-    let playersActions = playersNames.map(e => "Call");
+    let playersActions = playersNames.map(e => "None");
 
     let [nameList, setNameList] = useState(playersNames);
     let [potList, setPotList] = useState(playersPot);
@@ -59,14 +59,14 @@ export default function PokerGame({playersCount}){
             <div className='poker-wrapper'>
                 <h1 style={{color:"yellow", paddingBottom: "50px"}}>Poker Game :</h1>
                 <PokerTable deckList={deckList}/>
-                <SliderWithLimits
+                { playerIndex===0 && <><SliderWithLimits
                     min={0}
                     max={myPlyrPot}/>
                 <div className='controls'>
                     <motion.div className='control-button' whileHover={{scale:"1.2"}} whileTap={{scale:"0.9"}}>{myPlyrCallCheck}</motion.div>
                     <motion.div className='control-button' whileHover={{scale:"1.2"}} whileTap={{scale:"0.9"}}>Fold</motion.div>
                     <motion.div className='control-button' whileHover={{scale:"1.2"}} whileTap={{scale:"0.9"}}>Raise</motion.div>
-                </div>
+                </div></>}
                 <div className='firstPerson'>
                     <Player playerName={myPlyrName} playerPot={myPlyrPot} playerBet={myPlyrBet} 
                     playerCards={myPlyrCards} playerIsActive={playerIndex===0}/>
@@ -122,7 +122,6 @@ function Player({playerName, playerPot, playerBet, playerCards, playerIsActive})
             } else return time - 1;
           });
         }, 1000);
-        console.log('i fire once');
       }, []);
 
     return(
@@ -132,7 +131,7 @@ function Player({playerName, playerPot, playerBet, playerCards, playerIsActive})
             <div className="playerPot">Pot: {playerPot}$</div>
             <div className="playerBet">Bet: {playerBet}$</div>
             <div className='playerCards'>{playerCardsFig}</div>
-            {playerIsActive && <div className='playerTimerW'>^ Remaining Time ^<motion.div className='playerTimer'>{playTimer}s</motion.div></div>}
+            {playerIsActive && playTimer!==0 && <div className='playerTimerW'>^ Remaining Time ^<motion.div className='playerTimer'>{playTimer}s</motion.div></div>}
         </div>
     );
 }
