@@ -1,180 +1,181 @@
-.poker-wrapper{
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
-    align-items: center;
-    margin-left: 100px;
+.poker-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  margin-left: 100px;
 }
 
 .poker-table {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
-    align-items: center;
-    padding: 100px;
-    background-color: #00ff0033;
-    border-radius: 200px;
-    width: 600px;
-    height: 250px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  padding: 100px;
+  background-color: #00ff0033;
+  border-radius: 200px;
+  width: 600px;
+  height: 250px;
 }
 
-.Deck{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
-    align-items: center;
-    padding: 30px 70px;
-    background-color: #ff000033;
-    border-radius: 50px;
+.Deck {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+  padding: 30px 70px;
+  background-color: #ff000033;
+  border-radius: 50px;
 }
 
-.poker-card-deck{
-    width:100px;
-    height: 100px;
+.poker-card-deck {
+  width: 100px;
+  height: 100px;
 }
 
-.poker-card-plr{
-    width:40px;
-    height: 40px;
+.poker-card-plr {
+  width: 40px;
+  height: 40px;
 }
 
-.poker-card-firstp{
-    width:70px;
-    height: 70px;
+.poker-card-firstp {
+  width: 70px;
+  height: 70px;
 }
 
-.playerProfile{
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
-    align-items: center;
-    padding: 10px;
+.playerProfile {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  padding: 10px;
 }
 
-.playerLogo{
-    width: 50px;
-    border-radius: 50px;
-    margin-bottom: 10px;
+.playerLogo {
+  width: 50px;
+  border-radius: 50px;
+  margin-bottom: 10px;
 }
 
-.playerName{
-    color:white;
-    background-color: black;
-    border-radius: 15px;
-    padding: 7px;
-    display: flex;
-    align-items: center;
-    font-size: 10px;
-    margin-bottom: 5px;
+.playerName {
+  color: white;
+  background-color: black;
+  border-radius: 15px;
+  padding: 7px;
+  display: flex;
+  align-items: center;
+  font-size: 10px;
+  margin-bottom: 5px;
 }
 
-.playerStack{
-    color:white;
-    font-size: 10px;
+.playerStack {
+  color: white;
+  font-size: 10px;
 }
 
-.playerBet{
-    color:white;
-    font-size: 10px;
+.playerBet {
+  color: white;
+  font-size: 10px;
 }
 
-.playerTimerW{
-    font-size: 10px;
-    margin-top: 10px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    color:white;
+.playerTimerW {
+  font-size: 10px;
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: white;
 }
 
-.playerTimer{
-    background-color: red;
-    color: yellow;
-    border: 3px solid yellow;
-    border-radius: 50%;
-    height: 30px;
-    width: 30px;
-    margin-top: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: space-evenly;
-    font-size: 10px;
+.playerTimer {
+  background-color: red;
+  color: yellow;
+  border: 3px solid yellow;
+  border-radius: 50%;
+  height: 30px;
+  width: 30px;
+  margin-top: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  font-size: 10px;
 }
 
-.playersBench{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-evenly;
-    background-color: gray;
-    border-radius: 15px;
-    padding: 30px 10px;
+.playersBench {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  background-color: gray;
+  border-radius: 15px;
+  padding: 30px 10px;
 }
 
-.game-wrapper{
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-evenly;
-    padding: 100px;
-    border-radius: 50px;
-    background-color: #ff000011;
+.game-wrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-evenly;
+  padding: 100px;
+  border-radius: 50px;
+  background-color: #ff000011;
 }
 
-.bench-wrapper{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-evenly;
+.bench-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
 }
 
-.controls{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
-    width: 240px;
+.controls {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  width: 240px;
 }
 
-.control-button{
-    background-color: red;
-    width: 60px;
-    height: 30px;
-    border-radius: 15px;
-    display: flex;
-    align-items: center;
-    justify-content: space-evenly;
-    border: 1px solid white;
-    cursor: pointer;
+.control-button {
+  background-color: red;
+  width: 60px;
+  height: 30px;
+  border-radius: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  border: 1px solid white;
+  cursor: pointer;
 }
 
-.name-button{
-    background-color: green;
-    width: 90px;
-    height: 30px;
-    border-radius: 15px;
-    display: flex;
-    align-items: center;
-    justify-content: space-evenly;
-    border: 1px solid white;
-    cursor: pointer;
-    margin: 20px;
+.name-button {
+  background-color: green;
+  width: 150px;
+  height: 30px;
+  border-radius: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  border: 1px solid white;
+  cursor: pointer;
+  margin: 20px;
 }
 
-.firstPerson{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding-top: 30px;
+.firstPerson {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 30px;
 }
 
-.playerCards{
-    display: flex;
-    flex-direction: row;
-    margin-top: 10px;
+.playerCards {
+  display: flex;
+  flex-direction: row;
+  margin-top: 10px;
 }
 
-.first-p-name{
-    border-radius: 15px;
-    height: 20px;
-    text-align: center;
+.first-p-name {
+  border-radius: 15px;
+  height: 20px;
+  width: 200px;
+  text-align: center;
 }
