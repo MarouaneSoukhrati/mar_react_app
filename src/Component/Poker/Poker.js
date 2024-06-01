@@ -30,13 +30,11 @@ export default function PokerGame({ playersCount }) {
   let smallBlind = 10;
   let bigBlind = 100;
   let defaultPlayTimer = 5;
-
   let countArray = [...Array(playersCount).keys()];
-  let playersDeck = [1, 2, 3].map((e) => {
+  
+  let playersDeck = [1, 2].map((e) => {
     return { cardType: "Clubs", cardNumber: generateCards("deck") };
   });
-  let [deckList, setdeckList] = useState(playersDeck);
-
   let playersNames = countArray.map((e) => "Player " + e);
   let playersStack = playersNames.map((e) => 10000);
   let playersBet = playersNames.map((e) => 0);
@@ -46,19 +44,19 @@ export default function PokerGame({ playersCount }) {
   ]);
   let playersActions = playersNames.map((e) => "None");
 
+  let [firstName, setFirstName] = useState("");
+  let [blinds, setBlinds] = useState([smallBlind, bigBlind]);
+  let [GameHasEnded, setGameHasEnded] = useState(false);
+  let [playTimer, setPlayTimer] = useState(defaultPlayTimer);
+  let [playerIndex, setPlayerIndex] = useState(0);
+  let [isPotWon, setIsPotWon] = useState(false);
+  let [deckList, setdeckList] = useState(playersDeck);
+
   let [nameList, setNameList] = useState(playersNames);
   let [stackList, setStackList] = useState(playersStack);
   let [betList, setBetList] = useState(playersBet);
   let [cardList, setCardList] = useState(playersCards);
   let [ActionList, setActionList] = useState(playersActions);
-  let [firstName, setFirstName] = useState("");
-
-  let [GameHasStarted, setGameHasStarted] = useState(false);
-  let [playTimer, setPlayTimer] = useState(defaultPlayTimer);
-  let [playerIndex, setPlayerIndex] = useState(0);
-  let [isPotWon, setIsPotWon] = useState(false);
-
-  let [blinds, setBlinds] = useState([smallBlind, bigBlind]);
 
   let myPlyrName = nameList[0];
   let myPlyrStack = stackList[0];
@@ -67,8 +65,11 @@ export default function PokerGame({ playersCount }) {
     { ...cardList[0][0], cardEmp: "firstp" },
     { ...cardList[0][1], cardEmp: "firstp" },
   ];
+
   let currentBet = Math.max(betList);
   let myPlyrCallCheck = myPlyrBet < currentBet ? "Call" : "Check";
+  let GameHasStarted = myPlyrName !== "Player 0";
+  let roundIsOn = GameHasStarted && !GameHasEnded && !isPotWon;
 
   function handleFirstPersonName() {
     if (firstName === "" || firstName === "Choose another name") {
@@ -78,29 +79,32 @@ export default function PokerGame({ playersCount }) {
     let newNamelist = [...nameList];
     newNamelist[0] = firstName;
     setNameList(newNamelist);
-    setGameHasStarted(true);
   }
 
   useEffect(() => {
 
     let timer = setInterval(() => {
       setPlayTimer((time) => {
-        if (!GameHasStarted || isPotWon) {
+        if (time === 0) {
+          if (roundIsOn) {
+            setPlayerIndex((playerIndex + 1) % playersCount);
+            return defaultPlayTimer;
+          }
+          return 0;
+        } 
+        else { 
+          if(roundIsOn){
+            return time - 1;
+          }
           return defaultPlayTimer;
         }
-        if (time === 0) {
-          if (!isPotWon) {
-            setPlayTimer(defaultPlayTimer);
-          }
-          setPlayerIndex((playerIndex + 1) % playersCount);
-          return 0;
-        } else return time - 1;
       });
     }, 1000);
-    if( playerIndex === 0 && deckList.length === 5 ){
+    if( deckList.length === 5 && playerIndex === playersCount-1 ){
       setIsPotWon(true);
+      setGameHasEnded(true);
     }
-    if(GameHasStarted && playerIndex === 0 && deckList.length < 5 && !isPotWon){
+    if(roundIsOn && playerIndex === 0 && deckList.length < 5){
       let newDeckList = [...deckList];
       newDeckList.push({ cardType: "Clubs", cardNumber: generateCards("deck") });
       setdeckList(newDeckList);
@@ -109,12 +113,12 @@ export default function PokerGame({ playersCount }) {
       clearInterval(timer);
     };
 
-  }, [playerIndex, nameList]);
+  }, [nameList, playerIndex, isPotWon, GameHasEnded]);
 
   return (
     <div className="game-wrapper">
       <div className="bench-wrapper">
-        <input
+      {!GameHasStarted && <><input
           className="first-p-name"
           type="text"
           placeholder="Choose your name"
@@ -128,7 +132,7 @@ export default function PokerGame({ playersCount }) {
           whileTap={{ scale: "0.9" }}
         >
           Start the game
-        </motion.div>
+        </motion.div></>}
         <PlayersBench
           nameList={nameList}
           stackList={stackList}
@@ -136,16 +140,14 @@ export default function PokerGame({ playersCount }) {
           cardList={cardList}
           playerIndex={playerIndex}
           playTimer={playTimer}
-          GameHasStarted={GameHasStarted}
-          isPotWon={isPotWon}
         />
       </div>
       <div className="poker-wrapper">
         <h1 style={{ color: "yellow", paddingBottom: "50px" }}>
           Texas hold'em poker game :
         </h1>
-        <PokerTable deckList={deckList} GameHasStarted={GameHasStarted} isPotWon={isPotWon} setGameHasStarted={setGameHasStarted} setIsPotWon={setIsPotWon}/>
-        {playerIndex === 0 && GameHasStarted && !isPotWon && (
+        <PokerTable deckList={deckList} GameHasStarted={GameHasStarted} GameHasEnded={GameHasEnded} isPotWon={isPotWon} setGameHasEnded={setGameHasEnded} setIsPotWon={setIsPotWon}/>
+        {playerIndex === 0 && (
           <>
             <SliderWithLimits min={0} max={myPlyrStack} />
             <div className="controls">
@@ -179,7 +181,7 @@ export default function PokerGame({ playersCount }) {
             playerStack={myPlyrStack}
             playerBet={myPlyrBet}
             playerCards={myPlyrCards}
-            playerIsActive={GameHasStarted && !isPotWon && playerIndex === 0}
+            playerIsActive={playerIndex === 0}
             playTimer={playTimer}
           />
         </div>
@@ -195,8 +197,6 @@ function PlayersBench({
   cardList,
   playerIndex,
   playTimer,
-  GameHasStarted,
-  isPotWon,
 }) {
   let benchFig = [];
   for (let i = 1; i < nameList.length; i++) {
@@ -214,33 +214,54 @@ function PlayersBench({
       playerStack={plr.playerStack}
       playerBet={plr.playerBet}
       playerCards={plr.playerCards}
-      playerIsActive={GameHasStarted && !isPotWon && index === playerIndex - 1}
+      playerIsActive={index === playerIndex - 1}
       playTimer={playTimer}
     />
   ));
   return <div className="playersBench">{benchFig}</div>;
 }
 
-function PokerTable({ deckList, GameHasStarted, isPotWon, setGameHasStarted, setIsPotWon }) {
+function PokerTable({ deckList, GameHasStarted, GameHasEnded, isPotWon, setGameHasEnded, setIsPotWon }) {
   let hiddenDeck = [<PokerCard cardType={"None"} cardNumber={"None"} cardEmp={"deckH"}/>,
                     <PokerCard cardType={"None"} cardNumber={"None"} cardEmp={"deckH"}/>,
                     <PokerCard cardType={"None"} cardNumber={"None"} cardEmp={"deckH"}/>];
-                    
+
   function handleReplay(){
     setIsPotWon(false);
-    setGameHasStarted(false);
+    setGameHasEnded(false);
   }
-  return (
-    <div className="poker-table">
-      {!GameHasStarted && <div className="Deck">{hiddenDeck}</div>}
-      {GameHasStarted && !isPotWon && <Deck deckCards={deckList} />}
-      {GameHasStarted && isPotWon && <div className="WinMessage"><h1>The Winner is Mar One</h1>
-        <motion.div className="replay-button"           
-                    onClick={handleReplay}
-                    whileHover={{ scale: "1.2" }}
-                    whileTap={{ scale: "0.9" }}>Replay</motion.div></div>}
-    </div>
-  );
+
+  if(!GameHasStarted){
+    return (
+      <div className="poker-table">
+        <div className="Deck">{hiddenDeck}</div>
+      </div>
+    );    
+  }
+  else{
+    if(GameHasEnded){
+      return (
+        <div className="poker-table">
+          <div className="WinMessage">
+            <h1>The winner is Mar One</h1>
+            <motion.div className="replay-button"           
+                        onClick={handleReplay}
+                        whileHover={{ scale: "1.2" }}
+                        whileTap={{ scale: "0.9" }}>Replay
+            </motion.div>
+          </div>
+        </div>
+      );
+    }
+    else{
+      return (
+        <div className="poker-table">
+          {!isPotWon && <Deck deckCards={deckList} />}
+          {isPotWon && <div className="WinMessage"><h1>The Pot winner is Mar One</h1></div>}
+        </div>
+      );
+    }
+  }
 }
 
 function Deck({ deckCards }) {
@@ -280,7 +301,7 @@ function Player({
       <div className="playerStack">Stack: {playerStack}$</div>
       <div className="playerBet">Bet: {playerBet}$</div>
       <div className="playerCards">{playerCardsFig}</div>
-      {playerIsActive && playTimer !== 0 && (
+      {playerIsActive && (
         <div className="playerTimerW">
           ^ Remaining Time ^
           <motion.div className="playerTimer">{playTimer}s</motion.div>
