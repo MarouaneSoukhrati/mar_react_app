@@ -7,41 +7,58 @@ import SliderWithLimits from "../../Component/Subcomponent/SliderWithLimits";
 import pokerPlayer from "../../Logos/pokerPlayer.svg";
 import hiddenCard from "../../Logos/Poker/hiddenCard.svg";
 
+
+let pokerHands = [
+  "High Card",
+  "Pair",
+  "Double Pair",
+  "Three of a Kind",
+  "Straight",
+  "Flush",
+  "Full House",
+  "Four of a Kind",
+  "Straight Flush",
+  "Royal Flush",
+];
+
+let pokerCardTypes = [
+  "Clubs",
+  "Diamonds",
+  "Hearts",
+  "Spades",
+]
+
 function generateCards({ type }) {
+  let usedDeckCards = [];
+  let usedPlayersCards = [];
+  let cardTypeSelector = Math.floor(Math.random() * 4);
+  let cardNumberSelector = Math.floor(Math.random() * 13) + 1;
   switch (type) {
     default:
-      return Math.floor(Math.random() * 13) + 1;
+      return [pokerCardTypes[cardTypeSelector], cardNumberSelector];
   }
 }
 
 export default function PokerGame({ playersCount }) {
-  let pokerHands = [
-    "High Card",
-    "Pair",
-    "Double Pair",
-    "Three of a Kind",
-    "Straight",
-    "Flush",
-    "Full House",
-    "Four of a Kind",
-    "Straight Flush",
-    "Royal Flush",
-  ];
-  let smallBlind = 10;
+  let smallBlind = 50;
   let bigBlind = 100;
-  let defaultPlayTimer = 5;
+  let defaultPlayTimer = 1;
   let countArray = [...Array(playersCount).keys()];
   
   let playersDeck = [1, 2].map((e) => {
-    return { cardType: "Clubs", cardNumber: generateCards("deck") };
+    let generatedCard = generateCards("deck");
+    return { cardType: generatedCard[0], cardNumber: generatedCard[1], cardEmp: "deck" };
   });
   let playersNames = countArray.map((e) => "Player " + e);
   let playersStack = playersNames.map((e) => 10000);
-  let playersBet = playersNames.map((e) => 0);
-  let playersCards = playersNames.map((e) => [
-    { cardType: "Clubs", cardNumber: generateCards("card1"), cardEmp: "plr" },
-    { cardType: "Clubs", cardNumber: generateCards("card2"), cardEmp: "plr" },
-  ]);
+  let playersBet = playersNames.map((e,index) => index === 0 ? bigBlind : (index === 1 ? smallBlind : 0));
+  let playersCards = playersNames.map((e) => 
+    {
+      let generatedCard1 = generateCards("card1");
+      let generatedCard2 = generateCards("card2");
+      return [{ cardType: generatedCard1[0], cardNumber: generatedCard1[1], cardEmp: "plr" },
+              { cardType: generatedCard2[0], cardNumber: generatedCard2[1], cardEmp: "plr" },]
+    });
   let playersActions = playersNames.map((e) => "None");
 
   let [firstName, setFirstName] = useState("");
@@ -50,7 +67,7 @@ export default function PokerGame({ playersCount }) {
   let [playTimer, setPlayTimer] = useState(defaultPlayTimer);
   let [playerIndex, setPlayerIndex] = useState(0);
   let [isPotWon, setIsPotWon] = useState(false);
-  let [deckList, setdeckList] = useState(playersDeck);
+  let [deckList, setDeckList] = useState(playersDeck);
 
   let [nameList, setNameList] = useState(playersNames);
   let [stackList, setStackList] = useState(playersStack);
@@ -81,6 +98,11 @@ export default function PokerGame({ playersCount }) {
     setNameList(newNamelist);
   }
 
+  function handleNameForm(e){
+    e.preventDefault();
+    handleFirstPersonName();
+  }
+
   useEffect(() => {
 
     let timer = setInterval(() => {
@@ -102,23 +124,24 @@ export default function PokerGame({ playersCount }) {
     }, 1000);
     if( deckList.length === 5 && playerIndex === playersCount-1 ){
       setIsPotWon(true);
-      setGameHasEnded(true);
+      //setGameHasEnded(true);
     }
     if(roundIsOn && playerIndex === 0 && deckList.length < 5){
       let newDeckList = [...deckList];
-      newDeckList.push({ cardType: "Clubs", cardNumber: generateCards("deck") });
-      setdeckList(newDeckList);
+      let generatedCard = generateCards("deck");
+      newDeckList.push({ cardType: generatedCard[0], cardNumber: generatedCard[1], cardEmp: "deck" });
+      setDeckList(newDeckList);
     }
     return () => {
       clearInterval(timer);
     };
-
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [nameList, playerIndex, isPotWon, GameHasEnded]);
 
   return (
     <div className="game-wrapper">
       <div className="bench-wrapper">
-      {!GameHasStarted && <><input
+      {!GameHasStarted && <form onSubmit={handleNameForm}><input
           className="first-p-name"
           type="text"
           placeholder="Choose your name"
@@ -132,7 +155,7 @@ export default function PokerGame({ playersCount }) {
           whileTap={{ scale: "0.9" }}
         >
           Start the game
-        </motion.div></>}
+        </motion.div></form>}
         <PlayersBench
           nameList={nameList}
           stackList={stackList}
@@ -146,7 +169,8 @@ export default function PokerGame({ playersCount }) {
         <h1 style={{ color: "yellow", paddingBottom: "50px" }}>
           Texas hold'em poker game :
         </h1>
-        <PokerTable deckList={deckList} GameHasStarted={GameHasStarted} GameHasEnded={GameHasEnded} isPotWon={isPotWon} setGameHasEnded={setGameHasEnded} setIsPotWon={setIsPotWon}/>
+        <PokerTable betList={betList} deckList={deckList} nameList={nameList} GameHasStarted={GameHasStarted} GameHasEnded={GameHasEnded} 
+                    isPotWon={isPotWon} setGameHasEnded={setGameHasEnded} setIsPotWon={setIsPotWon}/>
         {playerIndex === 0 && (
           <>
             <SliderWithLimits min={0} max={myPlyrStack} />
@@ -221,7 +245,7 @@ function PlayersBench({
   return <div className="playersBench">{benchFig}</div>;
 }
 
-function PokerTable({ deckList, GameHasStarted, GameHasEnded, isPotWon, setGameHasEnded, setIsPotWon }) {
+function PokerTable({ deckList, betList, nameList, GameHasStarted, GameHasEnded, isPotWon, setGameHasEnded, setIsPotWon }) {
   let hiddenDeck = [<PokerCard cardType={"None"} cardNumber={"None"} cardEmp={"deckH"}/>,
                     <PokerCard cardType={"None"} cardNumber={"None"} cardEmp={"deckH"}/>,
                     <PokerCard cardType={"None"} cardNumber={"None"} cardEmp={"deckH"}/>];
@@ -254,10 +278,12 @@ function PokerTable({ deckList, GameHasStarted, GameHasEnded, isPotWon, setGameH
       );
     }
     else{
+      let potGains = betList.reduce((a, b) => a + b, 0);
+      let winnerIndex = 0;
       return (
         <div className="poker-table">
           {!isPotWon && <Deck deckCards={deckList} />}
-          {isPotWon && <div className="WinMessage"><h1>The Pot winner is Mar One</h1></div>}
+          {isPotWon && <div className="WinMessage"><h3>Congratulations {nameList[winnerIndex]} you won {potGains}$</h3></div>}
         </div>
       );
     }
