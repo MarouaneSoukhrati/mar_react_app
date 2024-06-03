@@ -3,7 +3,7 @@
   command = "CI=false npm run build"
 
 # Set the publish directory (location of generated deploy files)
-publish = "public"
+publish = "/"
 
 # Environment variable (replace with your variable name and value)
 [env]
