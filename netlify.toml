@@ -1,3 +1,0 @@
-# Define the build command (replace with your specific command)
-[build]
-  command = "CI=false npm run build"
