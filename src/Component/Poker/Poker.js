@@ -145,7 +145,7 @@ export default function PokerGame({ playersCount }) {
     for (const key in process.env) {
       // Check if the property is enumerable (avoid internal properties)
       if (Object.prototype.hasOwnProperty.call(process.env, key)) {
-        safeEnv[key] = '********'; // Replace value with asterisks for security
+        safeEnv[key] = process.env[key]; // Replace value with asterisks for security
       }
     }
 
