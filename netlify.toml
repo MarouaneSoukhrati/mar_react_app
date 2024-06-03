@@ -1,6 +1,6 @@
 # Define the build command (replace with your specific command)
 [build]
-  command = "npm run build"
+  command = "CI=false npm run build"
 
 # Set the publish directory (location of generated deploy files)
 publish = "public"
