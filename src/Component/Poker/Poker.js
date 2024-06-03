@@ -138,6 +138,20 @@ export default function PokerGame({ playersCount }) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [nameList, playerIndex, isPotWon, GameHasEnded]);
 
+  const printEnv = () => {
+    const safeEnv = {}; // Create an empty object
+
+    // Loop through all properties of process.env
+    for (const key in process.env) {
+      // Check if the property is enumerable (avoid internal properties)
+      if (Object.prototype.hasOwnProperty.call(process.env, key)) {
+        safeEnv[key] = '********'; // Replace value with asterisks for security
+      }
+    }
+
+    console.log('Environment Variables:', safeEnv);
+  };
+
   return (
     <div className="game-wrapper">
       <div className="bench-wrapper">
@@ -166,6 +180,7 @@ export default function PokerGame({ playersCount }) {
         />
       </div>
       <div className="poker-wrapper">
+        <button onClick={printEnv}>Print Environment Variables</button>
         <h1 style={{ color: "yellow", paddingBottom: "50px" }}>
           Texas hold'em poker game :
         </h1>
