@@ -4,11 +4,11 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 100px;
+  padding: 6.25em;
 }
 
 .port-title {
-  padding-bottom: 50px;
+  padding-bottom: 3.125em;
 }
 
 .Ai-part {
@@ -16,39 +16,39 @@
   flex-direction: row;
   justify-content: space-evenly;
   align-items: stretch;
-  padding: 100px;
+  padding: 6.25em;
   background-color: #ffffff11;
-  border-radius: 50px;
-  margin-bottom: 50px;
+  border-radius: 3.125em;
+  margin-bottom: 3.125em;
 }
 
 .Poker-part {
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
-  padding: 100px;
+  padding: 6.25em;
   background-color: #ffffff11;
-  border-radius: 50px;
+  border-radius: 3.125em;
 }
 
 .ai-section {
   background-color: #000000;
-  padding: 50px;
-  border-radius: 100px 100px 100px 100px;
+  padding: 3.125em;
+  border-radius: 6.25em 6.25em 6.25em 6.25em;
   display: flex;
   flex-direction: column;
-  border: 3px solid white; 
-  margin:0px 0px 0px 50px;
+  border: 0.1875em solid white; 
+  margin:0px 0em 0em 3.125em;
 }
 
 .ai-prompt-section {
   background-color: #ffffff;
-  border-radius: 15px;
+  border-radius: 0.9375em;
   display: flex;
   flex-direction: row;
   align-items: center;
-  padding: 10px 30px 10px 30px;
-  margin-bottom: 50px;
+  padding: 0.625em 1.875em 0.625em 1.875em;
+  margin-bottom: 3.125em;
 }
 
 .aiInput {
@@ -57,10 +57,10 @@
   outline: none;
   overflow: hidden;
   color: black;
-  height: 30px;
-  width: 600px;
+  height: 1.875em;
+  width: 37.5em;
   resize: none;
-  padding-top: 20px;
+  padding-top: 1.25em;
 }
 
 .ai-buttons,
@@ -69,24 +69,24 @@
   flex-direction: row;
   align-items: center;
   justify-content: space-evenly;
-  width: 100px;
+  width: 6.25em;
   cursor: pointer;
 }
 
 .ai-buttons-ready {
-  width: 160px;
+  width: 10em;
 }
 
 .ai-image {
-  width: 30px;
+  width: 1.875em;
 }
 
 .ai-audio {
-  width: 60px;
+  width: 3.75em;
 }
 
 .ai-answer {
-  width: 30px;
+  width: 1.875em;
 }
 
 .aiBot-title {
@@ -94,7 +94,7 @@
   flex-direction: row;
   align-items: center;
   color: white;
-  padding: 0px 0px 30px 0px;
+  padding: 0em 0em 1.875em 0em;
 }
 
 .sidebar-section,
@@ -102,20 +102,20 @@
   background-color: #ff000099;
   display: flex;
   flex-direction: column;
-  border-radius: 15px 0px 100px 100px;
-  width: 150px;
-  padding-top: 50px;
-  border: 3px solid white;  
+  border-radius: 0.9375em 0em 6.25em 6.25em;
+  width: 9.375em;
+  padding-top: 3.125em;
+  border: 0.1875em solid white;  
 }
 
 .sidebar-section-ext {
-  width: 300px;
-  padding-top: 0px;
+  width: 18.75em;
+  padding-top: 0em;
 }
 
 .ext-img {
-  width: 60px;
-  padding-top: 20px;
+  width: 3.75em;
+  padding-top: 1.25em;
   cursor: pointer;
 }
 
@@ -124,15 +124,15 @@
   display: flex;
   flex-direction: row;
   align-items: center;
-  padding: 40px 0px 0px 0px;
+  padding: 2.5em 0em 0em 0em;
 }
 
 .history-wrapper2 {
-  padding: 30px 0px 0px 0px;
+  padding: 1.875em 0em 0em 0em;
 }
 
 .history-title {
-  font-size: 20px;
-  padding-top: 15px;
+  font-size: 1.25em;
+  padding-top: 0.9375em;
   color: white;
 }

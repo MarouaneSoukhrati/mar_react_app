@@ -30,7 +30,7 @@ const SimpleMap = () => {
         center={[latitude, longitude]}
         zoom={13}
         ref={mapRef}
-        style={{ height: "300px", width: "450px", borderRadius: "15px" }}
+        style={{ height: "18.75em", width: "28.125em", borderRadius: "0.9375em" }}
       >
         <TileLayer
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
@@ -49,7 +49,7 @@ const SimpleMap = () => {
 const ContactForm = ({ handler }) => {
   return (
     <form className="contact-form" onSubmit={handler}>
-      <h1 style={{ marginLeft: "10px", color: "yellow" }}>Contact us :</h1>
+      <h1 className="h1Contact">Contact us :</h1>
       <div>
         <input type="text" placeholder="First Name"></input>
         <input type="text" placeholder="Last Name"></input>
@@ -57,22 +57,14 @@ const ContactForm = ({ handler }) => {
       <input type="text" placeholder="Email"></input>
       <input type="text" placeholder="Phone Number"></input>
       <textarea
+        className="MsgTextArea"
         type="text"
         placeholder="Message..."
-        style={{ height: "200px" }}
       ></textarea>
       <motion.input
+        className="submitSendMsg"
         type="submit"
         value={"Send Message"}
-        style={{
-          backgroundColor: "yellow",
-          width: "200px",
-          margin: "auto",
-          marginTop: "20px",
-          border: "solid 3px white",
-          color: "black",
-          padding: "10px",
-        }}
         whileHover={{ scale: 1.1 }}
       ></motion.input>
     </form>
@@ -85,8 +77,8 @@ const PopUp = ({ handler }) => {
       <div className="MsgPopUp">
         <p>Message sent with success</p>
         <img
+          className="popup-success-img"
           src={PopUpSuccess}
-          style={{ width: "50px" }}
           alt="PopUp-Success"
         ></img>
       </div>

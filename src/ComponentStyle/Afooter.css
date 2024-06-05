@@ -8,7 +8,7 @@
 }
 
 .footer-wrapper {
-  padding: 80px 250px;
+  padding: 5em 15.625em;
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
@@ -19,7 +19,7 @@
   flex-direction: column;
   justify-content: space-evenly;
   align-items: center;
-  padding-right: 100px;
+  padding-right: 6.25em;
 }
 
 .social-media-wrapper {
@@ -28,13 +28,13 @@
   justify-content: space-evenly;
   align-items: center;
   background-color: #ffffff20;
-  border-radius: 15px;
+  border-radius: 0.9375em;
 }
 
 .social-media-logo {
-  height: 20px;
-  width: 20px;
-  margin: 10px;
+  height: 1.25em;
+  width: 1.25em;
+  margin: 0.625em;
 }
 
 .lister-section {
@@ -45,21 +45,21 @@
 .lister-item {
   display: flex;
   flex-direction: column;
-  padding: 30px;
+  padding: 1.875em;
 }
 
 .lister-item-list {
   display: flex;
   flex-direction: column;
-  padding: 10px;
+  padding: 0.625em;
 }
 
 .lister-item-title {
-  padding: 10px;
+  padding: 0.625em;
 }
 
 .footer-item {
-  padding-bottom: 5px;
+  padding-bottom: 0.3125em;
   color: #ffffff55;
 }
 
@@ -69,5 +69,5 @@
 }
 
 .marouane-logo {
-  width: 150px;
+  width: 9.375em;
 }

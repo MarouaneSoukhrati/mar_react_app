@@ -9,7 +9,7 @@
   display: flex;
   flex-direction: row;
   align-items: center;
-  padding-left: 35px;
+  padding-left: 2.1875em;
 }
 
 .App-blog-mobility {
@@ -17,54 +17,54 @@
   flex-direction: column;
   align-items: center;
   background-color: #00ff0011;
-  border-radius: 25px;
-  margin-bottom: 100px;
+  border-radius: 1.5625em;
+  margin-bottom: 6.25em;
 }
 
 .mobpara {
-  padding: 0px 0px 50px 0px;
-  width: 900px;
+  padding: 0em 0em 3.125em 0em;
+  width: 56.25em;
   text-align: center;
   color: white;
 }
 
 .mobility {
   background-color: yellow;
-  padding: 15px;
-  border: solid 2px white;
-  font-size: 20px;
+  padding: 0.9375em;
+  border: solid 0.125em white;
+  font-size: 1.25em;
   font-weight: 500;
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 50px;
-  height: 20px;
-  width: 200px;
+  border-radius: 1.25em;
+  height: 1.25em;
+  width: 12.5em;
 }
 
 .Capsule {
-  height: 300px;
+  height: 18.75em;
 }
 
 .Moor-logo {
-  height: 400px;
+  height: 25em;
   pointer-events: none;
 }
 
 .Yellow-title {
   color: yellow;
-  font-size: 30px;
-  padding: 50px;
+  font-size: 1.875em;
+  padding: 3.125em;
 }
 
 .Yellow-subtitle {
   color: greenyellow;
-  font-size: 15px;
-  padding-top: 50px;
+  font-size: 0.9375em;
+  padding-top: 3.125em;
 }
 
 .moor-style {
-  width: 638px;
+  width: 39.875em;
 }
 
 @media (prefers-reduced-motion: no-preference) {

@@ -1,5 +1,5 @@
 .container {
-    height: 100px;
+    height: 6.25em;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -7,7 +7,7 @@
   
   .slider {
     position: relative;
-    width: 500px;
+    width: 31.25em;
   }
   
   .slider__track,
@@ -19,8 +19,8 @@
   
   .slider__track,
   .slider__range {
-    border-radius: 3px;
-    height: 5px;
+    border-radius: 0.1875em;
+    height: 0.3125em;
   }
   
   .slider__track {
@@ -37,16 +37,16 @@
   .slider__left-value,
   .slider__right-value {
     color: #ffffff;
-    font-size: 15px;
-    margin-top: 20px;
+    font-size: 0.9375em;
+    margin-top: 1.25em;
   }
   
   .slider__left-value {
-    left: 6px;
+    left: 0.375em;
   }
   
   .slider__right-value {
-    right: -4px;
+    right: -0.25em;
   }
   
   /* Removing the default appearance */
@@ -60,7 +60,7 @@
     pointer-events: none;
     position: absolute;
     height: 0;
-    width: 500px;
+    width: 31.25em;
     outline: none;
   }
   
@@ -78,10 +78,10 @@
     background-color: #ff0000;
     border: none;
     border-radius: 50%;
-    box-shadow: 0 0 5px 5px #ffffff;
-    height: 18px;
-    width: 18px;
-    margin-top: 4px;
+    box-shadow: 0 0 0.3125em 0.3125em #ffffff;
+    height: 1.125em;
+    width: 1.125em;
+    margin-top: 0.25em;
     pointer-events: all;
     position: relative;
   }
@@ -91,10 +91,10 @@
     background-color: #ff0000;
     border: none;
     border-radius: 50%;
-    box-shadow: 0 0 5px 5px #ffffff;
-    height: 18px;
-    width: 18px;
-    margin-top: 4px;
+    box-shadow: 0 0 0.3125em 0.3125em #ffffff;
+    height: 1.125em;
+    width: 1.125em;
+    margin-top: 0.25em;
     pointer-events: all;
     position: relative;
   }

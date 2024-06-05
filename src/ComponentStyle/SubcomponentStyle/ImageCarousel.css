@@ -2,8 +2,8 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 50px;
-  margin-left: 50px;
+  padding: 3.125em;
+  margin-left: 3.125em;
 }
 
 .imgCar-images-wrapper {
@@ -14,21 +14,21 @@
 }
 
 .leftArrow {
-  margin: 0px -50px 0px 0px;
-  width: 70px;
+  margin: 0em -3.125em 0em 0em;
+  width: 4.375em;
   cursor: pointer;
 }
 
 .rightArrow {
-  margin: 0px 0px 0px -50px;
-  width: 70px;
+  margin: 0em 0em 0em -3.125em;
+  width: 4.375em;
   cursor: pointer;
 }
 
 .imgCar-images {
-  height: 200px;
-  width: 300px;
-  margin: 5px;
+  height: 12.5em;
+  width: 18.75em;
+  margin: 0.3125em;
 }
 
 .imgCar-titles {
@@ -39,17 +39,17 @@
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
-  padding: 20px;
+  padding: 1.25em;
   cursor: pointer;
 }
 
 .switchDot,
 .activeswitchDot {
-  height: 10px;
-  width: 10px;
+  height: 0.625em;
+  width: 0.625em;
   background-color: #ffffff33;
-  border-radius: 50px;
-  margin: 5px;
+  border-radius: 3.125em;
+  margin: 0.3125em;
 }
 
 .activeswitchDot {
@@ -60,15 +60,15 @@
 .swright {
   background-color: #585858;
   color: white;
-  border: solid 1px;
-  border-radius: 5px;
+  border: solid 0.0625em;
+  border-radius: 0.3125em;
 }
 
 .imgCar-images-about {
-  width: 200px;
-  height: 100px;
+  width: 12.5em;
+  height: 6.25em;
 }
 
 .imgCar-wrapper-about {
-  padding: 0px;
+  padding: 0em;
 }

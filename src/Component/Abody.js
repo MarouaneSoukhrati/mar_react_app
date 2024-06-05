@@ -84,8 +84,8 @@ const experienceList = ExpList.map((e) => {
     <div key={e.title}>
       <h3 className="Exp-List">
         <img
+          className="ExpListImg"
           src={e.logo}
-          style={{ width: "40px", margin: "0px 10px 0px 0px" }}
           alt="img-cv"
         />{" "}
         {e.corp + " - "} {e.date}
@@ -103,7 +103,7 @@ const educationList = EduList.map((e) => {
       <div className="Edu-List">
         {e.loc} {e.date}
       </div>
-      <div style={{ textAlign: "center", marginBottom: "50px" }}>
+      <div className="educListDesc">
         {e.description}
       </div>
     </div>
@@ -131,40 +131,40 @@ const skillsListRight = (
 function Curiculum() {
   return (
     <>
-      <h1 style={{ padding: "50px" }}>Curriculum Vitae</h1>
+      <h1 className="CvTitle">Curriculum Vitae</h1>
       <div className="body-wrapper">
         <div className="body-top">
-          <img src={marouaneLogo} alt="img-cv" />
-          <h1 style={{ margin: "90px 0px 60px 0px" }}>Marouane Soukhrati</h1>
+          <img className= "marouaneLogoStS" src={marouaneLogo} alt="img-cv" />
+          <h1 className="myNameLogoTitle">Marouane Soukhrati</h1>
           <h3>Computer Science Student</h3>
-          <div style={{ marginBottom: "10px" }}>
-            <img src={uhaLogo} style={{ width: "20px" }} alt="img-cv-uha" />{" "}
+          <div className="emailStyling">
+            <img src={uhaLogo} className="emailLogoSty" alt="img-cv-uha" />{" "}
             marouane.soukhrati@uha.fr
           </div>
-          <div style={{ marginBottom: "10px" }}>
-            <img src={gmailLogo} style={{ width: "20px" }} alt="img-cv" />{" "}
+          <div className="emailStyling">
+            <img src={gmailLogo} className="emailLogoSty" alt="img-cv" />{" "}
             soukhratimarouane@gmail.com
           </div>
           <div>
             <img
+              className="phoneLogoS"
               src={phoneLogo}
-              style={{ width: "20px", margin: "-4px 0px" }}
               alt="img-cv"
             />{" "}
             +33745493327
           </div>
-          <h1 style={{ margin: "90px 0px 30px 0px" }}>About Me</h1>
-          <p style={{ textAlign: "center", width: "645px" }}>{aboutPara}</p>
-          <h1 style={{ margin: "90px 0px 30px 0px" }}>Skills</h1>
+          <h1 className="aboutMeTitleSty">About Me</h1>
+          <p className="aboutParaStyleS">{aboutPara}</p>
+          <h1 className="aboutMeTitleSty">Skills</h1>
           <div className="skills-area">
             <ul>{skillsListLeft}</ul>
             <ul>{skillsListRight}</ul>
           </div>
         </div>
         <div className="body-bottom">
-          <h1 style={{ margin: "50px 0px 90px 0px" }}>Past Experience</h1>
+          <h1 className="PastExTitleStylingS">Past Experience</h1>
           <div>{experienceList}</div>
-          <h1 style={{ margin: "30px 0px 50px 0px" }}>Education</h1>
+          <h1 className="EduTitleStylingS">Education</h1>
           {educationList}
         </div>
       </div>

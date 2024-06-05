@@ -48,7 +48,7 @@ let timelineGraphic = [0, 1, 2, 3, 4, 5, 6].map((e, index) => {
     <>
       <div className="timeline-line" />
       <div className="timeline-event">
-        <div style={{ fontSize: "10px", paddingBottom: "10px" }}>
+        <div className="dateListStyling">
           {datesList[index]}
         </div>
         <motion.a
@@ -57,13 +57,12 @@ let timelineGraphic = [0, 1, 2, 3, 4, 5, 6].map((e, index) => {
           href={LinksList[index]}
           target="_blank"
           rel="noreferrer"
-          style={{marginBottom: "10px"}}
         >
           <div className="timeline-mincircle" />
         </motion.a>
         <img
+          className="imgEventPic"
           src={eventList[index]}
-          style={{ height: "30px", width: "70px" }}
           alt="event-pic"
         />
       </div>
