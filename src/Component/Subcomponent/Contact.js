@@ -30,7 +30,7 @@ const SimpleMap = () => {
         center={[latitude, longitude]}
         zoom={13}
         ref={mapRef}
-        style={{ height: "18.75em", width: "28.125em", borderRadius: "0.9375em" }}
+        style={{ height: "20em", width: "30em", borderRadius: "1em" }}
       >
         <TileLayer
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
@@ -104,10 +104,8 @@ export default function Contact() {
     <header className="App-contact">
       {popUpOn === 1 && <PopUp handler={(e) => handlePopUp(e)} />}
       <h1>Have a question ? Get in touch !</h1>
-      <div className="contact-field">
-        <ContactForm handler={(e) => handlePopUp(e)} />
-        <SimpleMap />
-      </div>
+      <ContactForm handler={(e) => handlePopUp(e)} />
+      <SimpleMap />
     </header>
   );
 }

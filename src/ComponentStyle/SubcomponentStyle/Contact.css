@@ -7,29 +7,22 @@
   padding: 6.25em;
 }
 
-.contact-field{
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  padding: 6.25em;
-  border-radius: 0.9375em;
-}
-
 .map-wrapper{
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-left: 6.25em;
   z-index: 1;
+  margin-top: 5em;
 }
 
 .contact-form{
   display: flex;
   flex-direction: column;
   background-color: #FFFF0033;
-  padding: 3.125em;
-  border-radius: 0.9375em;
-  border: solid 0.1875em yellow;
+  padding: 3em;
+  border-radius: 1em;
+  border: solid 0.2em yellow;
+  margin-top: 5em;
 }
 
 .contact-form input, .contact-form textarea {

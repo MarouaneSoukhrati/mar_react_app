@@ -57,16 +57,14 @@ export default function About() {
             pathLogoStyle="moor-style"
           />
           <img className="Capsule" src={Capsule} alt="Capsule" />
-          <motion.button
+        </div>
+        <p className="mobpara">{mobtxt}</p>
+        <motion.button
             className="mobility"
-            initial={{ x: -900 }}
             whileHover={{ opacity: 0.4 }}
-            animate={{ x: -215, y: 170, transition: { duration: 5 } }}
           >
             Learn more
           </motion.button>
-        </div>
-        <p className="mobpara">{mobtxt}</p>
       </div>
     </div>
   );
