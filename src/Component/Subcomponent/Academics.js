@@ -1,6 +1,5 @@
 import "../../ComponentStyle/SubcomponentStyle/Academics.css";
 import { motion } from "framer-motion";
-import Path from "./Path"
 
 import AlAmana from "../../Logos/AlAmana.svg";
 import CpgeTanger from "../../Logos/CpgeTanger.svg";
@@ -70,35 +69,6 @@ let timelineGraphic = [0, 1, 2, 3, 4, 5, 6].map((e, index) => {
     </>
   );
 });
-
-let textsFr = {
-  Titre1: "My first text is text1 text2 text3 text4 ...",
-  Titre2: "My first text is text1 text2 text3 text4 ...",
-  Titre3: "My first text is text1 text2 text3 text4 ...",
-  Titre4: "My first text is text1 text2 text3 text4 ...",
-}
-
-let stopListFr = [0,1,2,3].map(e => 
-        <div className={"stopm"+e}>
-            <div className="stopBulletSpace">
-              <div>{Object.keys(textsFr)[e]}</div>
-              <div className="stopBullet"></div>
-            </div>
-            <div>{textsFr["Titre"+(e+1)]}</div>
-        </div>);
-
-let textsMa = {
-  Titre1: "My first text is text1 text2 text3 text4 ...",
-}
-
-let stopListMa = [0].map(e => 
-        <div className={"stopt"+e}>
-            <div className="stopBulletSpace">
-              <div>{Object.keys(textsMa)[e]}</div>
-              <div className="stopBullet"></div>
-            </div>
-            <div>{textsMa["Titre"+(e+1)]}</div>
-        </div>);    
         
 let aboutPara = ["I am interested in understanding and articulating everything via code."];
 aboutPara.push(" Whatever be the problem, if it involves challenges in formally representing it and its associated metrics, count me in.");
@@ -110,7 +80,7 @@ aboutPara.push(" I'm from Tangier but I have setteled in Mulhouse for the moment
 export default function Academics() {
   return (
     <header className="App-academics">
-      <h1>About Me :</h1>
+      <h1 className="aboutTitleN">About Me :</h1>
       <div className="abouttxtimg">
           <img
             className="marouane-aboutlogo"
@@ -125,8 +95,8 @@ export default function Academics() {
           <div className="about-timeline">{timelineGraphic.slice(2)}</div>
         </div>
         <div className="about-imgside">
-          <Path stopList={stopListFr} pathLogo={AboutMap} pathLogoStyle="map-style"/>
-          <Path stopList={stopListMa} pathLogo={AboutMap2} pathLogoStyle="map-style2"/>
+          <img className="map-style" src={AboutMap} alt="AboutMap"/>
+          <img className="map-style2" src={AboutMap2} alt="AboutMap"/>
         </div>
       </div>
     </header>

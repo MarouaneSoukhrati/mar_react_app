@@ -12,7 +12,7 @@
   flex-direction: column;
   align-items: center;
   z-index: 1;
-  margin-top: 5em;
+  margin-top: 0.5em;
 }
 
 .contact-form{
@@ -21,15 +21,17 @@
   background-color: #FFFF0033;
   padding: 3em;
   border-radius: 1em;
-  border: solid 0.2em yellow;
-  margin-top: 5em;
+  border: solid 1em yellow;
+  margin-top: 2em;
+  align-items: center;
 }
 
-.contact-form input, .contact-form textarea {
+.contact-form input {
   padding: 1.25em;
-  border-radius: 0.9375em;
-  margin: 0.3125em;
+  border-radius: 1em;
+  margin: 0.35em;
   font-family: Arial, Helvetica, sans-serif;
+  width: 15em;
 }
 
 .PopUp{
@@ -80,20 +82,26 @@
 }
 
 .submitSendMsg{
-  background-color: "yellow";
-  width: "12.5em";
-  margin: "auto";
-  margin-top: "1.25em";
-  border: "solid 0.1875em white";
-  color: "black";
-  padding: "0.625em";
+  background-color: yellow;
+  border: solid 0.1875em white;
+  color: black;
+  padding: 0.625em;
 }
 
 .MsgTextArea{
-  height: "12.5em";
+  height: 12.5em;
+  width: 12em;
+  padding: 1.25em;
+  border-radius: 1em;
+  margin: 0.35em 0em 1em 0em;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 .h1Contact{
-  margin-left: "0.625em";
-  color: "yellow";
+  color: yellow;
+  font-size: 30px;
+}
+
+.test{
+  margin-bottom: 1em;
 }

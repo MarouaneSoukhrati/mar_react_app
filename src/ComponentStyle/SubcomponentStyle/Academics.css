@@ -15,12 +15,13 @@
   background-color: #00FF0011;
   border-radius: 1.5625em;
   margin: 3.125em;
+  width: 95%;
 }
 
 .about-imgside {
   display: flex;
   flex-direction: row;
-  justify-content: center;
+  justify-content: space-evenly;
   align-items: center;
   padding: 3.125em 3.125em 5em 3.125em;
 }
@@ -71,93 +72,19 @@
 }
 
 .map-style{
-  width: 38.375em;
-  height: 31.875em;
+  width: 27em;
+  height: 30em;
+  margin: 1.1em;
 }
 
 .map-style2{
-  width: 27.75em;
-  height: 26.625em;
-}
-
-.stopBulletSpace {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.stopBullet {
-  background-color: yellow;
-  border: 0.25em solid red;
-  height: 1em;
-  width: 1em;
-  border-radius: 3.125em;
-  display: none;
-}
-
-.stopm0 {
-  left: 17.0625em;
-  top: 8.8125em;
-}
-
-.stopm1 {
-  left: 12.25em;
-  top: 21.375em;
-}
-
-.stopm2 {
-  left: 26.375em;
-  top: 9.625em;
-}
-
-.stopm3 {
-  left: 28.5em;
-  top: 11.8125em;
-}
-
-.stopt0 {
-  left: 15.0625em;
-  top: 2em;
-}
-
-.stopm0,
-.stopm1,
-.stopm2,
-.stopm3,
-.stopt0 {
-  position: absolute;
-  height: 1.25em;
-  width: 1.25em;
-  border-radius: 3.125em;
-  font-size: 0em;
-}
-
-.stopm0:hover,
-.stopm1:hover,
-.stopm2:hover,
-.stopm3:hover,
-.stopt0:hover {
-  height: 6.25em;
-  width: 6.25em;
-  border-radius: 0.9375em;
-  background-color: #0000FF13;
-  font-size: 0.9375em;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  padding: 1.125em;
-}
-
-.stopm0:hover .stopBullet,
-.stopm1:hover .stopBullet,
-.stopm2:hover .stopBullet,
-.stopm3:hover .stopBullet,
-.stopt0:hover .stopBullet {
-  display: block;
+  width: 27em;
+  height: 30em;
+  margin: 1.1em;
 }
 
 .aboutPara{
-  width: 56.25em; 
+  width: 50em; 
   height: 0.1875em;
 }
 
@@ -168,8 +95,8 @@
 }
 
 .marouane-aboutlogo{
-  width: 13.125em;
-  padding-right: 3.125em;
+  width: 13em;
+  padding-right: 0.5em;
 }
 
 .dateListStyling{
@@ -180,4 +107,8 @@
 .imgEventPic{
   height: 1.875em;
   width: 4.375em;
+}
+
+.aboutTitleN{
+  padding: 2em;
 }

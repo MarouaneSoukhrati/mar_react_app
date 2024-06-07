@@ -30,7 +30,7 @@ const SimpleMap = () => {
         center={[latitude, longitude]}
         zoom={13}
         ref={mapRef}
-        style={{ height: "20em", width: "30em", borderRadius: "1em" }}
+        style={{ height: "15em", width: "19em", borderRadius: "1em" }}
       >
         <TileLayer
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
@@ -41,7 +41,8 @@ const SimpleMap = () => {
         </Marker>
       </MapContainer>
       <p>12 Rue des Frères Lumière, 68093 Mulhouse</p>
-      <SocialMediaWrapper />
+      <SocialMediaWrapper/>
+      <div className="test"></div>
     </div>
   );
 };
@@ -50,10 +51,8 @@ const ContactForm = ({ handler }) => {
   return (
     <form className="contact-form" onSubmit={handler}>
       <h1 className="h1Contact">Contact us :</h1>
-      <div>
-        <input type="text" placeholder="First Name"></input>
-        <input type="text" placeholder="Last Name"></input>
-      </div>
+      <input type="text" placeholder="First Name"></input>
+      <input type="text" placeholder="Last Name"></input>
       <input type="text" placeholder="Email"></input>
       <input type="text" placeholder="Phone Number"></input>
       <textarea
@@ -61,12 +60,13 @@ const ContactForm = ({ handler }) => {
         type="text"
         placeholder="Message..."
       ></textarea>
+      <SimpleMap />
       <motion.input
         className="submitSendMsg"
         type="submit"
         value={"Send Message"}
         whileHover={{ scale: 1.1 }}
-      ></motion.input>
+      />
     </form>
   );
 };
@@ -105,7 +105,6 @@ export default function Contact() {
       {popUpOn === 1 && <PopUp handler={(e) => handlePopUp(e)} />}
       <h1>Have a question ? Get in touch !</h1>
       <ContactForm handler={(e) => handlePopUp(e)} />
-      <SimpleMap />
     </header>
   );
 }
