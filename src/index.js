@@ -6,7 +6,7 @@ import reportWebVitals from "./reportWebVitals";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 import ErrorPage from "./Component/Aerror";
-import Abody from "./Component/Abody";
+import Home from "./Component/Home";
 import Portfolio from "./Component/Subcomponent/Portfolio";
 import About from "./Component/Subcomponent/About";
 import Contact from "./Component/Subcomponent/Contact";
@@ -20,7 +20,7 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/",
-        element: <Abody />,
+        element: <Home />,
       },
       {
         path: "/portfolio",
