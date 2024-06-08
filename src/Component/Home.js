@@ -1,5 +1,4 @@
 import "../ComponentStyle/Home.css";
-import "../ComponentStyle/SubcomponentStyle/Path.css";
 import FamilyTree from "./Subcomponent/FamilyTree";
 
 import { motion } from "framer-motion";

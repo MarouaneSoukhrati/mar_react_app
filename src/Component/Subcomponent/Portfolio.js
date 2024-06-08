@@ -59,7 +59,7 @@ function SideBar() {
               whileTap={{ scale: 0.9 }}
               onClick={handleExt}
             />
-            <div className="history-title">History :</div>
+            <div className="history-title2">History :</div>
           </div>
         </div>
       )}
@@ -90,7 +90,7 @@ function AiBot() {
         <img
           src={marouaneLogo}
           alt="marouaneLogo"
-          style={{ width: "60px", marginRight: "10px", marginLeft: "30px" }}
+          className="myimglogo"
         />
         <h2>AI powered Chat Bot :</h2>
       </div>
