@@ -28,17 +28,6 @@ let pokerCardTypes = [
   "Spades",
 ]
 
-function generateCards({ type }) {
-  let usedDeckCards = [];
-  let usedPlayersCards = [];
-  let cardTypeSelector = Math.floor(Math.random() * 4);
-  let cardNumberSelector = Math.floor(Math.random() * 13) + 1;
-  switch (type) {
-    default:
-      return [pokerCardTypes[cardTypeSelector], cardNumberSelector];
-  }
-}
-
 export default function PokerGame({ playersCount }) {
   let smallBlind = 50;
   let bigBlind = 100;
@@ -54,10 +43,10 @@ export default function PokerGame({ playersCount }) {
   let playersBet = playersNames.map((e,index) => index === 0 ? bigBlind : (index === 1 ? smallBlind : 0));
   let playersCards = playersNames.map((e) => 
     {
-      let generatedCard1 = generateCards("card1");
-      let generatedCard2 = generateCards("card2");
+      let generatedCard1 = generateCards("hands");
+      let generatedCard2 = generateCards("hands");
       return [{ cardType: generatedCard1[0], cardNumber: generatedCard1[1], cardEmp: "plr" },
-              { cardType: generatedCard2[0], cardNumber: generatedCard2[1], cardEmp: "plr" },]
+              { cardType: generatedCard2[0], cardNumber: generatedCard2[1], cardEmp: "plr" }]
     });
   let playersActions = playersNames.map((e) => "None");
 
@@ -137,6 +126,13 @@ export default function PokerGame({ playersCount }) {
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [nameList, playerIndex, isPotWon, GameHasEnded]);
+
+  function generateCards({ type }) {
+    let cardTypeSelector = Math.floor(Math.random() * 4);
+    let cardNumberSelector = Math.floor(Math.random() * 13) + 1;
+    let generatedCard = [pokerCardTypes[cardTypeSelector], cardNumberSelector];
+    return generatedCard;
+  }
 
   return (
     <div className="game-wrapper">
