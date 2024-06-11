@@ -52,7 +52,8 @@
   margin: 1em 0em 2.5em 0em;
 }
 
-.aiInput{
+.aiInput,
+.aiInput-ready{
   background-color: transparent;
   border: none;
   outline: none;
@@ -62,7 +63,13 @@
   font-size: 1.5em;
   width: 17em;
   margin-left: 2em;
+  margin-top: 1.5em;
+  margin-bottom: 1.50em;
+}
+
+.aiInput{
   margin-top: 1.2em;
+  margin-bottom: 0em;
 }
 
 .ai-buttons,

@@ -97,7 +97,7 @@ function AiBot() {
       <div className="ai-prompt-section">
         <form name="userForm">
           <textarea
-            className="aiInput"
+            className={aiReadySubmit ? "aiInput-ready" : "aiInput"}
             name="userInput"
             placeholder="Enter a prompt here ..."
             onChange={handleInputChange}
