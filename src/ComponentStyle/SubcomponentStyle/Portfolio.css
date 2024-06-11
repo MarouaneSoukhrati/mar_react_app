@@ -39,32 +39,30 @@
   border: 0.3em solid white; 
   margin: 0px 0em 0em 3em;
   width: 40em;
+  align-items: center;
 }
 
-.ai-prompt-section {
+.ai-prompt-section{
   background-color: #ffffff;
   border-radius: 1em;
   display: flex;
   flex-direction: row;
   align-items: center;
-  width: 35em;
-  padding-right: 4em;
-  margin-bottom: 2em;
+  width: max-content;
+  margin: 1em 0em 2.5em 0em;
 }
 
-.aiInput {
+.aiInput{
   background-color: transparent;
   border: none;
   outline: none;
   overflow: hidden;
   color: black;
-  height: 1em;
-  width: 13em;
   resize: none;
   font-size: 1.5em;
+  width: 17em;
   margin-left: 2em;
-  margin-right: 4em;
-  margin-bottom: 0.2em;
+  margin-top: 1.2em;
 }
 
 .ai-buttons,
@@ -72,32 +70,22 @@
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: space-evenly;
-  width: 10em;
   cursor: pointer;
-  padding-left: 4em;
-}
-
-.ai-buttons-ready {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-evenly;
-  cursor: pointer;
-  width: 10em;
-  padding-left: 0em;
+  margin-right: 2em;
 }
 
 .ai-image {
-  width: 1.875em;
+  width: 2em;
+  margin-left: 1em;
 }
 
 .ai-audio {
-  width: 3.75em;
+  width: 4em;
 }
 
 .ai-answer {
-  width: 1.875em;
+  width: 2em;
+  margin-right: 1em;
 }
 
 .aiBot-title {
@@ -156,5 +144,5 @@
 
 .myimglogo{
   width: 5em;
-  margin-left: 3em;
+  margin-left: -4em;
 }
