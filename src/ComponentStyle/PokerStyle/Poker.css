@@ -197,7 +197,7 @@
 .WinMessage{
   color:yellow;
   background-color: #ff000055;
-  padding: 50px 100px;
+  padding: 50px 101px;
   border-radius: 50px;
   display: flex;
   flex-direction: column;
