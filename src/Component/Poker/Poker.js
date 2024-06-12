@@ -28,19 +28,20 @@ let pokerCardTypes = [
   "Spades",
 ]
 
+let smallBlind = 50;
+let bigBlind = 100;
+let defaultPlayTimer = 1;
+
 export default function PokerGame({ playersCount }) {
-  let smallBlind = 50;
-  let bigBlind = 100;
-  let defaultPlayTimer = 1;
-  let countArray = [...Array(playersCount).keys()];
+  let countArray = [...Array(playersCount).keys()];  
+  let playersNames = countArray.map((e) => "Player " + e);
+  let playersStack = playersNames.map((e) => 10000);
+  let playersBet = playersNames.map((e,index) => index === 0 ? bigBlind : (index === 1 ? smallBlind : 0));
   
   let playersDeck = [1, 2].map((e) => {
     let generatedCard = generateCards("deck");
     return { cardType: generatedCard[0], cardNumber: generatedCard[1], cardEmp: "deck" };
   });
-  let playersNames = countArray.map((e) => "Player " + e);
-  let playersStack = playersNames.map((e) => 10000);
-  let playersBet = playersNames.map((e,index) => index === 0 ? bigBlind : (index === 1 ? smallBlind : 0));
   let playersCards = playersNames.map((e) => 
     {
       let generatedCard1 = generateCards("hands");
@@ -48,22 +49,17 @@ export default function PokerGame({ playersCount }) {
       return [{ cardType: generatedCard1[0], cardNumber: generatedCard1[1], cardEmp: "plr" },
               { cardType: generatedCard2[0], cardNumber: generatedCard2[1], cardEmp: "plr" }]
     });
-  let playersActions = playersNames.map((e) => "None");
-
-  let [firstName, setFirstName] = useState("");
-  let [blinds, setBlinds] = useState([smallBlind, bigBlind]);
-  let [GameHasEnded, setGameHasEnded] = useState(false);
-  let [playTimer, setPlayTimer] = useState(defaultPlayTimer);
-  let [playerIndex, setPlayerIndex] = useState(0);
-  let [isPotWon, setIsPotWon] = useState(false);
-  let [deckList, setDeckList] = useState(playersDeck);
 
   let [nameList, setNameList] = useState(playersNames);
+  let [firstName, setFirstName] = useState("");
+  let [playerIndex, setPlayerIndex] = useState(0);
+  let [playTimer, setPlayTimer] = useState(defaultPlayTimer);
   let [stackList, setStackList] = useState(playersStack);
   let [betList, setBetList] = useState(playersBet);
+  let [deckList, setDeckList] = useState(playersDeck);
   let [cardList, setCardList] = useState(playersCards);
-  let [ActionList, setActionList] = useState(playersActions);
-
+  let [isPotWon, setIsPotWon] = useState(false);
+  
   let myPlyrName = nameList[0];
   let myPlyrStack = stackList[0];
   let myPlyrBet = betList[0];
@@ -72,6 +68,7 @@ export default function PokerGame({ playersCount }) {
     { ...cardList[0][1], cardEmp: "firstp" },
   ];
 
+  let GameHasEnded = false;  
   let currentBet = Math.max(betList);
   let myPlyrCallCheck = myPlyrBet < currentBet ? "Call" : "Check";
   let GameHasStarted = myPlyrName !== "Player 0";
@@ -93,7 +90,6 @@ export default function PokerGame({ playersCount }) {
   }
 
   useEffect(() => {
-
     let timer = setInterval(() => {
       setPlayTimer((time) => {
         if (time === 0) {
@@ -126,7 +122,7 @@ export default function PokerGame({ playersCount }) {
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [nameList, playerIndex, isPotWon, GameHasEnded]);
-
+  
   function generateCards({ type }) {
     let cardTypeSelector = Math.floor(Math.random() * 4);
     let cardNumberSelector = Math.floor(Math.random() * 13) + 1;
@@ -166,7 +162,7 @@ export default function PokerGame({ playersCount }) {
           Texas hold'em poker game :
         </h1>
         <PokerTable betList={betList} deckList={deckList} nameList={nameList} GameHasStarted={GameHasStarted} GameHasEnded={GameHasEnded} 
-                    isPotWon={isPotWon} setGameHasEnded={setGameHasEnded} setIsPotWon={setIsPotWon}/>
+                    isPotWon={isPotWon}/>
         {playerIndex === 0 && (
           <>
             <SliderWithLimits min={0} max={myPlyrStack} />
@@ -241,14 +237,14 @@ function PlayersBench({
   return <div className="playersBench">{benchFig}</div>;
 }
 
-function PokerTable({ deckList, betList, nameList, GameHasStarted, GameHasEnded, isPotWon, setGameHasEnded, setIsPotWon }) {
+function PokerTable({ deckList, betList, nameList, GameHasStarted, GameHasEnded, isPotWon }) {
   let hiddenDeck = [<PokerCard cardType={"None"} cardNumber={"None"} cardEmp={"deckH"}/>,
                     <PokerCard cardType={"None"} cardNumber={"None"} cardEmp={"deckH"}/>,
                     <PokerCard cardType={"None"} cardNumber={"None"} cardEmp={"deckH"}/>];
 
   function handleReplay(){
-    setIsPotWon(false);
-    setGameHasEnded(false);
+    isPotWon = false;
+    GameHasEnded = false;
   }
 
   if(!GameHasStarted){
