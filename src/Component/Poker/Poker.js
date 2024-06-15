@@ -3,8 +3,8 @@ import React from "react";
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import SliderWithLimits from "../../Component/Subcomponent/SliderWithLimits";
+import {Player} from "./pokerPlayer"
 
-import pokerPlayer from "../../Logos/pokerPlayer.svg";
 import hiddenCard from "../../Logos/Poker/hiddenCard.svg";
 
 
@@ -194,11 +194,13 @@ export default function PokerGame({ playersCount }) {
         <div className="firstPerson">
           <Player
             playerName={myPlyrName}
+            playerIndexer={0}
+            playerIndex={playerIndex}
             playerStack={myPlyrStack}
             playerBet={myPlyrBet}
             playerCards={myPlyrCards}
-            playerIsActive={playerIndex === 0}
-            playTimer={playTimer}
+            playerTimer={playTimer}
+            playerAction={null}
           />
         </div>
       </div>
@@ -227,11 +229,12 @@ function PlayersBench({
     <Player
       key={plr.name}
       playerName={plr.name}
+      playerIndexer={index}
       playerStack={plr.playerStack}
       playerBet={plr.playerBet}
       playerCards={plr.playerCards}
-      playerIsActive={index === playerIndex - 1}
-      playTimer={playTimer}
+      playerTimer={playTimer}
+      playerAction={null}
     />
   ));
   return <div className="playersBench">{benchFig}</div>;
@@ -295,41 +298,7 @@ function Deck({ deckCards }) {
   return <div className="Deck">{deckFig}</div>;
 }
 
-function Player({
-  playerName,
-  playerStack,
-  playerBet,
-  playerCards,
-  playerIsActive,
-  playTimer,
-}) {
-  let playerCardsFig = [];
-  playerCardsFig = playerCards.map((card, index) => (
-    <PokerCard
-      key={playerName + card.cardType + card.cardNumber + index}
-      cardType={card.cardType}
-      cardNumber={card.cardNumber}
-      cardEmp={card.cardEmp}
-    />
-  ));
-  return (
-    <div className="playerProfile">
-      <img className="playerLogo" src={pokerPlayer} alt="playerLogo" />
-      <div className="playerName">{playerName}</div>
-      <div className="playerStack">Stack: {playerStack}$</div>
-      <div className="playerBet">Bet: {playerBet}$</div>
-      <div className="playerCards">{playerCardsFig}</div>
-      {playerIsActive && (
-        <div className="playerTimerW">
-          ^ Remaining Time ^
-          <motion.div className="playerTimer">{playTimer}s</motion.div>
-        </div>
-      )}
-    </div>
-  );
-}
-
-function PokerCard({ cardType, cardNumber, cardEmp }) {
+export function PokerCard({ cardType, cardNumber, cardEmp }) {
   return (
     <div>
       <img
