@@ -165,7 +165,7 @@ export default function PokerGame({ playersCount }) {
                     isPotWon={isPotWon}/>
         {playerIndex === 0 && (
           <>
-            <SliderWithLimits min={0} max={myPlyrStack} />
+            {false && <SliderWithLimits min={0} max={myPlyrStack} />}
             <div className="controls">
               <motion.div
                 className="control-button"
