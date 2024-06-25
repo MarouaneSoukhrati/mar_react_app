@@ -50,7 +50,7 @@
   flex-direction: column;
   justify-content: space-evenly;
   align-items: center;
-  padding: 1.50em;
+  padding: 1.5em;
 }
 
 .playerLogo {
@@ -59,7 +59,7 @@
   margin-bottom: 0.5rem;
 }
 
-.playersBench .playerLogo{
+.playersBench .playerLogo {
   width: 2rem;
   border-radius: 30rem;
   margin-bottom: 0.5rem;
@@ -201,8 +201,8 @@
   text-align: center;
 }
 
-.WinMessage{
-  color:yellow;
+.WinMessage {
+  color: yellow;
   background-color: #ff000055;
   padding: 50px 101px;
   border-radius: 50px;
@@ -211,4 +211,8 @@
   justify-content: space-evenly;
   align-items: center;
   text-align: center;
+}
+
+.slider-wrapper {
+  padding: 1em;
 }

@@ -13,7 +13,7 @@ const SliderWithLimits = ({ min, max }) => {
   // Convert to percentage
   const getPercent = useCallback(
     (value) => Math.round(((value - min) / (max - min)) * 100),
-    [min, max]
+    [min, max],
   );
 
   // Set width of the range to decrease from the left side
@@ -38,8 +38,7 @@ const SliderWithLimits = ({ min, max }) => {
   }, [maxVal, getPercent]);
 
   // Get min and max values when their state changes
-  useEffect(() => {
-  }, [minVal, maxVal]);
+  useEffect(() => {}, [minVal, maxVal]);
 
   return (
     <div className="container">
