@@ -1,5 +1,5 @@
 import "../../ComponentStyle/SubcomponentStyle/About.css";
-import "../../"
+import "../../";
 
 import marouaneLogo from "../../Logos/marouane-logo.svg";
 import gmailLogo from "../../Logos/gmailLogo.svg";
@@ -78,11 +78,7 @@ const experienceList = ExpList.map((e) => {
   return (
     <div key={e.title}>
       <h3 className="Exp-List">
-        <img
-          className="ExpListImg"
-          src={e.logo}
-          alt="img-cv"
-        />{" "}
+        <img className="ExpListImg" src={e.logo} alt="img-cv" />{" "}
         {e.corp + " - "} {e.date}
       </h3>
       <h5>{e.title}</h5>
@@ -93,14 +89,15 @@ const experienceList = ExpList.map((e) => {
 
 const educationList = EduList.map((e) => {
   return (
-    <div style={{ display: "flex", flexDirection: "column", alignItems: "center",}} key={e.description}>
+    <div
+      style={{ display: "flex", flexDirection: "column", alignItems: "center" }}
+      key={e.description}
+    >
       <h2 style={{ textAlign: "center" }}>{e.school}</h2>
       <div className="Edu-List">
         {e.loc} {e.date}
       </div>
-      <div className="educListDesc">
-        {e.description}
-      </div>
+      <div className="educListDesc">{e.description}</div>
     </div>
   );
 });
@@ -129,7 +126,7 @@ function Curiculum() {
       <h1 className="CvTitle">Curriculum Vitae</h1>
       <div className="body-wrapper">
         <div className="body-top">
-          <img className= "marouaneLogoStS" src={marouaneLogo} alt="img-cv" />
+          <img className="marouaneLogoStS" src={marouaneLogo} alt="img-cv" />
           <h1 className="myNameLogoTitle">Marouane Soukhrati</h1>
           <h3>Computer Science Student</h3>
           <div className="emailStyling">
@@ -141,11 +138,7 @@ function Curiculum() {
             soukhratimarouane@gmail.com
           </div>
           <div>
-            <img
-              className="phoneLogoS"
-              src={phoneLogo}
-              alt="img-cv"
-            />{" "}
+            <img className="phoneLogoS" src={phoneLogo} alt="img-cv" />{" "}
             +33745493327
           </div>
           <h1 className="aboutMeTitleSty">About Me</h1>

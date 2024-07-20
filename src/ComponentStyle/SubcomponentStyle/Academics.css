@@ -12,7 +12,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: #00FF0011;
+  background-color: #00ff0011;
   border-radius: 1.5625em;
   margin: 3.125em;
   width: 95%;
@@ -23,7 +23,7 @@
   flex-direction: row;
   justify-content: space-evenly;
   align-items: center;
-  padding: 3.125em 3.125em 5em 3.125em;
+  padding: 1.125em 3.125em 5em 3.125em;
 }
 
 .about-chartside {
@@ -71,44 +71,44 @@
   align-items: center;
 }
 
-.map-style{
+.map-style {
   width: 27em;
   height: 30em;
   margin: 1.1em;
 }
 
-.map-style2{
+.map-style2 {
   width: 27em;
   height: 30em;
   margin: 1.1em;
 }
 
-.aboutPara{
-  width: 50em; 
+.aboutPara {
+  width: 50em;
   height: 0.1875em;
 }
 
-.abouttxtimg{
+.abouttxtimg {
   display: flex;
   flex-direction: row;
   padding: 0.625em;
 }
 
-.marouane-aboutlogo{
+.marouane-aboutlogo {
   width: 13em;
   padding-right: 0.5em;
 }
 
-.dateListStyling{
+.dateListStyling {
   font-size: 0.625em;
   padding-bottom: 0.625em;
 }
 
-.imgEventPic{
+.imgEventPic {
   height: 1.875em;
   width: 4.375em;
 }
 
-.aboutTitleN{
+.aboutTitleN {
   padding: 2em;
 }
