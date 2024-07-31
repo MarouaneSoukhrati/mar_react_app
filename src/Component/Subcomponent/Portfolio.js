@@ -10,6 +10,7 @@ import rightArrow from "../../Logos/rightArrow.svg";
 import marouaneLogo from "../../Logos/marouane-logo.svg";
 
 import PokerGame from "../Poker/Poker";
+import GomukoGame from "../Gomuko/Gomuko";
 
 export default function Portfolio() {
   return (
@@ -20,7 +21,10 @@ export default function Portfolio() {
         <AiBot />
       </div>
       <div className="Poker-part">
-        <PokerGame playersCount={4}/>
+        <PokerGame playersCount={4} />
+      </div>
+      <div className="Gomuko-part">
+        <GomukoGame />
       </div>
     </header>
   );
@@ -80,18 +84,14 @@ function AiBot() {
     e.target.style.height = `${e.target.scrollHeight}px`;
   }
 
-  function handleMsg(){
+  function handleMsg() {
     setAiQuest("Sorry the chat bot is not working currently !");
   }
 
   return (
     <div className="ai-section">
       <div className="aiBot-title">
-        <img
-          src={marouaneLogo}
-          alt="marouaneLogo"
-          className="myimglogo"
-        />
+        <img src={marouaneLogo} alt="marouaneLogo" className="myimglogo" />
         <h2>AI powered Chat Bot :</h2>
       </div>
       <div className="ai-prompt-section">

@@ -1,0 +1,71 @@
+.gomuko-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.BoardLine {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.BoardTable {
+  background-color: rgb(211, 163, 21);
+  border-radius: 5%;
+  padding: 1vw 1vw;
+}
+
+.playerChoice,
+.playerOption {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-evenly;
+  width: 10vw;
+  margin-bottom: 0.5vw;
+}
+
+.gameTitle {
+  color: yellow;
+  margin-bottom: 0.3vw;
+}
+
+.startGame {
+  background-color: #ff0000;
+  padding: 0.4vw;
+  border-radius: 10%;
+  border: solid 2px white;
+  margin-bottom: 1vw;
+}
+
+.playerOption {
+  width: 7vw;
+}
+
+.BoardCase {
+  background-color: rgb(255, 221, 0);
+  margin: 3px;
+  height: 3vw;
+  width: 3vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10%;
+}
+
+.BlackPion {
+  background-color: black;
+  border-radius: 50%;
+  height: 1.5vw;
+  width: 1.5vw;
+}
+
+.WhitePion {
+  background-color: white;
+  border-radius: 50%;
+  height: 1.5vw;
+  width: 1.5vw;
+}
