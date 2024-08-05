@@ -209,7 +209,7 @@ function GomukoTable({
       o++;
       leftDiagonal++;
     }
-    while (board[index + p * (gameBoard.columns - 1)] === value) {
+    while (board[index - p * (gameBoard.columns - 1)] === value) {
       p++;
       leftDiagonal++;
     }
