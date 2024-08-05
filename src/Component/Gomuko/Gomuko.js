@@ -26,8 +26,6 @@ export default function GomukoGame() {
     setPlayerColor(e.target.value);
   }
 
-  function computerMove() {}
-
   return (
     <header className="gomuko-wrapper">
       <h1 className="gameTitle">Gomuko Game : 5 Allined</h1>
@@ -112,6 +110,7 @@ function GomukoTable({
   setGameHasEnded,
   setGameWinner,
 }) {
+  const [opponentTurn, setOpponentTurn] = useState(false);
   let BoardTab = gameBoard.gboard;
   let BoardTabx = BoardTab.map((e, index) => (
     <motion.div
@@ -133,20 +132,44 @@ function GomukoTable({
     </div>
   ));
 
+  function handleOpponentMove(gameBoard) {
+    let randomCase = 33;
+    while (gameBoard.gboard[randomCase] !== ".") {
+      randomCase = Math.floor(
+        Math.random() * (gameBoard.lines * gameBoard.columns - 1)
+      );
+    }
+    let newBoard = [...gameBoard.gboard];
+    let opponentColor = playerColor === "Black" ? "White" : "Black";
+    newBoard[randomCase] = opponentColor === "Black" ? "x" : "o";
+    setGameBoard({ ...gameBoard, gboard: newBoard });
+    setOpponentTurn(false);
+    let checkGameWin = checkWin(gameBoard, opponentColor, randomCase);
+    if (checkGameWin) {
+      setGameHasEnded(true);
+      setGameWinner(opponentColor);
+    }
+  }
+
   function handleCaseClick(index) {
-    if (!gameHasStarted || gameHasEnded) {
+    if (!gameHasStarted || gameHasEnded || opponentTurn) {
       return;
     }
     if (gameBoard.gboard[index] === ".") {
       let newBoard = [...gameBoard.gboard];
       newBoard[index] = playerColor === "Black" ? "x" : "o";
-      setGameBoard({ ...gameBoard, gboard: newBoard });
+      let newGameBoard = { ...gameBoard, gboard: newBoard };
+      setGameBoard(newGameBoard);
+      let checkGameWin = checkWin(gameBoard, playerColor, index);
+      if (checkGameWin) {
+        setGameHasEnded(true);
+        setGameWinner(playerColor);
+      } else {
+        setOpponentTurn(true);
+        handleOpponentMove(newGameBoard);
+      }
     }
-    let checkGameWin = checkWin(gameBoard, playerColor, index);
-    if (checkGameWin[0]) {
-      setGameHasEnded(true);
-      setGameWinner(checkGameWin[1]);
-    }
+    return;
   }
 
   function checkWin(gameBoard, playerColor, index) {
@@ -154,37 +177,41 @@ function GomukoTable({
     let horizontal = 0;
     let leftDiagonal = 0;
     let rightDiagonal = 0;
-    let checkBlackWin = false;
-    let checkWhiteWin = false;
-    let checkWin = checkBlackWin || checkWhiteWin;
     let board = gameBoard.gboard;
     let value = playerColor === "Black" ? "x" : "o";
 
-    for (let i = 0; i < 5; i++) {
-      if (board[index + i] === value) {
-        horizontal++;
-      }
-      if (board[index - i] === value) {
-        horizontal++;
-      }
-      if (board[index + i * gameBoard.columns] === value) {
-        vertical++;
-      }
-      if (board[index - i * gameBoard.columns] === value) {
-        vertical++;
-      }
-      if (board[index + i * (gameBoard.columns + 1)] === value) {
-        rightDiagonal++;
-      }
-      if (board[index - i * (gameBoard.columns + 1)] === value) {
-        rightDiagonal++;
-      }
-      if (board[index + i * (gameBoard.columns - 1)] === value) {
-        leftDiagonal++;
-      }
-      if (board[index - i * (gameBoard.columns - 1)] === value) {
-        leftDiagonal++;
-      }
+    let [i, j, k, l, m, n, o, p] = [1, 1, 1, 1, 1, 1, 1, 1];
+    while (board[index + i] === value) {
+      i++;
+      horizontal++;
+    }
+    while (board[index - j] === value) {
+      j++;
+      horizontal++;
+    }
+    while (board[index + k * gameBoard.columns] === value) {
+      k++;
+      vertical++;
+    }
+    while (board[index - l * gameBoard.columns] === value) {
+      l++;
+      vertical++;
+    }
+    while (board[index + m * (gameBoard.columns + 1)] === value) {
+      m++;
+      rightDiagonal++;
+    }
+    while (board[index - n * (gameBoard.columns + 1)] === value) {
+      n++;
+      rightDiagonal++;
+    }
+    while (board[index + o * (gameBoard.columns - 1)] === value) {
+      o++;
+      leftDiagonal++;
+    }
+    while (board[index + p * (gameBoard.columns - 1)] === value) {
+      p++;
+      leftDiagonal++;
     }
 
     if (
@@ -193,17 +220,9 @@ function GomukoTable({
       leftDiagonal > 3 ||
       rightDiagonal > 3
     ) {
-      if (value === "x") {
-        checkBlackWin = true;
-      } else {
-        checkWhiteWin = true;
-      }
+      return true;
     }
-
-    return [
-      checkBlackWin || checkWhiteWin,
-      checkBlackWin ? "Black" : checkWhiteWin ? "White" : "None",
-    ];
+    return false;
   }
 
   return <div className="BoardTable">{BoardLines}</div>;
