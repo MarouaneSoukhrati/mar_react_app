@@ -65,18 +65,6 @@ export default function GomukoGame() {
       )}
 
       {gameHasStarted && <h2>Your color is : {playerColor}</h2>}
-
-      {!gameHasEnded && (
-        <GomukoTable
-          gameBoard={gameBoard}
-          setGameBoard={setGameBoard}
-          gameHasStarted={gameHasStarted}
-          playerColor={playerColor}
-          gameHasEnded={gameHasEnded}
-          setGameHasEnded={setGameHasEnded}
-          setGameWinner={setGameWinner}
-        />
-      )}
       {gameHasEnded && (
         <>
           <h1 className="gameTitleWin">
@@ -91,6 +79,15 @@ export default function GomukoGame() {
           </motion.div>
         </>
       )}
+      <GomukoTable
+        gameBoard={gameBoard}
+        setGameBoard={setGameBoard}
+        gameHasStarted={gameHasStarted}
+        playerColor={playerColor}
+        gameHasEnded={gameHasEnded}
+        setGameHasEnded={setGameHasEnded}
+        setGameWinner={setGameWinner}
+      />
     </header>
   );
 }
@@ -133,7 +130,11 @@ function GomukoTable({
   ));
 
   function handleOpponentMove(gameBoard, index, strategy) {
-    strategy(gameBoard, index);
+    if (strategy === strategyMinMax) {
+      strategy(gameBoard, index, 3, true);
+    } else {
+      strategy(gameBoard, index);
+    }
   }
 
   function strategyRandom(gameBoard, index) {
@@ -160,7 +161,7 @@ function GomukoTable({
     return neighborsCardinalTab.reduce((a, b) => a + b, 0);
   }
 
-  function strategyMinmax(gameBoard, index, depth, maximizingPlayer) {
+  function strategyMinMaxVal(gameBoard, index, depth, maximizingPlayer) {
     let opponentColor = playerColor === "Black" ? "White" : "Black";
     let heuristicEval = heuristicFunc(gameBoard, opponentColor, index);
     let checkGameWin = checkWin(gameBoard, opponentColor, index);
@@ -170,22 +171,44 @@ function GomukoTable({
     }
     if (maximizingPlayer) {
       var value = -666;
+      var node = index;
       for (
         let i = 0;
         i < gameBoard.columns * gameBoard.lines - 1 && i !== index;
         i++
       ) {
-        value = Math.max(value, strategyMinmax(gameBoard, i, depth - 1, false));
+        if (value < strategyMinMaxVal(gameBoard, i, depth - 1, false)) {
+          node = i;
+        }
       }
+      return node;
     } else {
-      value = 666;
+      let value = 666;
+      let node = index;
       for (
         let i = 0;
         i < gameBoard.columns * gameBoard.lines - 1 && i !== index;
         i++
       ) {
-        value = Math.min(value, strategyMinmax(gameBoard, i, depth - 1, true));
+        if (value > strategyMinMaxVal(gameBoard, i, depth - 1, true)) {
+          node = i;
+        }
       }
+      return node;
+    }
+  }
+
+  function strategyMinMax(gameBoard, index) {
+    let minmaxCase = strategyMinMaxVal(gameBoard, index, 5, true);
+    let newBoard = [...gameBoard.gboard];
+    let opponentColor = playerColor === "Black" ? "White" : "Black";
+    newBoard[minmaxCase] = opponentColor === "Black" ? "x" : "o";
+    setGameBoard({ ...gameBoard, gboard: newBoard });
+    setOpponentTurn(false);
+    let checkGameWin = checkWin(gameBoard, opponentColor, minmaxCase);
+    if (checkGameWin) {
+      setGameHasEnded(true);
+      setGameWinner(opponentColor);
     }
   }
 
@@ -197,6 +220,7 @@ function GomukoTable({
       let newBoard = [...gameBoard.gboard];
       newBoard[index] = playerColor === "Black" ? "x" : "o";
       let newGameBoard = { ...gameBoard, gboard: newBoard };
+      setGameBoard(newGameBoard);
       let checkGameWin = checkWin(gameBoard, playerColor, index);
       if (checkGameWin) {
         setGameHasEnded(true);
