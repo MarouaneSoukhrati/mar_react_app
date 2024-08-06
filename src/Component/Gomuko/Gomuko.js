@@ -132,8 +132,12 @@ function GomukoTable({
     </div>
   ));
 
-  function handleOpponentMove(gameBoard) {
-    let randomCase = 33;
+  function handleOpponentMove(gameBoard, index, strategy) {
+    strategy(gameBoard, index);
+  }
+
+  function strategyRandom(gameBoard, index) {
+    let randomCase = index;
     while (gameBoard.gboard[randomCase] !== ".") {
       randomCase = Math.floor(
         Math.random() * (gameBoard.lines * gameBoard.columns - 1)
@@ -151,6 +155,40 @@ function GomukoTable({
     }
   }
 
+  function heuristicFunc(gameBoard, playerColor, index) {
+    let neighborsCardinalTab = neighborsCardinal(gameBoard, playerColor, index);
+    return neighborsCardinalTab.reduce((a, b) => a + b, 0);
+  }
+
+  function strategyMinmax(gameBoard, index, depth, maximizingPlayer) {
+    let opponentColor = playerColor === "Black" ? "White" : "Black";
+    let heuristicEval = heuristicFunc(gameBoard, opponentColor, index);
+    let checkGameWin = checkWin(gameBoard, opponentColor, index);
+    let checkDrawGame = checkDraw(gameBoard, opponentColor, index);
+    if (depth === 0 || checkGameWin || checkDrawGame) {
+      return heuristicEval;
+    }
+    if (maximizingPlayer) {
+      var value = -666;
+      for (
+        let i = 0;
+        i < gameBoard.columns * gameBoard.lines - 1 && i !== index;
+        i++
+      ) {
+        value = Math.max(value, strategyMinmax(gameBoard, i, depth - 1, false));
+      }
+    } else {
+      value = 666;
+      for (
+        let i = 0;
+        i < gameBoard.columns * gameBoard.lines - 1 && i !== index;
+        i++
+      ) {
+        value = Math.min(value, strategyMinmax(gameBoard, i, depth - 1, true));
+      }
+    }
+  }
+
   function handleCaseClick(index) {
     if (!gameHasStarted || gameHasEnded || opponentTurn) {
       return;
@@ -159,20 +197,19 @@ function GomukoTable({
       let newBoard = [...gameBoard.gboard];
       newBoard[index] = playerColor === "Black" ? "x" : "o";
       let newGameBoard = { ...gameBoard, gboard: newBoard };
-      setGameBoard(newGameBoard);
       let checkGameWin = checkWin(gameBoard, playerColor, index);
       if (checkGameWin) {
         setGameHasEnded(true);
         setGameWinner(playerColor);
       } else {
         setOpponentTurn(true);
-        handleOpponentMove(newGameBoard);
+        handleOpponentMove(newGameBoard, index, strategyRandom);
       }
     }
     return;
   }
 
-  function checkWin(gameBoard, playerColor, index) {
+  function neighborsCardinal(gameBoard, playerColor, index) {
     let vertical = 0;
     let horizontal = 0;
     let leftDiagonal = 0;
@@ -213,7 +250,21 @@ function GomukoTable({
       p++;
       leftDiagonal++;
     }
+    return [horizontal, vertical, rightDiagonal, leftDiagonal];
+  }
 
+  function checkDraw(gameBoard, playerColor, index) {
+    let board = [...gameBoard.gboard];
+    board[index] = playerColor === "Black" ? "x" : "o";
+    return board.every((element) => element !== ".");
+  }
+
+  function checkWin(gameBoard, playerColor, index) {
+    let [horizontal, vertical, rightDiagonal, leftDiagonal] = neighborsCardinal(
+      gameBoard,
+      playerColor,
+      index
+    );
     if (
       horizontal > 3 ||
       vertical > 3 ||
