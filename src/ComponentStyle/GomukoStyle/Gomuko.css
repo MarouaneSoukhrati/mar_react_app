@@ -69,6 +69,18 @@
   align-items: center;
   justify-content: center;
   border-radius: 10%;
+  cursor: pointer;
+}
+
+.winBoardCase {
+  background-color: red;
+  margin: 3px;
+  height: 3vw;
+  width: 3vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10%;
 }
 
 .BlackPion {
