@@ -4,9 +4,11 @@ import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 
 export default function GomukoGame() {
-  const [gameBoard, setGameBoard] = useState(initialiseBoard(10, 10, []));
+  const [gameSize, setGameSize] = useState(10);
+  const [gameBoard, setGameBoard] = useState(initialiseBoard(gameSize));
+  const [winCases, setWinCases] = useState([]);
   const [gameHasStarted, setGameHasStarted] = useState(false);
-  const [playerColor, setPlayerColor] = useState("Black");
+  const [playerColor, setPlayerColor] = useState("x");
   const [gameHasEnded, setGameHasEnded] = useState(false);
   const [gameWinner, setGameWinner] = useState("None");
 
@@ -15,7 +17,8 @@ export default function GomukoGame() {
   }
 
   function handleGameReplay() {
-    setGameBoard(initialiseBoard(10, 10, []));
+    setGameBoard(initialiseBoard(gameSize));
+    setWinCases([]);
     setGameHasEnded(false);
     setGameHasStarted(false);
   }
@@ -36,7 +39,7 @@ export default function GomukoGame() {
                 type="radio"
                 id="playerChoice1"
                 name="player"
-                value="Black"
+                value="x"
                 onClick={handlePlayerChoice}
               />
               <label for="playerChoice1">Black</label>
@@ -46,7 +49,7 @@ export default function GomukoGame() {
                 type="radio"
                 id="playerChoice2"
                 name="player"
-                value="White"
+                value="o"
                 onClick={handlePlayerChoice}
               />
               <label for="playerChoice2">White</label>
@@ -62,11 +65,14 @@ export default function GomukoGame() {
         </>
       )}
 
-      {gameHasStarted && <h2>Your color is : {playerColor}</h2>}
+      {gameHasStarted && (
+        <h2>Your color is : {playerColor === "x" ? "Black" : "White"}</h2>
+      )}
       {gameHasEnded && (
         <>
           <h1 className="gameTitleWin">
-            The Game Has Ended - The Winner is {gameWinner}
+            The Game Has Ended - The Winner is{" "}
+            {gameWinner === "x" ? "Black" : "White"}
           </h1>
           <motion.div
             className="restartGame"
@@ -79,7 +85,10 @@ export default function GomukoGame() {
       )}
       <GomukoTable
         gameBoard={gameBoard}
+        gameSize={gameSize}
+        winCases={winCases}
         setGameBoard={setGameBoard}
+        setWinCases={setWinCases}
         gameHasStarted={gameHasStarted}
         gameHasEnded={gameHasEnded}
         setGameHasEnded={setGameHasEnded}
@@ -90,14 +99,17 @@ export default function GomukoGame() {
   );
 }
 
-function initialiseBoard(lines, columns, winCases) {
-  let BoardTable = [...Array(columns * lines).keys()];
+function initialiseBoard(gameSize) {
+  let BoardTable = [...Array(gameSize * gameSize).keys()];
   let Board = BoardTable.map((e) => ".");
-  return { gboard: Board, lines: lines, columns: columns, winCases: winCases };
+  return Board;
 }
 
 function GomukoTable({
   gameBoard,
+  gameSize,
+  winCases,
+  setWinCases,
   setGameBoard,
   gameHasStarted,
   gameHasEnded,
@@ -110,36 +122,27 @@ function GomukoTable({
 
   useEffect(() => {
     if (opponentTurn) {
-      let opponentMove = lastPlayedIndex;
-      let newBoard = [...gameBoard.gboard];
-      let voisins = [
-        newBoard[opponentMove + 1],
-        newBoard[opponentMove - 1],
-        newBoard[opponentMove + gameBoard.columns],
-        newBoard[opponentMove - gameBoard.columns],
-        newBoard[opponentMove + gameBoard.columns + 1],
-        newBoard[opponentMove + gameBoard.columns - 1],
-        newBoard[opponentMove - gameBoard.columns - 1],
-        newBoard[opponentMove - gameBoard.columns + 1],
-      ];
-      while (newBoard[opponentMove] !== ".") {
-        /*opponentMove = Math.floor(
-          Math.random() * (gameBoard.columns * gameBoard.lines),
-        );*/
-        opponentMove = voisins[Math.floor(Math.random() * 8)];
+      let opponentColor = playerColor === "x" ? "o" : "x";
+      let opponentMove = evaluation(gameBoard);
+      while (gameBoard[opponentMove] !== ".") {
+        opponentMove = evaluation(gameBoard);
       }
-      newBoard[opponentMove] = playerColor === "Black" ? "o" : "x";
-      setGameBoard({ ...gameBoard, gboard: newBoard });
+      let newBoard = [...gameBoard];
+      newBoard[opponentMove] = opponentColor;
+      setGameBoard(newBoard);
       setOpponentTurn(false);
-    }
-  }, [gameBoard]);
-
-  let BoardTab = gameBoard.gboard;
-  let BoardTabx = BoardTab.map((e, index) => (
-    <motion.div
-      className={
-        gameBoard.winCases.includes(index) ? "winBoardCase" : "BoardCase"
+      let checkGameWin = checkWin(gameBoard, opponentColor, opponentMove);
+      if (checkGameWin[0]) {
+        setGameHasEnded(true);
+        setGameWinner(opponentColor);
+        setWinCases(checkGameWin[1]);
       }
+    }
+  }, [lastPlayedIndex]);
+
+  let BoardTab = gameBoard.map((e, index) => (
+    <motion.div
+      className={winCases.includes(index) ? "winBoardCase" : "BoardCase"}
       whileHover={{ scale: 1.1, opacity: 0.3 }}
       onClick={() => handleCaseClick(index)}
       key={index}
@@ -151,31 +154,66 @@ function GomukoTable({
       )}
     </motion.div>
   ));
-  let BoardLines = [...Array(gameBoard.lines).keys()].map((e) => (
+  let BoardLines = [...Array(gameSize).keys()].map((e) => (
     <div className="BoardLine" key={e}>
-      {BoardTabx.slice(e * gameBoard.columns, (e + 1) * gameBoard.columns)}
+      {BoardTab.slice(e * gameSize, (e + 1) * gameSize)}
     </div>
   ));
+
+  /*function miniMax(gamingBoard, depth, maximizingPlayer) {
+    if (depth === 0 || checkDraw(gamingBoard)) {
+      return evaluation(gamingBoard);
+    }
+    if (maximizingPlayer) {
+      let value = -666;
+      let childs = gamingBoard.map((e, index) => {
+        if (gamingBoard[index] === ".") {
+          let childBoard = [...gamingBoard];
+          childBoard[index] = playerColor === "x" ? "o" : "x";
+          return childBoard;
+        }
+      });
+    }
+  }*/
+
+  function evaluation(gamingBoard) {
+    let evalTab = gamingBoard.map((e, index) => {
+      let voisins = neighborsCardinal(gamingBoard, playerColor, index);
+
+      let h = voisins.horizontal.length;
+      let v = voisins.vertical.length;
+      let rd = voisins.rightDiagonal.length;
+      let ld = voisins.leftDiagonal.length;
+
+      h = h > 3 ? 30 * h : h > 2 ? 10 * h : h > 1 ? 5 * h : h;
+      v = v > 3 ? 30 * v : v > 2 ? 10 * v : v > 1 ? 5 * v : v;
+      rd = rd > 3 ? 30 * rd : rd > 2 ? 10 * rd : rd > 1 ? 5 * rd : rd;
+      ld = ld > 3 ? 30 * ld : ld > 2 ? 10 * ld : ld > 1 ? 5 * ld : ld;
+
+      return h + v + rd + ld;
+    });
+    return evalTab.reduce(
+      (maxIndex, elem, i, evalTab) =>
+        elem > evalTab[maxIndex] && gamingBoard[i] === "." ? i : maxIndex,
+      0,
+    );
+  }
 
   function handleCaseClick(index) {
     if (!gameHasStarted || gameHasEnded || opponentTurn) {
       return;
     }
-    if (gameBoard.gboard[index] === ".") {
-      let newBoard = [...gameBoard.gboard];
-      newBoard[index] = playerColor === "Black" ? "x" : "o";
+    if (gameBoard[index] === ".") {
+      let newBoard = [...gameBoard];
+      newBoard[index] = playerColor;
       setLastPlayedIndex(index);
+      setGameBoard(newBoard);
       let checkGameWin = checkWin(gameBoard, playerColor, index);
       if (checkGameWin[0]) {
         setGameHasEnded(true);
         setGameWinner(playerColor);
-        setGameBoard({
-          ...gameBoard,
-          gboard: newBoard,
-          winCases: checkGameWin[1],
-        });
+        setWinCases(checkGameWin[1]);
       } else {
-        setGameBoard({ ...gameBoard, gboard: newBoard });
         setOpponentTurn(true);
       }
     }
@@ -187,40 +225,38 @@ function GomukoTable({
     let horizontal = [];
     let leftDiagonal = [];
     let rightDiagonal = [];
-    let board = gamingBoard.gboard;
-    let value = color === "Black" ? "x" : "o";
 
     let [i, j, k, l, m, n, o, p] = [1, 1, 1, 1, 1, 1, 1, 1];
-    while (board[index + i] === value) {
+    while (gamingBoard[index + i] === color) {
       horizontal.push(index + i);
       i++;
     }
-    while (board[index - j] === value) {
+    while (gamingBoard[index - j] === color) {
       horizontal.push(index - j);
       j++;
     }
-    while (board[index + k * gameBoard.columns] === value) {
-      vertical.push(index + k * gameBoard.columns);
+    while (gamingBoard[index + k * gameSize] === color) {
+      vertical.push(index + k * gameSize);
       k++;
     }
-    while (board[index - l * gameBoard.columns] === value) {
-      vertical.push(index - l * gameBoard.columns);
+    while (gamingBoard[index - l * gameSize] === color) {
+      vertical.push(index - l * gameSize);
       l++;
     }
-    while (board[index + m * (gameBoard.columns + 1)] === value) {
-      rightDiagonal.push(index + m * (gameBoard.columns + 1));
+    while (gamingBoard[index + m * (gameSize + 1)] === color) {
+      rightDiagonal.push(index + m * (gameSize + 1));
       m++;
     }
-    while (board[index - n * (gameBoard.columns + 1)] === value) {
-      rightDiagonal.push(index - n * (gameBoard.columns + 1));
+    while (gamingBoard[index - n * (gameSize + 1)] === color) {
+      rightDiagonal.push(index - n * (gameSize + 1));
       n++;
     }
-    while (board[index + o * (gameBoard.columns - 1)] === value) {
-      leftDiagonal.push(index + o * (gameBoard.columns - 1));
+    while (gamingBoard[index + o * (gameSize - 1)] === color) {
+      leftDiagonal.push(index + o * (gameSize - 1));
       o++;
     }
-    while (board[index - p * (gameBoard.columns - 1)] === value) {
-      leftDiagonal.push(index - p * (gameBoard.columns - 1));
+    while (gamingBoard[index - p * (gameSize - 1)] === color) {
+      leftDiagonal.push(index - p * (gameSize - 1));
       p++;
     }
     return {
@@ -232,8 +268,7 @@ function GomukoTable({
   }
 
   function checkDraw(gamingBoard) {
-    let board = [...gamingBoard.gboard];
-    return board.every((element) => element !== ".");
+    return gamingBoard.every((element) => element !== ".");
   }
 
   function checkWin(gamingBoard, color, index) {
