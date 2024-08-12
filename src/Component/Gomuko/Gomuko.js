@@ -147,6 +147,7 @@ function GomukoTable({
       onClick={() => handleCaseClick(index)}
       key={index}
     >
+      {index}
       {e === "." ? null : e === "x" ? (
         <div className="BlackPion"></div>
       ) : (
@@ -214,7 +215,7 @@ function GomukoTable({
         setGameWinner(playerColor);
         setWinCases(checkGameWin[1]);
       } else {
-        setOpponentTurn(true);
+        //setOpponentTurn(true);
       }
     }
     return;
@@ -227,35 +228,59 @@ function GomukoTable({
     let rightDiagonal = [];
 
     let [i, j, k, l, m, n, o, p] = [1, 1, 1, 1, 1, 1, 1, 1];
-    while (gamingBoard[index + i] === color) {
+    while (
+      gamingBoard[index + i] === color &&
+      (index + i) % gameSize !== gameSize - 1
+    ) {
       horizontal.push(index + i);
       i++;
     }
-    while (gamingBoard[index - j] === color) {
+    while (
+      gamingBoard[index - j] === color &&
+      (index - j) % gameSize !== gameSize - 1
+    ) {
       horizontal.push(index - j);
       j++;
     }
-    while (gamingBoard[index + k * gameSize] === color) {
+    while (
+      gamingBoard[index + k * gameSize] === color &&
+      index % gameSize !== gameSize - 1
+    ) {
       vertical.push(index + k * gameSize);
       k++;
     }
-    while (gamingBoard[index - l * gameSize] === color) {
+    while (
+      gamingBoard[index - l * gameSize] === color &&
+      index % gameSize !== gameSize - 1
+    ) {
       vertical.push(index - l * gameSize);
       l++;
     }
-    while (gamingBoard[index + m * (gameSize + 1)] === color) {
+    while (
+      gamingBoard[index + m * (gameSize + 1)] === color &&
+      (index + m) % gameSize !== gameSize - 1
+    ) {
       rightDiagonal.push(index + m * (gameSize + 1));
       m++;
     }
-    while (gamingBoard[index - n * (gameSize + 1)] === color) {
+    while (
+      gamingBoard[index - n * (gameSize + 1)] === color &&
+      (index - n) % gameSize !== gameSize - 1
+    ) {
       rightDiagonal.push(index - n * (gameSize + 1));
       n++;
     }
-    while (gamingBoard[index + o * (gameSize - 1)] === color) {
+    while (
+      gamingBoard[index + o * (gameSize - 1)] === color &&
+      (index - o) % gameSize !== gameSize - 1
+    ) {
       leftDiagonal.push(index + o * (gameSize - 1));
       o++;
     }
-    while (gamingBoard[index - p * (gameSize - 1)] === color) {
+    while (
+      gamingBoard[index - p * (gameSize - 1)] === color &&
+      (index + p) % gameSize !== gameSize - 1
+    ) {
       leftDiagonal.push(index - p * (gameSize - 1));
       p++;
     }
