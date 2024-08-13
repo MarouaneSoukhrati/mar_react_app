@@ -13,10 +13,14 @@ export default function GomukoGame() {
   const [gameWinner, setGameWinner] = useState("None");
 
   function handleGameStart() {
+    setGameSize(10);
+    setGameBoard(initialiseBoard(gameSize));
+    setWinCases([]);
     setGameHasStarted(true);
   }
 
   function handleGameReplay() {
+    setGameSize(10);
     setGameBoard(initialiseBoard(gameSize));
     setWinCases([]);
     setGameHasEnded(false);
@@ -72,7 +76,11 @@ export default function GomukoGame() {
         <>
           <h1 className="gameTitleWin">
             The Game Has Ended - The Winner is{" "}
-            {gameWinner === "x" ? "Black" : "White"}
+            {gameWinner === "x"
+              ? "Black"
+              : gameWinner === "o"
+              ? "White"
+              : "None"}
           </h1>
           <motion.div
             className="restartGame"
@@ -138,6 +146,7 @@ function GomukoTable({
         setWinCases(checkGameWin[1]);
       }
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [lastPlayedIndex]);
 
   let BoardTab = gameBoard.map((e, index) => (
@@ -147,7 +156,6 @@ function GomukoTable({
       onClick={() => handleCaseClick(index)}
       key={index}
     >
-      {index}
       {e === "." ? null : e === "x" ? (
         <div className="BlackPion"></div>
       ) : (
@@ -196,7 +204,7 @@ function GomukoTable({
     return evalTab.reduce(
       (maxIndex, elem, i, evalTab) =>
         elem > evalTab[maxIndex] && gamingBoard[i] === "." ? i : maxIndex,
-      0,
+      0
     );
   }
 
@@ -204,6 +212,7 @@ function GomukoTable({
     if (!gameHasStarted || gameHasEnded || opponentTurn) {
       return;
     }
+
     if (gameBoard[index] === ".") {
       let newBoard = [...gameBoard];
       newBoard[index] = playerColor;
@@ -215,10 +224,14 @@ function GomukoTable({
         setGameWinner(playerColor);
         setWinCases(checkGameWin[1]);
       } else {
-        //setOpponentTurn(true);
+        setOpponentTurn(true);
       }
     }
     return;
+  }
+
+  function isBorder(index) {
+    return index % gameSize === 0 || index % gameSize === gameSize - 1;
   }
 
   function neighborsCardinal(gamingBoard, color, index) {
@@ -228,61 +241,61 @@ function GomukoTable({
     let rightDiagonal = [];
 
     let [i, j, k, l, m, n, o, p] = [1, 1, 1, 1, 1, 1, 1, 1];
-    while (
-      gamingBoard[index + i] === color &&
-      (index + i) % gameSize !== gameSize - 1
-    ) {
+    while (gamingBoard[index + i] === color) {
       horizontal.push(index + i);
-      i++;
+      if (isBorder(index + i)) {
+        break;
+      } else {
+        i++;
+      }
     }
-    while (
-      gamingBoard[index - j] === color &&
-      (index - j) % gameSize !== gameSize - 1
-    ) {
+    while (gamingBoard[index - j] === color) {
       horizontal.push(index - j);
-      j++;
+      if (isBorder(index - j)) {
+        break;
+      } else {
+        j++;
+      }
     }
-    while (
-      gamingBoard[index + k * gameSize] === color &&
-      index % gameSize !== gameSize - 1
-    ) {
+    while (gamingBoard[index + k * gameSize] === color) {
       vertical.push(index + k * gameSize);
       k++;
     }
-    while (
-      gamingBoard[index - l * gameSize] === color &&
-      index % gameSize !== gameSize - 1
-    ) {
+    while (gamingBoard[index - l * gameSize] === color) {
       vertical.push(index - l * gameSize);
       l++;
     }
-    while (
-      gamingBoard[index + m * (gameSize + 1)] === color &&
-      (index + m) % gameSize !== gameSize - 1
-    ) {
+    while (gamingBoard[index + m * (gameSize + 1)] === color) {
       rightDiagonal.push(index + m * (gameSize + 1));
-      m++;
+      if (isBorder(index + m * (gameSize + 1))) {
+        break;
+      } else {
+        m++;
+      }
     }
-    while (
-      gamingBoard[index - n * (gameSize + 1)] === color &&
-      (index - n) % gameSize !== gameSize - 1
-    ) {
+    while (gamingBoard[index - n * (gameSize + 1)] === color) {
       rightDiagonal.push(index - n * (gameSize + 1));
-      n++;
+      if (isBorder(index - n * (gameSize + 1))) {
+        break;
+      } else {
+        n++;
+      }
     }
-    while (
-      gamingBoard[index + o * (gameSize - 1)] === color &&
-      (index - o) % gameSize !== gameSize - 1
-    ) {
+    while (gamingBoard[index + o * (gameSize - 1)] === color) {
       leftDiagonal.push(index + o * (gameSize - 1));
-      o++;
+      if (isBorder(index + o * (gameSize - 1))) {
+        break;
+      } else {
+        o++;
+      }
     }
-    while (
-      gamingBoard[index - p * (gameSize - 1)] === color &&
-      (index + p) % gameSize !== gameSize - 1
-    ) {
+    while (gamingBoard[index - p * (gameSize - 1)] === color) {
       leftDiagonal.push(index - p * (gameSize - 1));
-      p++;
+      if (isBorder(index - p * (gameSize - 1))) {
+        break;
+      } else {
+        p++;
+      }
     }
     return {
       horizontal: horizontal,
