@@ -11,11 +11,15 @@ export default function GomukoGame() {
   const [playerColor, setPlayerColor] = useState("x");
   const [gameHasEnded, setGameHasEnded] = useState(false);
   const [gameWinner, setGameWinner] = useState("None");
+  const [lastPlayedIndex, setLastPlayedIndex] = useState([0, 0]);
+  const [opponentTurn, setOpponentTurn] = useState(false);
 
   function handleGameStart() {
     setGameSize(10);
     setGameBoard(initialiseBoard(gameSize));
     setWinCases([]);
+    setLastPlayedIndex([0, 0]);
+    setGameHasEnded(false);
     setGameHasStarted(true);
   }
 
@@ -23,6 +27,7 @@ export default function GomukoGame() {
     setGameSize(10);
     setGameBoard(initialiseBoard(gameSize));
     setWinCases([]);
+    setLastPlayedIndex([0, 0]);
     setGameHasEnded(false);
     setGameHasStarted(false);
   }
@@ -102,6 +107,10 @@ export default function GomukoGame() {
         setGameHasEnded={setGameHasEnded}
         playerColor={playerColor}
         setGameWinner={setGameWinner}
+        lastPlayedIndex={lastPlayedIndex}
+        setLastPlayedIndex={setLastPlayedIndex}
+        opponentTurn={opponentTurn}
+        setOpponentTurn={setOpponentTurn}
       />
     </header>
   );
@@ -124,11 +133,17 @@ function GomukoTable({
   setGameHasEnded,
   playerColor,
   setGameWinner,
+  lastPlayedIndex,
+  setLastPlayedIndex,
+  opponentTurn,
+  setOpponentTurn,
 }) {
-  const [opponentTurn, setOpponentTurn] = useState(false);
-  const [lastPlayedIndex, setLastPlayedIndex] = useState(0);
-
   useEffect(() => {
+    if (checkDraw()) {
+      setGameHasEnded(true);
+      setGameWinner("None");
+      setWinCases([]);
+    }
     if (opponentTurn) {
       let opponentColor = playerColor === "x" ? "o" : "x";
       let opponentMove = evaluation(gameBoard);
@@ -138,6 +153,10 @@ function GomukoTable({
       let newBoard = [...gameBoard];
       newBoard[opponentMove] = opponentColor;
       setGameBoard(newBoard);
+      setLastPlayedIndex((lastPlayedIndex) => [
+        lastPlayedIndex[0] + 1,
+        opponentMove,
+      ]);
       setOpponentTurn(false);
       let checkGameWin = checkWin(gameBoard, opponentColor, opponentMove);
       if (checkGameWin[0]) {
@@ -186,7 +205,8 @@ function GomukoTable({
   }*/
 
   function evaluation(gamingBoard) {
-    let evalTab = gamingBoard.map((e, index) => {
+    let newGamingBoard = [...gamingBoard].filter((e) => e === ".");
+    let evalTab = newGamingBoard.map((e, index) => {
       let voisins = neighborsCardinal(gamingBoard, playerColor, index);
 
       let h = voisins.horizontal.length;
@@ -216,8 +236,8 @@ function GomukoTable({
     if (gameBoard[index] === ".") {
       let newBoard = [...gameBoard];
       newBoard[index] = playerColor;
-      setLastPlayedIndex(index);
       setGameBoard(newBoard);
+      setLastPlayedIndex((lastPlayedIndex) => [lastPlayedIndex[0] + 1, index]);
       let checkGameWin = checkWin(gameBoard, playerColor, index);
       if (checkGameWin[0]) {
         setGameHasEnded(true);
@@ -305,8 +325,8 @@ function GomukoTable({
     };
   }
 
-  function checkDraw(gamingBoard) {
-    return gamingBoard.every((element) => element !== ".");
+  function checkDraw() {
+    return lastPlayedIndex[0] === gameSize * gameSize;
   }
 
   function checkWin(gamingBoard, color, index) {
@@ -333,5 +353,11 @@ function GomukoTable({
     return [winIndex, winCases];
   }
 
-  return <div className="BoardTable">{BoardLines}</div>;
+  return (
+    <>
+      <div>Last Played : {lastPlayedIndex[1]}</div>
+      <div>Counter : {lastPlayedIndex[0]}</div>
+      <div className="BoardTable">{BoardLines}</div>
+    </>
+  );
 }
