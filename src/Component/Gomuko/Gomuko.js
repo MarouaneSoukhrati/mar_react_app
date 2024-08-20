@@ -2,7 +2,6 @@ import "../../ComponentStyle/GomukoStyle/Gomuko.css";
 
 import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import { validateSchema } from "webpack";
 
 export default function GomukoGame() {
   const [gameSize, setGameSize] = useState(10);
@@ -150,8 +149,10 @@ function GomukoTable({
       } else {
         let opponentColor = playerColor === "x" ? "o" : "x";
         let opponentMove = evaluation(gameBoard);
+        //let opponentMove = miniMax(gameBoard, 3, true);
         while (gameBoard[opponentMove] !== ".") {
           opponentMove = evaluation(gameBoard);
+          //opponentMove = miniMax(gameBoard, 3, true);
         }
         let newBoard = [...gameBoard];
         newBoard[opponentMove] = opponentColor;
@@ -192,8 +193,8 @@ function GomukoTable({
     </div>
   ));
 
-  /*function miniMax(gamingBoard, depth, maximizingPlayer) {
-    if (depth === 0 || checkDraw(gamingBoard)) {
+  function miniMax(gamingBoard, depth, maximizingPlayer) {
+    if (depth === 0) {
       return evaluation(gamingBoard);
     }
     let value;
@@ -205,6 +206,7 @@ function GomukoTable({
           childBoard[index] = playerColor === "x" ? "o" : "x";
           return childBoard;
         }
+        return gameBoard;
       });
       childs.forEach((child) => {
         value = Math.max(value, miniMax(child, depth - 1, false));
@@ -217,13 +219,14 @@ function GomukoTable({
           childBoard[index] = playerColor === "x" ? "o" : "x";
           return childBoard;
         }
+        return gamingBoard;
       });
       childs.forEach((child) => {
         value = Math.min(value, miniMax(child, depth - 1, true));
       });
     }
     return value;
-  }*/
+  }
 
   function evaluation(gamingBoard) {
     let newGamingBoard = [...gamingBoard].map((e, index) =>
