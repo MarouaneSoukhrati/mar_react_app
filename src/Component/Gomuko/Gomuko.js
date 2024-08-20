@@ -18,7 +18,7 @@ export default function GomukoGame() {
     setGameSize(10);
     setGameBoard(initialiseBoard(gameSize));
     setWinCases([]);
-    setLastPlayedIndex([0, 0]);
+    setLastPlayedIndex([0, -1]);
     setGameHasEnded(false);
     setGameHasStarted(true);
   }
@@ -27,7 +27,7 @@ export default function GomukoGame() {
     setGameSize(10);
     setGameBoard(initialiseBoard(gameSize));
     setWinCases([]);
-    setLastPlayedIndex([0, 0]);
+    setLastPlayedIndex([0, -1]);
     setGameHasEnded(false);
     setGameHasStarted(false);
   }
