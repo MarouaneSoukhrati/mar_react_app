@@ -3,9 +3,16 @@ import "../../ComponentStyle/GomukoStyle/Gomuko.css";
 import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 
+import prevMove from "../../Logos/leftArrow.svg";
+import nextMove from "../../Logos/rightArrow.svg";
+
 export default function GomukoGame() {
   const [gameSize, setGameSize] = useState(10);
   const [gameBoard, setGameBoard] = useState(initialiseBoard(gameSize));
+  const [movesHistory, setMovesHistory] = useState({
+    historyBoard: [initialiseBoard(gameSize)],
+    historyIndex: 0,
+  });
   const [winCases, setWinCases] = useState([]);
   const [gameHasStarted, setGameHasStarted] = useState(false);
   const [playerColor, setPlayerColor] = useState("x");
@@ -13,6 +20,7 @@ export default function GomukoGame() {
   const [gameWinner, setGameWinner] = useState("None");
   const [lastPlayedIndex, setLastPlayedIndex] = useState([0, -1]);
   const [opponentTurn, setOpponentTurn] = useState(false);
+  const [lastHooveredIndex, setLastHooveredIndex] = useState(-1);
 
   function handleGameStart() {
     setGameSize(10);
@@ -36,13 +44,27 @@ export default function GomukoGame() {
     setPlayerColor(e.target.value);
   }
 
+  function handlePrevMove() {
+    let newHistoryIndex =
+      (movesHistory.historyIndex - 1) % movesHistory.historyBoard.length;
+    setMovesHistory({ ...movesHistory, historyIndex: newHistoryIndex });
+    setGameBoard(movesHistory.historyBoard[newHistoryIndex]);
+  }
+
+  function handleNextMove() {
+    let newHistoryIndex =
+      (movesHistory.historyIndex + 1) % movesHistory.historyBoard.length;
+    setMovesHistory({ ...movesHistory, historyIndex: newHistoryIndex });
+    setGameBoard(movesHistory.historyBoard[newHistoryIndex]);
+  }
+
   let gameOverExp =
     "Game Over - " +
     (gameWinner === "None"
       ? "It's a Draw"
       : gameWinner === "x"
-      ? "The winner is Black"
-      : "The winner is White");
+      ? "The Winner is Black"
+      : "The Winner is White");
 
   return (
     <header className="gomuko-wrapper">
@@ -83,7 +105,7 @@ export default function GomukoGame() {
       )}
 
       {gameHasStarted && (
-        <h2>Your color is : {playerColor === "x" ? "Black" : "White"}</h2>
+        <h2>Your Color is : {playerColor === "x" ? "Black" : "White"}</h2>
       )}
       {gameHasEnded && (
         <>
@@ -97,22 +119,54 @@ export default function GomukoGame() {
           </motion.div>
         </>
       )}
-      <GomukoTable
-        gameBoard={gameBoard}
-        gameSize={gameSize}
-        winCases={winCases}
-        setGameBoard={setGameBoard}
-        setWinCases={setWinCases}
-        gameHasStarted={gameHasStarted}
-        gameHasEnded={gameHasEnded}
-        setGameHasEnded={setGameHasEnded}
-        playerColor={playerColor}
-        setGameWinner={setGameWinner}
-        lastPlayedIndex={lastPlayedIndex}
-        setLastPlayedIndex={setLastPlayedIndex}
-        opponentTurn={opponentTurn}
-        setOpponentTurn={setOpponentTurn}
-      />
+      <div className="GomukoTableControls">
+        <div className="prevMove">
+          Previous Move
+          <motion.img
+            className="prevMoveButton"
+            src={prevMove}
+            alt="prevMove"
+            whileHover={{ scale: 1.3 }}
+            onClick={handlePrevMove}
+          />
+        </div>
+        <GomukoTable
+          gameBoard={gameBoard}
+          gameSize={gameSize}
+          winCases={winCases}
+          setGameBoard={setGameBoard}
+          setWinCases={setWinCases}
+          gameHasStarted={gameHasStarted}
+          gameHasEnded={gameHasEnded}
+          setGameHasEnded={setGameHasEnded}
+          playerColor={playerColor}
+          setGameWinner={setGameWinner}
+          lastPlayedIndex={lastPlayedIndex}
+          setLastPlayedIndex={setLastPlayedIndex}
+          opponentTurn={opponentTurn}
+          setOpponentTurn={setOpponentTurn}
+          movesHistory={movesHistory}
+          setMovesHistory={setMovesHistory}
+          setLastHooveredIndex={setLastHooveredIndex}
+        />
+        <div className="nextMove">
+          <motion.img
+            className="nextMoveButton"
+            src={nextMove}
+            alt="nextMove"
+            whileHover={{ scale: 1.3 }}
+            onClick={handleNextMove}
+          />
+          Next Move
+        </div>
+      </div>
+      <div style={{ marginTop: "3vh" }}>
+        Last Played Square:{" "}
+        {lastPlayedIndex[1] === -1 ? "None" : lastPlayedIndex[1]}
+      </div>
+      <div style={{ marginTop: "1vh" }}>
+        Selected Square: {lastHooveredIndex === -1 ? "None" : lastHooveredIndex}
+      </div>
     </header>
   );
 }
@@ -138,36 +192,44 @@ function GomukoTable({
   setLastPlayedIndex,
   opponentTurn,
   setOpponentTurn,
+  movesHistory,
+  setMovesHistory,
+  setLastHooveredIndex,
 }) {
   useEffect(() => {
+    if (checkDraw()) {
+      setOpponentTurn(false);
+      setGameHasEnded(true);
+      setGameWinner("None");
+      setWinCases([]);
+    }
     if (opponentTurn) {
-      if (checkDraw()) {
-        setOpponentTurn(false);
+      let opponentColor = playerColor === "x" ? "o" : "x";
+      //let opponentMove = evaluation(gameBoard);
+      let opponentMove = miniMax(gameBoard, 1, true);
+      while (gameBoard[opponentMove] !== ".") {
+        //opponentMove = evaluation(gameBoard);
+        opponentMove = miniMax(gameBoard, 1, true);
+      }
+      let newBoard = [...gameBoard];
+      newBoard[opponentMove] = opponentColor;
+      setGameBoard(newBoard);
+      let newHistoryBoard = [...movesHistory.historyBoard];
+      newHistoryBoard.push(newBoard);
+      setMovesHistory({
+        historyBoard: newHistoryBoard,
+        historyIndex: movesHistory.historyIndex + 1,
+      });
+      setLastPlayedIndex((lastPlayedIndex) => [
+        lastPlayedIndex[0] + 1,
+        opponentMove,
+      ]);
+      setOpponentTurn(false);
+      let checkGameWin = checkWin(gameBoard, opponentColor, opponentMove);
+      if (checkGameWin[0]) {
         setGameHasEnded(true);
-        setGameWinner("None");
-        setWinCases([]);
-      } else {
-        let opponentColor = playerColor === "x" ? "o" : "x";
-        let opponentMove = evaluation(gameBoard);
-        //let opponentMove = miniMax(gameBoard, 3, true);
-        while (gameBoard[opponentMove] !== ".") {
-          opponentMove = evaluation(gameBoard);
-          //opponentMove = miniMax(gameBoard, 3, true);
-        }
-        let newBoard = [...gameBoard];
-        newBoard[opponentMove] = opponentColor;
-        setGameBoard(newBoard);
-        setLastPlayedIndex((lastPlayedIndex) => [
-          lastPlayedIndex[0] + 1,
-          opponentMove,
-        ]);
-        setOpponentTurn(false);
-        let checkGameWin = checkWin(gameBoard, opponentColor, opponentMove);
-        if (checkGameWin[0]) {
-          setGameHasEnded(true);
-          setGameWinner(opponentColor);
-          setWinCases(checkGameWin[1]);
-        }
+        setGameWinner(opponentColor);
+        setWinCases(checkGameWin[1]);
       }
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -178,6 +240,8 @@ function GomukoTable({
       className={winCases.includes(index) ? "winBoardCase" : "BoardCase"}
       whileHover={{ scale: 1.1, opacity: 0.3 }}
       onClick={() => handleCaseClick(index)}
+      onMouseEnter={() => handleCaseHoover(index)}
+      onMouseLeave={handleCaseHooverExit}
       key={index}
     >
       {e === "." ? null : e === "x" ? (
@@ -194,7 +258,7 @@ function GomukoTable({
   ));
 
   function miniMax(gamingBoard, depth, maximizingPlayer) {
-    if (depth === 0) {
+    if (depth === 0 || gamingBoard.every((element) => element !== ".")) {
       return evaluation(gamingBoard);
     }
     let value;
@@ -263,6 +327,12 @@ function GomukoTable({
       let newBoard = [...gameBoard];
       newBoard[index] = playerColor;
       setGameBoard(newBoard);
+      let newHistoryBoard = [...movesHistory.historyBoard];
+      newHistoryBoard.push(newBoard);
+      setMovesHistory({
+        historyBoard: newHistoryBoard,
+        historyIndex: movesHistory.historyIndex + 1,
+      });
       setLastPlayedIndex((lastPlayedIndex) => [lastPlayedIndex[0] + 1, index]);
       let checkGameWin = checkWin(gameBoard, playerColor, index);
       if (checkGameWin[0]) {
@@ -274,6 +344,14 @@ function GomukoTable({
       }
     }
     return;
+  }
+
+  function handleCaseHoover(index) {
+    setLastHooveredIndex(index);
+  }
+
+  function handleCaseHooverExit(index) {
+    setLastHooveredIndex(-1);
   }
 
   function isBorder(index) {
@@ -379,13 +457,5 @@ function GomukoTable({
     return [winIndex, winCases];
   }
 
-  return (
-    <>
-      <div className="BoardTable">{BoardLines}</div>
-      <div style={{ marginTop: "3vh" }}>
-        Last played square:{" "}
-        {lastPlayedIndex[1] === -1 ? "None" : lastPlayedIndex[1]}
-      </div>
-    </>
-  );
+  return <div className="BoardTable">{BoardLines}</div>;
 }

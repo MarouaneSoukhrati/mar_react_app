@@ -35,7 +35,6 @@
 
 .gameTitleWin {
   color: Orange;
-  margin-bottom: 0.3vw;
 }
 
 .startGame {
@@ -52,7 +51,7 @@
   padding: 0.3vw;
   border-radius: 10%;
   border: solid 2px White;
-  margin: 2.5vw 0vw;
+  margin: 1vw 0vw 2vw 0vw;
   cursor: pointer;
 }
 
@@ -95,4 +94,34 @@
   border-radius: 50%;
   height: 1.5vw;
   width: 1.5vw;
+}
+
+.GomukoTableControls {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.prevMove {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.nextMove {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.prevMoveButton {
+  height: 7vw;
+  width: 7vw;
+  cursor: pointer;
+}
+
+.nextMoveButton {
+  height: 7vw;
+  width: 7vw;
+  cursor: pointer;
 }
