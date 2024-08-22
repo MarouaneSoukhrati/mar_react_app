@@ -104,13 +104,13 @@
 
 .prevMove {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   align-items: center;
 }
 
 .nextMove {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   align-items: center;
 }
 
@@ -118,10 +118,22 @@
   height: 7vw;
   width: 7vw;
   cursor: pointer;
+  margin-right: 2vw;
 }
 
 .nextMoveButton {
   height: 7vw;
   width: 7vw;
   cursor: pointer;
+  margin-left: 2vw;
+}
+
+.nextMoveLabel {
+  margin-left: 2vw;
+  margin-top: -1vw;
+}
+
+.prevMoveLabel {
+  margin-right: 2vw;
+  margin-top: -1vw;
 }

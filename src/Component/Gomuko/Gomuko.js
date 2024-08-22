@@ -27,6 +27,10 @@ export default function GomukoGame() {
     setGameBoard(initialiseBoard(gameSize));
     setWinCases([]);
     setLastPlayedIndex([0, -1]);
+    setMovesHistory({
+      historyBoard: [initialiseBoard(gameSize)],
+      historyIndex: 0,
+    });
     setGameHasEnded(false);
     setGameHasStarted(true);
   }
@@ -36,6 +40,10 @@ export default function GomukoGame() {
     setGameBoard(initialiseBoard(gameSize));
     setWinCases([]);
     setLastPlayedIndex([0, -1]);
+    setMovesHistory({
+      historyBoard: [initialiseBoard(gameSize)],
+      historyIndex: 0,
+    });
     setGameHasEnded(false);
     setGameHasStarted(false);
   }
@@ -46,14 +54,16 @@ export default function GomukoGame() {
 
   function handlePrevMove() {
     let newHistoryIndex =
-      (movesHistory.historyIndex - 1) % movesHistory.historyBoard.length;
+      movesHistory.historyIndex > 0 ? movesHistory.historyIndex - 1 : 0;
     setMovesHistory({ ...movesHistory, historyIndex: newHistoryIndex });
     setGameBoard(movesHistory.historyBoard[newHistoryIndex]);
   }
 
   function handleNextMove() {
     let newHistoryIndex =
-      (movesHistory.historyIndex + 1) % movesHistory.historyBoard.length;
+      movesHistory.historyIndex < movesHistory.historyBoard.length - 1
+        ? movesHistory.historyIndex + 1
+        : movesHistory.historyBoard.length - 1;
     setMovesHistory({ ...movesHistory, historyIndex: newHistoryIndex });
     setGameBoard(movesHistory.historyBoard[newHistoryIndex]);
   }
@@ -107,21 +117,19 @@ export default function GomukoGame() {
       {gameHasStarted && (
         <h2>Your Color is : {playerColor === "x" ? "Black" : "White"}</h2>
       )}
-      {gameHasEnded && (
-        <>
-          <h1 className="gameTitleWin">{gameOverExp}</h1>
-          <motion.div
-            className="restartGame"
-            whileHover={{ opacity: 0.4 }}
-            onClick={handleGameReplay}
-          >
-            Replay
-          </motion.div>
-        </>
+      {gameHasEnded && <h1 className="gameTitleWin">{gameOverExp}</h1>}
+      {gameHasStarted && (
+        <motion.div
+          className="restartGame"
+          whileHover={{ opacity: 0.4 }}
+          onClick={handleGameReplay}
+        >
+          Replay
+        </motion.div>
       )}
+
       <div className="GomukoTableControls">
         <div className="prevMove">
-          Previous Move
           <motion.img
             className="prevMoveButton"
             src={prevMove}
@@ -129,6 +137,7 @@ export default function GomukoGame() {
             whileHover={{ scale: 1.3 }}
             onClick={handlePrevMove}
           />
+          <div className="prevMoveLabel">Prior Move</div>
         </div>
         <GomukoTable
           gameBoard={gameBoard}
@@ -157,7 +166,7 @@ export default function GomukoGame() {
             whileHover={{ scale: 1.3 }}
             onClick={handleNextMove}
           />
-          Next Move
+          <div className="nextMoveLabel">Next Move</div>
         </div>
       </div>
       <div style={{ marginTop: "3vh" }}>
@@ -205,11 +214,25 @@ function GomukoTable({
     }
     if (opponentTurn) {
       let opponentColor = playerColor === "x" ? "o" : "x";
-      //let opponentMove = evaluation(gameBoard);
-      let opponentMove = miniMax(gameBoard, 1, true);
+      let opponentMove = evaluation(gameBoard);
+      /*let opponentMove = miniMax(
+        gameBoard,
+        1,
+        -666,
+        666,
+        true,
+        minimaxEvaluation
+      );*/
       while (gameBoard[opponentMove] !== ".") {
-        //opponentMove = evaluation(gameBoard);
-        opponentMove = miniMax(gameBoard, 1, true);
+        opponentMove = evaluation(gameBoard);
+        /*opponentMove = miniMax(
+          gameBoard,
+          1,
+          -666,
+          666,
+          true,
+          minimaxEvaluation
+        );*/
       }
       let newBoard = [...gameBoard];
       newBoard[opponentMove] = opponentColor;
@@ -257,13 +280,19 @@ function GomukoTable({
     </div>
   ));
 
-  function miniMax(gamingBoard, depth, maximizingPlayer) {
+  function miniMax(
+    gamingBoard,
+    depth,
+    alpha,
+    beta,
+    maximizingPlayer,
+    evaluationFunc
+  ) {
     if (depth === 0 || gamingBoard.every((element) => element !== ".")) {
-      return evaluation(gamingBoard);
+      return evaluationFunc(gamingBoard);
     }
-    let value;
     if (maximizingPlayer) {
-      value = -666;
+      let value = -666;
       let childs = gamingBoard.map((e, index) => {
         if (gamingBoard[index] === ".") {
           let childBoard = [...gamingBoard];
@@ -272,11 +301,19 @@ function GomukoTable({
         }
         return gameBoard;
       });
-      childs.forEach((child) => {
-        value = Math.max(value, miniMax(child, depth - 1, false));
-      });
+      for (let child of childs) {
+        value = Math.max(
+          value,
+          miniMax(child, depth - 1, alpha, beta, false, evaluationFunc)
+        );
+        if (value > beta) {
+          break;
+        }
+        alpha = Math.max(alpha, value);
+      }
+      return value;
     } else {
-      value = 666;
+      let value = 666;
       let childs = gamingBoard.map((e, index) => {
         if (gamingBoard[index] === ".") {
           let childBoard = [...gamingBoard];
@@ -285,11 +322,18 @@ function GomukoTable({
         }
         return gamingBoard;
       });
-      childs.forEach((child) => {
-        value = Math.min(value, miniMax(child, depth - 1, true));
-      });
+      for (let child of childs) {
+        value = Math.min(
+          value,
+          miniMax(child, depth - 1, alpha, beta, true, evaluationFunc)
+        );
+        if (value < alpha) {
+          break;
+        }
+        beta = Math.min(beta, value);
+      }
+      return value;
     }
-    return value;
   }
 
   function evaluation(gamingBoard) {
@@ -316,6 +360,29 @@ function GomukoTable({
       (maxIndex, elem, i, evalTab) => (elem > evalTab[maxIndex] ? i : maxIndex),
       0
     );
+  }
+
+  function minimaxEvaluation(gamingBoard) {
+    let newGamingBoard = [...gamingBoard].map((e, index) =>
+      e === "." ? index : "xx"
+    );
+    newGamingBoard.filter((e) => e !== "xx");
+    let evalTab = newGamingBoard.map((e) => {
+      let voisins = neighborsCardinal(gamingBoard, playerColor, e);
+
+      let h = voisins.horizontal.length;
+      let v = voisins.vertical.length;
+      let rd = voisins.rightDiagonal.length;
+      let ld = voisins.leftDiagonal.length;
+
+      h = h > 3 ? 30 * h : h > 2 ? 10 * h : h > 1 ? 5 * h : h;
+      v = v > 3 ? 30 * v : v > 2 ? 10 * v : v > 1 ? 5 * v : v;
+      rd = rd > 3 ? 30 * rd : rd > 2 ? 10 * rd : rd > 1 ? 5 * rd : rd;
+      ld = ld > 3 ? 30 * ld : ld > 2 ? 10 * ld : ld > 1 ? 5 * ld : ld;
+
+      return h + v + rd + ld;
+    });
+    return 1000 - Math.max(...evalTab);
   }
 
   function handleCaseClick(index) {
@@ -354,8 +421,12 @@ function GomukoTable({
     setLastHooveredIndex(-1);
   }
 
-  function isBorder(index) {
-    return index % gameSize === 0 || index % gameSize === gameSize - 1;
+  function isLeftBorder(index) {
+    return index % gameSize === 0;
+  }
+
+  function isRightBorder(index) {
+    return index % gameSize === gameSize - 1;
   }
 
   function neighborsCardinal(gamingBoard, color, index) {
@@ -365,19 +436,20 @@ function GomukoTable({
     let rightDiagonal = [];
 
     let [i, j, k, l, m, n, o, p] = [1, 1, 1, 1, 1, 1, 1, 1];
-    while (gamingBoard[index + i] === color) {
-      if (isBorder(index + i)) {
+
+    while (gamingBoard[index + i] === color && !isRightBorder(index)) {
+      horizontal.push(index + i);
+      if (isRightBorder(index + i)) {
         break;
       } else {
-        horizontal.push(index + i);
         i++;
       }
     }
-    while (gamingBoard[index - j] === color) {
-      if (isBorder(index - j)) {
+    while (gamingBoard[index - j] === color && !isLeftBorder(index)) {
+      horizontal.push(index - j);
+      if (isLeftBorder(index - j)) {
         break;
       } else {
-        horizontal.push(index - j);
         j++;
       }
     }
@@ -389,35 +461,47 @@ function GomukoTable({
       vertical.push(index - l * gameSize);
       l++;
     }
-    while (gamingBoard[index + m * (gameSize + 1)] === color) {
-      if (isBorder(index + m * (gameSize + 1))) {
+    while (
+      gamingBoard[index + m * (gameSize + 1)] === color &&
+      !isRightBorder(index)
+    ) {
+      rightDiagonal.push(index + m * (gameSize + 1));
+      if (isRightBorder(index + m * (gameSize + 1))) {
         break;
       } else {
-        rightDiagonal.push(index + m * (gameSize + 1));
         m++;
       }
     }
-    while (gamingBoard[index - n * (gameSize + 1)] === color) {
-      if (isBorder(index - n * (gameSize + 1))) {
+    while (
+      gamingBoard[index - n * (gameSize + 1)] === color &&
+      !isLeftBorder(index)
+    ) {
+      rightDiagonal.push(index - n * (gameSize + 1));
+      if (isLeftBorder(index - n * (gameSize + 1))) {
         break;
       } else {
-        rightDiagonal.push(index - n * (gameSize + 1));
         n++;
       }
     }
-    while (gamingBoard[index + o * (gameSize - 1)] === color) {
-      if (isBorder(index + o * (gameSize - 1))) {
+    while (
+      gamingBoard[index + o * (gameSize - 1)] === color &&
+      !isLeftBorder(index)
+    ) {
+      leftDiagonal.push(index + o * (gameSize - 1));
+      if (isLeftBorder(index + o * (gameSize - 1))) {
         break;
       } else {
-        leftDiagonal.push(index + o * (gameSize - 1));
         o++;
       }
     }
-    while (gamingBoard[index - p * (gameSize - 1)] === color) {
-      if (isBorder(index - p * (gameSize - 1))) {
+    while (
+      gamingBoard[index - p * (gameSize - 1)] === color &&
+      !isRightBorder(index)
+    ) {
+      leftDiagonal.push(index - p * (gameSize - 1));
+      if (isRightBorder(index - p * (gameSize - 1))) {
         break;
       } else {
-        leftDiagonal.push(index - p * (gameSize - 1));
         p++;
       }
     }
