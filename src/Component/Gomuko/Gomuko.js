@@ -57,6 +57,7 @@ export default function GomukoGame() {
       movesHistory.historyIndex > 0 ? movesHistory.historyIndex - 1 : 0;
     setMovesHistory({ ...movesHistory, historyIndex: newHistoryIndex });
     setGameBoard(movesHistory.historyBoard[newHistoryIndex]);
+    setOpponentTurn(!opponentTurn);
   }
 
   function handleNextMove() {
@@ -66,6 +67,7 @@ export default function GomukoGame() {
         : movesHistory.historyBoard.length - 1;
     setMovesHistory({ ...movesHistory, historyIndex: newHistoryIndex });
     setGameBoard(movesHistory.historyBoard[newHistoryIndex]);
+    setOpponentTurn(!opponentTurn);
   }
 
   let gameOverExp =
@@ -217,22 +219,22 @@ function GomukoTable({
       let opponentMove = evaluation(gameBoard);
       /*let opponentMove = miniMax(
         gameBoard,
-        1,
-        -666,
-        666,
+        2,
+        -Infinity,
+        Infinity,
         true,
         minimaxEvaluation
-      );*/
+      )[0];*/
       while (gameBoard[opponentMove] !== ".") {
         opponentMove = evaluation(gameBoard);
         /*opponentMove = miniMax(
           gameBoard,
-          1,
-          -666,
-          666,
+          2,
+          -Infinity,
+          Infinity,
           true,
           minimaxEvaluation
-        );*/
+        )[0];*/
       }
       let newBoard = [...gameBoard];
       newBoard[opponentMove] = opponentColor;
@@ -280,6 +282,10 @@ function GomukoTable({
     </div>
   ));
 
+  function isTerminal(gamingBoard) {
+    return gamingBoard.every((element) => element !== ".");
+  }
+
   function miniMax(
     gamingBoard,
     depth,
@@ -288,52 +294,55 @@ function GomukoTable({
     maximizingPlayer,
     evaluationFunc
   ) {
-    if (depth === 0 || gamingBoard.every((element) => element !== ".")) {
-      return evaluationFunc(gamingBoard);
+    if (depth === 0 || isTerminal(gamingBoard)) {
+      return [
+        null,
+        maximizingPlayer
+          ? evaluationFunc(gamingBoard)
+          : -evaluationFunc(gamingBoard),
+      ];
     }
-    if (maximizingPlayer) {
-      let value = -666;
-      let childs = gamingBoard.map((e, index) => {
-        if (gamingBoard[index] === ".") {
-          let childBoard = [...gamingBoard];
-          childBoard[index] = playerColor === "x" ? "o" : "x";
-          return childBoard;
+    let bestValue = maximizingPlayer ? -Infinity : Infinity;
+    let bestIndex = null;
+    let childs = gamingBoard.map((e, index) => {
+      if (gamingBoard[index] === ".") {
+        let childBoard = [...gamingBoard];
+        childBoard[index] = playerColor === "x" ? "o" : "x";
+        return [index, childBoard];
+      }
+      return [null, gamingBoard];
+    });
+
+    for (let child of childs) {
+      let [vIndex, value] = miniMax(
+        child[1],
+        depth - 1,
+        alpha,
+        beta,
+        !maximizingPlayer,
+        evaluationFunc
+      );
+      if (maximizingPlayer) {
+        if (bestValue < value) {
+          bestValue = value;
+          bestIndex = child[0];
         }
-        return gameBoard;
-      });
-      for (let child of childs) {
-        value = Math.max(
-          value,
-          miniMax(child, depth - 1, alpha, beta, false, evaluationFunc)
-        );
-        if (value > beta) {
+        if (bestValue > beta) {
           break;
         }
-        alpha = Math.max(alpha, value);
-      }
-      return value;
-    } else {
-      let value = 666;
-      let childs = gamingBoard.map((e, index) => {
-        if (gamingBoard[index] === ".") {
-          let childBoard = [...gamingBoard];
-          childBoard[index] = playerColor === "x" ? "o" : "x";
-          return childBoard;
+        alpha = Math.max(alpha, bestValue);
+      } else {
+        if (bestValue > value) {
+          bestValue = value;
+          bestIndex = child[0];
         }
-        return gamingBoard;
-      });
-      for (let child of childs) {
-        value = Math.min(
-          value,
-          miniMax(child, depth - 1, alpha, beta, true, evaluationFunc)
-        );
-        if (value < alpha) {
+        if (bestValue < alpha) {
           break;
         }
-        beta = Math.min(beta, value);
+        beta = Math.min(beta, bestValue);
       }
-      return value;
     }
+    return [bestIndex, bestValue];
   }
 
   function evaluation(gamingBoard) {
@@ -363,6 +372,7 @@ function GomukoTable({
   }
 
   function minimaxEvaluation(gamingBoard) {
+    let opponentColor = playerColor === "x" ? "o" : "x";
     let newGamingBoard = [...gamingBoard].map((e, index) =>
       e === "." ? index : "xx"
     );
@@ -375,14 +385,15 @@ function GomukoTable({
       let rd = voisins.rightDiagonal.length;
       let ld = voisins.leftDiagonal.length;
 
-      h = h > 3 ? 30 * h : h > 2 ? 10 * h : h > 1 ? 5 * h : h;
-      v = v > 3 ? 30 * v : v > 2 ? 10 * v : v > 1 ? 5 * v : v;
-      rd = rd > 3 ? 30 * rd : rd > 2 ? 10 * rd : rd > 1 ? 5 * rd : rd;
-      ld = ld > 3 ? 30 * ld : ld > 2 ? 10 * ld : ld > 1 ? 5 * ld : ld;
-
       return h + v + rd + ld;
     });
-    return 1000 - Math.max(...evalTab);
+    return (
+      90000 * evalTab.filter((e) => e < 4).length +
+      5000 * evalTab.filter((e) => e < 3).length +
+      1000 * evalTab.filter((e) => e < 2).length +
+      100 * evalTab.filter((e) => e < 1).length +
+      Math.random() * 5
+    );
   }
 
   function handleCaseClick(index) {
