@@ -3,7 +3,7 @@ import React from "react";
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import SliderWithLimits from "../../Component/Subcomponent/SliderWithLimits";
-import { Player } from "./pokerPlayer";
+import { Player, pokerPlayer } from "./pokerPlayer";
 
 import hiddenCard from "../../Logos/Poker/hiddenCard.svg";
 
@@ -31,7 +31,7 @@ export default function PokerGame({ playersCount }) {
   let playersNames = countArray.map((e) => "Player " + e);
   let playersStack = playersNames.map((e) => 10000);
   let playersBet = playersNames.map((e, index) =>
-    index === 0 ? bigBlind : index === 1 ? smallBlind : 0,
+    index === 0 ? bigBlind : index === 1 ? smallBlind : 0
   );
 
   let playersDeck = [1, 2].map((e) => {
@@ -77,6 +77,16 @@ export default function PokerGame({ playersCount }) {
     { ...cardList[0][1], cardEmp: "firstp" },
   ];
 
+  let firstPlayer = new pokerPlayer(
+    myPlyrName,
+    0,
+    myPlyrStack,
+    myPlyrBet,
+    myPlyrCards,
+    playTimer,
+    null
+  );
+
   let GameHasEnded = false;
   let currentBet = Math.max(betList);
   let myPlyrCallCheck = myPlyrBet < currentBet ? "Call" : "Check";
@@ -117,7 +127,6 @@ export default function PokerGame({ playersCount }) {
     }, 1000);
     if (deckList.length === 5 && playerIndex === playersCount - 1) {
       setIsPotWon(true);
-      //setGameHasEnded(true);
     }
     if (roundIsOn && playerIndex === 0 && deckList.length < 5) {
       let newDeckList = [...deckList];
@@ -216,16 +225,7 @@ export default function PokerGame({ playersCount }) {
           </>
         )}
         <div className="firstPerson">
-          <Player
-            playerName={myPlyrName}
-            playerIndexer={0}
-            playerIndex={playerIndex}
-            playerStack={myPlyrStack}
-            playerBet={myPlyrBet}
-            playerCards={myPlyrCards}
-            playerTimer={playTimer}
-            playerAction={null}
-          />
+          <Player playerClass={firstPlayer} playerIndex={playerIndex} />
         </div>
       </div>
     </div>
@@ -242,24 +242,19 @@ function PlayersBench({
 }) {
   let benchFig = [];
   for (let i = 1; i < nameList.length; i++) {
-    benchFig.push({
-      name: nameList[i],
-      playerStack: stackList[i],
-      playerBet: betList[i],
-      playerCards: cardList[i],
-    });
+    let player = new pokerPlayer(
+      nameList[i],
+      i,
+      stackList[i],
+      betList[i],
+      cardList[i],
+      playTimer,
+      null
+    );
+    benchFig.push(player);
   }
-  benchFig = benchFig.map((plr, index) => (
-    <Player
-      key={plr.name}
-      playerName={plr.name}
-      playerIndexer={index}
-      playerStack={plr.playerStack}
-      playerBet={plr.playerBet}
-      playerCards={plr.playerCards}
-      playerTimer={playTimer}
-      playerAction={null}
-    />
+  benchFig = benchFig.map((plr) => (
+    <Player key={plr.name} playerClass={plr} playerIndex={playerIndex} />
   ));
   return <div className="playersBench">{benchFig}</div>;
 }
