@@ -25,7 +25,7 @@ export function Player({ playerClass, playerIndex }) {
       cardEmp={card.cardEmp}
     />
   ));
-  let playerIsActive = playerClass.playerIndexer === playerIndex;
+  let playerIsActive = playerClass.indexer === playerIndex;
   return (
     <div className="playerProfile">
       <img className="playerLogo" src={pokerPlayerLogo} alt="playerLogo" />

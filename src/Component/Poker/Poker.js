@@ -24,7 +24,7 @@ let pokerCardTypes = ["Clubs", "Diamonds", "Hearts", "Spades"];
 
 let smallBlind = 50;
 let bigBlind = 100;
-let defaultPlayTimer = 1;
+let defaultPlayTimer = 5;
 
 export default function PokerGame({ playersCount }) {
   let countArray = [...Array(playersCount).keys()];
@@ -155,7 +155,7 @@ export default function PokerGame({ playersCount }) {
     <div className="game-wrapper">
       <div className="bench-wrapper">
         {!GameHasStarted && (
-          <form onSubmit={handleNameForm}>
+          <form className="gameForm" onSubmit={handleNameForm}>
             <input
               className="first-p-name"
               type="text"

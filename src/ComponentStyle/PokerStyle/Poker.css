@@ -93,6 +93,7 @@
   flex-direction: column;
   align-items: center;
   color: white;
+  text-align: center;
 }
 
 .playerTimer {
@@ -167,6 +168,12 @@
   border: 1px solid white;
   cursor: pointer;
   margin: 1em auto;
+}
+
+.gameForm{
+  display :flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .replay-button {
