@@ -346,12 +346,14 @@ function GomukoTable({
   }
 
   function evaluation(gamingBoard) {
+    let opponentColor = playerColor === "x" ? "o" : "x";
     let newGamingBoard = [...gamingBoard].map((e, index) =>
       e === "." ? index : "xx"
     );
     newGamingBoard.filter((e) => e !== "xx");
     let evalTab = newGamingBoard.map((e) => {
       let voisins = neighborsCardinal(gamingBoard, playerColor, e);
+      let contreVoisins = neighborsCardinal(gamingBoard, opponentColor, e);
 
       let h = voisins.horizontal.length;
       let v = voisins.vertical.length;
@@ -362,6 +364,11 @@ function GomukoTable({
       v = v > 3 ? 30 * v : v > 2 ? 10 * v : v > 1 ? 5 * v : v;
       rd = rd > 3 ? 30 * rd : rd > 2 ? 10 * rd : rd > 1 ? 5 * rd : rd;
       ld = ld > 3 ? 30 * ld : ld > 2 ? 10 * ld : ld > 1 ? 5 * ld : ld;
+      
+      h -= contreVoisins.horizontal.length;
+      v -= contreVoisins.vertical.length;
+      rd -= contreVoisins.rightDiagonal.length;
+      ld -= contreVoisins.leftDiagonal.length;
 
       return h + v + rd + ld;
     });
