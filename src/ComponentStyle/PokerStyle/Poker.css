@@ -26,7 +26,7 @@
   padding: 2em 8em;
   background-color: #ff000033;
   border-radius: 30em;
-  width: 15em;
+  width: 17em;
   height: 8em;
 }
 
@@ -42,8 +42,8 @@
 }
 
 .poker-card-firstp {
-  width: 2rem;
-  height: 2rem;
+  width: 4rem;
+  height: 4rem;
 }
 
 .playerProfile {

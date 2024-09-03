@@ -24,7 +24,7 @@ let pokerCardTypes = ["Clubs", "Diamonds", "Hearts", "Spades"];
 
 let smallBlind = 50;
 let bigBlind = 100;
-let defaultPlayTimer = 5;
+let defaultPlayTimer = 1;
 
 export default function PokerGame({ playersCount }) {
   let countArray = [...Array(playersCount).keys()];
@@ -33,6 +33,7 @@ export default function PokerGame({ playersCount }) {
   let playersBet = playersNames.map((e, index) =>
     index === 0 ? bigBlind : index === 1 ? smallBlind : 0
   );
+  let usedCards = [];
 
   let playersDeck = [1, 2].map((e) => {
     let generatedCard = generateCards("deck");
@@ -148,6 +149,13 @@ export default function PokerGame({ playersCount }) {
     let cardTypeSelector = Math.floor(Math.random() * 4);
     let cardNumberSelector = Math.floor(Math.random() * 13) + 1;
     let generatedCard = [pokerCardTypes[cardTypeSelector], cardNumberSelector];
+
+    while( usedCards.includes(generatedCard) ){
+      cardTypeSelector = Math.floor(Math.random() * 4);
+      cardNumberSelector = Math.floor(Math.random() * 13) + 1;
+      generatedCard = [pokerCardTypes[cardTypeSelector], cardNumberSelector];
+    }
+    usedCards.push(generatedCard);
     return generatedCard;
   }
 
@@ -310,7 +318,7 @@ function PokerTable({
           {isPotWon && (
             <div className="WinMessage">
               <h3>
-                Congratulations {nameList[winnerIndex]} you won {potGains}$
+                Congratulations <span style={{color: "white"}}>{nameList[winnerIndex]}</span> you won <span style={{color: "red"}}>{potGains}$</span> !
               </h3>
             </div>
           )}
