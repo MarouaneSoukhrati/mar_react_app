@@ -40,6 +40,16 @@
   margin-top: 6em;
 }
 
+.Hex-part {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  padding: 6.25em;
+  background-color: #ffffff11;
+  border-radius: 3.125em;
+  margin-top: 6em;
+}
+
 .ai-section {
   background-color: black;
   padding: 3em;

@@ -11,6 +11,7 @@ import marouaneLogo from "../../Logos/marouane-logo.svg";
 
 import PokerGame from "../Poker/Poker";
 import GomukoGame from "../Gomuko/Gomuko";
+import HexGame from "../Hex/Hex";
 
 export default function Portfolio() {
   return (
@@ -25,6 +26,9 @@ export default function Portfolio() {
       </div>
       <div className="Gomuko-part">
         <GomukoGame />
+      </div>
+      <div className="Hex-part">
+        <HexGame />
       </div>
     </header>
   );

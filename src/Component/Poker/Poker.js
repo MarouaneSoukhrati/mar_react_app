@@ -24,14 +24,14 @@ let pokerCardTypes = ["Clubs", "Diamonds", "Hearts", "Spades"];
 
 let smallBlind = 50;
 let bigBlind = 100;
-let defaultPlayTimer = 1;
+let defaultPlayTimer = 5;
 
 export default function PokerGame({ playersCount }) {
   let countArray = [...Array(playersCount).keys()];
   let playersNames = countArray.map((e) => "Player " + e);
   let playersStack = playersNames.map((e) => 10000);
   let playersBet = playersNames.map((e, index) =>
-    index === 0 ? bigBlind : index === 1 ? smallBlind : 0
+    index === 0 ? bigBlind : index === 1 ? smallBlind : 0,
   );
   let usedCards = [];
 
@@ -85,7 +85,7 @@ export default function PokerGame({ playersCount }) {
     myPlyrBet,
     myPlyrCards,
     playTimer,
-    null
+    null,
   );
 
   let GameHasEnded = false;
@@ -106,7 +106,6 @@ export default function PokerGame({ playersCount }) {
 
   function handleNameForm(e) {
     e.preventDefault();
-    handleFirstPersonName();
   }
 
   useEffect(() => {
@@ -150,7 +149,7 @@ export default function PokerGame({ playersCount }) {
     let cardNumberSelector = Math.floor(Math.random() * 13) + 1;
     let generatedCard = [pokerCardTypes[cardTypeSelector], cardNumberSelector];
 
-    while( usedCards.includes(generatedCard) ){
+    while (usedCards.includes(generatedCard)) {
       cardTypeSelector = Math.floor(Math.random() * 4);
       cardNumberSelector = Math.floor(Math.random() * 13) + 1;
       generatedCard = [pokerCardTypes[cardTypeSelector], cardNumberSelector];
@@ -257,7 +256,7 @@ function PlayersBench({
       betList[i],
       cardList[i],
       playTimer,
-      null
+      null,
     );
     benchFig.push(player);
   }
@@ -318,7 +317,9 @@ function PokerTable({
           {isPotWon && (
             <div className="WinMessage">
               <h3>
-                Congratulations <span style={{color: "white"}}>{nameList[winnerIndex]}</span> you won <span style={{color: "red"}}>{potGains}$</span> !
+                Congratulations{" "}
+                <span style={{ color: "white" }}>{nameList[winnerIndex]}</span>{" "}
+                you won <span style={{ color: "red" }}>{potGains}$</span> !
               </h3>
             </div>
           )}

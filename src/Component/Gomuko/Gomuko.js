@@ -75,8 +75,8 @@ export default function GomukoGame() {
     (gameWinner === "None"
       ? "It's a Draw"
       : gameWinner === "x"
-      ? "The Winner is Black"
-      : "The Winner is White");
+        ? "The Winner is Black"
+        : "The Winner is White");
 
   return (
     <header className="gomuko-wrapper">
@@ -292,7 +292,7 @@ function GomukoTable({
     alpha,
     beta,
     maximizingPlayer,
-    evaluationFunc
+    evaluationFunc,
   ) {
     if (depth === 0 || isTerminal(gamingBoard)) {
       return [
@@ -320,7 +320,7 @@ function GomukoTable({
         alpha,
         beta,
         !maximizingPlayer,
-        evaluationFunc
+        evaluationFunc,
       );
       if (maximizingPlayer) {
         if (bestValue < value) {
@@ -348,7 +348,7 @@ function GomukoTable({
   function evaluation(gamingBoard) {
     let opponentColor = playerColor === "x" ? "o" : "x";
     let newGamingBoard = [...gamingBoard].map((e, index) =>
-      e === "." ? index : "xx"
+      e === "." ? index : "xx",
     );
     newGamingBoard.filter((e) => e !== "xx");
     let evalTab = newGamingBoard.map((e) => {
@@ -364,24 +364,24 @@ function GomukoTable({
       v = v > 3 ? 30 * v : v > 2 ? 10 * v : v > 1 ? 5 * v : v;
       rd = rd > 3 ? 30 * rd : rd > 2 ? 10 * rd : rd > 1 ? 5 * rd : rd;
       ld = ld > 3 ? 30 * ld : ld > 2 ? 10 * ld : ld > 1 ? 5 * ld : ld;
-      
-      h -= contreVoisins.horizontal.length;
+
+      /*h -= contreVoisins.horizontal.length;
       v -= contreVoisins.vertical.length;
       rd -= contreVoisins.rightDiagonal.length;
-      ld -= contreVoisins.leftDiagonal.length;
+      ld -= contreVoisins.leftDiagonal.length;*/
 
       return h + v + rd + ld;
     });
     return evalTab.reduce(
       (maxIndex, elem, i, evalTab) => (elem > evalTab[maxIndex] ? i : maxIndex),
-      0
+      0,
     );
   }
 
   function minimaxEvaluation(gamingBoard) {
     let opponentColor = playerColor === "x" ? "o" : "x";
     let newGamingBoard = [...gamingBoard].map((e, index) =>
-      e === "." ? index : "xx"
+      e === "." ? index : "xx",
     );
     newGamingBoard.filter((e) => e !== "xx");
     let evalTab = newGamingBoard.map((e) => {
