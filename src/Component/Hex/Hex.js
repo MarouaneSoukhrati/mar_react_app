@@ -5,7 +5,7 @@ import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 
 export default function HexGame() {
-  const [hexBoardSize, setHexBoardSize] = useState(6);
+  const [hexBoardSize, setHexBoardSize] = useState(10);
   const [hexBoard, setHexBoard] = useState(initialiseHexBoard());
   const [playerNameInput, setPlayerNameInput] = useState("");
   const [playerName, setPlayerName] = useState("Player");
@@ -14,7 +14,8 @@ export default function HexGame() {
 
   function submitButton(e) {
     e.preventDefault();
-    //handleNameChange();
+    setHexBoardSize(10);
+    setHexBoard(initialiseHexBoard(hexBoardSize));
   }
 
   function handleNameChange() {
@@ -30,11 +31,23 @@ export default function HexGame() {
     for (let i = 0; i < size; i++) {
       let line = [];
       for (let j = i * size; j < (i + 1) * size; j++) {
-        line.push(j);
+        line.push(".");
       }
       board.push(line);
     }
     return board;
+  }
+
+  function onHexCellClick(index, index2) {
+    if (!gameHasStarted) {
+      return;
+    }
+    let newHexBoard = [...hexBoard];
+    if (newHexBoard[index][index2] !== ".") {
+      return;
+    }
+    newHexBoard[index][index2] = playerColor;
+    setHexBoard(newHexBoard);
   }
 
   return (
@@ -53,7 +66,6 @@ export default function HexGame() {
             <input
               id="playerColor1"
               type="radio"
-              id="red"
               value="Red"
               name="playerColor"
               onClick={(e) => setPlayerColor(e.target.value)}
@@ -62,7 +74,6 @@ export default function HexGame() {
             <input
               id="playerColor2"
               type="radio"
-              id="blue"
               value="Blue"
               name="playerColor"
               onClick={(e) => setPlayerColor(e.target.value)}
@@ -75,29 +86,49 @@ export default function HexGame() {
         </form>
       )}
       {gameHasStarted && (
-        <div>
+        <div className="WelcomeMsg">
           Welcome <span style={{ color: "yellow" }}>{playerName}</span> you are{" "}
           <span style={{ color: playerColor }}>{playerColor}</span> !
         </div>
       )}
-      <HexBoard hexBoard={hexBoard} />
+      <HexBoard hexBoard={hexBoard} onHexCellClick={onHexCellClick} />
     </div>
   );
 }
 
-function HexBoard({ hexBoard }) {
-  let HexBoardFigure = hexBoard.map((e) => (
-    <div className="hexLine">
-      {e.map((el) => (
-        <HexCell index={el} key={el} onClick={onHexCellClick} />
-      ))}
-    </div>
-  ));
+function HexBoard({ hexBoard, onHexCellClick }) {
+  let HexBoardFigure = hexBoard.map((e, index) => {
+    let myMargin = index * 10;
+    const lineStyle = {
+      marginLeft: `#${myMargin}px`,
+      display: "flex",
+      flexDirection: "row",
+    };
+    let myClassName = "hexLine" + index;
+    return (
+      <div className={myClassName} style={lineStyle}>
+        {e.map((el, index2) => (
+          <HexCell
+            cellKey={[index, index2]}
+            value={el}
+            onCellClick={() => onHexCellClick(index, index2)}
+          />
+        ))}
+      </div>
+    );
+  });
   return <div className="HexBoard">{HexBoardFigure}</div>;
 }
 
-function onHexCellClick() {}
-
-function HexCell({ index }) {
-  return <div className="hexCell">{index}</div>;
+function HexCell({ cellKey, value, onCellClick }) {
+  return (
+    <motion.div
+      key={cellKey}
+      className={
+        value === "." ? "EmptyHex" : value === "Red" ? "RedHex" : "BlueHex"
+      }
+      whileHover={{ scale: 1.1, opacity: 0.3 }}
+      onClick={onCellClick}
+    />
+  );
 }
