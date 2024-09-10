@@ -127,39 +127,37 @@ function HexBoard({ hexBoard, onHexCellClick }) {
     );
   });
   return (
-    <div className="HexAWrapper">
-      <div className="HexBoard">
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "row",
-            marginLeft: "-5vh",
-          }}
-        >
-          {hexBoard[0].map((e) => (
-            <HexCell
-              cellKey={[-666, 666]}
-              value={"Red"}
-              onCellClick={() => onHexCellClick(-666, 666)}
-            />
-          ))}
-        </div>
-        {HexBoardFigure}
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "row",
-            marginLeft: hexBoard.length * 5 + "vh",
-          }}
-        >
-          {hexBoard[0].map((e) => (
-            <HexCell
-              cellKey={[-666, 666]}
-              value={"Red"}
-              onCellClick={() => onHexCellClick(-666, 666)}
-            />
-          ))}
-        </div>
+    <div className="HexBoard">
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "row",
+          marginLeft: "-5vh",
+        }}
+      >
+        {hexBoard[0].map((e) => (
+          <HexCell
+            cellKey={[-666, 666]}
+            value={"Red"}
+            onCellClick={() => onHexCellClick(-666, 666)}
+          />
+        ))}
+      </div>
+      {HexBoardFigure}
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "row",
+          marginLeft: hexBoard.length * 5 + "vh",
+        }}
+      >
+        {hexBoard[0].map((e) => (
+          <HexCell
+            cellKey={[-666, 666]}
+            value={"Red"}
+            onCellClick={() => onHexCellClick(-666, 666)}
+          />
+        ))}
       </div>
     </div>
   );

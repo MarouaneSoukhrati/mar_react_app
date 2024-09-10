@@ -64,8 +64,3 @@
 .BlueHex {
   background-color: blue;
 }
-
-.HexAWrapper {
-  display: flex;
-  flex-direction: column;
-}
