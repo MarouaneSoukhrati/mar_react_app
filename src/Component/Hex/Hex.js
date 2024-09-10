@@ -98,15 +98,14 @@ export default function HexGame() {
 
 function HexBoard({ hexBoard, onHexCellClick }) {
   let HexBoardFigure = hexBoard.map((e, index) => {
-    let myMargin = index * 10;
-    const lineStyle = {
-      marginLeft: `#${myMargin}px`,
-      display: "flex",
-      flexDirection: "row",
-    };
-    let myClassName = "hexLine" + index;
     return (
-      <div className={myClassName} style={lineStyle}>
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "row",
+          marginLeft: index * 5 + "vh",
+        }}
+      >
         {e.map((el, index2) => (
           <HexCell
             cellKey={[index, index2]}
@@ -117,7 +116,17 @@ function HexBoard({ hexBoard, onHexCellClick }) {
       </div>
     );
   });
-  return <div className="HexBoard">{HexBoardFigure}</div>;
+  return (
+    <div className="HexBWrapper">
+      <div className="HexTopBorder"></div>
+      <div>
+        <div className="HexSideBorder"></div>
+        <div className="HexBoard">{HexBoardFigure}</div>
+        <div className="HexSideBorder"></div>
+      </div>
+      <div className="HexTopBorder"></div>
+    </div>
+  );
 }
 
 function HexCell({ cellKey, value, onCellClick }) {
