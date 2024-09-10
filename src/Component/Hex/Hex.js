@@ -106,6 +106,11 @@ function HexBoard({ hexBoard, onHexCellClick }) {
           marginLeft: index * 5 + "vh",
         }}
       >
+        <HexCell
+          cellKey={[-666, 666]}
+          value={"Blue"}
+          onCellClick={() => onHexCellClick(-666, 666)}
+        />
         {e.map((el, index2) => (
           <HexCell
             cellKey={[index, index2]}
@@ -113,6 +118,11 @@ function HexBoard({ hexBoard, onHexCellClick }) {
             onCellClick={() => onHexCellClick(index, index2)}
           />
         ))}
+        <HexCell
+          cellKey={[-666, 666]}
+          value={"Blue"}
+          onCellClick={() => onHexCellClick(-666, 666)}
+        />
       </div>
     );
   });
