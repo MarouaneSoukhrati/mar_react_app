@@ -33,8 +33,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 2vh;
-  margin-left: -6vw;
+  margin: 4vh 4vw 4vh -6vw;
   border-radius: 15%;
 }
 
@@ -66,19 +65,7 @@
   background-color: blue;
 }
 
-.HexBWrapper {
+.HexAWrapper {
   display: flex;
   flex-direction: column;
-}
-
-.HexTopBorder{
-  background-color: red;
-  height: 1vh;
-  width: 60vw;
-}
-
-.HexSideBorder{
-  background-color: blue;
-  height: 60vh;
-  width: 1vw;
 }
