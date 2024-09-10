@@ -39,7 +39,7 @@ export default function HexGame() {
   }
 
   function onHexCellClick(index, index2) {
-    if (!gameHasStarted) {
+    if (!gameHasStarted || (index === -666 && index2 === 666)) {
       return;
     }
     let newHexBoard = [...hexBoard];
