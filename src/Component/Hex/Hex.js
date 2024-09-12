@@ -97,6 +97,40 @@ export default function HexGame() {
 }
 
 function HexBoard({ hexBoard, onHexCellClick }) {
+  let topBorder = (
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "row",
+        marginLeft: "-5vh",
+        marginBottom: "-0.4vh",
+      }}
+    >
+      <HexCell cellKey={[-666, 666]} value={"Corner"} />
+      {[...Array(hexBoard.length).keys()].map((e) => (
+        <HexCell cellKey={[-666, 666]} value={"Red"} />
+      ))}
+      <HexCell cellKey={[-666, 666]} value={"Corner"} />
+    </div>
+  );
+
+  let lowBorder = (
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "row",
+        marginLeft: hexBoard.length * 5 + "vh",
+        marginTop: "-0.4vh",
+      }}
+    >
+      <HexCell cellKey={[-666, 666]} value={"Corner"} />
+      {[...Array(hexBoard.length).keys()].map((e) => (
+        <HexCell cellKey={[-666, 666]} value={"Red"} />
+      ))}
+      <HexCell cellKey={[-666, 666]} value={"Corner"} />
+    </div>
+  );
+
   let HexBoardFigure = hexBoard.map((e, index) => {
     return (
       <div
@@ -104,13 +138,11 @@ function HexBoard({ hexBoard, onHexCellClick }) {
           display: "flex",
           flexDirection: "row",
           marginLeft: index * 5 + "vh",
+          marginTop: "-0.5vh",
+          marginBottom: "-0.5vh",
         }}
       >
-        <HexCell
-          cellKey={[-666, 666]}
-          value={"Blue"}
-          onCellClick={() => onHexCellClick(-666, 666)}
-        />
+        <HexCell cellKey={[-666, 666]} value={"Blue"} />
         {e.map((el, index2) => (
           <HexCell
             cellKey={[index, index2]}
@@ -118,49 +150,13 @@ function HexBoard({ hexBoard, onHexCellClick }) {
             onCellClick={() => onHexCellClick(index, index2)}
           />
         ))}
-        <HexCell
-          cellKey={[-666, 666]}
-          value={"Blue"}
-          onCellClick={() => onHexCellClick(-666, 666)}
-        />
+        <HexCell cellKey={[-666, 666]} value={"Blue"} />
       </div>
     );
   });
-  return (
-    <div className="HexBoard">
-      <div
-        style={{
-          display: "flex",
-          flexDirection: "row",
-          marginLeft: "-5vh",
-        }}
-      >
-        {hexBoard[0].map((e) => (
-          <HexCell
-            cellKey={[-666, 666]}
-            value={"Red"}
-            onCellClick={() => onHexCellClick(-666, 666)}
-          />
-        ))}
-      </div>
-      {HexBoardFigure}
-      <div
-        style={{
-          display: "flex",
-          flexDirection: "row",
-          marginLeft: hexBoard.length * 5 + "vh",
-        }}
-      >
-        {hexBoard[0].map((e) => (
-          <HexCell
-            cellKey={[-666, 666]}
-            value={"Red"}
-            onCellClick={() => onHexCellClick(-666, 666)}
-          />
-        ))}
-      </div>
-    </div>
-  );
+  HexBoardFigure.unshift(topBorder);
+  HexBoardFigure.push(lowBorder);
+  return <div className="HexBoard">{HexBoardFigure}</div>;
 }
 
 function HexCell({ cellKey, value, onCellClick }) {
@@ -168,7 +164,13 @@ function HexCell({ cellKey, value, onCellClick }) {
     <motion.div
       key={cellKey}
       className={
-        value === "." ? "EmptyHex" : value === "Red" ? "RedHex" : "BlueHex"
+        value === "."
+          ? "EmptyHex"
+          : value === "Red"
+          ? "RedHex"
+          : value === "Blue"
+          ? "BlueHex"
+          : "CornerHex"
       }
       whileHover={{ scale: 1.1, opacity: 0.3 }}
       onClick={onCellClick}
