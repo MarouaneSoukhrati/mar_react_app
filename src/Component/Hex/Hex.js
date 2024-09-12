@@ -10,6 +10,8 @@ export default function HexGame() {
   const [playerNameInput, setPlayerNameInput] = useState("");
   const [playerName, setPlayerName] = useState("Player");
   const [playerColor, setPlayerColor] = useState("Red");
+  const [playerRoute, setPlayerRoute] = useState([]);
+  const [opponentRoute, setOpponentRoute] = useState([]);
   let gameHasStarted = playerName !== "Player";
 
   function submitButton(e) {
@@ -39,15 +41,33 @@ export default function HexGame() {
   }
 
   function onHexCellClick(index, index2) {
-    if (!gameHasStarted || (index === -666 && index2 === 666)) {
+    if (!gameHasStarted) {
       return;
     }
     let newHexBoard = [...hexBoard];
-    if (newHexBoard[index][index2] !== ".") {
+    let newPlayerRoute = [...playerRoute];
+    if (
+      newHexBoard[index][index2] !== "." ||
+      newPlayerRoute.includes([index, index2])
+    ) {
       return;
     }
     newHexBoard[index][index2] = playerColor;
+    newPlayerRoute.push([index, index2]);
     setHexBoard(newHexBoard);
+    setPlayerRoute(newPlayerRoute);
+  }
+
+  function checkWin(playerRoute, opponentRoute) {
+    if (playerColor === "Red") {
+      return;
+    } else {
+      return;
+    }
+  }
+
+  function checkDraw(hexBoard) {
+    return;
   }
 
   return (
@@ -106,11 +126,11 @@ function HexBoard({ hexBoard, onHexCellClick }) {
         marginBottom: "-0.4vh",
       }}
     >
-      <HexCell cellKey={[-666, 666]} value={"Corner"} />
+      <HexCell cellKey={[-Infinity, -Infinity]} value={"Corner"} />
       {[...Array(hexBoard.length).keys()].map((e) => (
-        <HexCell cellKey={[-666, 666]} value={"Red"} />
+        <HexCell cellKey={[-Infinity, e]} value={"Red"} />
       ))}
-      <HexCell cellKey={[-666, 666]} value={"Corner"} />
+      <HexCell cellKey={[-Infinity, +Infinity]} value={"Corner"} />
     </div>
   );
 
@@ -123,11 +143,11 @@ function HexBoard({ hexBoard, onHexCellClick }) {
         marginTop: "-0.4vh",
       }}
     >
-      <HexCell cellKey={[-666, 666]} value={"Corner"} />
+      <HexCell cellKey={[+Infinity, -Infinity]} value={"Corner"} />
       {[...Array(hexBoard.length).keys()].map((e) => (
-        <HexCell cellKey={[-666, 666]} value={"Red"} />
+        <HexCell cellKey={[+Infinity, e]} value={"Red"} />
       ))}
-      <HexCell cellKey={[-666, 666]} value={"Corner"} />
+      <HexCell cellKey={[+Infinity, +Infinity]} value={"Corner"} />
     </div>
   );
 
@@ -142,7 +162,7 @@ function HexBoard({ hexBoard, onHexCellClick }) {
           marginBottom: "-0.5vh",
         }}
       >
-        <HexCell cellKey={[-666, 666]} value={"Blue"} />
+        <HexCell cellKey={[index, -Infinity]} value={"Blue"} />
         {e.map((el, index2) => (
           <HexCell
             cellKey={[index, index2]}
@@ -150,7 +170,7 @@ function HexBoard({ hexBoard, onHexCellClick }) {
             onCellClick={() => onHexCellClick(index, index2)}
           />
         ))}
-        <HexCell cellKey={[-666, 666]} value={"Blue"} />
+        <HexCell cellKey={[index, +Infinity]} value={"Blue"} />
       </div>
     );
   });
