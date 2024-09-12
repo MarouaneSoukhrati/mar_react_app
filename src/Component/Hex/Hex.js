@@ -5,7 +5,7 @@ import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 
 export default function HexGame() {
-  const [hexBoardSize, setHexBoardSize] = useState(10);
+  const [hexBoardSize, setHexBoardSize] = useState(11);
   const [hexBoard, setHexBoard] = useState(initialiseHexBoard());
   const [playerNameInput, setPlayerNameInput] = useState("");
   const [playerName, setPlayerName] = useState("Player");
@@ -22,7 +22,7 @@ export default function HexGame() {
     }
     setPlayerName(playerNameInput);
     setGameHasStarted(true);
-    setHexBoardSize(10);
+    setHexBoardSize(11);
     setHexBoard(initialiseHexBoard(hexBoardSize));
     setPlayerRoute([]);
     setOpponentRoute([]);
@@ -32,7 +32,7 @@ export default function HexGame() {
   function handleGameReplay() {
     setGameHasEnded(false);
     setGameHasStarted(false);
-    setHexBoardSize(10);
+    setHexBoardSize(11);
     setHexBoard(initialiseHexBoard(hexBoardSize));
     setPlayerRoute([]);
     setOpponentRoute([]);
