@@ -12,13 +12,8 @@ export default function HexGame() {
   const [playerColor, setPlayerColor] = useState("Red");
   const [playerRoute, setPlayerRoute] = useState([]);
   const [opponentRoute, setOpponentRoute] = useState([]);
-  let gameHasStarted = playerName !== "Player";
-
-  function submitButton(e) {
-    e.preventDefault();
-    setHexBoardSize(10);
-    setHexBoard(initialiseHexBoard(hexBoardSize));
-  }
+  const [gameHasStarted, setGameHasStarted] = useState(false);
+  const [gameHasEnded, setGameHasEnded] = useState(false);
 
   function handleNameChange() {
     if (playerNameInput === "" || playerNameInput === "Choose another name") {
@@ -26,6 +21,21 @@ export default function HexGame() {
       return;
     }
     setPlayerName(playerNameInput);
+    setGameHasStarted(true);
+    setHexBoardSize(10);
+    setHexBoard(initialiseHexBoard(hexBoardSize));
+    setPlayerRoute([]);
+    setOpponentRoute([]);
+    setGameHasEnded(false);
+  }
+
+  function handleGameReplay() {
+    setGameHasEnded(false);
+    setGameHasStarted(false);
+    setHexBoardSize(10);
+    setHexBoard(initialiseHexBoard(hexBoardSize));
+    setPlayerRoute([]);
+    setOpponentRoute([]);
   }
 
   function initialiseHexBoard(size = hexBoardSize) {
@@ -56,25 +66,85 @@ export default function HexGame() {
     newPlayerRoute.push([index, index2]);
     setHexBoard(newHexBoard);
     setPlayerRoute(newPlayerRoute);
-  }
-
-  function checkWin(playerRoute, opponentRoute) {
-    if (playerColor === "Red") {
-      return;
-    } else {
-      return;
+    console.log(getCircuits(newPlayerRoute));
+    if (checkWin(newPlayerRoute)) {
+      setGameHasEnded(true);
     }
   }
 
-  function checkDraw(hexBoard) {
-    return;
+  function isConnected(node1, node2) {
+    if (node2[1] === node1[1] + 1 || node2[1] === node1[1] - 1) {
+      return true;
+    }
+    if (
+      node2[0] === node1[0] - 1 &&
+      (node2[1] === node1[1] || node2[1] === node1[1] + 1)
+    ) {
+      return true;
+    }
+    if (
+      node2[0] === node1[0] + 1 &&
+      (node2[1] === node1[1] || node2[1] === node1[1] - 1)
+    ) {
+      return true;
+    }
+    return false;
+  }
+
+  function getCircuits(route) {
+    let circuits = [];
+    for (let node1 of route) {
+      let circuit = [node1];
+      for (let node2 of route) {
+        if (isConnected(node2, circuit[circuit.length - 1])) {
+          circuit.push(node2);
+        }
+      }
+      let circuitContains = (bigCircuit, smallCircuit) =>
+        smallCircuit.every((e) => bigCircuit.includes(e));
+      let i = 0;
+      for (let c of circuits) {
+        if (circuitContains(c, circuit)) {
+          i++;
+          break;
+        }
+      }
+      if (i === 0) {
+        circuits.push(sortCircuit(circuit));
+      }
+    }
+    return circuits;
+  }
+
+  function sortCircuit(circuit) {
+    return circuit.sort(function (a, b) {
+      if (b[0] === a[0]) {
+        return b[1] - a[1];
+      }
+      return a[0] - b[0];
+    });
+  }
+
+  function checkWin(checkedRoute) {
+    //, opponentRoute) {
+    let playerCircuits = getCircuits(checkedRoute);
+    //let opponentCircuits = getCircuits(opponentRoute);
+    for (let circuit of playerCircuits) {
+      if (
+        circuit[0][0] === 0 &&
+        circuit[circuit.length - 1][0] === hexBoardSize - 1
+      ) {
+        return true;
+      }
+    }
+    return false;
   }
 
   return (
     <div className="hex-wrapper">
-      <h1 style={{ color: "yellow" }}>Hex Game</h1>
+      <h1 style={{ color: "yellow" }}>Hex Game : Connect Borders</h1>
       {!gameHasStarted && (
-        <form className="FormStyle" onSubmit={submitButton}>
+        <div className="FormStyle">
           <input
             className="inputSpace"
             type="text"
@@ -90,7 +160,7 @@ export default function HexGame() {
               name="playerColor"
               onClick={(e) => setPlayerColor(e.target.value)}
             />
-            <label for="playerColor1">Red</label>
+            <label htmlFor="playerColor1">Red</label>
             <input
               id="playerColor2"
               type="radio"
@@ -98,17 +168,25 @@ export default function HexGame() {
               name="playerColor"
               onClick={(e) => setPlayerColor(e.target.value)}
             />
-            <label for="playerColor2">Blue</label>
+            <label htmlFor="playerColor2">Blue</label>
           </div>
           <motion.div className="play-game" onClick={handleNameChange}>
             Start
           </motion.div>
-        </form>
+        </div>
       )}
       {gameHasStarted && (
-        <div className="WelcomeMsg">
-          Welcome <span style={{ color: "yellow" }}>{playerName}</span> you are{" "}
-          <span style={{ color: playerColor }}>{playerColor}</span> !
+        <h2 className="WelcomeMsg">
+          Welcome <span style={{ color: playerColor }}>{playerName}</span> you
+          are <span style={{ color: playerColor }}>{playerColor}</span> !
+        </h2>
+      )}
+      {gameHasEnded && (
+        <div className="winSection">
+          <h2 className="winMsg">Game Over - The Winner is {playerColor}</h2>
+          <motion.div className="play-game" onClick={handleGameReplay}>
+            Replay
+          </motion.div>
         </div>
       )}
       <HexBoard hexBoard={hexBoard} onHexCellClick={onHexCellClick} />

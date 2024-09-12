@@ -75,8 +75,8 @@ export default function GomukoGame() {
     (gameWinner === "None"
       ? "It's a Draw"
       : gameWinner === "x"
-        ? "The Winner is Black"
-        : "The Winner is White");
+      ? "The Winner is Black"
+      : "The Winner is White");
 
   return (
     <header className="gomuko-wrapper">
@@ -93,7 +93,7 @@ export default function GomukoGame() {
                 value="x"
                 onClick={handlePlayerChoice}
               />
-              <label for="playerChoice1">Black</label>
+              <label htmlFor="playerChoice1">Black</label>
             </div>
             <div className="playerOption">
               <input
@@ -103,7 +103,7 @@ export default function GomukoGame() {
                 value="o"
                 onClick={handlePlayerChoice}
               />
-              <label for="playerChoice2">White</label>
+              <label htmlFor="playerChoice2">White</label>
             </div>
           </div>
           <motion.div
@@ -292,7 +292,7 @@ function GomukoTable({
     alpha,
     beta,
     maximizingPlayer,
-    evaluationFunc,
+    evaluationFunc
   ) {
     if (depth === 0 || isTerminal(gamingBoard)) {
       return [
@@ -320,7 +320,7 @@ function GomukoTable({
         alpha,
         beta,
         !maximizingPlayer,
-        evaluationFunc,
+        evaluationFunc
       );
       if (maximizingPlayer) {
         if (bestValue < value) {
@@ -348,7 +348,7 @@ function GomukoTable({
   function evaluation(gamingBoard) {
     let opponentColor = playerColor === "x" ? "o" : "x";
     let newGamingBoard = [...gamingBoard].map((e, index) =>
-      e === "." ? index : "xx",
+      e === "." ? index : "xx"
     );
     newGamingBoard.filter((e) => e !== "xx");
     let evalTab = newGamingBoard.map((e) => {
@@ -374,14 +374,14 @@ function GomukoTable({
     });
     return evalTab.reduce(
       (maxIndex, elem, i, evalTab) => (elem > evalTab[maxIndex] ? i : maxIndex),
-      0,
+      0
     );
   }
 
   function minimaxEvaluation(gamingBoard) {
     let opponentColor = playerColor === "x" ? "o" : "x";
     let newGamingBoard = [...gamingBoard].map((e, index) =>
-      e === "." ? index : "xx",
+      e === "." ? index : "xx"
     );
     newGamingBoard.filter((e) => e !== "xx");
     let evalTab = newGamingBoard.map((e) => {
