@@ -14,6 +14,8 @@ export default function HexGame() {
   const [opponentRoute, setOpponentRoute] = useState([]);
   const [gameHasStarted, setGameHasStarted] = useState(false);
   const [gameHasEnded, setGameHasEnded] = useState(false);
+  const [opponentTurn, setOpponentTurn] = useState(false);
+  const [lastPlayedIndex, setLastPlayedIndex] = useState([0, [-666, -666]]);
 
   function handleNameChange() {
     if (playerNameInput === "" || playerNameInput === "Choose another name") {
@@ -27,6 +29,7 @@ export default function HexGame() {
     setPlayerRoute([]);
     setOpponentRoute([]);
     setGameHasEnded(false);
+    setLastPlayedIndex([0, [-666, -666]]);
   }
 
   function handleGameReplay() {
@@ -36,6 +39,7 @@ export default function HexGame() {
     setHexBoard(initialiseHexBoard(hexBoardSize));
     setPlayerRoute([]);
     setOpponentRoute([]);
+    setLastPlayedIndex([0, [-666, -666]]);
   }
 
   function initialiseHexBoard(size = hexBoardSize) {
@@ -66,10 +70,11 @@ export default function HexGame() {
     newPlayerRoute.push([index, index2]);
     setHexBoard(newHexBoard);
     setPlayerRoute(newPlayerRoute);
-    console.log(getCircuits(newPlayerRoute));
-    if (checkWin(newPlayerRoute)) {
+    setLastPlayedIndex(() => [lastPlayedIndex[0] + 1, [index, index2]]);
+    if (checkWin(newPlayerRoute, playerColor)) {
       setGameHasEnded(true);
     }
+    setOpponentTurn(true);
   }
 
   function isConnected(node1, node2) {
@@ -91,7 +96,7 @@ export default function HexGame() {
     return false;
   }
 
-  function getCircuits(route) {
+  function getCircuits(route, color) {
     let circuits = [];
     for (let node1 of route) {
       let circuit = [node1];
@@ -110,13 +115,26 @@ export default function HexGame() {
         }
       }
       if (i === 0) {
-        circuits.push(sortCircuit(circuit));
+        if (color === "Red") {
+          circuits.push(sortRedCircuit(circuit));
+        } else {
+          circuits.push(sortBlueCircuit(circuit));
+        }
       }
     }
     return circuits;
   }
 
-  function sortCircuit(circuit) {
+  function sortBlueCircuit(circuit) {
+    return circuit.sort(function (a, b) {
+      if (b[1] === a[1]) {
+        return b[0] - a[0];
+      }
+      return a[1] - b[1];
+    });
+  }
+
+  function sortRedCircuit(circuit) {
     return circuit.sort(function (a, b) {
       if (b[0] === a[0]) {
         return b[1] - a[1];
@@ -125,19 +143,29 @@ export default function HexGame() {
     });
   }
 
-  function checkWin(checkedRoute) {
-    //, opponentRoute) {
-    let playerCircuits = getCircuits(checkedRoute);
-    //let opponentCircuits = getCircuits(opponentRoute);
-    for (let circuit of playerCircuits) {
-      if (
-        circuit[0][0] === 0 &&
-        circuit[circuit.length - 1][0] === hexBoardSize - 1
-      ) {
-        return true;
+  function checkWin(checkedRoute, checkedColor) {
+    let checkedCircuits = getCircuits(checkedRoute, checkedColor);
+    if (checkedColor === "Red") {
+      for (let circuit of checkedCircuits) {
+        if (
+          circuit[0][0] === 0 &&
+          circuit[circuit.length - 1][0] === hexBoardSize - 1
+        ) {
+          return true;
+        }
       }
+      return false;
+    } else {
+      for (let circuit of checkedCircuits) {
+        if (
+          circuit[0][1] === 0 &&
+          circuit[circuit.length - 1][1] === hexBoardSize - 1
+        ) {
+          return true;
+        }
+      }
+      return false;
     }
-    return false;
   }
 
   return (
@@ -189,12 +217,66 @@ export default function HexGame() {
           </motion.div>
         </div>
       )}
-      <HexBoard hexBoard={hexBoard} onHexCellClick={onHexCellClick} />
+      <HexBoard
+        hexBoard={hexBoard}
+        setHexBoard={setHexBoard}
+        onHexCellClick={onHexCellClick}
+        playerColor={playerColor}
+        lastPlayedIndex={lastPlayedIndex}
+        opponentRoute={opponentRoute}
+        setOpponentRoute={setOpponentRoute}
+        opponentTurn={opponentTurn}
+        setOpponentTurn={setOpponentTurn}
+        setGameHasEnded={setGameHasEnded}
+        checkWin={checkWin}
+      />
     </div>
   );
 }
 
-function HexBoard({ hexBoard, onHexCellClick }) {
+function HexBoard({
+  hexBoard,
+  setHexBoard,
+  onHexCellClick,
+  playerColor,
+  lastPlayedIndex,
+  opponentRoute,
+  setOpponentRoute,
+  opponentTurn,
+  setOpponentTurn,
+  setGameHasEnded,
+  checkWin,
+}) {
+  function getOpponentPosition(checkedHexBoard) {
+    return [
+      Math.floor(Math.random() * checkedHexBoard.length),
+      Math.floor(Math.random() * checkedHexBoard.length),
+    ];
+  }
+
+  useEffect(() => {
+    if (opponentTurn) {
+      let opponentColor = playerColor === "Red" ? "Blue" : "Red";
+      let [index, index2] = getOpponentPosition(hexBoard);
+      let newHexBoard = [...hexBoard];
+      let newOpponentRoute = [...opponentRoute];
+      if (
+        newHexBoard[index][index2] !== "." ||
+        newOpponentRoute.includes([index, index2])
+      ) {
+        return;
+      }
+      newHexBoard[index][index2] = opponentColor;
+      newOpponentRoute.push([index, index2]);
+      setHexBoard(newHexBoard);
+      setOpponentRoute(newOpponentRoute);
+      if (checkWin(newOpponentRoute, opponentColor)) {
+        setGameHasEnded(true);
+      }
+      setOpponentTurn(false);
+    }
+  }, [lastPlayedIndex]);
+
   let topBorder = (
     <div
       style={{
