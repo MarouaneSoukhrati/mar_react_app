@@ -15,7 +15,38 @@ export default function HexGame() {
   const [gameHasStarted, setGameHasStarted] = useState(false);
   const [gameHasEnded, setGameHasEnded] = useState(false);
   const [opponentTurn, setOpponentTurn] = useState(false);
-  const [lastPlayedIndex, setLastPlayedIndex] = useState([0, [-666, -666]]);
+  const [lastPlayedIndex, setLastPlayedIndex] = useState([0, -1]);
+  const [lastHooveredIndex, setLastHooveredIndex] = useState(-1);
+
+  useEffect(() => {
+    if (gameHasStarted && !gameHasEnded && opponentTurn) {
+      let opponentColor = playerColor === "Red" ? "Blue" : "Red";
+      let [index, index2] = getOpponentPosition(hexBoard);
+      let newHexBoard = [...hexBoard];
+      let newOpponentRoute = [...opponentRoute];
+      while (
+        newHexBoard[index][index2] !== "." ||
+        newOpponentRoute.includes([index, index2])
+      ) {
+        [index, index2] = getOpponentPosition(hexBoard);
+      }
+      newHexBoard[index][index2] = opponentColor;
+      newOpponentRoute.push([index, index2]);
+      setHexBoard(newHexBoard);
+      setOpponentRoute(newOpponentRoute);
+      if (checkWin(newOpponentRoute, opponentColor)) {
+        setGameHasEnded(true);
+      }
+      setOpponentTurn(false);
+    }
+  }, [lastPlayedIndex]);
+
+  function getOpponentPosition(checkedHexBoard) {
+    return [
+      Math.floor(Math.random() * checkedHexBoard.length),
+      Math.floor(Math.random() * checkedHexBoard.length),
+    ];
+  }
 
   function handleNameChange() {
     if (playerNameInput === "" || playerNameInput === "Choose another name") {
@@ -29,7 +60,8 @@ export default function HexGame() {
     setPlayerRoute([]);
     setOpponentRoute([]);
     setGameHasEnded(false);
-    setLastPlayedIndex([0, [-666, -666]]);
+    setLastPlayedIndex([0, -1]);
+    setOpponentTurn(false);
   }
 
   function handleGameReplay() {
@@ -39,7 +71,8 @@ export default function HexGame() {
     setHexBoard(initialiseHexBoard(hexBoardSize));
     setPlayerRoute([]);
     setOpponentRoute([]);
-    setLastPlayedIndex([0, [-666, -666]]);
+    setLastPlayedIndex([0, -1]);
+    setOpponentTurn(false);
   }
 
   function initialiseHexBoard(size = hexBoardSize) {
@@ -55,7 +88,7 @@ export default function HexGame() {
   }
 
   function onHexCellClick(index, index2) {
-    if (!gameHasStarted) {
+    if (!gameHasStarted || gameHasEnded) {
       return;
     }
     let newHexBoard = [...hexBoard];
@@ -126,18 +159,20 @@ export default function HexGame() {
   }
 
   function sortBlueCircuit(circuit) {
-    return circuit.sort(function (a, b) {
-      if (b[1] === a[1]) {
-        return b[0] - a[0];
+    let newCircuit = [...circuit];
+    return newCircuit.sort(function (a, b) {
+      if (a[1] === b[1]) {
+        return a[0] - b[0];
       }
       return a[1] - b[1];
     });
   }
 
   function sortRedCircuit(circuit) {
-    return circuit.sort(function (a, b) {
-      if (b[0] === a[0]) {
-        return b[1] - a[1];
+    let newCircuit = [...circuit];
+    return newCircuit.sort(function (a, b) {
+      if (a[0] === b[0]) {
+        return a[1] - b[1];
       }
       return a[0] - b[0];
     });
@@ -166,6 +201,14 @@ export default function HexGame() {
       }
       return false;
     }
+  }
+
+  function handleCaseHoover(hexCase) {
+    setLastHooveredIndex(hexCase);
+  }
+
+  function handleCaseHooverExit() {
+    setLastHooveredIndex(-1);
   }
 
   return (
@@ -219,64 +262,32 @@ export default function HexGame() {
       )}
       <HexBoard
         hexBoard={hexBoard}
-        setHexBoard={setHexBoard}
         onHexCellClick={onHexCellClick}
-        playerColor={playerColor}
-        lastPlayedIndex={lastPlayedIndex}
-        opponentRoute={opponentRoute}
-        setOpponentRoute={setOpponentRoute}
-        opponentTurn={opponentTurn}
-        setOpponentTurn={setOpponentTurn}
-        setGameHasEnded={setGameHasEnded}
-        checkWin={checkWin}
+        handleCaseHoover={handleCaseHoover}
+        handleCaseHooverExit={handleCaseHooverExit}
       />
+      <div style={{ marginTop: "3vh" }}>
+        Last Played Square:{" "}
+        {lastPlayedIndex[1] === -1
+          ? "None"
+          : "(" + lastPlayedIndex[1][0] + ", " + lastPlayedIndex[1][1] + ")"}
+      </div>
+      <div style={{ marginTop: "1vh" }}>
+        Selected Square:{" "}
+        {lastHooveredIndex === -1
+          ? "None"
+          : "(" + lastHooveredIndex[0] + ", " + lastHooveredIndex[1] + ")"}
+      </div>
     </div>
   );
 }
 
 function HexBoard({
   hexBoard,
-  setHexBoard,
   onHexCellClick,
-  playerColor,
-  lastPlayedIndex,
-  opponentRoute,
-  setOpponentRoute,
-  opponentTurn,
-  setOpponentTurn,
-  setGameHasEnded,
-  checkWin,
+  handleCaseHoover,
+  handleCaseHooverExit,
 }) {
-  function getOpponentPosition(checkedHexBoard) {
-    return [
-      Math.floor(Math.random() * checkedHexBoard.length),
-      Math.floor(Math.random() * checkedHexBoard.length),
-    ];
-  }
-
-  useEffect(() => {
-    if (opponentTurn) {
-      let opponentColor = playerColor === "Red" ? "Blue" : "Red";
-      let [index, index2] = getOpponentPosition(hexBoard);
-      let newHexBoard = [...hexBoard];
-      let newOpponentRoute = [...opponentRoute];
-      if (
-        newHexBoard[index][index2] !== "." ||
-        newOpponentRoute.includes([index, index2])
-      ) {
-        return;
-      }
-      newHexBoard[index][index2] = opponentColor;
-      newOpponentRoute.push([index, index2]);
-      setHexBoard(newHexBoard);
-      setOpponentRoute(newOpponentRoute);
-      if (checkWin(newOpponentRoute, opponentColor)) {
-        setGameHasEnded(true);
-      }
-      setOpponentTurn(false);
-    }
-  }, [lastPlayedIndex]);
-
   let topBorder = (
     <div
       style={{
@@ -328,6 +339,8 @@ function HexBoard({
             cellKey={[index, index2]}
             value={el}
             onCellClick={() => onHexCellClick(index, index2)}
+            onMouseEnter={() => handleCaseHoover([index, index2])}
+            onMouseLeave={handleCaseHooverExit}
           />
         ))}
         <HexCell cellKey={[index, +Infinity]} value={"Blue"} />
@@ -339,7 +352,7 @@ function HexBoard({
   return <div className="HexBoard">{HexBoardFigure}</div>;
 }
 
-function HexCell({ cellKey, value, onCellClick }) {
+function HexCell({ cellKey, value, onCellClick, onMouseEnter, onMouseLeave }) {
   return (
     <motion.div
       key={cellKey}
@@ -354,6 +367,8 @@ function HexCell({ cellKey, value, onCellClick }) {
       }
       whileHover={{ scale: 1.1, opacity: 0.3 }}
       onClick={onCellClick}
+      onMouseEnter={onMouseEnter}
+      onMouseLeave={onMouseLeave}
     />
   );
 }
