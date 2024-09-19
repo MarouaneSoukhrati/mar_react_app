@@ -17,6 +17,7 @@ export default function HexGame() {
   const [opponentTurn, setOpponentTurn] = useState(false);
   const [lastPlayedIndex, setLastPlayedIndex] = useState([0, -1]);
   const [lastHooveredIndex, setLastHooveredIndex] = useState(-1);
+  const [playerCircuits, setPlayerCircuits] = useState(getCircuits(playerRoute, playerColor));
 
   useEffect(() => {
     if (gameHasStarted && !gameHasEnded && opponentTurn) {
@@ -104,6 +105,7 @@ export default function HexGame() {
     setHexBoard(newHexBoard);
     setPlayerRoute(newPlayerRoute);
     setLastPlayedIndex(() => [lastPlayedIndex[0] + 1, [index, index2]]);
+    setPlayerCircuits(getCircuits(newPlayerRoute, playerColor));
     if (checkWin(newPlayerRoute, playerColor)) {
       setGameHasEnded(true);
     }
@@ -111,7 +113,7 @@ export default function HexGame() {
   }
 
   function isConnected(node1, node2) {
-    if (node2[1] === node1[1] + 1 || node2[1] === node1[1] - 1) {
+    if ( node2[0] === node1[0] && (node2[1] === node1[1] + 1 || node2[1] === node1[1] - 1)) {
       return true;
     }
     if (
@@ -140,14 +142,16 @@ export default function HexGame() {
       }
       let circuitContains = (bigCircuit, smallCircuit) =>
         smallCircuit.every((e) => bigCircuit.includes(e));
-      let i = 0;
-      for (let c of circuits) {
-        if (circuitContains(c, circuit)) {
-          i++;
-          break;
-        }
-      }
-      if (i === 0) {
+
+      let circuitContinuity = (newCircuit, oldCircuit) =>
+        isConnected(newCircuit[0], oldCircuit[oldCircuit.length -1]);
+
+      let circuitCleaned = (circuit) => circuit.filter(function(item, pos, self) {
+        return self.indexOf(item) == pos;
+      })
+      circuit = circuitCleaned(circuit);
+    
+      if( circuits.every(e => !circuitContains(e, circuit))) {
         if (color === "Red") {
           circuits.push(sortRedCircuit(circuit));
         } else {
@@ -210,6 +214,8 @@ export default function HexGame() {
   function handleCaseHooverExit() {
     setLastHooveredIndex(-1);
   }
+
+  let mCircuits = playerCircuits.map(e => <div>{e.map(i => "("+i[0]+", "+i[1]+")")}</div>)
 
   return (
     <div className="hex-wrapper">
@@ -277,6 +283,9 @@ export default function HexGame() {
         {lastHooveredIndex === -1
           ? "None"
           : "(" + lastHooveredIndex[0] + ", " + lastHooveredIndex[1] + ")"}
+      </div>
+      <div style={{ marginTop: "1vh" }}>
+        Circuits : {mCircuits}
       </div>
     </div>
   );
