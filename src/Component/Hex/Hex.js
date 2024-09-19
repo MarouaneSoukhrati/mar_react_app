@@ -17,7 +17,9 @@ export default function HexGame() {
   const [opponentTurn, setOpponentTurn] = useState(false);
   const [lastPlayedIndex, setLastPlayedIndex] = useState([0, -1]);
   const [lastHooveredIndex, setLastHooveredIndex] = useState(-1);
-  const [playerCircuits, setPlayerCircuits] = useState(getCircuits(playerRoute, playerColor));
+  const [playerCircuits, setPlayerCircuits] = useState(
+    getCircuits(playerRoute, playerColor)
+  );
 
   useEffect(() => {
     if (gameHasStarted && !gameHasEnded && opponentTurn) {
@@ -113,7 +115,10 @@ export default function HexGame() {
   }
 
   function isConnected(node1, node2) {
-    if ( node2[0] === node1[0] && (node2[1] === node1[1] + 1 || node2[1] === node1[1] - 1)) {
+    if (
+      node2[0] === node1[0] &&
+      (node2[1] === node1[1] + 1 || node2[1] === node1[1] - 1)
+    ) {
       return true;
     }
     if (
@@ -131,6 +136,31 @@ export default function HexGame() {
     return false;
   }
 
+  /*function circuitContains(bigCircuit, smallCircuit) {
+    return smallCircuit.every((e) => bigCircuit.includes(e));
+  }*/
+
+  function areCircuitsConnected(newCircuit, oldCircuit) {
+    for (let node1 of newCircuit) {
+      for (let node2 of oldCircuit) {
+        if (isConnected(node1, node2) || node1 === node2) {
+          return true;
+        }
+      }
+      return false;
+    }
+  }
+
+  function cleanCircuit(arr) {
+    let unique = [];
+    arr.forEach((element) => {
+      if (!unique.includes(element)) {
+        unique.push(element);
+      }
+    });
+    return unique;
+  }
+
   function getCircuits(route, color) {
     let circuits = [];
     for (let node1 of route) {
@@ -140,22 +170,24 @@ export default function HexGame() {
           circuit.push(node2);
         }
       }
-      let circuitContains = (bigCircuit, smallCircuit) =>
-        smallCircuit.every((e) => bigCircuit.includes(e));
-
-      let circuitContinuity = (newCircuit, oldCircuit) =>
-        isConnected(newCircuit[0], oldCircuit[oldCircuit.length -1]);
-
-      let circuitCleaned = (circuit) => circuit.filter(function(item, pos, self) {
-        return self.indexOf(item) == pos;
-      })
-      circuit = circuitCleaned(circuit);
-    
-      if( circuits.every(e => !circuitContains(e, circuit))) {
-        if (color === "Red") {
-          circuits.push(sortRedCircuit(circuit));
-        } else {
-          circuits.push(sortBlueCircuit(circuit));
+      circuit = cleanCircuit(circuit);
+      if (color === "Red") {
+        circuit = sortRedCircuit(circuit);
+      } else {
+        circuit = sortBlueCircuit(circuit);
+      }
+      circuits.push(circuit);
+    }
+    for (let i = 0; i < circuits.length; i++) {
+      for (let j = 0; j < circuits.length; j++) {
+        if (i !== j && areCircuitsConnected(circuits[i], circuits[j])) {
+          circuits[i].push(...circuits[j]);
+          circuits[i] = cleanCircuit(circuits[i]);
+          if (color === "Red") {
+            circuits[i] = sortRedCircuit(circuits[i]);
+          } else {
+            circuits[i] = sortBlueCircuit(circuits[i]);
+          }
         }
       }
     }
@@ -215,7 +247,9 @@ export default function HexGame() {
     setLastHooveredIndex(-1);
   }
 
-  let mCircuits = playerCircuits.map(e => <div>{e.map(i => "("+i[0]+", "+i[1]+")")}</div>)
+  let mCircuits = playerCircuits.map((e) => (
+    <div>{e.map((i) => "(" + i[0] + ", " + i[1] + "), ")} ||</div>
+  ));
 
   return (
     <div className="hex-wrapper">
@@ -284,9 +318,7 @@ export default function HexGame() {
           ? "None"
           : "(" + lastHooveredIndex[0] + ", " + lastHooveredIndex[1] + ")"}
       </div>
-      <div style={{ marginTop: "1vh" }}>
-        Circuits : {mCircuits}
-      </div>
+      <div style={{ marginTop: "1vh" }}>Circuits : {mCircuits}</div>
     </div>
   );
 }
