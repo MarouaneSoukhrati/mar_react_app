@@ -136,14 +136,14 @@ export default function HexGame() {
     return false;
   }
 
-  /*function circuitContains(bigCircuit, smallCircuit) {
-    return smallCircuit.every((e) => bigCircuit.includes(e));
-  }*/
-
   function areCircuitsConnected(newCircuit, oldCircuit) {
     for (let node1 of newCircuit) {
       for (let node2 of oldCircuit) {
-        if (isConnected(node1, node2) || node1 === node2) {
+        if (
+          isConnected(node1, node2) ||
+          (node1[0] === node2[0] && node1[1] === node2[1]) ||
+          (node2[0] === node1[0] && node2[1] === node1[1])
+        ) {
           return true;
         }
       }
@@ -151,14 +151,39 @@ export default function HexGame() {
     }
   }
 
-  function cleanCircuit(arr) {
-    let unique = [];
-    arr.forEach((element) => {
-      if (!unique.includes(element)) {
-        unique.push(element);
+  function cleanCircuit(circuit) {
+    let cleanC = [];
+    for (let c of circuit) {
+      if (cleanC.every((e) => e[0] !== c[0] || e[1] !== c[1])) {
+        cleanC.push(c);
       }
-    });
-    return unique;
+    }
+    return cleanC;
+  }
+
+  function circuitDoesntContain(bigCircuit, smallCircuit) {
+    for (let c of smallCircuit) {
+      if (bigCircuit.every((e) => e[0] !== c[0] || e[1] !== c[1])) {
+        return true;
+      }
+    }
+    return false;
+  }
+
+  function cleanTheCircuits(circuits) {
+    let newCircuits = [];
+    for (let i = 0; i < circuits.length; i++) {
+      let j = 0;
+      while (j < circuits.length) {
+        if (circuitDoesntContain(circuits[j], circuits[i])) {
+          j++;
+        }
+      }
+      if (j === circuits.length - 1) {
+        newCircuits.push(circuits[i]);
+      }
+    }
+    return newCircuits;
   }
 
   function getCircuits(route, color) {
@@ -169,12 +194,6 @@ export default function HexGame() {
         if (isConnected(node2, circuit[circuit.length - 1])) {
           circuit.push(node2);
         }
-      }
-      circuit = cleanCircuit(circuit);
-      if (color === "Red") {
-        circuit = sortRedCircuit(circuit);
-      } else {
-        circuit = sortBlueCircuit(circuit);
       }
       circuits.push(circuit);
     }
@@ -318,10 +337,11 @@ export default function HexGame() {
           ? "None"
           : "(" + lastHooveredIndex[0] + ", " + lastHooveredIndex[1] + ")"}
       </div>
-      <div style={{ marginTop: "1vh" }}>Circuits : {mCircuits}</div>
     </div>
   );
 }
+
+//<div style={{ marginTop: "1vh" }}>Circuits : {mCircuits}</div>
 
 function HexBoard({
   hexBoard,
