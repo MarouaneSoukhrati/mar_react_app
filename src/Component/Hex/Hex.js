@@ -161,29 +161,17 @@ export default function HexGame() {
     return cleanC;
   }
 
-  function circuitDoesntContain(bigCircuit, smallCircuit) {
+  /*function circuitDoesntContain(bigCircuit, smallCircuit) {
     for (let c of smallCircuit) {
       if (bigCircuit.every((e) => e[0] !== c[0] || e[1] !== c[1])) {
         return true;
       }
     }
     return false;
-  }
+  }*/
 
   function cleanTheCircuits(circuits) {
-    let newCircuits = [];
-    for (let i = 0; i < circuits.length; i++) {
-      let j = 0;
-      while (j < circuits.length) {
-        if (circuitDoesntContain(circuits[j], circuits[i])) {
-          j++;
-        }
-      }
-      if (j === circuits.length - 1) {
-        newCircuits.push(circuits[i]);
-      }
-    }
-    return newCircuits;
+    return circuits;
   }
 
   function getCircuits(route, color) {
@@ -210,7 +198,7 @@ export default function HexGame() {
         }
       }
     }
-    return circuits;
+    return cleanTheCircuits(circuits);
   }
 
   function sortBlueCircuit(circuit) {
@@ -337,11 +325,10 @@ export default function HexGame() {
           ? "None"
           : "(" + lastHooveredIndex[0] + ", " + lastHooveredIndex[1] + ")"}
       </div>
+      <div style={{ marginTop: "1vh" }}>Circuits : {mCircuits}</div>
     </div>
   );
 }
-
-//<div style={{ marginTop: "1vh" }}>Circuits : {mCircuits}</div>
 
 function HexBoard({
   hexBoard,
