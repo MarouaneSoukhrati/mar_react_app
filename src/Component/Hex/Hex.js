@@ -20,11 +20,23 @@ export default function HexGame() {
   const [playerCircuits, setPlayerCircuits] = useState(
     getCircuits(playerRoute, playerColor)
   );
+  const [opponentCircuits, setOpponentCircuits] = useState(
+    getCircuits(opponentRoute, playerColor === "Red" ? "Blue" : "Red")
+  );
 
   useEffect(() => {
     if (gameHasStarted && !gameHasEnded && opponentTurn) {
       let opponentColor = playerColor === "Red" ? "Blue" : "Red";
       let [index, index2] = getOpponentPosition(hexBoard);
+      /*let [index, index2] = miniMax(
+        hexBoard,
+        hexBoardSize,
+        2,
+        -Infinity,
+        Infinity,
+        true,
+        minimaxEvaluation
+      )[0];*/
       let newHexBoard = [...hexBoard];
       let newOpponentRoute = [...opponentRoute];
       while (
@@ -32,6 +44,15 @@ export default function HexGame() {
         newOpponentRoute.includes([index, index2])
       ) {
         [index, index2] = getOpponentPosition(hexBoard);
+        /*[index, index2] = miniMax(
+          hexBoard,
+          hexBoardSize,
+          2,
+          -Infinity,
+          Infinity,
+          true,
+          minimaxEvaluation
+        )[0];*/
       }
       newHexBoard[index][index2] = opponentColor;
       newOpponentRoute.push([index, index2]);
@@ -61,7 +82,9 @@ export default function HexGame() {
     setHexBoardSize(11);
     setHexBoard(initialiseHexBoard(hexBoardSize));
     setPlayerRoute([]);
+    setPlayerCircuits([]);
     setOpponentRoute([]);
+    setOpponentCircuits([]);
     setGameHasEnded(false);
     setLastPlayedIndex([0, -1]);
     setOpponentTurn(false);
@@ -73,7 +96,9 @@ export default function HexGame() {
     setHexBoardSize(11);
     setHexBoard(initialiseHexBoard(hexBoardSize));
     setPlayerRoute([]);
+    setPlayerCircuits([]);
     setOpponentRoute([]);
+    setOpponentCircuits([]);
     setLastPlayedIndex([0, -1]);
     setOpponentTurn(false);
   }
@@ -161,17 +186,51 @@ export default function HexGame() {
     return cleanC;
   }
 
-  /*function circuitDoesntContain(bigCircuit, smallCircuit) {
+  function circuitDoesntContain(bigCircuit, smallCircuit) {
     for (let c of smallCircuit) {
       if (bigCircuit.every((e) => e[0] !== c[0] || e[1] !== c[1])) {
         return true;
       }
     }
     return false;
-  }*/
+  }
+
+  function isEqualCircuit(circuit1, circuit2) {
+    if (circuit1.length !== circuit2.length) {
+      return false;
+    }
+    for (let i = 0; i < circuit1.length; i++) {
+      if (
+        circuit1[i][0] !== circuit2[i][0] ||
+        circuit1[i][1] !== circuit2[i][1]
+      ) {
+        return false;
+      }
+    }
+    return true;
+  }
 
   function cleanTheCircuits(circuits) {
-    return circuits;
+    let myCircuits = [];
+    for (let circuit of circuits) {
+      if (myCircuits.every((e) => !isEqualCircuit(e, circuit))) {
+        myCircuits.push(circuit);
+      }
+    }
+
+    let newCircuits = [];
+    for (let c1 of myCircuits) {
+      let contains = 0;
+      for (let c2 of myCircuits) {
+        if (!circuitDoesntContain(c2, c1)) {
+          contains++;
+        }
+      }
+      if (contains === 1) {
+        newCircuits.push(c1);
+      }
+    }
+    return newCircuits;
   }
 
   function getCircuits(route, color) {
@@ -254,9 +313,123 @@ export default function HexGame() {
     setLastHooveredIndex(-1);
   }
 
-  let mCircuits = playerCircuits.map((e) => (
-    <div>{e.map((i) => "(" + i[0] + ", " + i[1] + "), ")} ||</div>
-  ));
+  function hexCellResistance(theHexBoard, position, color) {
+    let [index1, index2] = position;
+    if (theHexBoard[index1][index2] === ".") {
+      return 1;
+    }
+    if (theHexBoard[index1][index2] === "Red") {
+      return color === "Red" ? 0 : +Infinity;
+    }
+    if (theHexBoard[index1][index2] === "Blue") {
+      return color === "Red" ? +Infinity : 0;
+    }
+  }
+
+  function hexPairResistance(theHexBoard, position1, position2, color) {
+    if (!isConnected(position1, position2)) {
+      return;
+    }
+    return (
+      hexCellResistance(theHexBoard, position1, color) +
+      hexCellResistance(theHexBoard, position2, color)
+    );
+  }
+
+  function minimaxEvaluation(theHexBoard) {
+    let position1 =
+      playerColor === "Red" ? [0, hexBoardSize - 1] : [0, hexBoardSize - 1]; //viewFromOpponentSide
+    let position2 =
+      playerColor === "Red" ? [hexBoardSize - 1, 0] : [0, hexBoardSize - 1];
+    return (
+      hexPairResistance(
+        theHexBoard,
+        [0, 0],
+        position1,
+        playerColor === "Red" ? "Blue" : "Red"
+      ) / hexPairResistance(theHexBoard, [0, 0], position2, playerColor)
+    );
+  }
+
+  function isTerminal(theHexBoard) {
+    return theHexBoard.every((element) => !element.includes("."));
+  }
+
+  function generateTuples(n) {
+    const tuples = [];
+    for (let i = 0; i < n; i++) {
+      for (let j = 0; j < n; j++) {
+        tuples.push([i, j]);
+      }
+    }
+    return tuples;
+  }
+
+  function miniMax(
+    theHexBoard,
+    theHexBoardSize,
+    depth,
+    alpha,
+    beta,
+    maximizingPlayer,
+    evaluationFunc
+  ) {
+    if (depth === 0 || isTerminal(theHexBoard)) {
+      return [
+        null,
+        maximizingPlayer
+          ? evaluationFunc(theHexBoard)
+          : -evaluationFunc(theHexBoard),
+      ];
+    }
+    let bestValue = maximizingPlayer ? -Infinity : Infinity;
+    let bestIndex = null;
+    let myTuples = generateTuples(theHexBoardSize);
+    let childs = myTuples.map((e) => {
+      if (theHexBoard[e[0]][e[1]] === ".") {
+        let childBoard = [...theHexBoard];
+        childBoard[e[0]][e[1]] = playerColor === "Red" ? "Blue" : "Red";
+        return [e, childBoard];
+      }
+      return [null, theHexBoard];
+    });
+
+    for (let child of childs) {
+      let [vIndex, value] = miniMax(
+        child[1],
+        theHexBoardSize,
+        depth - 1,
+        alpha,
+        beta,
+        !maximizingPlayer,
+        evaluationFunc
+      );
+      if (maximizingPlayer) {
+        if (bestValue < value) {
+          bestValue = value;
+          bestIndex = child[0];
+        }
+        if (bestValue > beta) {
+          break;
+        }
+        alpha = Math.max(alpha, bestValue);
+      } else {
+        if (bestValue > value) {
+          bestValue = value;
+          bestIndex = child[0];
+        }
+        if (bestValue < alpha) {
+          break;
+        }
+        beta = Math.min(beta, bestValue);
+      }
+    }
+    return [bestIndex, bestValue];
+  }
+
+  /*let mCircuits = playerCircuits.map((e) => (
+    <div>{e.map((i) => "(" + i[0] + ", " + i[1] + "), ")}</div>
+  ));*/
 
   return (
     <div className="hex-wrapper">
@@ -325,7 +498,7 @@ export default function HexGame() {
           ? "None"
           : "(" + lastHooveredIndex[0] + ", " + lastHooveredIndex[1] + ")"}
       </div>
-      <div style={{ marginTop: "1vh" }}>Circuits : {mCircuits}</div>
+      {/*<div style={{ marginTop: "1vh" }}>Circuits : {mCircuits}</div>*/}
     </div>
   );
 }
