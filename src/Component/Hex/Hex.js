@@ -33,7 +33,7 @@ export default function HexGame() {
         hexBoardSize,
         2,
         -Infinity,
-        Infinity,
+        +Infinity,
         true,
         minimaxEvaluation
       )[0];*/
@@ -49,7 +49,7 @@ export default function HexGame() {
           hexBoardSize,
           2,
           -Infinity,
-          Infinity,
+          +Infinity,
           true,
           minimaxEvaluation
         )[0];*/
@@ -70,6 +70,60 @@ export default function HexGame() {
       Math.floor(Math.random() * checkedHexBoard.length),
       Math.floor(Math.random() * checkedHexBoard.length),
     ];
+  }
+
+  function getOpponentPosition2(checkedHexBoard) {
+    let opponentColor = playerColor === "Red" ? "Blue" : "Red";
+    let newGamingBoard = [...checkedHexBoard].map((e, index) =>
+      e.map((el, index2) => (el === "." ? [index, index2] : "xx"))
+    );
+    for (let line of newGamingBoard) {
+      line.filter((e) => e !== "xx");
+    }
+    let evalTab = newGamingBoard.map((e) => {
+      let h = neighborsCardinal(checkedHexBoard, playerColor, e);
+
+      h =
+        h > 5
+          ? 300 * h
+          : h > 4
+          ? 90 * h
+          : h > 3
+          ? 30 * h
+          : h > 2
+          ? 10 * h
+          : h > 1
+          ? 5 * h
+          : h;
+      return h;
+    });
+    return evalTab.reduce(
+      (maxIndex, elem, i, evalTab) => (elem > evalTab[maxIndex] ? i : maxIndex),
+      0
+    );
+  }
+
+  function neighborsCardinal(theHexBoard, color, node) {
+    let S = 0;
+    if (theHexBoard[node[0]][node[1] + 1] === color) {
+      S += 1;
+    }
+    if (theHexBoard[node[0]][node[1] - 1] === color) {
+      S += 1;
+    }
+    if (theHexBoard[node[0] - 1][node[1]] === color) {
+      S += 1;
+    }
+    if (theHexBoard[node[0] - 1][node[1] + 1] === color) {
+      S += 1;
+    }
+    if (theHexBoard[node[0] + 1][node[1]] === color) {
+      S += 1;
+    }
+    if (theHexBoard[node[0] + 1][node[1] - 1] === color) {
+      S += 1;
+    }
+    return S;
   }
 
   function handleNameChange() {
@@ -336,19 +390,39 @@ export default function HexGame() {
     );
   }
 
+  function calculateLineResistance(theHexBoard, color, line) {
+    let R = 0;
+    for (let i = 0; i < line.length - 1; i++) {
+      R += hexPairResistance(theHexBoard, line[i], line[i + 1], color);
+    }
+    return R;
+  }
+
   function minimaxEvaluation(theHexBoard) {
-    let position1 =
-      playerColor === "Red" ? [0, hexBoardSize - 1] : [0, hexBoardSize - 1]; //viewFromOpponentSide
-    let position2 =
-      playerColor === "Red" ? [hexBoardSize - 1, 0] : [0, hexBoardSize - 1];
-    return (
-      hexPairResistance(
-        theHexBoard,
-        [0, 0],
-        position1,
-        playerColor === "Red" ? "Blue" : "Red"
-      ) / hexPairResistance(theHexBoard, [0, 0], position2, playerColor)
+    let blueResistanceLines = theHexBoard.map((e) =>
+      calculateLineResistance(theHexBoard, "Blue", e)
     );
+    let blueResistance =
+      1 /
+      blueResistanceLines.reduce(function (a, b) {
+        return 1 / a + 1 / b;
+      }, 0);
+
+    let redLines = theHexBoard[0].map((e, i) =>
+      theHexBoard.map((row) => row[i])
+    );
+    let redResistanceLines = redLines.map((e) =>
+      calculateLineResistance(theHexBoard, "Red", e)
+    );
+    let redResistance =
+      1 /
+      redResistanceLines.reduce(function (a, b) {
+        return 1 / a + 1 / b;
+      }, 0);
+
+    return playerColor === "Red"
+      ? blueResistance / redResistance
+      : redResistance / blueResistance;
   }
 
   function isTerminal(theHexBoard) {
@@ -382,7 +456,7 @@ export default function HexGame() {
           : -evaluationFunc(theHexBoard),
       ];
     }
-    let bestValue = maximizingPlayer ? -Infinity : Infinity;
+    let bestValue = maximizingPlayer ? -Infinity : +Infinity;
     let bestIndex = null;
     let myTuples = generateTuples(theHexBoardSize);
     let childs = myTuples.map((e) => {
