@@ -216,7 +216,7 @@ function GomukoTable({
     }
     if (opponentTurn) {
       let opponentColor = playerColor === "x" ? "o" : "x";
-      let opponentMove = attackEvaluation(gameBoard);
+      let opponentMove = evaluation(gameBoard); //attackEvaluation(gameBoard);
       /*let opponentMove = miniMax(
         gameBoard,
         2,
@@ -226,7 +226,7 @@ function GomukoTable({
         minimaxEvaluation
       )[0];*/
       while (gameBoard[opponentMove] !== ".") {
-        opponentMove = attackEvaluation(gameBoard);
+        opponentMove = evaluation(gameBoard); //attackEvaluation(gameBoard);
         /*opponentMove = miniMax(
           gameBoard,
           2,

@@ -65,14 +65,14 @@ export default function HexGame() {
     }
   }, [lastPlayedIndex]);
 
-  function getOpponentPosition2(checkedHexBoard) {
+  function getOpponentPosition(checkedHexBoard) {
     return [
       Math.floor(Math.random() * checkedHexBoard.length),
       Math.floor(Math.random() * checkedHexBoard.length),
     ];
   }
 
-  function getOpponentPosition(checkedHexBoard) {
+  function getOpponentPosition2(checkedHexBoard) {
     let opponentColor = playerColor === "Red" ? "Blue" : "Red";
     let newGamingBoard = [...checkedHexBoard].map((e, index) =>
       e.map((el, index2) => [index, index2])
