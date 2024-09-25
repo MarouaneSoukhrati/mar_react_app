@@ -346,11 +346,12 @@ function GomukoTable({
   }
 
   function attackEvaluation(gamingBoard) {
+    let opponentColor = playerColor === "x" ? "o" : "x";
     const gomokuData = movesHistory.map((e) => {
       return {
         played_squares: e.historyBoard
-          .map((e, index) => (e !== "." ? index : e))
-          .filter((el) => el === "."),
+          .map((e, index) => (e === opponentColor ? index : e))
+          .filter((el) => el === "." || el === playerColor),
         outcome: 0,
       };
     });
@@ -425,8 +426,8 @@ function GomukoTable({
     evaluateModel(model, testData);
 
     const newSquares = gamingBoard
-      .map((e, index) => (e !== "." ? index : e))
-      .filter((el) => el === ".");
+      .map((e, index) => (e === opponentColor ? index : e))
+      .filter((el) => el === "." || el === playerColor);
     return predictOutcome(model, newSquares);
   }
 
