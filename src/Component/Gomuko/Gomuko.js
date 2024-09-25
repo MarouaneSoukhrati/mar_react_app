@@ -216,7 +216,7 @@ function GomukoTable({
     }
     if (opponentTurn) {
       let opponentColor = playerColor === "x" ? "o" : "x";
-      let opponentMove = evaluation(gameBoard);
+      let opponentMove = attackEvaluation(gameBoard);
       /*let opponentMove = miniMax(
         gameBoard,
         2,
@@ -226,7 +226,7 @@ function GomukoTable({
         minimaxEvaluation
       )[0];*/
       while (gameBoard[opponentMove] !== ".") {
-        opponentMove = evaluation(gameBoard);
+        opponentMove = attackEvaluation(gameBoard);
         /*opponentMove = miniMax(
           gameBoard,
           2,
@@ -345,15 +345,97 @@ function GomukoTable({
     return [bestIndex, bestValue];
   }
 
+  function attackEvaluation(gamingBoard) {
+    const gomokuData = movesHistory.map((e) => {
+      return {
+        played_squares: e.historyBoard
+          .map((e, index) => (e !== "." ? index : e))
+          .filter((el) => el === "."),
+        outcome: 0,
+      };
+    });
+
+    // Create a training set and testing set
+    const trainTestSplit = (data) => {
+      const shuffledData = data.sort(() => 0.5 - Math.random());
+      const trainSize = Math.floor(data.length * 0.8);
+      return [shuffledData.slice(0, trainSize), shuffledData.slice(trainSize)];
+    };
+    const [trainData, testData] = trainTestSplit(gomokuData);
+
+    // Create a linear regression model
+    const createModel = () => {
+      const model = {
+        weights: Array(trainData[0].played_squares.length).fill(0),
+        bias: 0,
+      };
+
+      return model;
+    };
+
+    // Train the model using gradient descent
+    const trainModel = (model, data) => {
+      const learningRate = 0.01;
+      const epochs = 1000;
+
+      for (let epoch = 0; epoch < epochs; epoch++) {
+        for (const { played_squares, outcome } of data) {
+          const predictedOutcome = predictOutcome(model, played_squares);
+          const error = outcome - predictedOutcome;
+
+          // Update weights and bias
+          model.weights = model.weights.map(
+            (weight, i) => weight + learningRate * error * played_squares[i]
+          );
+          model.bias += learningRate * error;
+        }
+      }
+
+      return model;
+    };
+
+    // Predict the outcome for a new set of played squares
+    const predictOutcome = (model, played_squares) => {
+      return (
+        played_squares.reduce(
+          (sum, square, i) => sum + square * model.weights[i],
+          0
+        ) + model.bias
+      );
+    };
+
+    // Evaluate the model's performance
+    const evaluateModel = (model, data) => {
+      let totalError = 0;
+
+      for (const { played_squares, outcome } of data) {
+        const predictedOutcome = predictOutcome(model, played_squares);
+        totalError += Math.abs(outcome - predictedOutcome);
+      }
+
+      const averageError = totalError / data.length;
+      console.log("Average Error:", averageError);
+    };
+
+    // Create and train the model
+    const model = createModel();
+    trainModel(model, trainData);
+
+    // Evaluate the model on the testing set
+    evaluateModel(model, testData);
+
+    const newSquares = gamingBoard
+      .map((e, index) => (e !== "." ? index : e))
+      .filter((el) => el === ".");
+    return predictOutcome(model, newSquares);
+  }
+
   function evaluation(gamingBoard) {
     let opponentColor = playerColor === "x" ? "o" : "x";
-    let newGamingBoard = [...gamingBoard].map((e, index) =>
-      e === "." ? index : "xx"
-    );
-    newGamingBoard.filter((e) => e !== "xx");
+    let newGamingBoard = [...gamingBoard].map((e, index) => index);
     let evalTab = newGamingBoard.map((e) => {
       let voisins = neighborsCardinal(gamingBoard, playerColor, e);
-      let contreVoisins = neighborsCardinal(gamingBoard, opponentColor, e);
+      //let contreVoisins = neighborsCardinal(gamingBoard, opponentColor, e);
 
       let h = voisins.horizontal.length;
       let v = voisins.vertical.length;
@@ -380,9 +462,7 @@ function GomukoTable({
 
   function minimaxEvaluation(gamingBoard) {
     let opponentColor = playerColor === "x" ? "o" : "x";
-    let newGamingBoard = [...gamingBoard].map((e, index) =>
-      e === "." ? index : "xx"
-    );
+    let newGamingBoard = [...gamingBoard].map((e, index) => index);
     newGamingBoard.filter((e) => e !== "xx");
     let evalTab = newGamingBoard.map((e) => {
       let voisins = neighborsCardinal(gamingBoard, playerColor, e);

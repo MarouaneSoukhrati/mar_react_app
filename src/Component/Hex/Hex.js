@@ -31,7 +31,7 @@ export default function HexGame() {
       /*let [index, index2] = miniMax(
         hexBoard,
         hexBoardSize,
-        2,
+        1,
         -Infinity,
         +Infinity,
         true,
@@ -47,7 +47,7 @@ export default function HexGame() {
         /*[index, index2] = miniMax(
           hexBoard,
           hexBoardSize,
-          2,
+          1,
           -Infinity,
           +Infinity,
           true,
@@ -65,42 +65,48 @@ export default function HexGame() {
     }
   }, [lastPlayedIndex]);
 
-  function getOpponentPosition(checkedHexBoard) {
+  function getOpponentPosition2(checkedHexBoard) {
     return [
       Math.floor(Math.random() * checkedHexBoard.length),
       Math.floor(Math.random() * checkedHexBoard.length),
     ];
   }
 
-  function getOpponentPosition2(checkedHexBoard) {
+  function getOpponentPosition(checkedHexBoard) {
     let opponentColor = playerColor === "Red" ? "Blue" : "Red";
     let newGamingBoard = [...checkedHexBoard].map((e, index) =>
-      e.map((el, index2) => (el === "." ? [index, index2] : "xx"))
+      e.map((el, index2) => [index, index2])
     );
-    for (let line of newGamingBoard) {
-      line.filter((e) => e !== "xx");
-    }
     let evalTab = newGamingBoard.map((e) => {
-      let h = neighborsCardinal(checkedHexBoard, playerColor, e);
-
-      h =
-        h > 5
-          ? 300 * h
-          : h > 4
-          ? 90 * h
-          : h > 3
-          ? 30 * h
-          : h > 2
-          ? 10 * h
-          : h > 1
-          ? 5 * h
-          : h;
-      return h;
+      return e.map((el) => {
+        let h = neighborsCardinal(checkedHexBoard, playerColor, el);
+        h =
+          h > 5
+            ? 300 * h
+            : h > 4
+            ? 90 * h
+            : h > 3
+            ? 30 * h
+            : h > 2
+            ? 10 * h
+            : h > 1
+            ? 5 * h
+            : h;
+        return h;
+      });
     });
-    return evalTab.reduce(
-      (maxIndex, elem, i, evalTab) => (elem > evalTab[maxIndex] ? i : maxIndex),
-      0
-    );
+
+    let max = evalTab[0][0];
+    let maxIndex = [0, 0];
+    return evalTab.reduce((acc, row, i) => {
+      return row.reduce((acc, val, j) => {
+        if (val > max) {
+          max = val;
+          maxIndex = [i, j];
+        }
+        return acc;
+      }, acc);
+    }, maxIndex);
   }
 
   function neighborsCardinal(theHexBoard, color, node) {
@@ -111,16 +117,22 @@ export default function HexGame() {
     if (theHexBoard[node[0]][node[1] - 1] === color) {
       S += 1;
     }
-    if (theHexBoard[node[0] - 1][node[1]] === color) {
+    if (node[0] !== 0 && theHexBoard[node[0] - 1][node[1]] === color) {
       S += 1;
     }
-    if (theHexBoard[node[0] - 1][node[1] + 1] === color) {
+    if (node[0] !== 0 && theHexBoard[node[0] - 1][node[1] + 1] === color) {
       S += 1;
     }
-    if (theHexBoard[node[0] + 1][node[1]] === color) {
+    if (
+      node[0] !== hexBoardSize - 1 &&
+      theHexBoard[node[0] + 1][node[1]] === color
+    ) {
       S += 1;
     }
-    if (theHexBoard[node[0] + 1][node[1] - 1] === color) {
+    if (
+      node[0] !== hexBoardSize - 1 &&
+      theHexBoard[node[0] + 1][node[1] - 1] === color
+    ) {
       S += 1;
     }
     return S;
@@ -405,7 +417,7 @@ export default function HexGame() {
     let blueResistance =
       1 /
       blueResistanceLines.reduce(function (a, b) {
-        return 1 / a + 1 / b;
+        return a + 1 / b;
       }, 0);
 
     let redLines = theHexBoard[0].map((e, i) =>
@@ -417,7 +429,7 @@ export default function HexGame() {
     let redResistance =
       1 /
       redResistanceLines.reduce(function (a, b) {
-        return 1 / a + 1 / b;
+        return a + 1 / b;
       }, 0);
 
     return playerColor === "Red"
@@ -426,7 +438,11 @@ export default function HexGame() {
   }
 
   function isTerminal(theHexBoard) {
-    return theHexBoard.every((element) => !element.includes("."));
+    let opponentColor = playerColor === "Red" ? "Blue" : "Red";
+    return (
+      checkWin(playerRoute, playerColor) ||
+      checkWin(opponentRoute, opponentColor)
+    );
   }
 
   function generateTuples(n) {
