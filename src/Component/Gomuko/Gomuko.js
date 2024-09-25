@@ -216,22 +216,22 @@ function GomukoTable({
     }
     if (opponentTurn) {
       let opponentColor = playerColor === "x" ? "o" : "x";
-      let opponentMove = evaluation(gameBoard); //attackEvaluation(gameBoard);
+      let opponentMove = evaluation(gameBoard);
       /*let opponentMove = miniMax(
         gameBoard,
         2,
         -Infinity,
-        Infinity,
+        +Infinity,
         true,
         minimaxEvaluation
       )[0];*/
       while (gameBoard[opponentMove] !== ".") {
-        opponentMove = evaluation(gameBoard); //attackEvaluation(gameBoard);
+        opponentMove = evaluation(gameBoard);
         /*opponentMove = miniMax(
           gameBoard,
           2,
           -Infinity,
-          Infinity,
+          +Infinity,
           true,
           minimaxEvaluation
         )[0];*/
@@ -294,7 +294,13 @@ function GomukoTable({
     maximizingPlayer,
     evaluationFunc
   ) {
-    if (depth === 0 || isTerminal(gamingBoard)) {
+    let opponentColor = playerColor === "x" ? "o" : "x";
+    if (
+      depth === 0 ||
+      isTerminal(gamingBoard) ||
+      checkWin(gamingBoard, opponentColor, lastPlayedIndex)[0] ||
+      checkWin(gamingBoard, playerColor, lastPlayedIndex)[0]
+    ) {
       return [
         null,
         maximizingPlayer
@@ -302,7 +308,7 @@ function GomukoTable({
           : -evaluationFunc(gamingBoard),
       ];
     }
-    let bestValue = maximizingPlayer ? -Infinity : Infinity;
+    let bestValue = maximizingPlayer ? -Infinity : +Infinity;
     let bestIndex = null;
     let childs = gamingBoard.map((e, index) => {
       if (gamingBoard[index] === ".") {
@@ -345,98 +351,14 @@ function GomukoTable({
     return [bestIndex, bestValue];
   }
 
-  function attackEvaluation(gamingBoard) {
-    let opponentColor = playerColor === "x" ? "o" : "x";
-    const gomokuData = movesHistory.map((e) => {
-      return {
-        played_squares: e.historyBoard
-          .map((e, index) => (e === opponentColor ? index : e))
-          .filter((el) => el === "." || el === playerColor),
-        outcome: 0,
-      };
-    });
-
-    // Create a training set and testing set
-    const trainTestSplit = (data) => {
-      const shuffledData = data.sort(() => 0.5 - Math.random());
-      const trainSize = Math.floor(data.length * 0.8);
-      return [shuffledData.slice(0, trainSize), shuffledData.slice(trainSize)];
-    };
-    const [trainData, testData] = trainTestSplit(gomokuData);
-
-    // Create a linear regression model
-    const createModel = () => {
-      const model = {
-        weights: Array(trainData[0].played_squares.length).fill(0),
-        bias: 0,
-      };
-
-      return model;
-    };
-
-    // Train the model using gradient descent
-    const trainModel = (model, data) => {
-      const learningRate = 0.01;
-      const epochs = 1000;
-
-      for (let epoch = 0; epoch < epochs; epoch++) {
-        for (const { played_squares, outcome } of data) {
-          const predictedOutcome = predictOutcome(model, played_squares);
-          const error = outcome - predictedOutcome;
-
-          // Update weights and bias
-          model.weights = model.weights.map(
-            (weight, i) => weight + learningRate * error * played_squares[i]
-          );
-          model.bias += learningRate * error;
-        }
-      }
-
-      return model;
-    };
-
-    // Predict the outcome for a new set of played squares
-    const predictOutcome = (model, played_squares) => {
-      return (
-        played_squares.reduce(
-          (sum, square, i) => sum + square * model.weights[i],
-          0
-        ) + model.bias
-      );
-    };
-
-    // Evaluate the model's performance
-    const evaluateModel = (model, data) => {
-      let totalError = 0;
-
-      for (const { played_squares, outcome } of data) {
-        const predictedOutcome = predictOutcome(model, played_squares);
-        totalError += Math.abs(outcome - predictedOutcome);
-      }
-
-      const averageError = totalError / data.length;
-      console.log("Average Error:", averageError);
-    };
-
-    // Create and train the model
-    const model = createModel();
-    trainModel(model, trainData);
-
-    // Evaluate the model on the testing set
-    evaluateModel(model, testData);
-
-    const newSquares = gamingBoard
-      .map((e, index) => (e === opponentColor ? index : e))
-      .filter((el) => el === "." || el === playerColor);
-    return predictOutcome(model, newSquares);
-  }
-
   function evaluation(gamingBoard) {
     let opponentColor = playerColor === "x" ? "o" : "x";
-    let newGamingBoard = [...gamingBoard].map((e, index) => index);
+    let newGamingBoard = [...gamingBoard].map((e, index) =>
+      e === "." ? index : "xx"
+    );
+    newGamingBoard = newGamingBoard.filter((e) => e !== "xx");
     let evalTab = newGamingBoard.map((e) => {
       let voisins = neighborsCardinal(gamingBoard, playerColor, e);
-      //let contreVoisins = neighborsCardinal(gamingBoard, opponentColor, e);
 
       let h = voisins.horizontal.length;
       let v = voisins.vertical.length;
@@ -448,40 +370,38 @@ function GomukoTable({
       rd = rd > 3 ? 30 * rd : rd > 2 ? 10 * rd : rd > 1 ? 5 * rd : rd;
       ld = ld > 3 ? 30 * ld : ld > 2 ? 10 * ld : ld > 1 ? 5 * ld : ld;
 
-      /*h -= contreVoisins.horizontal.length;
-      v -= contreVoisins.vertical.length;
-      rd -= contreVoisins.rightDiagonal.length;
-      ld -= contreVoisins.leftDiagonal.length;*/
-
       return h + v + rd + ld;
     });
-    return evalTab.reduce(
+    let evalValue = evalTab.reduce(
       (maxIndex, elem, i, evalTab) => (elem > evalTab[maxIndex] ? i : maxIndex),
       0
     );
+    return newGamingBoard[evalValue];
   }
 
+  // Attacking Strategy
   function minimaxEvaluation(gamingBoard) {
     let opponentColor = playerColor === "x" ? "o" : "x";
-    let newGamingBoard = [...gamingBoard].map((e, index) => index);
-    newGamingBoard.filter((e) => e !== "xx");
+    let newGamingBoard = [...gamingBoard].map((e, index) =>
+      e === "." ? index : "xx"
+    );
+    newGamingBoard = newGamingBoard.filter((e) => e !== "xx");
     let evalTab = newGamingBoard.map((e) => {
-      let voisins = neighborsCardinal(gamingBoard, playerColor, e);
+      let voisins = neighborsCardinal(gamingBoard, opponentColor, e);
 
       let h = voisins.horizontal.length;
       let v = voisins.vertical.length;
       let rd = voisins.rightDiagonal.length;
       let ld = voisins.leftDiagonal.length;
 
+      h = h > 3 ? 30 * h : h > 2 ? 10 * h : h > 1 ? 5 * h : h;
+      v = v > 3 ? 30 * v : v > 2 ? 10 * v : v > 1 ? 5 * v : v;
+      rd = rd > 3 ? 30 * rd : rd > 2 ? 10 * rd : rd > 1 ? 5 * rd : rd;
+      ld = ld > 3 ? 30 * ld : ld > 2 ? 10 * ld : ld > 1 ? 5 * ld : ld;
+
       return h + v + rd + ld;
     });
-    return (
-      90000 * evalTab.filter((e) => e < 4).length +
-      5000 * evalTab.filter((e) => e < 3).length +
-      1000 * evalTab.filter((e) => e < 2).length +
-      100 * evalTab.filter((e) => e < 1).length +
-      Math.random() * 5
-    );
+    return Math.max(...evalTab) + Math.random() * 1;
   }
 
   function handleCaseClick(index) {

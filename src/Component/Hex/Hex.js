@@ -65,18 +65,19 @@ export default function HexGame() {
     }
   }, [lastPlayedIndex]);
 
-  function getOpponentPosition(checkedHexBoard) {
+  function getOpponentPosition2(checkedHexBoard) {
     return [
       Math.floor(Math.random() * checkedHexBoard.length),
       Math.floor(Math.random() * checkedHexBoard.length),
     ];
   }
 
-  function getOpponentPosition2(checkedHexBoard) {
+  function getOpponentPosition(checkedHexBoard) {
     let opponentColor = playerColor === "Red" ? "Blue" : "Red";
     let newGamingBoard = [...checkedHexBoard].map((e, index) =>
-      e.map((el, index2) => [index, index2])
+      e.map((el, index2) => (el === "." ? [index, index2] : "xx"))
     );
+    newGamingBoard = newGamingBoard.map((e) => e.filter((el) => el !== "xx"));
     let evalTab = newGamingBoard.map((e) => {
       return e.map((el) => {
         let h = neighborsCardinal(checkedHexBoard, playerColor, el);
@@ -98,7 +99,7 @@ export default function HexGame() {
 
     let max = evalTab[0][0];
     let maxIndex = [0, 0];
-    return evalTab.reduce((acc, row, i) => {
+    let evalValue = evalTab.reduce((acc, row, i) => {
       return row.reduce((acc, val, j) => {
         if (val > max) {
           max = val;
@@ -107,11 +108,12 @@ export default function HexGame() {
         return acc;
       }, acc);
     }, maxIndex);
+    return newGamingBoard[evalValue[0]][evalValue[1]];
   }
 
   function neighborsCardinal(theHexBoard, color, node) {
     let S = 0;
-    if (theHexBoard[node[0]][node[1] + 1] === color) {
+    if (node[1] !== hexBoardSize-1 && theHexBoard[node[0]][node[1] + 1] === color) {
       S += 1;
     }
     if (theHexBoard[node[0]][node[1] - 1] === color) {
@@ -120,7 +122,7 @@ export default function HexGame() {
     if (node[0] !== 0 && theHexBoard[node[0] - 1][node[1]] === color) {
       S += 1;
     }
-    if (node[0] !== 0 && theHexBoard[node[0] - 1][node[1] + 1] === color) {
+    if (node[0] !== 0 &&  node[1] !== hexBoardSize-1 && theHexBoard[node[0] - 1][node[1] + 1] === color) {
       S += 1;
     }
     if (
