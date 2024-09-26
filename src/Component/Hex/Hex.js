@@ -10,6 +10,7 @@ export default function HexGame() {
   const [playerNameInput, setPlayerNameInput] = useState("");
   const [playerName, setPlayerName] = useState("Player");
   const [playerColor, setPlayerColor] = useState("Red");
+  const [gameWinner, setGameWinner] = useState("None");
   const [playerRoute, setPlayerRoute] = useState([]);
   const [opponentRoute, setOpponentRoute] = useState([]);
   const [gameHasStarted, setGameHasStarted] = useState(false);
@@ -18,10 +19,10 @@ export default function HexGame() {
   const [lastPlayedIndex, setLastPlayedIndex] = useState([0, -1]);
   const [lastHooveredIndex, setLastHooveredIndex] = useState(-1);
   const [playerCircuits, setPlayerCircuits] = useState(
-    getCircuits(playerRoute, playerColor)
+    getCircuits(playerRoute, playerColor),
   );
   const [opponentCircuits, setOpponentCircuits] = useState(
-    getCircuits(opponentRoute, playerColor === "Red" ? "Blue" : "Red")
+    getCircuits(opponentRoute, playerColor === "Red" ? "Blue" : "Red"),
   );
 
   useEffect(() => {
@@ -75,7 +76,7 @@ export default function HexGame() {
   function getOpponentPosition(checkedHexBoard) {
     let opponentColor = playerColor === "Red" ? "Blue" : "Red";
     let newGamingBoard = [...checkedHexBoard].map((e, index) =>
-      e.map((el, index2) => (el === "." ? [index, index2] : "xx"))
+      e.map((el, index2) => (el === "." ? [index, index2] : "xx")),
     );
     newGamingBoard = newGamingBoard.map((e) => e.filter((el) => el !== "xx"));
     let evalTab = newGamingBoard.map((e) => {
@@ -85,35 +86,42 @@ export default function HexGame() {
           h > 5
             ? 300 * h
             : h > 4
-            ? 90 * h
-            : h > 3
-            ? 30 * h
-            : h > 2
-            ? 10 * h
-            : h > 1
-            ? 5 * h
-            : h;
+              ? 90 * h
+              : h > 3
+                ? 30 * h
+                : h > 2
+                  ? 10 * h
+                  : h > 1
+                    ? 5 * h
+                    : h;
         return h;
       });
     });
 
-    let max = evalTab[0][0];
-    let maxIndex = [0, 0];
-    let evalValue = evalTab.reduce((acc, row, i) => {
-      return row.reduce((acc, val, j) => {
-        if (val > max) {
-          max = val;
-          maxIndex = [i, j];
+    const getMaxIndex = (Tab) => {
+      let maxValue = Tab[0][0];
+      let maxIndex = [0, 0];
+      for (let i = 0; i < Tab.length; i++) {
+        for (let j = 0; j < Tab[i].length; j++) {
+          if (Tab[i][j] > maxValue) {
+            maxValue = Tab[i][j];
+            maxIndex = [i, j];
+          }
         }
-        return acc;
-      }, acc);
-    }, maxIndex);
+      }
+      return maxIndex;
+    };
+
+    let evalValue = getMaxIndex(evalTab);
     return newGamingBoard[evalValue[0]][evalValue[1]];
   }
 
   function neighborsCardinal(theHexBoard, color, node) {
     let S = 0;
-    if (node[1] !== hexBoardSize-1 && theHexBoard[node[0]][node[1] + 1] === color) {
+    if (
+      node[1] !== hexBoardSize - 1 &&
+      theHexBoard[node[0]][node[1] + 1] === color
+    ) {
       S += 1;
     }
     if (theHexBoard[node[0]][node[1] - 1] === color) {
@@ -122,7 +130,11 @@ export default function HexGame() {
     if (node[0] !== 0 && theHexBoard[node[0] - 1][node[1]] === color) {
       S += 1;
     }
-    if (node[0] !== 0 &&  node[1] !== hexBoardSize-1 && theHexBoard[node[0] - 1][node[1] + 1] === color) {
+    if (
+      node[0] !== 0 &&
+      node[1] !== hexBoardSize - 1 &&
+      theHexBoard[node[0] - 1][node[1] + 1] === color
+    ) {
       S += 1;
     }
     if (
@@ -156,6 +168,7 @@ export default function HexGame() {
     setGameHasEnded(false);
     setLastPlayedIndex([0, -1]);
     setOpponentTurn(false);
+    setGameWinner("None");
   }
 
   function handleGameReplay() {
@@ -169,6 +182,7 @@ export default function HexGame() {
     setOpponentCircuits([]);
     setLastPlayedIndex([0, -1]);
     setOpponentTurn(false);
+    setGameWinner("None");
   }
 
   function initialiseHexBoard(size = hexBoardSize) {
@@ -356,6 +370,7 @@ export default function HexGame() {
           circuit[0][0] === 0 &&
           circuit[circuit.length - 1][0] === hexBoardSize - 1
         ) {
+          setGameWinner(checkedColor);
           return true;
         }
       }
@@ -366,6 +381,7 @@ export default function HexGame() {
           circuit[0][1] === 0 &&
           circuit[circuit.length - 1][1] === hexBoardSize - 1
         ) {
+          setGameWinner(checkedColor);
           return true;
         }
       }
@@ -414,7 +430,7 @@ export default function HexGame() {
 
   function minimaxEvaluation(theHexBoard) {
     let blueResistanceLines = theHexBoard.map((e) =>
-      calculateLineResistance(theHexBoard, "Blue", e)
+      calculateLineResistance(theHexBoard, "Blue", e),
     );
     let blueResistance =
       1 /
@@ -423,10 +439,10 @@ export default function HexGame() {
       }, 0);
 
     let redLines = theHexBoard[0].map((e, i) =>
-      theHexBoard.map((row) => row[i])
+      theHexBoard.map((row) => row[i]),
     );
     let redResistanceLines = redLines.map((e) =>
-      calculateLineResistance(theHexBoard, "Red", e)
+      calculateLineResistance(theHexBoard, "Red", e),
     );
     let redResistance =
       1 /
@@ -464,7 +480,7 @@ export default function HexGame() {
     alpha,
     beta,
     maximizingPlayer,
-    evaluationFunc
+    evaluationFunc,
   ) {
     if (depth === 0 || isTerminal(theHexBoard)) {
       return [
@@ -494,7 +510,7 @@ export default function HexGame() {
         alpha,
         beta,
         !maximizingPlayer,
-        evaluationFunc
+        evaluationFunc,
       );
       if (maximizingPlayer) {
         if (bestValue < value) {
@@ -566,7 +582,7 @@ export default function HexGame() {
       )}
       {gameHasEnded && (
         <div className="winSection">
-          <h2 className="winMsg">Game Over - The Winner is {playerColor}</h2>
+          <h2 className="winMsg">Game Over - The Winner is {gameWinner}</h2>
           <motion.div className="play-game" onClick={handleGameReplay}>
             Replay
           </motion.div>
@@ -673,10 +689,10 @@ function HexCell({ cellKey, value, onCellClick, onMouseEnter, onMouseLeave }) {
         value === "."
           ? "EmptyHex"
           : value === "Red"
-          ? "RedHex"
-          : value === "Blue"
-          ? "BlueHex"
-          : "CornerHex"
+            ? "RedHex"
+            : value === "Blue"
+              ? "BlueHex"
+              : "CornerHex"
       }
       whileHover={{ scale: 1.1, opacity: 0.3 }}
       onClick={onCellClick}
