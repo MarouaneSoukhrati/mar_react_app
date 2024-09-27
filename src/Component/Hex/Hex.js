@@ -582,9 +582,9 @@ export default function HexGame() {
     return [bestIndex, bestValue];
   }
 
-  /*let mCircuits = playerCircuits.map((e) => (
+  let mCircuits = playerCircuits.map((e) => (
     <div>{e.map((i) => "(" + i[0] + ", " + i[1] + "), ")}</div>
-  ));*/
+  ));
 
   return (
     <div className="hex-wrapper">
@@ -653,7 +653,7 @@ export default function HexGame() {
           ? "None"
           : "(" + lastHooveredIndex[0] + ", " + lastHooveredIndex[1] + ")"}
       </div>
-      {/*<div style={{ marginTop: "1vh" }}>Circuits : {mCircuits}</div>*/}
+      <div style={{ marginTop: "1vh" }}>Circuits : {mCircuits}</div>
     </div>
   );
 }
