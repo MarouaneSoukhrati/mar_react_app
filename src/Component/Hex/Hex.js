@@ -74,28 +74,61 @@ export default function HexGame() {
   }
 
   function getOpponentPosition(checkedHexBoard) {
-    let optimalIndexes = playerCircuits.map((circuit) => {
-      let ac = [...circuit];
-      let a = ac[0];
-      let b = ac[ac.length - 1];
-      return [a, b];
-    });
-    optimalIndexes.filter(
-      (index) => checkedHexBoard[index[0]][index[1]] === ".",
-    );
-    let sIndex = Math.floor(optimalIndexes.length * Math.random());
-    let optVal = optimalIndexes[sIndex];
-    if (optval !== undefined) {
-      return optVal;
-    }
     let opponentColor = playerColor === "Red" ? "Blue" : "Red";
-    let newGamingBoard = [...checkedHexBoard].map((e, index) =>
+    let opponentUpp = playerCircuits.map((e) => e[0]);
+    let opponentDown = playerCircuits.map((e) => e[e.length - 1]);
+    let opponentIndexes = opponentDown.concat(opponentUpp);
+    opponentIndexes = opponentIndexes.flatMap((e) => {
+      let indexes = [];
+      if (playerColor === "Blue") {
+        if (e[1] < hexBoardSize - 1) {
+          indexes.push([e[0], e[1] + 1]);
+        }
+        if (e[1] < hexBoardSize - 1 && e[0] > 1) {
+          indexes.push([e[0] - 1, e[1] + 1]);
+        }
+        if (e[0] < hexBoardSize - 1) {
+          indexes.push([e[0] + 1, e[1]]);
+        }
+      } else {
+        if (e[1] > 0 && e[0] < hexBoardSize - 1) {
+          indexes.push([e[0] + 1, e[1] - 1]);
+        }
+        if (e[0] < hexBoardSize - 1) {
+          indexes.push([e[0] + 1, e[1]]);
+        }
+      }
+      return indexes;
+    });
+    opponentIndexes = opponentIndexes.filter(
+      (e) => checkedHexBoard[e[0]][e[1]] === ".",
+    );
+    if (opponentIndexes.length === 0) {
+      return [
+        Math.floor(Math.random() * hexBoardSize),
+        Math.floor(Math.random() * hexBoardSize),
+      ];
+    }
+    let opponentIndexesEval = opponentIndexes.map(
+      (e) =>
+        neighborsCardinal(checkedHexBoard, playerColor, e) -
+        neighborsCardinal(checkedHexBoard, opponentColor, e),
+    );
+    let opponentIndex = opponentIndexesEval.reduce(
+      (maxIndex, elem, i, opponentIndexesEval) =>
+        elem > opponentIndexesEval[maxIndex] ? i : maxIndex,
+      0,
+    );
+    return opponentIndexes[opponentIndex];
+
+    /*let newGamingBoard = [...checkedHexBoard].map((e, index) =>
       e.map((el, index2) => (el === "." ? [index, index2] : "xx")),
     );
     newGamingBoard = newGamingBoard.map((e) => e.filter((el) => el !== "xx"));
     let evalTab = newGamingBoard.map((e) => {
       return e.map((el) => {
-        let h = neighborsCardinal(checkedHexBoard, playerColor, el);
+
+        let h = playerRoute.includes(el) ? neighborsCardinal(checkedHexBoard,playerColor, el);
         h =
           h > 5
             ? 300 * h
@@ -127,7 +160,7 @@ export default function HexGame() {
     };
 
     let evalValue = getMaxIndex(evalTab);
-    return newGamingBoard[evalValue[0]][evalValue[1]];
+    return newGamingBoard[evalValue[0]][evalValue[1]];*/
   }
 
   function neighborsCardinal(theHexBoard, color, node) {
