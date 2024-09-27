@@ -295,6 +295,7 @@ export default function HexGame() {
       for (let node2 of oldCircuit) {
         if (
           isConnected(node1, node2) ||
+          isConnected(node2, node1) ||
           (node1[0] === node2[0] && node1[1] === node2[1]) ||
           (node2[0] === node1[0] && node2[1] === node1[1])
         ) {
@@ -373,16 +374,19 @@ export default function HexGame() {
       }
       circuits.push(circuit);
     }
-    for (let i = 0; i < circuits.length; i++) {
-      for (let j = 0; j < circuits.length; j++) {
-        if (i !== j && areCircuitsConnected(circuits[i], circuits[j])) {
-          circuits[i].push(...circuits[j]);
-          circuits[i] = cleanCircuit(circuits[i]);
-          if (color === "Red") {
-            circuits[i] = sortRedCircuit(circuits[i]);
-          } else {
-            circuits[i] = sortBlueCircuit(circuits[i]);
-          }
+    let cIndexes = generateTuples(circuits.length);
+    for (let [i, j] of cIndexes) {
+      if (
+        i !== j &&
+        (areCircuitsConnected(circuits[i], circuits[j]) ||
+          areCircuitsConnected(circuits[j], circuits[i]))
+      ) {
+        circuits[i].push(...circuits[j]);
+        circuits[i] = cleanCircuit(circuits[i]);
+        if (color === "Red") {
+          circuits[i] = sortRedCircuit(circuits[i]);
+        } else {
+          circuits[i] = sortBlueCircuit(circuits[i]);
         }
       }
     }
