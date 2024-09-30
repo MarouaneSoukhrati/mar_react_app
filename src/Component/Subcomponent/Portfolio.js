@@ -12,6 +12,7 @@ import marouaneLogo from "../../Logos/marouane-logo.svg";
 import PokerGame from "../Poker/Poker";
 import GomukoGame from "../Gomuko/Gomuko";
 import HexGame from "../Hex/Hex";
+import ChatBot from "../ChatBot/ChatBot";
 
 export default function Portfolio() {
   return (
@@ -29,6 +30,9 @@ export default function Portfolio() {
       </div>
       <div className="Hex-part">
         <HexGame />
+      </div>
+      <div className="ChatBot-part">
+        <ChatBot />
       </div>
     </header>
   );
