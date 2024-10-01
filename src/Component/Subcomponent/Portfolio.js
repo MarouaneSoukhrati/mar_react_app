@@ -8,7 +8,6 @@ import aiImage from "../../Logos/aiImage.svg";
 import leftArrow from "../../Logos/leftArrow.svg";
 import rightArrow from "../../Logos/rightArrow.svg";
 import marouaneLogo from "../../Logos/marouane-logo.svg";
-
 import PokerGame from "../Poker/Poker";
 import GomukoGame from "../Gomuko/Gomuko";
 import HexGame from "../Hex/Hex";
@@ -30,9 +29,6 @@ export default function Portfolio() {
       </div>
       <div className="Hex-part">
         <HexGame />
-      </div>
-      <div className="ChatBot-part">
-        <ChatBot />
       </div>
     </header>
   );
@@ -81,7 +77,10 @@ function SideBar() {
 
 function AiBot() {
   const [aiQuest, setAiQuest] = useState("");
+  const [aiVQuest, setAiVQuest] = useState("");
+  const [aiHistory, setAiHistory] = useState([]);
   const aiReadySubmit = aiQuest !== "";
+  const aiReadyValidate = aiVQuest !== "";
 
   function handleInputChange(e) {
     setAiQuest(e.target.value);
@@ -93,7 +92,9 @@ function AiBot() {
   }
 
   function handleMsg() {
-    setAiQuest("Sorry the chat bot is not working currently !");
+    setAiVQuest(aiQuest);
+    setAiQuest("Enter a prompt here ...");
+    setAiHistory([...aiHistory, aiQuest]);
   }
 
   return (
@@ -140,6 +141,7 @@ function AiBot() {
           )}
         </div>
       </div>
+      {aiReadyValidate && <ChatBot request={aiVQuest}/>}
     </div>
   );
 }

@@ -1,0 +1,9 @@
+.ChatBotResponse {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  padding: 2vh;
+  background-color: #ffffff11;
+  border-radius: 30px;
+  margin-bottom: 2vh;
+}

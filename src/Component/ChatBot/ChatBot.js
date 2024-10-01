@@ -1,9 +1,12 @@
+import "../../ComponentStyle/ChatBotStyle/ChatBot.css";
 import { useState, useEffect } from "react";
 import fetch from "node-fetch";
 
-async function query(data) {
+const inference = new HfInference("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");
+
+async function query2(data) {
     const response = await fetch(
-        "https://api-inference.huggingface.co/models/gpt2",
+        "https://api-inference.huggingface.co/models/openai-community/gpt2",
         {
             method: "POST",
             headers: {
@@ -17,13 +20,34 @@ async function query(data) {
     return result;
 }
 
-export default function ChatBot() {
+async function query(data) {
+    let response = [];
+    for await (const chunk of inference.chatCompletionStream({
+        model: "google/gemma-2-2b-it",
+        messages: [{ role: "user", content: request }],
+        max_tokens: 500,
+    })) {
+        response.append(chunk.choices[0]?.delta?.content || "");
+    }
+    let fResponse = response.join();
+    return fResponse;
+}
+
+export default function ChatBot({ request }) {
     let [cResponse, setCResponse] = useState("");
 
     useEffect(() => {
-        query({ inputs: "Today is a great day" }).then((response) => {
+        /*query({
+            inputs: request,
+        }).then((response) => {
             setCResponse(response[0].generated_text);
+        });*/
+        query({
+            inputs: request,
+        }).then((response) => {
+            setCResponse("lol");
+            console.log(response);
         });
-    }, []);
-    return <div>{cResponse}</div>;
+    }, [request]);
+    return <div className="ChatBotResponse">{cResponse}</div>;
 }
