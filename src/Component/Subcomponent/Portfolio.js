@@ -17,11 +17,9 @@ export default function Portfolio() {
   return (
     <header className="App-portfolio">
       <h1 className="port-title">Portfolio</h1>
-      <div className="Ai-part">
-        <SideBar />
-        <AiBot />
-      </div>
-      <div className="Poker-part">
+ 
+   >
+      </div>     <div className="Poker-part">
         <PokerGame playersCount={4} />
       </div>
       <div className="Gomuko-part">
@@ -34,7 +32,7 @@ export default function Portfolio() {
   );
 }
 
-function SideBar() {
+function SideBar() {aiHistory}{
   const [isExtended, setIsExtended] = useState(false);
   function handleExt() {
     setIsExtended(!isExtended);
@@ -75,9 +73,8 @@ function SideBar() {
   );
 }
 
-function AiBot() {
-  const [aiQuest, setAiQuest] = useState("");
-  const [aiVQuest, setAiVQuest] = useState("");
+function AiBot() {aiHistory, setAiHistory}{
+  constiVQuest, setAiVQuest] = useate("");
   const [aiHistory, setAiHistory] = useState([]);
   const aiReadySubmit = aiQuest !== "";
   const aiReadyValidate = aiVQuest !== "";
