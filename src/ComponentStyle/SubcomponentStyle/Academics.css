@@ -84,13 +84,15 @@
 }
 
 .aboutPara {
-  width: 50em;
+  width: 55em;
   height: 0.1875em;
+  margin: 1em;
 }
 
 .abouttxtimg {
   display: flex;
   flex-direction: row;
+  align-items: center;
   padding: 0.625em;
 }
 

@@ -17,9 +17,10 @@ export default function Portfolio() {
   return (
     <header className="App-portfolio">
       <h1 className="port-title">Portfolio</h1>
- 
-   >
-      </div>     <div className="Poker-part">
+      <div className="Ai-part">
+        <AiChatBot />
+      </div>
+      <div className="Poker-part">
         <PokerGame playersCount={4} />
       </div>
       <div className="Gomuko-part">
@@ -32,10 +33,22 @@ export default function Portfolio() {
   );
 }
 
-function SideBar() {aiHistory}{
+function SideBar({ aiHistory, setAiVQuest }) {
   const [isExtended, setIsExtended] = useState(false);
   function handleExt() {
     setIsExtended(!isExtended);
+  }
+  let aiHistoryDiv = aiHistory.map((e) => (
+    <motion.div
+      className="historyTitle"
+      whileHover={{ scale: 1.2 }}
+      onClick={() => handleHistoryTitleClick(e)}
+    >
+      {e}
+    </motion.div>
+  ));
+  function handleHistoryTitleClick(e) {
+    setAiVQuest(e);
   }
   return (
     <>
@@ -44,7 +57,7 @@ function SideBar() {aiHistory}{
           <div className="history-wrapper1">
             <motion.img
               className="ext-img"
-              src={leftArrow}
+              src={rightArrow}
               alt="left-arrow"
               whileHover={{ scale: 1.2 }}
               whileTap={{ scale: 0.9 }}
@@ -59,7 +72,7 @@ function SideBar() {aiHistory}{
           <div className="history-wrapper2">
             <motion.img
               className="ext-img"
-              src={rightArrow}
+              src={leftArrow}
               alt="right-arrow"
               whileHover={{ scale: 1.2 }}
               whileTap={{ scale: 0.9 }}
@@ -67,15 +80,15 @@ function SideBar() {aiHistory}{
             />
             <div className="history-title2">History :</div>
           </div>
+          <div className="historyTitleList">{aiHistoryDiv}</div>
         </div>
       )}
     </>
   );
 }
 
-function AiBot() {aiHistory, setAiHistory}{
-  constiVQuest, setAiVQuest] = useate("");
-  const [aiHistory, setAiHistory] = useState([]);
+function AiBot({ aiHistory, setAiHistory, aiVQuest, setAiVQuest }) {
+  const [aiQuest, setAiQuest] = useState("");
   const aiReadySubmit = aiQuest !== "";
   const aiReadyValidate = aiVQuest !== "";
 
@@ -138,7 +151,23 @@ function AiBot() {aiHistory, setAiHistory}{
           )}
         </div>
       </div>
-      {aiReadyValidate && <ChatBot request={aiVQuest}/>}
+      {aiReadyValidate && <ChatBot request={aiVQuest} />}
     </div>
+  );
+}
+
+function AiChatBot() {
+  const [aiHistory, setAiHistory] = useState([]);
+  const [aiVQuest, setAiVQuest] = useState("");
+  return (
+    <>
+      <SideBar aiHistory={aiHistory} setAiVQuest={setAiVQuest} />
+      <AiBot
+        aiHistory={aiHistory}
+        setAiHistory={setAiHistory}
+        aiVQuest={aiVQuest}
+        setAiVQuest={setAiVQuest}
+      />
+    </>
   );
 }

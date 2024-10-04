@@ -63,7 +63,7 @@ aboutPara.push(
   " In short, I like exploring ways to enhance computers so that they can better serve human creativity and prosperity.",
 );
 aboutPara.push(
-  " I'm also an engineering student at ENSISA who is currently looking for a co-op position",
+  " I'm also an engineering student at ENSISA who is currently looking for a co-op position.",
 );
 aboutPara.push(
   " I'm from Tangier but I have setteled in Mulhouse for the moment.",
