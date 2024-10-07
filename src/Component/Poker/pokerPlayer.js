@@ -2,6 +2,8 @@ import { PokerCard } from "./Poker";
 import { motion } from "framer-motion";
 
 import pokerPlayerLogo from "../../Logos/pokerPlayer.svg";
+import { useEffect } from "react";
+import { useState } from "react";
 
 export class pokerPlayer {
   constructor(name, indexer, stack, bet, hands, timer, action) {
@@ -33,13 +35,30 @@ export function Player({ playerClass, playerIndex }) {
       <div className="playerStack">Stack: {playerClass.stack}$</div>
       <div className="playerBet">Bet: {playerClass.bet}$</div>
       <div className="playerCards">{playerCardsFig}</div>
-      {playerIsActive && (
-        <div className="playerTimerW">
-          ^ Remaining Time ^
-          <motion.div className="playerTimer">{playerClass.timer}s</motion.div>
-          {playerClass.action !== null && <div>{playerClass.action}</div>}
-        </div>
-      )}
+      {playerIsActive && <Countdown playerClass={playerClass} />}
+      {playerClass.action !== null && <div>{playerClass.action}</div>}
+    </div>
+  );
+}
+
+function Countdown({ playerClass }) {
+  const [time, setTime] = useState(playerClass.timer);
+  useEffect(() => {
+    let playerTimer = setInterval(() => {
+      if (playerClass.timer === 0) {
+        setTime(0);
+        clearInterval(playerTimer);
+      } else {
+        playerClass.timer -= 1;
+        setTime(playerClass.timer);
+      }
+    }, 1000);
+    return () => clearInterval(playerTimer);
+  }, [playerClass]);
+
+  return (
+    <div className="playerTimerW">
+      ^ Remaining Time ^<motion.div className="playerTimer">{time}s</motion.div>
     </div>
   );
 }
