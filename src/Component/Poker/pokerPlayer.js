@@ -17,7 +17,13 @@ export class pokerPlayer {
   }
 }
 
-export function Player({ playerClass, playerIndex }) {
+export function Player({
+  playerClass,
+  playerIndex,
+  setPlayerIndex,
+  playersCount,
+  defaultPlayTimer,
+}) {
   let playerCardsFig = [];
   playerCardsFig = playerClass.hands.map((card, index) => (
     <PokerCard
@@ -35,19 +41,35 @@ export function Player({ playerClass, playerIndex }) {
       <div className="playerStack">Stack: {playerClass.stack}$</div>
       <div className="playerBet">Bet: {playerClass.bet}$</div>
       <div className="playerCards">{playerCardsFig}</div>
-      {playerIsActive && <Countdown playerClass={playerClass} />}
+      {playerIsActive && (
+        <Countdown
+          playerClass={playerClass}
+          playerIndex={playerIndex}
+          setPlayerIndex={setPlayerIndex}
+          playersCount={playersCount}
+          defaultPlayTimer={defaultPlayTimer}
+        />
+      )}
       {playerClass.action !== null && <div>{playerClass.action}</div>}
     </div>
   );
 }
 
-function Countdown({ playerClass }) {
+function Countdown({
+  playerClass,
+  playerIndex,
+  setPlayerIndex,
+  playersCount,
+  defaultPlayTimer,
+}) {
   const [time, setTime] = useState(playerClass.timer);
   useEffect(() => {
     let playerTimer = setInterval(() => {
       if (playerClass.timer === 0) {
         setTime(0);
         clearInterval(playerTimer);
+        setPlayerIndex((playerIndex + 1) % playersCount);
+        playerClass.timer = defaultPlayTimer;
       } else {
         playerClass.timer -= 1;
         setTime(playerClass.timer);

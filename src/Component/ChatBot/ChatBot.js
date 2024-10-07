@@ -17,7 +17,7 @@ export default function ChatBot({ request }) {
           "Content-Type": "application/json",
         },
         body: JSON.stringify(data),
-      },
+      }
     );
     const result = await response.json();
     setIsLoading(false);
@@ -37,7 +37,7 @@ export default function ChatBot({ request }) {
         <motion.div
           animate={{
             scale: [1, 2, 2, 1, 1],
-            rotate: [0, 0, 270, 270, 0],
+            rotate: [0, 0, 360, 360, 0],
             borderRadius: ["20%", "20%", "50%", "50%", "20%"],
           }}
           transition={{

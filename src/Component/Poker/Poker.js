@@ -22,7 +22,7 @@ let pokerHands = [
 let pokerCardTypes = ["Clubs", "Diamonds", "Hearts", "Spades"];
 let smallBlind = 50;
 let bigBlind = 100;
-let defaultPlayTimer = 30;
+let defaultPlayTimer = 3;
 
 function initialiseFirstPlayer() {
   let generatedCard1 = generateCards("hands");
@@ -193,7 +193,13 @@ export default function PokerGame({ playersCount }) {
             </motion.div>
           </form>
         )}
-        <PlayersBench playersList={playersList} playerIndex={playerIndex} />
+        <PlayersBench
+          playersList={playersList}
+          playerIndex={playerIndex}
+          setPlayerIndex={setPlayerIndex}
+          playersCount={playersCount}
+          defaultPlayTimer={defaultPlayTimer}
+        />
       </div>
       <div className="poker-wrapper">
         <h1 style={{ color: "yellow", paddingBottom: "50px" }}>
@@ -238,16 +244,35 @@ export default function PokerGame({ playersCount }) {
           </>
         )}
         <div className="firstPerson">
-          <Player playerClass={firstPlayer} playerIndex={playerIndex} />
+          <Player
+            playerClass={firstPlayer}
+            playerIndex={playerIndex}
+            setPlayerIndex={setPlayerIndex}
+            playersCount={playersCount}
+            defaultPlayTimer={defaultPlayTimer}
+          />
         </div>
       </div>
     </div>
   );
 }
 
-function PlayersBench({ playersList, playerIndex }) {
+function PlayersBench({
+  playersList,
+  playerIndex,
+  setPlayerIndex,
+  playersCount,
+  defaultPlayTimer,
+}) {
   let benchFig = playersList.map((plr) => (
-    <Player key={plr.name} playerClass={plr} playerIndex={playerIndex} />
+    <Player
+      key={plr.name}
+      playerClass={plr}
+      playerIndex={playerIndex}
+      setPlayerIndex={setPlayerIndex}
+      playersCount={playersCount}
+      defaultPlayTimer={defaultPlayTimer}
+    />
   ));
   return <div className="playersBench">{benchFig}</div>;
 }
