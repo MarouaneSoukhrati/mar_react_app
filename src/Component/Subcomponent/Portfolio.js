@@ -103,7 +103,7 @@ function AiBot({ aiHistory, setAiHistory, aiVQuest, setAiVQuest }) {
 
   function handleMsg() {
     setAiVQuest(aiQuest);
-    setAiQuest("Enter a prompt here ...");
+    setAiQuest("");
     setAiHistory([...aiHistory, aiQuest]);
   }
 

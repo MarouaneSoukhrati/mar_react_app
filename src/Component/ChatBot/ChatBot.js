@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 
 export default function ChatBot({ request }) {
   const [isLoading, setIsLoading] = useState(false);
-  let [cResponse, setCResponse] = useState("");
+  const [cResponse, setCResponse] = useState("");
 
   async function query(data) {
     setIsLoading(true);

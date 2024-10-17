@@ -1,9 +1,8 @@
 import { PokerCard } from "./Poker";
 import { motion } from "framer-motion";
+import { useState, useEffect } from "react";
 
 import pokerPlayerLogo from "../../Logos/pokerPlayer.svg";
-import { useEffect } from "react";
-import { useState } from "react";
 
 export class pokerPlayer {
   constructor(name, indexer, stack, bet, hands, timer, action) {
@@ -23,6 +22,9 @@ export function Player({
   setPlayerIndex,
   playersCount,
   defaultPlayTimer,
+  gameHasStarted,
+  gameHasEnded,
+  isPotWon,
 }) {
   let playerCardsFig = [];
   playerCardsFig = playerClass.hands.map((card, index) => (
@@ -48,6 +50,9 @@ export function Player({
           setPlayerIndex={setPlayerIndex}
           playersCount={playersCount}
           defaultPlayTimer={defaultPlayTimer}
+          gameHasStarted={gameHasStarted}
+          gameHasEnded={gameHasEnded}
+          isPotWon={isPotWon}
         />
       )}
       {playerClass.action !== null && <div>{playerClass.action}</div>}
@@ -61,26 +66,45 @@ function Countdown({
   setPlayerIndex,
   playersCount,
   defaultPlayTimer,
+  gameHasStarted,
+  gameHasEnded,
+  isPotWon,
 }) {
   const [time, setTime] = useState(playerClass.timer);
+  let isRoundOn = gameHasStarted && !gameHasEnded && !isPotWon;
   useEffect(() => {
-    let playerTimer = setInterval(() => {
-      if (playerClass.timer === 0) {
-        setTime(0);
-        clearInterval(playerTimer);
-        setPlayerIndex((playerIndex + 1) % playersCount);
-        playerClass.timer = defaultPlayTimer;
-      } else {
-        playerClass.timer -= 1;
-        setTime(playerClass.timer);
-      }
-    }, 1000);
-    return () => clearInterval(playerTimer);
-  }, [playerClass]);
+    if (!isRoundOn) {
+      return;
+    } else {
+      let playerTimer = setInterval(() => {
+        if (playerClass.timer === 0) {
+          setTime(0);
+          clearInterval(playerTimer);
+          setPlayerIndex((playerIndex + 1) % playersCount);
+          playerClass.timer = defaultPlayTimer;
+        } else {
+          playerClass.timer -= 1;
+          setTime(playerClass.timer);
+        }
+      }, 1000);
+    }
+  }, [
+    playerClass,
+    playerIndex,
+    isRoundOn,
+    playersCount,
+    defaultPlayTimer,
+    setPlayerIndex,
+  ]);
 
   return (
-    <div className="playerTimerW">
-      ^ Remaining Time ^<motion.div className="playerTimer">{time}s</motion.div>
-    </div>
+    <>
+      {isRoundOn && (
+        <div className="playerTimerW">
+          ^ Remaining Time ^
+          <motion.div className="playerTimer">{time}s</motion.div>
+        </div>
+      )}
+    </>
   );
 }

@@ -118,14 +118,14 @@ export default function PokerGame({ playersCount }) {
   const [gameHasEnded, setGameHasEnded] = useState(false);
   const [isPotWon, setIsPotWon] = useState(false);
   const [deckList, setDeckList] = useState(initialiseDeck());
+  const [gameHasStarted, setGameHasStarted] = useState(false);
 
-  let GameHasStarted = firstPlayer.name !== "Player 0";
   let currentBet = Math.max(
     ...playersList.map((plr) => plr.bet),
     firstPlayer.bet
   );
   let myPlyrCallCheck = firstPlayer.bet < currentBet ? "Call" : "Check";
-  let roundIsOn = GameHasStarted && !gameHasEnded && !isPotWon;
+  let isRoundOn = gameHasStarted && !gameHasEnded && !isPotWon;
 
   function handleNameForm(e) {
     e.preventDefault();
@@ -137,44 +137,45 @@ export default function PokerGame({ playersCount }) {
       return;
     }
     setFirstPlayer({ ...firstPlayer, name: firstName });
+    setGameHasStarted(true);
   }
 
-  /*useEffect(() => {
-    let timer = setInterval(() => {
-      setPlayTimer((time) => {
-        if (!roundIsOn) {
-          clearInterval(timer);
-          return 0;
-        }
-        if (time === 0) {
-          clearInterval(timer);
-          setPlayerIndex((playerIndex + 1) % playersCount);
-          return defaultPlayTimer;
-        } else {
-          return time - 1;
-        }
-      });
-    }, 1000);
-    if (deckList.length === 5 && playerIndex === playersCount - 1) {
-      setIsPotWon(true);
+  useEffect(() => {
+    if (!isRoundOn) {
+      return;
+    } else {
+      if (playerIndex === playersCount - 1 && deckList.length === 5) {
+        setIsPotWon(true);
+      }
+      if (playerIndex === 0 && deckList.length < 5) {
+        let newDeckList = [...deckList];
+        let generatedCard = generateCards("deck");
+        newDeckList.push({
+          cardType: generatedCard[0],
+          cardNumber: generatedCard[1],
+          cardEmp: "deck",
+        });
+        setDeckList(newDeckList);
+      }
     }
-    if (roundIsOn && playerIndex === 0 && deckList.length < 5) {
-      let newDeckList = [...deckList];
-      let generatedCard = generateCards("deck");
-      newDeckList.push({
-        cardType: generatedCard[0],
-        cardNumber: generatedCard[1],
-        cardEmp: "deck",
-      });
-      setDeckList(newDeckList);
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [playerIndex, isPotWon, gameHasEnded, playTimer]);*/
+  }, [deckList, playersCount, playerIndex, isRoundOn]);
+
+  function firstPlayerHandleFold() {
+    return;
+  }
+
+  function firstPlayerHandleRaise() {
+    return;
+  }
+
+  function firstPlayerHandleCallOrCheck() {
+    return;
+  }
 
   return (
     <div className="game-wrapper">
       <div className="bench-wrapper">
-        {!GameHasStarted && (
+        {!gameHasStarted && (
           <form className="gameForm" onSubmit={handleNameForm}>
             <input
               className="first-p-name"
@@ -199,6 +200,9 @@ export default function PokerGame({ playersCount }) {
           setPlayerIndex={setPlayerIndex}
           playersCount={playersCount}
           defaultPlayTimer={defaultPlayTimer}
+          gameHasStarted={gameHasStarted}
+          gameHasEnded={gameHasEnded}
+          isPotWon={isPotWon}
         />
       </div>
       <div className="poker-wrapper">
@@ -207,13 +211,15 @@ export default function PokerGame({ playersCount }) {
         </h1>
         <PokerTable
           deckList={deckList}
-          GameHasStarted={GameHasStarted}
+          firstPlayer={firstPlayer}
+          playersList={playersList}
+          gameHasStarted={gameHasStarted}
           gameHasEnded={gameHasEnded}
           setGameHasEnded={setGameHasEnded}
           isPotWon={isPotWon}
           setIsPotWon={setIsPotWon}
         />
-        {playerIndex === 0 && (
+        {playerIndex === 0 && isRoundOn && (
           <>
             <div className="slider-wrapper">
               {true && <SliderWithLimits min={0} max={firstPlayer.stack} />}
@@ -223,6 +229,7 @@ export default function PokerGame({ playersCount }) {
                 className="control-button"
                 whileHover={{ scale: "1.2" }}
                 whileTap={{ scale: "0.9" }}
+                onClick={firstPlayerHandleCallOrCheck}
               >
                 {myPlyrCallCheck}
               </motion.div>
@@ -230,6 +237,7 @@ export default function PokerGame({ playersCount }) {
                 className="control-button"
                 whileHover={{ scale: "1.2" }}
                 whileTap={{ scale: "0.9" }}
+                onClick={firstPlayerHandleFold}
               >
                 Fold
               </motion.div>
@@ -237,6 +245,7 @@ export default function PokerGame({ playersCount }) {
                 className="control-button"
                 whileHover={{ scale: "1.2" }}
                 whileTap={{ scale: "0.9" }}
+                onClick={firstPlayerHandleRaise}
               >
                 Raise
               </motion.div>
@@ -250,6 +259,9 @@ export default function PokerGame({ playersCount }) {
             setPlayerIndex={setPlayerIndex}
             playersCount={playersCount}
             defaultPlayTimer={defaultPlayTimer}
+            gameHasStarted={gameHasStarted}
+            gameHasEnded={gameHasEnded}
+            isPotWon={isPotWon}
           />
         </div>
       </div>
@@ -263,6 +275,9 @@ function PlayersBench({
   setPlayerIndex,
   playersCount,
   defaultPlayTimer,
+  gameHasStarted,
+  gameHasEnded,
+  isPotWon,
 }) {
   let benchFig = playersList.map((plr) => (
     <Player
@@ -272,6 +287,9 @@ function PlayersBench({
       setPlayerIndex={setPlayerIndex}
       playersCount={playersCount}
       defaultPlayTimer={defaultPlayTimer}
+      gameHasStarted={gameHasStarted}
+      gameHasEnded={gameHasEnded}
+      isPotWon={isPotWon}
     />
   ));
   return <div className="playersBench">{benchFig}</div>;
@@ -281,7 +299,7 @@ function PokerTable({
   deckList,
   firstPlayer,
   playersList,
-  GameHasStarted,
+  gameHasStarted,
   gameHasEnded,
   setGameHasEnded,
   isPotWon,
@@ -298,7 +316,7 @@ function PokerTable({
     setGameHasEnded(false);
   }
 
-  if (!GameHasStarted) {
+  if (!gameHasStarted) {
     return (
       <div className="poker-table">
         <div className="Deck">{hiddenDeck}</div>
