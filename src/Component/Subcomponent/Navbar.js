@@ -16,11 +16,24 @@ export default function Navbar() {
   return (
     <div className="big-navbar">
       <div className="navbar">
-        <NavLink className="nav-element" to="/"><div>Home</div></NavLink>
-        <NavLink className="nav-element" to="/about"><div>About</div></NavLink>
-        <NavLink className="nav-element" to="/academics"><div>Academics</div></NavLink>
-        <NavLink className="nav-element" to="/portfolio"><div>Portfolio</div></NavLink>
-        <NavLink className="nav-element" to="/contact"><div>Contact</div></NavLink>
+        <NavLink className="nav-element" to="/">
+          <div>Home</div>
+        </NavLink>
+        <NavLink className="nav-element" to="/about">
+          <div>About</div>
+        </NavLink>
+        <NavLink className="nav-element" to="/academics">
+          <div>Academics</div>
+        </NavLink>
+        <NavLink className="nav-element" to="/portfolio">
+          <div>Portfolio</div>
+        </NavLink>
+        <NavLink className="nav-element" to="/contact">
+          <div>Contact</div>
+        </NavLink>
+        <NavLink className="nav-element" to="/crypto">
+          <div>Crypto</div>
+        </NavLink>
       </div>
       <div className="langbar">
         <img

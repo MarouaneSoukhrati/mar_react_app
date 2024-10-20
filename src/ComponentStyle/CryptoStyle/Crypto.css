@@ -1,0 +1,111 @@
+.App-crypto {
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 6.25em;
+}
+
+.Crypto-Wrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-evenly;
+  padding: 50px;
+}
+
+.IntroPart {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #ffffff11;
+  padding: 50px;
+  border-radius: 15px;
+  margin: 15px;
+  width: 30vw;
+  border: solid 2px white;
+}
+
+.InformationPart {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #ffffff11;
+  padding: 50px;
+  border-radius: 15px;
+  margin: 15px;
+  border: solid 2px white;
+}
+
+.CreditCardLogoStyle {
+  height: 10vh;
+  margin-bottom: 15px;
+  border-radius: 50px;
+  border: solid white 2px;
+  margin: 30px;
+}
+
+.TryButton {
+  text-decoration: none;
+  color: black;
+  background-color: yellow;
+  padding: 0.5em;
+  border: solid 0.125em white;
+  font-size: 1em;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 3.125em;
+  width: 8.125em;
+  cursor: pointer;
+}
+
+.formForm {
+}
+
+.SubmitButton {
+  text-decoration: none;
+  color: black;
+  background-color: yellow;
+  padding: 0.5em;
+  border: solid 0.125em white;
+  font-size: 1em;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 3.125em;
+  width: 14em;
+  margin: 30px;
+  cursor: pointer;
+}
+
+.InputsForm {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.InputsForm input {
+  padding: 1.25em;
+  border-radius: 1em;
+  margin: 0.35em;
+  font-family: Arial, Helvetica, sans-serif;
+  width: 15em;
+}
+
+.CryptoCurrPara1 {
+  text-align: center;
+  color: yellow;
+  margin-bottom: 5vh;
+}
+
+.CryptoCurrPara2 {
+  text-align: center;
+  margin-bottom: 7vh;
+}
