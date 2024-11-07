@@ -63,16 +63,18 @@ function CoinGraphics() {
     fetch("https://api.coinranking.com/v2/coins", options)
       .then((response) => response.json())
       .then((result) => setGraphicsList(result.data.coins));
-  }, [coinVName]);
+  }, []);
 
-  let graphicsDes = graphicsList.map((e) => (
+  let filteredGraphicsList = graphicsList.filter((el) =>
+    el.name.toUpperCase().startsWith(coinVName.toUpperCase())
+  );
+
+  let graphicsDes = filteredGraphicsList.map((e) => (
     <Coin CoinName={e.name} CoinValue={e.price + "$"} CoinLogo={e.iconUrl} />
   ));
 
   function handleChange(e) {
     setCoinVName(e.target.value);
-    let gNewList = [...graphicsList].filter((el) => el.name === e.target.value);
-    setGraphicsList(gNewList);
   }
 
   return (
