@@ -1,6 +1,6 @@
 import "../../ComponentStyle/CryptoStyle/Crypto.css";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 
 import CreditCardLogo from "../../Logos/MoorLogo.svg";
@@ -32,7 +32,61 @@ export default function Crypto() {
           <CryptoFormulaire />
         </div>
       </div>
+      <CoinGraphics />
     </header>
+  );
+}
+
+function Coin({ CoinName, CoinValue, CoinLogo }) {
+  return (
+    <div className="coinGr">
+      <img className="coinLogo" src={CoinLogo} alt="coinLogo">
+        {Coin.Logo}
+      </img>
+      <div className="coinName">{CoinName}</div>
+      <div className="coinValue">{CoinValue}</div>
+    </div>
+  );
+}
+
+function CoinGraphics() {
+  const options = {
+    headers: {
+      "x-access-token":
+        "coinranking0932477bb045d38988b7564f24af2967be9ffbc7e5bf9799",
+    },
+  };
+  const [graphicsList, setGraphicsList] = useState([]);
+  const [coinVName, setCoinVName] = useState("");
+
+  useEffect(() => {
+    fetch("https://api.coinranking.com/v2/coins", options)
+      .then((response) => response.json())
+      .then((result) => setGraphicsList(result.data.coins));
+  }, [coinVName]);
+
+  let graphicsDes = graphicsList.map((e) => (
+    <Coin CoinName={e.name} CoinValue={e.price + "$"} CoinLogo={e.iconUrl} />
+  ));
+
+  function handleChange(e) {
+    setCoinVName(e.target.value);
+    let gNewList = [...graphicsList].filter((el) => el.name === e.target.value);
+    setGraphicsList(gNewList);
+  }
+
+  return (
+    <div className="GraphicsBackGround">
+      <h1 className="graphTitleBar">Famous Coins Prices:</h1>
+      <input
+        className="cryptoName"
+        type="text"
+        value={coinVName}
+        placeholder="Search Coin name"
+        onChange={handleChange}
+      ></input>
+      <div>{graphicsDes}</div>
+    </div>
   );
 }
 

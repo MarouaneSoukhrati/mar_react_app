@@ -109,3 +109,52 @@
   text-align: center;
   margin-bottom: 7vh;
 }
+
+.GraphicsBackGround {
+  border: solid white 3px;
+  border-radius: 30px;
+  padding: 5vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.cryptoName {
+  margin-bottom: 5vh;
+  border-radius: 15px;
+  text-align: center;
+}
+
+.coinGr {
+  background-color: black;
+  border-radius: 15px;
+  padding: 1.5vh 3vw;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-bottom: 1vh;
+}
+
+.coinLogo {
+  width: 2vw;
+  height: 2vw;
+}
+
+.coinValue {
+  color: white;
+  margin-left: 2vw;
+}
+
+.graphTitleBar {
+  color: white;
+  margin-bottom: 10vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.coinName {
+  color: yellow;
+  margin-left: 2vw;
+  width: 10vw;
+}
