@@ -79,6 +79,25 @@ function Coin({ CoinName, CoinValue, CoinLogo, isSelected }) {
 function MyChart({ chartList, selectedIndex }) {
   const chartRef = useRef(null);
 
+  const data = {
+    labels: chartList.map((e) => e.name),
+    datasets: [
+      {
+        label: "Coin Prices",
+        data: chartList.map((e, index) => {
+          return {
+            x: index,
+            y: e.price,
+            r: e.price,
+          };
+        }),
+        backgroundColor: "red",
+        borderColor: "white",
+        borderWidth: 1,
+      },
+    ],
+  };
+
   useEffect(() => {
     const ctx = chartRef.current.getContext("2d");
 
