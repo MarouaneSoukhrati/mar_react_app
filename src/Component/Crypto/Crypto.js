@@ -104,7 +104,7 @@ function MyChart({ chartList, selectedIndex }) {
     const myChart = new Chart(ctx, {
       type: "line",
       data: {
-        labels: chartList.map((e, index) => e.name),
+        labels: chartList.map((e) => e.name),
         datasets: [
           {
             label: "Coin Price",
@@ -118,9 +118,14 @@ function MyChart({ chartList, selectedIndex }) {
         ],
       },
       options: {
+        plugins: {
+          legend: {
+            display: false,
+          },
+        },
         scales: {
           y: {
-            beginAtZero: true,
+            beginAtZero: false,
           },
           x: {
             ticks: {
@@ -128,6 +133,9 @@ function MyChart({ chartList, selectedIndex }) {
                 index === selectedIndex ? "yellow" : "white"
               ),
               padding: 10,
+              font: {
+                size: 5, // Adjust font size
+              },
             },
           },
         },
@@ -208,7 +216,24 @@ function CoinGraphics() {
         placeholder="Search Coin name"
         onChange={handleChange}
       ></input>
-      <MyChart chartList={filteredGraphicsList} selectedIndex={sCoinIndex} />
+      {filteredGraphicsList.length !== 0 &&
+        sCoinIndex < filteredGraphicsList.length && (
+          <div className="legendCoin">
+            <div className="selectedCoin">
+              <img
+                className="selectedCoinImg"
+                src={filteredGraphicsList[sCoinIndex].iconUrl}
+                alt="selectedCoinLogo"
+              />
+              <div>{filteredGraphicsList[sCoinIndex].name}</div>
+            </div>
+            <div>{filteredGraphicsList[sCoinIndex].price + "$"}</div>
+            <MyChart
+              chartList={filteredGraphicsList}
+              selectedIndex={sCoinIndex}
+            />
+          </div>
+        )}
       {responseValid && <div>{graphicsDes}</div>}
       {!responseValid && (
         <motion.div

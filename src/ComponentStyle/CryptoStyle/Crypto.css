@@ -173,3 +173,29 @@
   margin-left: 2vw;
   width: 10vw;
 }
+
+.selectedCoin {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  color: yellow;
+  background-color: #ffffff77;
+  padding: 1vh 3vw;
+  border-radius: 15px;
+  margin-bottom: 2vh;
+}
+
+.selectedCoinImg {
+  height: 3vh;
+  width: 3vh;
+  margin-right: 0.5vw;
+}
+
+.legendCoin {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: yellow;
+}
