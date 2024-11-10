@@ -141,7 +141,9 @@
 }
 
 .coinValueSelected {
-  color: #00ff0099;
+  color: white;
+  margin-left: 2vw;
+  margin-right: 2vw;
 }
 
 .coinsChart {
@@ -158,6 +160,8 @@
 .coinValue {
   color: white;
   margin-left: 2vw;
+  margin-right: 2vw;
+  width: 12vw;
 }
 
 .graphTitleBar {
@@ -198,4 +202,12 @@
   align-items: center;
   justify-content: center;
   color: yellow;
+}
+
+.greenChange {
+  color: #00ff0099;
+}
+
+.redChange {
+  color: red;
 }

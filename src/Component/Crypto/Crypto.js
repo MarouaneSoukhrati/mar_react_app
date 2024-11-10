@@ -38,7 +38,7 @@ export default function Crypto() {
   );
 }
 
-function Coin({ CoinName, CoinValue, CoinLogo, isSelected }) {
+function Coin({ CoinName, CoinValue, CoinLogo, CoinChange, isSelected }) {
   return (
     <>
       {isSelected && (
@@ -61,6 +61,11 @@ function Coin({ CoinName, CoinValue, CoinLogo, isSelected }) {
           </img>
           <div className="coinName">{CoinName}</div>
           <div className="coinValueSelected">{CoinValue}</div>
+          {CoinChange > 0 ? (
+            <div className="greenChange">+{CoinChange}%</div>
+          ) : (
+            <div className="redChange">{CoinChange}%</div>
+          )}
         </motion.div>
       )}
       {!isSelected && (
@@ -70,6 +75,11 @@ function Coin({ CoinName, CoinValue, CoinLogo, isSelected }) {
           </img>
           <div className="coinName">{CoinName}</div>
           <div className="coinValue">{CoinValue}</div>
+          {CoinChange > 0 ? (
+            <div className="greenChange">+{CoinChange}%</div>
+          ) : (
+            <div className="redChange">{CoinChange}%</div>
+          )}
         </div>
       )}
     </>
@@ -78,26 +88,6 @@ function Coin({ CoinName, CoinValue, CoinLogo, isSelected }) {
 
 function MyChart({ chartList, selectedIndex }) {
   const chartRef = useRef(null);
-
-  const data = {
-    labels: chartList.map((e) => e.name),
-    datasets: [
-      {
-        label: "Coin Prices",
-        data: chartList.map((e, index) => {
-          return {
-            x: index,
-            y: e.price,
-            r: e.price,
-          };
-        }),
-        backgroundColor: "red",
-        borderColor: "white",
-        borderWidth: 1,
-      },
-    ],
-  };
-
   useEffect(() => {
     const ctx = chartRef.current.getContext("2d");
 
@@ -113,6 +103,15 @@ function MyChart({ chartList, selectedIndex }) {
               index === selectedIndex ? "yellow" : "red"
             ),
             borderColor: "white",
+            borderWidth: 1,
+          },
+          {
+            label: "Coin Change indicator (x1000)",
+            data: chartList.map((e) => e.change * 1000),
+            backgroundColor: chartList.map((e, index) =>
+              index === selectedIndex ? "pink" : "purple"
+            ),
+            borderColor: "purple",
             borderWidth: 1,
           },
         ],
@@ -176,6 +175,7 @@ function CoinGraphics() {
       CoinName={e.name}
       CoinValue={e.price + "$"}
       CoinLogo={e.iconUrl}
+      CoinChange={e.change}
       isSelected={index === sCoinIndex}
     />
   ));
