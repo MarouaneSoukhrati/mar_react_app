@@ -12,6 +12,7 @@ import About from "./Component/Subcomponent/About";
 import Contact from "./Component/Subcomponent/Contact";
 import Academics from "./Component/Subcomponent/Academics";
 import Crypto from "./Component/Crypto/Crypto";
+import MachineLearning from "./Component/MachineLearning/MachineLearning";
 
 const router = createBrowserRouter([
   {
@@ -28,10 +29,6 @@ const router = createBrowserRouter([
         element: <Portfolio />,
       },
       {
-        path: "/academics",
-        element: <Academics />,
-      },
-      {
         path: "/about",
         element: <About />,
       },
@@ -42,6 +39,14 @@ const router = createBrowserRouter([
       {
         path: "/crypto",
         element: <Crypto />,
+      },
+      {
+        path: "/academics",
+        element: <Academics />,
+      },
+      {
+        path: "/machinelearning",
+        element: <MachineLearning />,
       },
     ],
   },

@@ -1,6 +1,6 @@
 import "../../ComponentStyle/CryptoStyle/Crypto.css";
 
-import React, { useEffect, useState, useRef, memo } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { motion } from "framer-motion";
 import Chart from "chart.js/auto";
 
@@ -103,15 +103,6 @@ function MyChart({ chartList, selectedIndex }) {
               index === selectedIndex ? "yellow" : "red"
             ),
             borderColor: "white",
-            borderWidth: 1,
-          },
-          {
-            label: "Coin Change indicator (x1000)",
-            data: chartList.map((e) => e.change * 1000),
-            backgroundColor: chartList.map((e, index) =>
-              index === selectedIndex ? "pink" : "purple"
-            ),
-            borderColor: "purple",
             borderWidth: 1,
           },
         ],
