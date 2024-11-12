@@ -6,3 +6,11 @@
   align-items: center;
   padding: 6.25em;
 }
+
+.machineL1 {
+  border: solid 3px white;
+  padding: 50px;
+  border-radius: 15px;
+  margin-top: 5vh;
+  width: 80vw;
+}
