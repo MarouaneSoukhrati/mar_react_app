@@ -16,7 +16,6 @@ export default function MachineLearning() {
 
 function MachineL1() {
   const [trainingEnded, setTrainingEnded] = useState(false);
-
   useEffect(() => {
     let runScript = async () => {
       run();
@@ -133,35 +132,24 @@ function MachineL1() {
       loss: tf.losses.meanSquaredError,
       metrics: ["mse"],
     });
-
     const batchSize = 32;
     const epochs = 50;
-
-    let trainedModel = await model.fit(inputs, labels, {
-      batchSize,
-      epochs,
-      shuffle: true,
-    });
-
-    const lossValues = trainedModel.history.loss;
-    const mseValues = trainedModel.history.mse;
-
     const ctx = document.getElementById("trainChart").getContext("2d");
     let trainChart = new Chart(ctx, {
       type: "line",
       data: {
-        labels: [...Array(epochs).keys()],
+        labels: [], //[...Array(epochs).keys()],
         datasets: [
           {
             label: "Loss",
-            data: lossValues,
+            data: [], //lossValues,
             backgroundColor: "rgba(255, 99, 132, 0.2)",
             borderColor: "rgba(255, 99, 132, 1)",
             borderWidth: 1,
           },
           {
             label: "MSE",
-            data: mseValues,
+            data: [], //mseValues,
             backgroundColor: "rgba(54, 162, 235, 0.2)",
             borderColor: "rgba(54, 162, 235, 1)",
             borderWidth: 1,
@@ -170,6 +158,13 @@ function MachineL1() {
       },
       options: {
         scales: {
+          xAxes: [
+            {
+              time: {
+                unit: "epoch",
+              },
+            },
+          ],
           yAxes: [
             {
               ticks: {
@@ -179,6 +174,22 @@ function MachineL1() {
           ],
         },
       },
+    });
+
+    let trainedModel = await model.fit(inputs, labels, {
+      batchSize,
+      epochs,
+      shuffle: true,
+      callbacks: [
+        {
+          onEpochEnd: (epoch, logs) => {
+            trainChart.data.labels.push(epoch);
+            trainChart.data.datasets[0].data.push(logs.loss);
+            trainChart.data.datasets[1].data.push(logs.mse);
+            trainChart.update();
+          },
+        },
+      ],
     });
   }
 
@@ -244,26 +255,29 @@ function MachineL1() {
   }
 
   let LoadingText = () => {
-    return(<motion.div
-      animate={{
-        scale: [1, 2, 2, 1, 1],
-        rotate: [0, 0, 360, 360, 0],
-        borderRadius: ["20%", "20%", "50%", "50%", "20%"],
-      }}
-      transition={{
-        duration: 2,
-        ease: "easeInOut",
-        times: [0, 0.2, 0.5, 0.8, 1],
-        repeat: Infinity,
-        repeatDelay: 1,
-      }}
-      style={{
-        padding: "3vh"
-      }}
-    >
-      Training model ...
-    </motion.div>);
-  }
+    return (
+      <motion.div
+        animate={{
+          scale: [1, 2, 2, 1, 1],
+          rotate: [0, 0, 360, 360, 0],
+          borderRadius: ["20%", "20%", "50%", "50%", "20%"],
+        }}
+        transition={{
+          duration: 2,
+          ease: "easeInOut",
+          times: [0, 0.2, 0.5, 0.8, 1],
+          repeat: Infinity,
+          repeatDelay: 1,
+        }}
+        style={{
+          padding: "3vh",
+          marginBottom: "-23vh",
+        }}
+      >
+        Training the model ...
+      </motion.div>
+    );
+  };
 
   return (
     <div className="machineL1">
@@ -271,10 +285,9 @@ function MachineL1() {
       <canvas id="myChart" className="dataCanvas"></canvas>
       <h2>Training the dataset</h2>
       <canvas id="trainChart" className="trainingCanvas"></canvas>
-      {!trainingEnded && <LoadingText />}
       <h2>Expected Result</h2>
-      <canvas id="testChart" className="testingCanvas"></canvas>
       {!trainingEnded && <LoadingText />}
+      <canvas id="testChart" className="testingCanvas"></canvas>
     </div>
   );
 }
