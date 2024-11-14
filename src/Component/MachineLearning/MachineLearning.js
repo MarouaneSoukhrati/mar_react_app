@@ -138,18 +138,18 @@ function MachineL1() {
     let trainChart = new Chart(ctx, {
       type: "line",
       data: {
-        labels: [], //[...Array(epochs).keys()],
+        labels: [],
         datasets: [
           {
             label: "Loss",
-            data: [], //lossValues,
+            data: [],
             backgroundColor: "rgba(255, 99, 132, 0.2)",
             borderColor: "rgba(255, 99, 132, 1)",
             borderWidth: 1,
           },
           {
             label: "MSE",
-            data: [], //mseValues,
+            data: [],
             backgroundColor: "rgba(54, 162, 235, 0.2)",
             borderColor: "rgba(54, 162, 235, 1)",
             borderWidth: 1,
@@ -271,7 +271,6 @@ function MachineL1() {
         }}
         style={{
           padding: "3vh",
-          marginBottom: "-23vh",
         }}
       >
         Training the model ...
