@@ -30,6 +30,7 @@ export default function Crypto() {
             className="CreditCardLogoStyle"
             alt="CreditCard"
           ></img>
+          <p>The Moorish Coin</p>
           <CryptoFormulaire />
         </div>
       </div>

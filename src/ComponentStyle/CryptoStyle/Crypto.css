@@ -42,10 +42,9 @@
 
 .CreditCardLogoStyle {
   height: 10vh;
-  margin-bottom: 15px;
   border-radius: 50px;
   border: solid white 2px;
-  margin: 30px;
+  margin: 10px 30px;
 }
 
 .TryButton {
