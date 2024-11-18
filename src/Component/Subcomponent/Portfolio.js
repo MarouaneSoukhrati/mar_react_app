@@ -8,10 +8,16 @@ import aiImage from "../../Logos/aiImage.svg";
 import leftArrow from "../../Logos/leftArrow.svg";
 import rightArrow from "../../Logos/rightArrow.svg";
 import marouaneLogo from "../../Logos/marouane-logo.svg";
-import PokerGame from "../Poker/Poker";
 import GomukoGame from "../Gomuko/Gomuko";
 import HexGame from "../Hex/Hex";
 import ChatBot from "../ChatBot/ChatBot";
+
+//import PokerGame from "../Poker/Poker";
+/*
+      <div className="Poker-part">
+        <PokerGame playersCount={4} />
+      </div>
+*/
 
 export default function Portfolio() {
   return (
@@ -19,9 +25,6 @@ export default function Portfolio() {
       <h1 className="port-title">Portfolio</h1>
       <div className="Ai-part">
         <AiChatBot />
-      </div>
-      <div className="Poker-part">
-        <PokerGame playersCount={4} />
       </div>
       <div className="Gomuko-part">
         <GomukoGame />

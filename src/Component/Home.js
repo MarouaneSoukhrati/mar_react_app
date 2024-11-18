@@ -32,12 +32,15 @@ export default function Home() {
           <img className="Capsule" src={Capsule} alt="Capsule" />
         </div>
         <p className="mobpara">{mobtxt}</p>
-        <motion.button
-            className="mobility"
-            whileHover={{ opacity: 0.4 }}
-          >
-            Learn more
-          </motion.button>
+        <motion.a
+          className="mobility"
+          whileHover={{ opacity: 0.4 }}
+          href="https://www.mckinsey.com/industries/automotive-and-assembly/our-insights/the-future-of-mobility-mobility-evolves"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Learn more
+        </motion.a>
       </div>
     </div>
   );

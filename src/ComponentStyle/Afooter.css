@@ -63,6 +63,12 @@
   color: #ffffff55;
 }
 
+.footer-item-about {
+  padding-bottom: 0.3125em;
+  color: #ffffff55;
+  text-decoration: none;
+}
+
 .copyright {
   text-align: center;
   width: max-content;

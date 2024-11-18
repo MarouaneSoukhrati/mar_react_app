@@ -32,9 +32,16 @@ let socialMediaList = socialMediaNamesList.map((name, index) => (
     rel="noreferrer"
     whileHover={{ scale: 1.5 }}
   >
-    <img className="social-media-logo" src={name} alt={name}/>
+    <img className="social-media-logo" src={name} alt={name} />
   </motion.a>
 ));
+
+let aboutLinks = [
+  "https://s-marouane.netlify.app/",
+  "https://s-marouane.netlify.app/",
+  "https://s-marouane.netlify.app/",
+  "https://s-marouane.netlify.app/",
+];
 
 let listerNames = {
   About: ["Career", "Portfolio", "Academics", "Freelance"],
@@ -55,22 +62,33 @@ let Lister = Object.keys(listerNames).map((keyElem, index) => (
   <div className="lister-item" key={keyElem}>
     <div className="lister-item-title">{keyElem}</div>
     <div className="lister-item-list">
-      {listerNames[keyElem].map((item) => (
-        <div className="footer-item" key={item}>{item}</div>
-      ))}
+      {keyElem !== "About"
+        ? listerNames[keyElem].map((item) => (
+            <div className="footer-item" key={item}>
+              {item}
+            </div>
+          ))
+        : listerNames[keyElem].map((item, index) => (
+            <a
+              className="footer-item-about"
+              target="_blank"
+              rel="noopener noreferrer"
+              href={aboutLinks[index]}
+            >
+              {item}
+            </a>
+          ))}
     </div>
   </div>
 ));
 
 export function SocialMediaWrapper() {
-  return(
-    <div className="social-media-wrapper">{socialMediaList}</div>
-  );
+  return <div className="social-media-wrapper">{socialMediaList}</div>;
 }
 
 export default function Afooter() {
   return (
-    <div className="App-footer">  
+    <div className="App-footer">
       <div className="footer-wrapper">
         <div className="logo-section">
           <img
@@ -79,7 +97,7 @@ export default function Afooter() {
             alt="marouane-logo"
           />
           <p className="copyright">Mar One - All rights reserved © 2024</p>
-          <SocialMediaWrapper/>
+          <SocialMediaWrapper />
         </div>
         <div className="lister-section">{Lister}</div>
       </div>
