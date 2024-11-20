@@ -560,5 +560,30 @@ function GomukoTable({
     return [winIndex, winCases];
   }
 
-  return <div className="BoardTable">{BoardLines}</div>;
+  return (
+    <motion.div
+      className="BoardTable"
+      animate={
+        gameHasEnded
+          ? {
+              scale: [1, 1.1, 1.1, 1, 1],
+              rotate: [0, 0, 360, 360, 0],
+            }
+          : {}
+      }
+      transition={
+        gameHasEnded
+          ? {
+              duration: 3,
+              ease: "easeInOut",
+              times: [0, 0.2, 0.5, 0.8, 1],
+              repeat: Infinity,
+              repeatDelay: 1,
+            }
+          : {}
+      }
+    >
+      {BoardLines}
+    </motion.div>
+  );
 }
