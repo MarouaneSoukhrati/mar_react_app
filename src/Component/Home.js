@@ -34,7 +34,7 @@ export default function Home() {
         <p className="mobpara">{mobtxt}</p>
         <motion.a
           className="mobility"
-          whileHover={{ opacity: 0.4, color: "red" }}
+          whileHover={{ opacity: 0.4 }}
           href="https://www.mckinsey.com/industries/automotive-and-assembly/our-insights/the-future-of-mobility-mobility-evolves"
           target="_blank"
           rel="noopener noreferrer"
