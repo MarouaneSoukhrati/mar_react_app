@@ -13,19 +13,19 @@ let aboutPara = [
   "I am interested in understanding and articulating everything via code.",
 ];
 aboutPara.push(
-  " Whatever be the problem, if it involves challenges in formally representing it and its associated metrics, count me in.",
+  " Whatever be the problem, if it involves challenges in formally representing it and its associated metrics, count me in."
 );
 aboutPara.push(
-  " I also like solving the actual problem through programming and elegant design (Trust me its beautiful when done right).",
+  " I also like solving the actual problem through programming and elegant design (Trust me its beautiful when done right)."
 );
 aboutPara.push(
-  " In short, I like exploring ways to enhance computers so that they can better serve human creativity and prosperity.",
+  " In short, I like exploring ways to enhance computers so that they can better serve human creativity and prosperity."
 );
 aboutPara.push(
-  " I'm also an engineering student at ENSISA who is currently looking for a co-op position",
+  " I'm also an engineering student at ENSISA who is currently looking for a co-op position"
 );
 aboutPara.push(
-  " I'm from Tangier but I have setteled in Mulhouse for the moment.",
+  " I'm from Tangier but I have setteled in Mulhouse for the moment."
 );
 
 let ExpList = [
@@ -56,14 +56,8 @@ let EduList = [
   {
     school: "École nationale supérieure d'ingénieurs Sud-Alsace (ENSISA)",
     loc: "Mulhouse",
-    date: "2023-2027",
+    date: "2023-2028",
     description: "Computer Science",
-  },
-  {
-    school: "Ecole Nationale Supérieure d’Electricité et de Mécanique (ENSEM)",
-    loc: "Nancy",
-    date: "2020-2022",
-    description: "Energy systems engineering",
   },
   {
     school: "CPGE Saint-Exupéry",

@@ -32,6 +32,7 @@
 
 .mobility {
   background-color: yellow;
+  color: blue;
   padding: 0.9375em;
   border: solid 0.125em white;
   font-size: 1.25em;
@@ -44,6 +45,7 @@
   width: 12.5em;
   cursor: pointer;
   margin-bottom: 4em;
+  text-decoration: none;
 }
 
 .Capsule {
@@ -64,7 +66,7 @@
 
 .Yellow-subtitle {
   color: greenyellow;
-  font-size: 1.50em;
+  font-size: 1.5em;
   padding-top: 3em;
 }
 

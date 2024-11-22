@@ -52,7 +52,7 @@ export default function FamilyTree() {
       <div className="fam-txt">
         <p className="moorparag">{Desctext}</p>
         <motion.a
-          whileHover={{ opacity: 0.4 }}
+          whileHover={{ opacity: 0.4, color: "yellow" }}
           className="moorbutton"
           href="https://en.wikipedia.org/wiki/Moors"
           target="_blank"
