@@ -75,7 +75,7 @@
 .academicsNavAc {
   display: flex;
   flex-direction: column;
-  margin-top: 5vh;
+  margin-top: 4vh;
 }
 
 .academicsNavList {
@@ -89,7 +89,7 @@
   justify-content: center;
   padding: 0vh 1.5vw;
   margin-left: 0.7vw;
-  height: 4vh;
+  height: 3vh;
   margin-top: 0.7vh;
 }
 
