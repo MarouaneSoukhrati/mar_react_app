@@ -18,7 +18,7 @@ export default function Home() {
   return (
     <div className="App-about">
       <h2 className="Yellow-title">
-        My origins - Learn about the Moorish Culture :
+        My oorigins - Learn about the Moorish Culture :
       </h2>
       <img className="Moor-logo" src={MoorLogo} alt="logo" />
       <FamilyTree />
