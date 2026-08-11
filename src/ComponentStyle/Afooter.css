@@ -4,19 +4,14 @@
   justify-content: space-evenly;
   color: white;
   background-color: #282c3455;
-  border-radius: 100% 100% 0% 0% / 100% 100% 0% 0%;
+  border-radius: 100% 100% 0% 0%/ 100% 100% 0% 0%;
 }
 
 .footer-wrapper {
-  /* fluid padding: shrinks smoothly between mobile and desktop instead of
-     jumping at a breakpoint. Horizontal padding especially — 15.625em (250px)
-     was way too much on small screens. */
-  padding: clamp(2em, 6vw, 5em) clamp(1.25em, 8vw, 15.625em);
+  padding: 5em 15.625em;
   display: flex;
   flex-direction: row;
-  flex-wrap: wrap; /* let sections drop to the next line instead of squeezing */
   justify-content: space-evenly;
-  gap: 2em; /* replaces the spacing that padding/margins used to fake between wrapped rows */
 }
 
 .logo-section {
@@ -24,7 +19,7 @@
   flex-direction: column;
   justify-content: space-evenly;
   align-items: center;
-  padding-right: 0; /* was 6.25em fixed; gap on the parent now handles spacing */
+  padding-right: 6.25em;
 }
 
 .social-media-wrapper {
@@ -34,7 +29,6 @@
   align-items: center;
   background-color: #ffffff20;
   border-radius: 0.9375em;
-  flex-wrap: wrap;
 }
 
 .social-media-logo {
@@ -46,8 +40,6 @@
 .lister-section {
   display: flex;
   flex-direction: row;
-  flex-wrap: wrap; /* stack the item groups on narrow screens */
-  gap: 1em;
 }
 
 .lister-item {
@@ -80,28 +72,8 @@
 .copyright {
   text-align: center;
   width: max-content;
-  max-width: 100%; /* prevents overflow if the copyright text is long on a narrow screen */
 }
 
 .marouane-logo {
-  width: clamp(6em, 20vw, 9.375em);
-}
-
-/* Below ~600px, stop trying to lay sections out in a row at all —
-   full column stack reads much better on phones */
-@media (max-width: 37.5em) {
-  .footer-wrapper {
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-  }
-
-  .lister-section {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .logo-section {
-    padding-right: 0;
-  }
+  width: 9.375em;
 }
