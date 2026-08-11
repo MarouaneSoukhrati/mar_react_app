@@ -9,6 +9,7 @@
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
+  margin: 5%;
 }
 
 .logo-section {
@@ -41,7 +42,7 @@
 .lister-section {
   display: flex;
   flex-direction: row;
-  background-color: green;
+  background-color: blue;
   width: 60%;
 }
 
