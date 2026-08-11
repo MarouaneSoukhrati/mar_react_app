@@ -40,6 +40,7 @@
 .lister-section {
   display: flex;
   flex-direction: row;
+  background-color: blue;
 }
 
 .lister-item {
