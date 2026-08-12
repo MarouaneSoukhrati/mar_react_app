@@ -53,6 +53,7 @@ export default function FamilyTree() {
         <p className="moorparag">{Desctext}</p>
         <motion.a
           whileHover={{ opacity: 0.4 }}
+          whileTap={{ opacity: 0.4 }}
           className="moorbutton"
           href="https://en.wikipedia.org/wiki/Moors"
           target="_blank"
