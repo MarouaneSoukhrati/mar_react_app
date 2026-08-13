@@ -3,7 +3,7 @@
 @media only screen and (device-width: 375px) and (device-height: 812px) and (orientation: portrait) {
   /* Styles for iPhone X in portrait mode */
   body {
-    font-size: 5px; /* Adjust font size for iPhone X */
+    font-size: 15px; /* Adjust font size for iPhone X */
   }
 }
 
