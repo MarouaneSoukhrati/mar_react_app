@@ -35,6 +35,7 @@ export default function Home() {
         <motion.a
           className="mobility"
           whileHover={{ opacity: 0.4 }}
+          whileTap={{ opacity: 0.4 }}
           href="https://www.mckinsey.com/industries/automotive-and-assembly/our-insights/the-future-of-mobility-mobility-evolves"
           target="_blank"
           rel="noopener noreferrer"
