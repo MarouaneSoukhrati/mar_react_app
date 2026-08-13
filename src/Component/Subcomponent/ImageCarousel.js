@@ -18,6 +18,7 @@ export default function ImageCarousel({ imgList, imgTitleList, imgStyleList }) {
           src={leftArrow}
           alt="left-arrow"
           whileHover={{ scale: 2.2 }}
+          whileTap={{ scale: 2.2 }}
           onClick={() =>
             setImgIndex(imgIndex === 0 ? imgList.length - 1 : imgIndex - 1)
           }
@@ -28,6 +29,7 @@ export default function ImageCarousel({ imgList, imgTitleList, imgStyleList }) {
           src={rightArrow}
           alt="right-arrow"
           whileHover={{ scale: 2.2 }}
+          whileTap={{ scale: 2.2 }}
           onClick={() => setImgIndex((imgIndex + 1) % imgList.length)}
         />
       </div>
@@ -36,6 +38,7 @@ export default function ImageCarousel({ imgList, imgTitleList, imgStyleList }) {
           <motion.div
             key={e+index}
             whileHover={{ scale: 1.5 }}
+            whileTap={{ scale: 1.5 }}
             className={index === imgIndex ? "activeswitchDot" : "switchDot"}
             onClick={() => setImgIndex(index)}
           ></motion.div>
