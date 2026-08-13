@@ -1,15 +1,17 @@
 .App-footer {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
   color: white;
   background-color: #282c3455;
   border-radius: 100% 100% 0% 0%/ 100% 100% 0% 0%;
 }
 
 .footer-wrapper {
-  width: 90%;
+  padding: 5em 15.625em;
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
-  margin: 5%;
 }
 
 .logo-section {
@@ -17,9 +19,7 @@
   flex-direction: column;
   justify-content: space-evenly;
   align-items: center;
-  padding-right: 10vw;
-  background-color : red;
-  width: 40%;
+  padding-right: 6.25em;
 }
 
 .social-media-wrapper {
@@ -32,18 +32,14 @@
 }
 
 .social-media-logo {
-  max-height: 1.25em;
-  max-width: 1.25em;
-  height: 100%;
-  width: 100%;
+  height: 1.25em;
+  width: 1.25em;
   margin: 0.625em;
 }
 
 .lister-section {
   display: flex;
   flex-direction: row;
-  background-color: blue;
-  width: 60%;
 }
 
 .lister-item {
@@ -79,6 +75,5 @@
 }
 
 .marouane-logo {
-  max-width: 9.375em;
-  width: 100%;
+  width: 9.375em;
 }
