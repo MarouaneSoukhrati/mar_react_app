@@ -31,6 +31,7 @@ let socialMediaList = socialMediaNamesList.map((name, index) => (
     target="_blank"
     rel="noreferrer"
     whileHover={{ scale: 1.5 }}
+    whileTap={{ scale: 1.5 }}
   >
     <img className="social-media-logo" src={name} alt={name} />
   </motion.a>
