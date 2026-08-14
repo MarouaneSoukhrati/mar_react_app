@@ -41,7 +41,7 @@
 }
 
 .CreditCardLogoStyle {
-  height: 10vh;
+  height: 16.24em;
   border-radius: 10em;
   border: solid white 2px;
   margin: 2em 6em;
@@ -101,12 +101,12 @@
 .CryptoCurrPara1 {
   text-align: center;
   color: yellow;
-  margin-bottom: 5vh;
+  margin-bottom: 8.12em
 }
 
 .CryptoCurrPara2 {
   text-align: center;
-  margin-bottom: 7vh;
+  margin-bottom: 11.368em;
 }
 
 .GraphicsBackGround {
@@ -119,7 +119,7 @@
 }
 
 .cryptoName {
-  margin-bottom: 5vh;
+  margin-bottom: 8.12em;
   border-radius: 3em;
   text-align: center;
 }
@@ -128,11 +128,11 @@
 .coinGrSelected {
   background-color: #ffffff11;
   border-radius: 3em;
-  padding: 1.5vh 3vw;
+  padding: 2.436em 3vw;
   display: flex;
   flex-direction: row;
   align-items: center;
-  margin-bottom: 1vh;
+  margin-bottom: 1.624em;
 }
 
 .coinGrSelected {
@@ -146,9 +146,9 @@
 }
 
 .coinsChart {
-  margin-bottom: 5vh;
+  margin-bottom: 8.12em;
   width: 50vw;
-  height: 50vh;
+  height: 81.2em;
 }
 
 .coinLogo {
@@ -165,7 +165,7 @@
 
 .graphTitleBar {
   color: white;
-  margin-bottom: 10vh;
+  margin-bottom: 16.24em;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -184,14 +184,14 @@
   justify-content: center;
   color: yellow;
   background-color: #ffffff77;
-  padding: 1vh 3vw;
+  padding: 1.624em 3vw;
   border-radius: 3em;
-  margin-bottom: 2vh;
+  margin-bottom: 3.248em;
 }
 
 .selectedCoinImg {
-  height: 3vh;
-  width: 3vh;
+  height: 4.872em;
+  width: 4.872em;
   margin-right: 0.5vw;
 }
 
