@@ -24,7 +24,7 @@
   padding: 10em;
   border-radius: 3em;
   margin: 3em;
-  width: 30vw;
+  width: 22.5em;
   border: solid 2px white;
 }
 
@@ -112,7 +112,7 @@
 .GraphicsBackGround {
   border: solid white 3px;
   border-radius: 6em;
-  padding: 5vw;
+  padding: 3.75em;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -128,7 +128,7 @@
 .coinGrSelected {
   background-color: #ffffff11;
   border-radius: 3em;
-  padding: 2.436em 3vw;
+  padding: 2.436em 2.25em;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -141,26 +141,26 @@
 
 .coinValueSelected {
   color: white;
-  margin-left: 2vw;
-  margin-right: 2vw;
+  margin-left: 1.5em;
+  margin-right: 1.5em;
 }
 
 .coinsChart {
   margin-bottom: 8.12em;
-  width: 50vw;
+  width: 37.5em;
   height: 81.2em;
 }
 
 .coinLogo {
-  width: 2vw;
-  height: 2vw;
+  width: 1.5em;
+  height: 1.5em;
 }
 
 .coinValue {
   color: white;
-  margin-left: 2vw;
-  margin-right: 2vw;
-  width: 12vw;
+  margin-left: 1.5em;
+  margin-right: 1.5em;
+  width: 9em;
 }
 
 .graphTitleBar {
@@ -173,8 +173,8 @@
 
 .coinName {
   color: yellow;
-  margin-left: 2vw;
-  width: 10vw;
+  margin-left: 1.5em;
+  width: 7.5em;
 }
 
 .selectedCoin {
@@ -192,7 +192,7 @@
 .selectedCoinImg {
   height: 4.872em;
   width: 4.872em;
-  margin-right: 0.5vw;
+  margin-right: 0.375em;
 }
 
 .legendCoin {
