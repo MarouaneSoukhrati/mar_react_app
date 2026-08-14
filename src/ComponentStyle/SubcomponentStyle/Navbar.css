@@ -29,7 +29,7 @@
   margin-left: 0.375em;
 }
 
-.sub-nav-element:active {
+.nav-element:active {
   border: solid 0.0625em;
   border-radius: 0.9375em;
   padding: 0.5em;
@@ -40,7 +40,7 @@
   width: max-content;
 }
 
-.sub-nav-element:hover {
+.nav-element:hover {
   border: solid 0.0625em;
   border-radius: 0.9375em;
   padding: 0.5em;
