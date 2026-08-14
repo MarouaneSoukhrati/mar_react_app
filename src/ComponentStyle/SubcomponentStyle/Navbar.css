@@ -29,18 +29,26 @@
   margin-left: 0.375em;
 }
 
-.nav-element:active {
+.sub-nav-element:active {
   border: solid 0.0625em;
   border-radius: 0.9375em;
   padding: 0.5em;
   background-color: white;
   color: black;
   text-decoration: none;
+  text-align: center;
+  width: max-content;
 }
 
-.nav-element:hover {
-  background-color: red;
-  color: yellow;
+.sub-nav-element:hover {
+  border: solid 0.0625em;
+  border-radius: 0.9375em;
+  padding: 0.5em;
+  background-color: white;
+  color: black;
+  text-decoration: none;
+  text-align: center;
+  width: max-content;
   cursor: pointer;
 }
 
