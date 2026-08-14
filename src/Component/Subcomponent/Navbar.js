@@ -22,19 +22,19 @@ export default function Navbar() {
     <div className="big-navbar">
       <div className="navbar">
         <NavLink className="nav-element" to="/">
-          <div className="sub-nav-element">Home</div>
+          <span className="sub-nav-element">Home</span>
         </NavLink>
         <NavLink className="nav-element" to="/about">
-          <div className="sub-nav-element">About</div>
+          <span className="sub-nav-element">About</span>
         </NavLink>
         <NavLink className="nav-element" to="/portfolio">
-          <div className="sub-nav-element">Portfolio</div>
+          <span className="sub-nav-element">Portfolio</span>
         </NavLink>
         <NavLink className="nav-element" to="/contact">
-          <div className="sub-nav-element">Contact</div>
+          <span className="sub-nav-element">Contact</span>
         </NavLink>
         <NavLink className="nav-element" to="/crypto">
-          <div className="sub-nav-element">Crypto</div>
+          <span className="sub-nav-element">Crypto</span>
         </NavLink>
         <div className={isAcSelected ? "academicsNavAc" : "academicsNav"}>
           <div className="nav-element" onClick={handleAc}>
