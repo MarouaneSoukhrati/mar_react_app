@@ -220,13 +220,17 @@ function CoinGraphics() {
               <div>{filteredGraphicsList[sCoinIndex].name}</div>
             </div>
             <div>{filteredGraphicsList[sCoinIndex].price + "$"}</div>
-            <MyChart
+            </div>
+        )}
+      {responseValid && 
+        <div>
+          <MyChart
               chartList={filteredGraphicsList}
               selectedIndex={sCoinIndex}
-            />
-          </div>
-        )}
-      {responseValid && <div>{graphicsDes}</div>}
+          />
+          <div className="centeredCoinL">{graphicsDes}</div>
+        </div>
+      }
       {!responseValid && (
         <motion.div
           animate={{

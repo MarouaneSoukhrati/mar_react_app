@@ -13,8 +13,8 @@
   flex-direction: row;
   justify-content: start;
   align-items: center;
-  width: 50vw;
-  height: 7vh;
+  width: 37.5em;
+  height: 9.8em;
 }
 
 .nav-element {
@@ -29,7 +29,7 @@
   margin-left: 0.5vw;
 }
 
-.active {
+.nav-element:hover {
   border: solid 0.0625em;
   border-radius: 0.9375em;
   padding: 0.5em;
@@ -75,7 +75,7 @@
 .academicsNavAc {
   display: flex;
   flex-direction: column;
-  margin-top: 4vh;
+  margin-top: 6.496em;
 }
 
 .academicsNavList {
@@ -87,17 +87,17 @@
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  padding: 0vh 1.5vw;
-  margin-left: 0.7vw;
-  height: 3vh;
-  margin-top: 0.7vh;
+  padding: 0em 1.125em;
+  margin-left: 0.525em;
+  height: 4.872em;
+  margin-top: 1.1368em;
 }
 
 .edudiv {
   width: max-content;
   text-decoration: none;
   color: white;
-  margin-right: 1vw;
+  margin-right: 0.75em;
 }
 
 .edudivSelected {
@@ -106,8 +106,8 @@
   background-color: white;
   border-radius: 5px;
   color: black;
-  padding: 0.3vh 1vw;
-  margin-right: 1vw;
+  padding: 0.4872em 0.75em;
+  margin-right: 0.75em;
 }
 
 .mldiv {
@@ -122,5 +122,5 @@
   background-color: white;
   border-radius: 5px;
   color: black;
-  padding: 0.3vh 1vw;
+  padding: 0.4872em 0.75em;
 }

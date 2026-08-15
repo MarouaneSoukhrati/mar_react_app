@@ -1,13 +1,7 @@
 @import-normalize;
 
-@media only screen and (device-width: 375px) and (device-height: 812px) and (orientation: portrait) {
-  /* Styles for iPhone X in portrait mode */
-  body {
-    font-size: 5px; /* Adjust font size for iPhone X */
-  }
-}
-
 body {
+  font-size: clamp(4px, 1.33vw, 7px);
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',

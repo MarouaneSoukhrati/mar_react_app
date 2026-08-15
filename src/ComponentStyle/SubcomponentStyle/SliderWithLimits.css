@@ -7,7 +7,7 @@
 
 .slider {
   position: relative;
-  width: 30vw;
+  width: 22.5em;
   display: flex;
 }
 
@@ -62,8 +62,8 @@
   position: absolute;
   height: 0;
   outline: none;
-  width: 30.5vw;
-  margin-top: 2px;
+  width: 22.875em;
+  margin-top: 0.4em;
 }
 
 .thumb--left {
@@ -87,10 +87,10 @@
 /* For Firefox browsers */
 .thumb::-moz-range-thumb {
   background-color: #ff0000;
-  border: 0.5vw solid white;
+  border: 0.375em solid white;
   border-radius: 50%;
-  height: 5px;
-  width: 5px;
+  height: 1em;
+  width: 1em;
   pointer-events: all;
   position: relative;
 }
