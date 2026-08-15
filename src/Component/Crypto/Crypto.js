@@ -220,7 +220,7 @@ function CoinGraphics() {
               <div>{filteredGraphicsList[sCoinIndex].name}</div>
             </div>
             <div>{filteredGraphicsList[sCoinIndex].price + "$"}</div>
-            </div>
+          </div>
         )}
       {responseValid && 
         <div>
