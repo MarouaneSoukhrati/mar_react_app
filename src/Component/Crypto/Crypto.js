@@ -228,7 +228,7 @@ function CoinGraphics() {
               chartList={filteredGraphicsList}
               selectedIndex={sCoinIndex}
           />
-          <div className="centeredCoinL">{graphicsDes}</div>
+          <div>{graphicsDes}</div>
         </div>
       }
       {!responseValid && (
