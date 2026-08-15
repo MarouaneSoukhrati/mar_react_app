@@ -134,6 +134,7 @@
   flex-direction: row;
   align-items: center;
   margin-bottom: 1.624em;
+  width: 35em;
 }
 
 .coinGrSelected {
