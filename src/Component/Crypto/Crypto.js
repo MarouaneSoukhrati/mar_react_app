@@ -221,14 +221,15 @@ function CoinGraphics() {
             </div>
             <div>{filteredGraphicsList[sCoinIndex].price + "$"}</div>
           </div>
-          {responseValid &&
+          {responseValid && (
             <div> 
                <MyChart
                   chartList={filteredGraphicsList}
                   selectedIndex={sCoinIndex}
                />
                <div>{graphicsDes}</div>
-            </div>}
+            </div>
+          )}
           {!responseValid && (
             <motion.div
               animate={{
@@ -245,7 +246,7 @@ function CoinGraphics() {
               }}
               style={{
                 padding: "0.5em",
-                backgroundColor: "red",
+                backgroundColor: "green",
               }}
             >
               Loading
