@@ -226,8 +226,8 @@ function CoinGraphics() {
             />
           </div>
         )}
-      {responseValid && <div>{graphicsDes}</div>}
-      {!responseValid && (
+      {!responseValid && <div>{graphicsDes}</div>}
+      {responseValid && (
         <motion.div
           animate={{
             scale: [1, 2, 2, 1, 1],
@@ -242,7 +242,7 @@ function CoinGraphics() {
             repeatDelay: 1,
           }}
           style={{
-            padding: "0.5vh",
+            padding: "5em",
           }}
         >
           Loading
