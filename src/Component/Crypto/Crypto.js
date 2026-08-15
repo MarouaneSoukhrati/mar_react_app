@@ -61,7 +61,7 @@ function Coin({ CoinName, CoinValue, CoinLogo, CoinChange, isSelected }) {
             {Coin.Logo}
           </img>
           <div className="coinName">{CoinName}</div>
-          <div className="coinValueSelected">{CoinValue}</div>
+          <div className="coinValue">{CoinValue}</div>
           {CoinChange > 0 ? (
             <div className="greenChange">+{CoinChange}%</div>
           ) : (
