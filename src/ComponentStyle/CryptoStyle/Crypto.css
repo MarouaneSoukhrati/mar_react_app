@@ -139,12 +139,6 @@
   border: solid 2px red;
 }
 
-.coinValueSelected {
-  color: white;
-  margin-left: 1.5em;
-  margin-right: 1.5em;
-}
-
 .coinsChart {
   margin-bottom: 8.12em;
   width: 37.5em;
@@ -160,7 +154,6 @@
   color: white;
   margin-left: 1.5em;
   margin-right: 1.5em;
-  width: 9em;
 }
 
 .graphTitleBar {
