@@ -242,7 +242,7 @@ function CoinGraphics() {
             repeatDelay: 1,
           }}
           style={{
-            padding: "7vh",
+            padding: "0.5vh",
           }}
         >
           Loading
