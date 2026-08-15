@@ -129,6 +129,7 @@
   justify-content: center;
   display: flex;
   flex-direction: column;
+  margin-bottom: 2.4em;
 }
 
 .coinGr,
@@ -140,7 +141,7 @@
   flex-direction: row;
   align-items: center;
   margin-bottom: 1.624em;
-  width: 30em;
+  width: 50em;
 }
 
 .coinGrSelected {
