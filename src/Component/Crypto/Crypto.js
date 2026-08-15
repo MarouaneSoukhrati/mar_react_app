@@ -243,7 +243,7 @@ function CoinGraphics() {
           }}
           style={{
             padding: "0.5em",
-            background-color: "red",
+            backgroundColor: "red",
           }}
         >
           Loading
