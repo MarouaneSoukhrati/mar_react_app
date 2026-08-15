@@ -124,6 +124,11 @@
   text-align: center;
 }
 
+.centeredCoinL {
+  align-items: center;
+  justify-content: center;
+}
+
 .coinGr,
 .coinGrSelected {
   background-color: #ffffff11;
