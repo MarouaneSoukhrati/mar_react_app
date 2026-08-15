@@ -61,7 +61,7 @@ function Coin({ CoinName, CoinValue, CoinLogo, CoinChange, isSelected }) {
             {Coin.Logo}
           </img>
           <div className="coinName">{CoinName}</div>
-          <div className="coinValue">{CoinValue}</div>
+          <div className="coinValueSelected">{CoinValue}</div>
           {CoinChange > 0 ? (
             <div className="greenChange">+{CoinChange}%</div>
           ) : (
@@ -220,39 +220,34 @@ function CoinGraphics() {
               <div>{filteredGraphicsList[sCoinIndex].name}</div>
             </div>
             <div>{filteredGraphicsList[sCoinIndex].price + "$"}</div>
-          </div>
-          {responseValid && (
-            <div> 
-               <MyChart
-                  chartList={filteredGraphicsList}
-                  selectedIndex={sCoinIndex}
-               />
-               <div>{graphicsDes}</div>
             </div>
-          )}
-          {!responseValid && (
-            <motion.div
-              animate={{
-                scale: [1, 2, 2, 1, 1],
-                rotate: [0, 0, 360, 360, 0],
-                borderRadius: ["20%", "20%", "50%", "50%", "20%"],
-              }}
-              transition={{
-                duration: 2,
-                ease: "easeInOut",
-                times: [0, 0.2, 0.5, 0.8, 1],
-                repeat: Infinity,
-                repeatDelay: 1,
-              }}
-              style={{
-                padding: "0.5em",
-                backgroundColor: "green",
-              }}
-            >
-              Loading
-            </motion.div>
-          )}
+            <MyChart
+              chartList={filteredGraphicsList}
+              selectedIndex={sCoinIndex}
+            />
         )}
+      {responseValid && <div>{graphicsDes}</div>}
+      {!responseValid && (
+        <motion.div
+          animate={{
+            scale: [1, 2, 2, 1, 1],
+            rotate: [0, 0, 360, 360, 0],
+            borderRadius: ["20%", "20%", "50%", "50%", "20%"],
+          }}
+          transition={{
+            duration: 2,
+            ease: "easeInOut",
+            times: [0, 0.2, 0.5, 0.8, 1],
+            repeat: Infinity,
+            repeatDelay: 1,
+          }}
+          style={{
+            padding: "7vh",
+          }}
+        >
+          Loading
+        </motion.div>
+      )}
     </div>
   );
 }
