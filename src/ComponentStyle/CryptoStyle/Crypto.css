@@ -127,7 +127,8 @@
 .centeredCoinL {
   align-items: center;
   justify-content: center;
-  background-color: green;
+  display: flex;
+  flex-direction: column;
 }
 
 .coinGr,
@@ -139,7 +140,7 @@
   flex-direction: row;
   align-items: center;
   margin-bottom: 1.624em;
-  width: 22em;
+  width: 30em;
 }
 
 .coinGrSelected {
