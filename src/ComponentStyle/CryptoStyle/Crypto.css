@@ -201,8 +201,10 @@
 
 .greenChange {
   color: #00ff0099;
+  margin-left: 1.5em;
 }
 
 .redChange {
   color: red;
+  margin-left: 1.5em;
 }
