@@ -159,6 +159,7 @@
 .graphTitleBar {
   color: white;
   margin-bottom: 6em;
+  margin-top: 6em;
   display: flex;
   align-items: center;
   justify-content: center;
