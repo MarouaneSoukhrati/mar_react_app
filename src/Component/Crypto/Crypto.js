@@ -223,12 +223,12 @@ function CoinGraphics() {
             </div>
         )}
       {responseValid && 
-        <div>
+        <div className="centeredCoinL">
           <MyChart
               chartList={filteredGraphicsList}
               selectedIndex={sCoinIndex}
           />
-          <div className="centeredCoinL">{graphicsDes}</div>
+          <div>{graphicsDes}</div>
         </div>
       }
       {!responseValid && (
