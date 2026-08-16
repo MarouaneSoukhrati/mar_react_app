@@ -178,9 +178,9 @@
   border: 1px solid white;
   border-radius: 15px;
   padding: 1em;
-  margin-bottom: 2em;
+  margin-bottom: 1em;
   cursor: pointer;
-  width: 5em;
+  width: 8em;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
