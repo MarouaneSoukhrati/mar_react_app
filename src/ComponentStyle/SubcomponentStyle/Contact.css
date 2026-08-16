@@ -20,8 +20,8 @@
   flex-direction: column;
   background-color: transparent;
   padding: 10em;
-  border-radius: 1em;
-  border: solid 1em yellow;
+  border-radius: 30px;
+  border: solid 1em white;
   margin-top: 2em;
   align-items: center;
 }
