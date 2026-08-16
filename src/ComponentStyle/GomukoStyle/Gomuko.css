@@ -15,7 +15,7 @@
 .BoardTable {
   background-color: rgb(211, 163, 21);
   border-radius: 5%;
-  padding: 1vw 1vw;
+  padding: 0.75em 0.75em;
 }
 
 .playerChoice,
@@ -24,13 +24,13 @@
   flex-direction: row;
   align-items: center;
   justify-content: space-evenly;
-  width: 10vw;
-  margin-bottom: 0.5vw;
+  width: 7.5em;
+  margin-bottom: 0.375em;
 }
 
 .gameTitle {
   color: yellow;
-  margin-bottom: 0.3vw;
+  margin-bottom: 0.225em;
 }
 
 .gameTitleWin {
@@ -39,31 +39,31 @@
 
 .startGame {
   background-color: #ff0000;
-  padding: 0.4vw;
+  padding: 0.3em;
   border-radius: 10%;
   border: solid 2px white;
-  margin-bottom: 1vw;
+  margin-bottom: 0.75em;
   cursor: pointer;
 }
 
 .restartGame {
   background-color: #ff0000;
-  padding: 0.3vw;
+  padding: 0.225em;
   border-radius: 10%;
   border: solid 2px White;
-  margin: 1vw 0vw 2vw 0vw;
+  margin: 0.75em 0em 1.5em 0em;
   cursor: pointer;
 }
 
 .playerOption {
-  width: 7vw;
+  width: 5.25em;
 }
 
 .BoardCase {
   background-color: rgb(255, 221, 0);
-  margin: 3px;
-  height: 3vw;
-  width: 3vw;
+  margin: 0.6em;
+  height: 2.25em;
+  width: 2.25em;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -73,9 +73,9 @@
 
 .winBoardCase {
   background-color: red;
-  margin: 3px;
-  height: 3vw;
-  width: 3vw;
+  margin: 0.6em;
+  height: 2.25em;
+  width: 2.25em;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -85,15 +85,15 @@
 .BlackPion {
   background-color: black;
   border-radius: 50%;
-  height: 1.5vw;
-  width: 1.5vw;
+  height: 1.125em;
+  width: 1.125em;
 }
 
 .WhitePion {
   background-color: white;
   border-radius: 50%;
-  height: 1.5vw;
-  width: 1.5vw;
+  height: 1.125em;
+  width: 1.125em;
 }
 
 .GomukoTableControls {
@@ -115,25 +115,25 @@
 }
 
 .prevMoveButton {
-  height: 7vw;
-  width: 7vw;
+  height: 5.25em;
+  width: 5.25em;
   cursor: pointer;
-  margin-right: 2vw;
+  margin-right: 1.5em;
 }
 
 .nextMoveButton {
-  height: 7vw;
-  width: 7vw;
+  height: 5.25em;
+  width: 5.25em;
   cursor: pointer;
-  margin-left: 2vw;
+  margin-left: 1.5em;
 }
 
 .nextMoveLabel {
-  margin-left: 2vw;
-  margin-top: -1vw;
+  margin-left: 1.5em;
+  margin-top: -0.75em;
 }
 
 .prevMoveLabel {
-  margin-right: 2vw;
-  margin-top: -1vw;
+  margin-right: 1.5em;
+  margin-top: -0.75em;
 }
