@@ -90,15 +90,15 @@
 
 .MsgTextArea {
   height: 12.5em;
-  width: 12.25em;
-  padding: 1.25em;
+  width: 15em;
+  padding: 17em;
   border-radius: 1em;
   margin: 0.35em 0em 1em 0em;
   font-family: Arial, Helvetica, sans-serif;
 }
 
 .h1Contact {
-  color: yellow;
+  color: white;
   font-size: 30px;
 }
 
