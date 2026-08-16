@@ -90,6 +90,7 @@
 
 .MsgTextArea {
   height: 12.5em;
+  padding: 1.25em;
   width: 15em;
   border-radius: 1em;
   margin: 0.35em 0em 1em 0em;
