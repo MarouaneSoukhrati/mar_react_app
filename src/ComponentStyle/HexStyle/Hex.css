@@ -7,12 +7,12 @@
 
 .play-game {
   background-color: #ff0000;
-  padding: 0.3vw;
+  padding: 0.225em;
   border-radius: 10%;
   border: solid 2px White;
-  margin: 1vw 0vw 2vw 0vw;
+  margin: 0.75em 0em 1.5em 0em;
   cursor: pointer;
-  margin-top: 2vh;
+  margin-top: 3.248em;
   text-align: center;
 }
 
@@ -27,21 +27,21 @@
   height: 1.5em;
   width: 10em;
   text-align: center;
-  margin-bottom: 2vh;
+  margin-bottom: 3.248em;
 }
 
 .HexBoard {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 2vh 2vw 4vh 2vw;
+  margin: 3.248em 1.5em 6.496em 1.5em;
   border-radius: 15%;
   background-color: black;
-  padding: 10vh 20vh 10vh 0px;
+  padding: 16.24em 32.48em 16.24em 0em;
 }
 
 .WelcomeMsg {
-  margin-bottom: 3vh;
+  margin-bottom: 4.872em;
 }
 
 .winSection {
@@ -51,7 +51,7 @@
 }
 
 .winMsg {
-  margin-bottom: 2vh;
+  margin-bottom: 3.248em;
   color: orange;
 }
 
@@ -60,8 +60,8 @@
 .RedHex,
 .BlueHex {
   background-color: yellow;
-  height: 5vh;
-  width: 5vh;
+  height: 8.12em;
+  width: 8.12em;
   border: solid 2px black;
   cursor: pointer;
   clip-path: polygon(50% 100%, 0% 75%, 0% 25%, 50% 0%, 100% 25%, 100% 75%);
