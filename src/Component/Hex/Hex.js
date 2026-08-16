@@ -746,6 +746,7 @@ function HexCell({ cellKey, value, onCellClick, onMouseEnter, onMouseLeave }) {
               : "CornerHex"
       }
       whileHover={{ scale: 1.1, opacity: 0.3 }}
+      whileTap={{ scale: 1.1, opacity: 0.3 }}
       onClick={onCellClick}
       onMouseEnter={onMouseEnter}
       onMouseLeave={onMouseLeave}
