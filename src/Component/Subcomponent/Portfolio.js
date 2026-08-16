@@ -45,6 +45,7 @@ function SideBar({ aiHistory, setAiVQuest }) {
     <motion.div
       className="historyTitle"
       whileHover={{ scale: 1.2 }}
+      whileTap={{ scale: 1.2 }}
       onClick={() => handleHistoryTitleClick(e)}
     >
       {e}
