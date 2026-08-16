@@ -49,6 +49,7 @@ export default function ChatBot({ request }) {
           }}
           style={{
             padding: "7vh",
+            backgroundColor: "green",
           }}
         >
           Loading
