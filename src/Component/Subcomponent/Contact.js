@@ -30,7 +30,7 @@ const SimpleMap = () => {
         center={[latitude, longitude]}
         zoom={13}
         ref={mapRef}
-        style={{ height: "15em", width: "19em", borderRadius: "1em" }}
+        style={{ height: "15em", width: "15em", borderRadius: "1em" }}
       >
         <TileLayer
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
