@@ -21,7 +21,7 @@
   background-color: transparent;
   padding: 10em;
   border-radius: 30px;
-  border: solid 1em white;
+  border: solid 0.5em white;
   margin-top: 2em;
   align-items: center;
 }
@@ -99,8 +99,8 @@
 
 .h1Contact {
   color: white;
-  margin-bottom: 1.5em;
-  font-size: 30px;
+  margin-bottom: 2em;
+  font-size: 2em;
 }
 
 .test {
