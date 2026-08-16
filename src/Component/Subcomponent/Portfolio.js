@@ -61,7 +61,7 @@ function SideBar({ aiHistory, setAiVQuest }) {
             <motion.img
               className="ext-img"
               src={rightArrow}
-              alt="left-arrow"
+              alt="right-arrow"
               whileHover={{ scale: 1.2 }}
               whileTap={{ scale: 0.9 }}
               onClick={handleExt}
@@ -76,7 +76,7 @@ function SideBar({ aiHistory, setAiVQuest }) {
             <motion.img
               className="ext-img"
               src={leftArrow}
-              alt="right-arrow"
+              alt="left-arrow"
               whileHover={{ scale: 1.2 }}
               whileTap={{ scale: 0.9 }}
               onClick={handleExt}
