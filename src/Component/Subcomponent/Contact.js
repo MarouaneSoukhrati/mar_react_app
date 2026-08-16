@@ -66,6 +66,7 @@ const ContactForm = ({ handler }) => {
         type="submit"
         value={"Send Message"}
         whileHover={{ scale: 1.1 }}
+        whileTap={{ scale: 1.1 }}
       />
     </form>
   );
