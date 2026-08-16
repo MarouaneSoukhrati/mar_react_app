@@ -48,7 +48,7 @@ export default function ChatBot({ request }) {
             repeatDelay: 1,
           }}
           style={{
-            padding: "7vh",
+            padding: "1em",
             backgroundColor: "green",
           }}
         >
