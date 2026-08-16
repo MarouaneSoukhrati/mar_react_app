@@ -645,19 +645,19 @@ export default function HexGame() {
         handleCaseHoover={handleCaseHoover}
         handleCaseHooverExit={handleCaseHooverExit}
       />
-      <div style={{ marginTop: "3vh" }}>
+      <div style={{ marginTop: "4.872em" }}> //3vh
         Last Played Square:{" "}
         {lastPlayedIndex[1] === -1
           ? "None"
           : "(" + lastPlayedIndex[1][0] + ", " + lastPlayedIndex[1][1] + ")"}
       </div>
-      <div style={{ marginTop: "1vh" }}>
+      <div style={{ marginTop: "1.624em" }}> //1vh
         Selected Square:{" "}
         {lastHooveredIndex === -1
           ? "None"
           : "(" + lastHooveredIndex[0] + ", " + lastHooveredIndex[1] + ")"}
       </div>
-      <div style={{ marginTop: "1vh" }}>Circuits : {mCircuits}</div>
+      <div style={{ marginTop: "1.624em" }}>Circuits : {mCircuits}</div> //1vh
     </div>
   );
 }
@@ -673,8 +673,8 @@ function HexBoard({
       style={{
         display: "flex",
         flexDirection: "row",
-        marginLeft: "-5vh",
-        marginBottom: "-0.4vh",
+        marginLeft: "-8.12em", //-5vh
+        marginBottom: "-0.6496em", //-0.4vh
       }}
     >
       <HexCell cellKey={[-Infinity, -Infinity]} value={"Corner"} />
@@ -690,8 +690,8 @@ function HexBoard({
       style={{
         display: "flex",
         flexDirection: "row",
-        marginLeft: hexBoard.length * 5 + "vh",
-        marginTop: "-0.4vh",
+        marginLeft: hexBoard.length * 8.12 + "em", // * 5 + "vh"
+        marginTop: "-0.6496em", //-0.4em
       }}
     >
       <HexCell cellKey={[+Infinity, -Infinity]} value={"Corner"} />
@@ -708,9 +708,9 @@ function HexBoard({
         style={{
           display: "flex",
           flexDirection: "row",
-          marginLeft: index * 5 + "vh",
-          marginTop: "-0.5vh",
-          marginBottom: "-0.5vh",
+          marginLeft: index * 8.12 + "em", // * 5 + "vh"
+          marginTop: "-0.812em",
+          marginBottom: "-0.812em",
         }}
       >
         <HexCell cellKey={[index, -Infinity]} value={"Blue"} />
