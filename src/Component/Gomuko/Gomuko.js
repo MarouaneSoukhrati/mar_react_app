@@ -109,6 +109,7 @@ export default function GomukoGame() {
           <motion.div
             className="startGame"
             whileHover={{ opacity: 0.4 }}
+            whileTap={{ opacity: 0.4 }}
             onClick={handleGameStart}
           >
             Start
@@ -124,6 +125,7 @@ export default function GomukoGame() {
         <motion.div
           className="restartGame"
           whileHover={{ opacity: 0.4 }}
+          whileTap={{ opacity: 0.4 }}
           onClick={handleGameReplay}
         >
           Replay
@@ -137,6 +139,7 @@ export default function GomukoGame() {
             src={prevMove}
             alt="prevMove"
             whileHover={{ scale: 1.3 }}
+            whileTap={{ scale: 1.3 }}
             onClick={handlePrevMove}
           />
           <div className="prevMoveLabel">Prior Move</div>
@@ -166,6 +169,7 @@ export default function GomukoGame() {
             src={nextMove}
             alt="nextMove"
             whileHover={{ scale: 1.3 }}
+            whileTap={{ scale: 1.3 }}
             onClick={handleNextMove}
           />
           <div className="nextMoveLabel">Next Move</div>
@@ -264,6 +268,7 @@ function GomukoTable({
     <motion.div
       className={winCases.includes(index) ? "winBoardCase" : "BoardCase"}
       whileHover={{ scale: 1.1, opacity: 0.3 }}
+      whileTap={{ scale: 1.1, opacity: 0.3 }}
       onClick={() => handleCaseClick(index)}
       onMouseEnter={() => handleCaseHoover(index)}
       onMouseLeave={handleCaseHooverExit}
