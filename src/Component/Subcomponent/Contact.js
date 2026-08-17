@@ -60,7 +60,6 @@ const ContactForm = ({ handler }) => {
         type="text"
         placeholder="Message..."
       ></textarea>
-      <SimpleMap />
       <motion.input
         className="submitSendMsg"
         type="submit"
@@ -105,7 +104,10 @@ export default function Contact() {
     <header className="App-contact">
       {popUpOn === 1 && <PopUp handler={(e) => handlePopUp(e)} />}
       <h1>Have a question ? Get in touch !</h1>
-      <ContactForm handler={(e) => handlePopUp(e)} />
+      <div className="rowContainer">
+        <ContactForm handler={(e) => handlePopUp(e)} />
+        <SimpleMap />
+      </div>
     </header>
   );
 }
