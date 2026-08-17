@@ -20,9 +20,9 @@
   flex-direction: column;
   background-color: transparent;
   padding: 10em;
-  border-radius: 30px;
-  border: solid 0.5em white;
-  margin-top: 2em;
+  border-radius: 2em;
+  border: solid 2px white;
+  margin-top: 5em;
   align-items: center;
 }
 
@@ -99,7 +99,7 @@
 
 .h1Contact {
   color: white;
-  margin-bottom: 2em;
+  margin-bottom: 5em;
   font-size: 2em;
 }
 
