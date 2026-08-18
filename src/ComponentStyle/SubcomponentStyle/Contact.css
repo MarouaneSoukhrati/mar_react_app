@@ -7,11 +7,6 @@
   padding: 6.25em;
 }
 
-.rowContainer {
-  border-radius: 30px;
-  width: 12em;
-}
-
 .map-wrapper {
   display: flex;
   flex-direction: column;
