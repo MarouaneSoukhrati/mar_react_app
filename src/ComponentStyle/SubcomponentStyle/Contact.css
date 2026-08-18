@@ -23,6 +23,10 @@
   background-color: red;
 }
 
+.formTitle {
+  color: black;
+}
+
 .map-wrapper {
   display: flex;
   flex-direction: column;
@@ -119,6 +123,10 @@
   color: white;
   margin-bottom: 2em;
   font-size: 2em;
+}
+
+.h2Contact {
+  color: grey;
 }
 
 .test {
