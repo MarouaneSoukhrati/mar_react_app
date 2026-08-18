@@ -50,6 +50,9 @@ const SimpleMap = () => {
 const ContactForm = ({ handler }) => {
   return (
     <form className="contact-form" onSubmit={handler}>
+      <div className="rowContainer">
+        <SimpleMap />
+      </div>
       <h1 className="h1Contact">Contact us :</h1>
       <input type="text" placeholder="First Name"></input>
       <input type="text" placeholder="Last Name"></input>
@@ -104,10 +107,7 @@ export default function Contact() {
     <header className="App-contact">
       {popUpOn === 1 && <PopUp handler={(e) => handlePopUp(e)} />}
       <h1>Have a question ? Get in touch !</h1>
-      <div className="rowContainer">
-        <ContactForm handler={(e) => handlePopUp(e)} />
-        <SimpleMap />
-      </div>
+      <ContactForm handler={(e) => handlePopUp(e)} />
     </header>
   );
 }
