@@ -104,8 +104,13 @@ export default function Contact() {
   return (
     <header className="App-contact">
       {popUpOn === 1 && <PopUp handler={(e) => handlePopUp(e)} />}
-      <h1>Have a question ? Get in touch !</h1>
-      <ContactForm handler={(e) => handlePopUp(e)} />
+      <div className="contactWrapper">
+        <div className="paraWrapper">
+           <h1>Have a question ? Get in touch !</h1>
+           <p>test</p>
+        </div>
+        <ContactForm handler={(e) => handlePopUp(e)} />
+      </div>
     </header>
   );
 }
