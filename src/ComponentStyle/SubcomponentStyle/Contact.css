@@ -12,9 +12,6 @@
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  background-color: red;
-  flex: 1 1 0;
-  min-width: 0;
 }
 
 .map-wrapper {
