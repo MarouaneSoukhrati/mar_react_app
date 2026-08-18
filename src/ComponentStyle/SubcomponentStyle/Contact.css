@@ -12,6 +12,7 @@
   flex-direction: row;
   align-items: center;
   justify-content: center;
+  background-color: green;
 }
 
 .paraWrapper {
@@ -19,6 +20,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  background-color: red;
 }
 
 .map-wrapper {
