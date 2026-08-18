@@ -50,9 +50,6 @@ const SimpleMap = () => {
 const ContactForm = ({ handler }) => {
   return (
     <form className="contact-form" onSubmit={handler}>
-      <div className="rowContainer">
-        <SimpleMap />
-      </div>
       <h1 className="h1Contact">Contact us :</h1>
       <input type="text" placeholder="First Name"></input>
       <input type="text" placeholder="Last Name"></input>
@@ -63,6 +60,7 @@ const ContactForm = ({ handler }) => {
         type="text"
         placeholder="Message..."
       ></textarea>
+      <SimpleMap />
       <motion.input
         className="submitSendMsg"
         type="submit"
