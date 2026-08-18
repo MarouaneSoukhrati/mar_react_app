@@ -50,7 +50,8 @@ const SimpleMap = () => {
 const ContactForm = ({ handler }) => {
   return (
     <form className="contact-form" onSubmit={handler}>
-      <h1 className="h1Contact">Contact us :</h1>
+      <h1 className="h1Contact">Send us a message</h1>
+      <h2 className="h2Contact">We usually reply within one buisness day</h2>
       <div className="formTitle">First Name <span style={{color : "red"}}>*</span></div>
       <input type="text" placeholder="First Name"></input>
       <div className="formTitle">Last Name  <span style={{color : "red"}}>*</span></div>
