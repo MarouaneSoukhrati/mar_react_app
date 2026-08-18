@@ -51,9 +51,13 @@ const ContactForm = ({ handler }) => {
   return (
     <form className="contact-form" onSubmit={handler}>
       <h1 className="h1Contact">Contact us :</h1>
+      <div className="formTitle">First Name <span style={{color : "red"}}>*</span></div>
       <input type="text" placeholder="First Name"></input>
+      <div className="formTitle">Last Name  <span style={{color : "red"}}>*</span></div>
       <input type="text" placeholder="Last Name"></input>
+      <div className="formTitle">Email  <span style={{color : "red"}}>*</span></div>
       <input type="text" placeholder="Email"></input>
+      <div className="formTitle">Phone number  <span style={{color : "red"}}>*</span></div>
       <input type="text" placeholder="Phone Number"></input>
       <textarea
         className="MsgTextArea"
