@@ -107,7 +107,7 @@ export default function Contact() {
       <div className="contactWrapper">
         <div className="paraWrapper">
            <h1>Have a question ? Get in touch !</h1>
-           <p>test</p>
+           <p>Wheter you have a question about our services, a proposal or anything else, we will be more than happy to answer all your questions.</p>
         </div>
         <ContactForm handler={(e) => handlePopUp(e)} />
       </div>
