@@ -41,7 +41,7 @@
   display: flex;
   flex-direction: column;
   width: 30em;
-  background-color: white;
+  background-color: black;
   padding: 2em;
   border-radius: 1.5em;
   border: solid 1px grey;
@@ -122,13 +122,13 @@
 }
 
 .h1Contact {
-  color: black;
+  color: white;
   margin-bottom: 1em;
   font-size: 3em;
 }
 
 .h2Contact {
-  color: black;
+  color: gray;
   font-size: 1.5em;
   margin-bottom: 0.7em;
 }
