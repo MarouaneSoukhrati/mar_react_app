@@ -10,16 +10,17 @@
 .contactWrapper {
   display: flex;
   flex-direction: column;
-  background-color: #00ff0099;
+  background-color: #00ff0011;
   margin-left: 5em;
   align-items: center;
-  padding: 3em;
+  padding: 1em;
 }
 
 .paraWrapper {
   display: flex;
   flex-direction: column;
-  background-color: #00ff0099;
+  background-color: #00ff0011;
+  padding: 1em;
 }
 
 .formTitle {
