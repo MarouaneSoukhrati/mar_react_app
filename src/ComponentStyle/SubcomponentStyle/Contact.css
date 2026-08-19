@@ -39,7 +39,7 @@
   display: flex;
   flex-direction: column;
   width: 20em;
-  background-color: white;
+  background-color: transparent;
   padding: 5em;
   border-radius: 1.5em;
 }
