@@ -96,11 +96,10 @@
   flex-direction: column;
   align-items: center;
   font-size: 1.25em;
-  color: black;
+  color: Orange;
   text-align: center;
   justify-content: center;
   z-index: 3;
-  background-color: #ffffff55;
   padding: 3.125em;
   border-radius: 0.9375em;
   font-weight: 700;
