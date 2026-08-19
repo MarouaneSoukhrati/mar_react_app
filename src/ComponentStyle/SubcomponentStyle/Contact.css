@@ -24,7 +24,7 @@
 }
 
 .formTitle {
-  color: black;
+  color: white;
 }
 
 .map-wrapper {
@@ -51,7 +51,7 @@
   font-family: Arial, Helvetica, sans-serif;
   width: 10em;
   height: 1.5em;
-  border-radius: 0px;
+  border-radius: 1.5em;
 }
 
 .PopUp {
