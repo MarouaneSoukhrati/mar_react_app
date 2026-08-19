@@ -94,10 +94,11 @@
 }
 
 .submitSendMsg {
-  background-color: yellow;
+  background-color: black;
   border: solid 0.1875em white;
-  color: black;
+  color: white;
   padding: 0.625em;
+  width: 10em;
 }
 
 .MsgTextArea {
