@@ -53,13 +53,13 @@ const ContactForm = ({ handler }) => {
       <h1 className="h1Contact">Send us a message</h1>
       <h2 className="h2Contact">We usually reply within one buisness day</h2>
       <div className="formTitle">First Name <span style={{color : "red"}}>*</span></div>
-      <input type="text" placeholder="First Name"></input>
+      <input className="myFormInput" type="text" placeholder="First Name"></input>
       <div className="formTitle">Last Name  <span style={{color : "red"}}>*</span></div>
-      <input type="text" placeholder="Last Name"></input>
+      <input className="myFormInput" type="text" placeholder="Last Name"></input>
       <div className="formTitle">Email  <span style={{color : "red"}}>*</span></div>
-      <input type="text" placeholder="Email"></input>
+      <input className="myFormInput" type="text" placeholder="Email"></input>
       <div className="formTitle">Phone number  <span style={{color : "red"}}>*</span></div>
-      <input type="text" placeholder="Phone Number"></input>
+      <input className="myFormInput" type="text" placeholder="Phone Number"></input>
       <div className="formTitle">Message  <span style={{color : "red"}}>*</span></div>
       <textarea
         className="MsgTextArea"
