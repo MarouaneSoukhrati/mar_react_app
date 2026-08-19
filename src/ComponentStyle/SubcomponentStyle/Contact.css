@@ -30,6 +30,7 @@
 }
 
 .contact-form {
+  font-size: 1em;
   display: flex;
   flex-direction: column;
   margin-left: 5em;
@@ -46,7 +47,7 @@
   padding: 0.2m;
   font-family: Arial, Helvetica, sans-serif;
   width: 25em;
-  height: 0.5em;
+  height: 1.5em;
   border-radius: 0px;
 }
 
@@ -102,7 +103,7 @@
   color: white;
   padding: 0.625em;
   width: 25em;
-  width: 0.5em;
+  height: 1.5em;
   border-radius: 0em;
 }
 
