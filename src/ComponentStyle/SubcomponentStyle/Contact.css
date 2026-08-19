@@ -62,14 +62,14 @@
 }
 
 .PopUp {
-  background-color: #ffffff99;
+  background-color: #00000099;
   display: flex;
   flex-direction: column;
   justify-content: center;
   border-radius: 3.125em;
   color: white;
-  height: 25em;
-  width: 21.875em;
+  height: 20em;
+  width: 20em;
   padding: 0.625em;
   position: absolute;
   z-index: 2;
@@ -97,9 +97,10 @@
   align-items: center;
   font-size: 1.25em;
   color: black;
+  justify-text: center;
   justify-content: center;
   z-index: 3;
-  background-color: #0000ff55;
+  background-color: #ffffff55;
   padding: 3.125em;
   border-radius: 0.9375em;
   font-weight: 700;
@@ -137,7 +138,7 @@
   color: gray;
   width: 12em;
   font-size: 1.5em;
-  margin-bottom: 1.5em;
+  margin-bottom: 2.5em;
 }
 
 .test {
