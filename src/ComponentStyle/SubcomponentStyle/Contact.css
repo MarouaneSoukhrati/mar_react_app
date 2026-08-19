@@ -109,7 +109,7 @@
   color: white;
   padding: 0.625em;
   width: 10em;
-  height: 2em;
+  height: 3em;
   border-radius: 0em;
 }
 
@@ -123,13 +123,14 @@
 
 .h1Contact {
   color: black;
-  margin-bottom: 2em;
+  margin-bottom: 1em;
   font-size: 3em;
 }
 
 .h2Contact {
   color: black;
   font-size: 1.5em;
+  margin-bottom: 2em;
 }
 
 .test {
