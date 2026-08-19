@@ -10,7 +10,7 @@
 .contactWrapper {
   display: flex;
   flex-direction: row;
-  background-color: #ffffff11;
+  background-color: #ffffff99;
 }
 
 .paraWrapper {
@@ -36,12 +36,11 @@
   flex-direction: column;
   margin-left: 5em;
   width: 30em;
-  background-color: gray;
+  background-color: #00ff0011;
   padding: 5em;
-  border: solid 2px black;
 }
 
-.myFormInput {
+.myFormInputt {
   margin-top: 0.35em;
   margin-bottom: 0.35em;
   font-family: Arial, Helvetica, sans-serif;
