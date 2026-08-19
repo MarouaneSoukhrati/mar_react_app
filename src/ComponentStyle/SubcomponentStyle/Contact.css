@@ -33,18 +33,17 @@
   display: flex;
   flex-direction: column;
   margin-left: 5em;
-  width: 40em;
+  width: 30em;
   background-color: gray;
   padding: 5em;
 }
 
-.contact-form input {
-  padding: 0.5em;
+.formInput {
   margin-top: 0.35em;
   margin-bottom: 0.35em;
   font-family: Arial, Helvetica, sans-serif;
-  width: 10em;
-  height: 1em;
+  width: 7em;
+  height: 0.5em;
 }
 
 .PopUp {
@@ -102,8 +101,8 @@
 }
 
 .MsgTextArea {
-  height: 10em;
-  width: 10em;
+  height: 1em;
+  width: 7em;
   margin-top: 0.35em;
   font-family: Arial, Helvetica, sans-serif;
 }
