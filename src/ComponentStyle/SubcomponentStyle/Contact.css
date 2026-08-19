@@ -10,7 +10,7 @@
 .contactWrapper {
   display: flex;
   flex-direction: column;
-  background-color: #ffffff11;
+  background-color: #00ff0011;
   align-items: center;
   padding: 1em;
 }
@@ -122,13 +122,14 @@
 }
 
 .h1Contact {
-  color: white;
+  color: black;
   margin-bottom: 1em;
   font-size: 3em;
 }
 
 .h2Contact {
   color: gray;
+  width: 12em;
   font-size: 1.5em;
   margin-bottom: 0.7em;
 }
