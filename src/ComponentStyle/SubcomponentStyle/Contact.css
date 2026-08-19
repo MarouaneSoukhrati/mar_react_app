@@ -32,7 +32,6 @@
 .contact-form {
   display: flex;
   flex-direction: column;
-  background-color: transparent;
   border-radius: 2em;
   border: solid 2px white;
   margin-left: 5em;
