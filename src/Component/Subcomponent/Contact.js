@@ -81,7 +81,7 @@ const PopUp = ({ handler }) => {
   return (
     <div className="PopUp">
       <div className="MsgPopUp">
-        <p>Message sent with success</p>
+        <p>Message sent</p>
         <img
           className="popup-success-img"
           src={PopUpSuccess}
