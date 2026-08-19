@@ -68,7 +68,7 @@
   justify-content: space-evenly;
   border-radius: 3.125em;
   color: white;
-  height: 15.625em;
+  height: 17em;
   width: 21.875em;
   padding: 0.625em;
   position: absolute;
@@ -136,7 +136,7 @@
   color: gray;
   width: 12em;
   font-size: 1.5em;
-  margin-bottom: 0.7em;
+  margin-bottom: 1.5em;
 }
 
 .test {
