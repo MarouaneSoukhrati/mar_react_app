@@ -60,6 +60,7 @@ const ContactForm = ({ handler }) => {
       <input type="text" placeholder="Email"></input>
       <div className="formTitle">Phone number  <span style={{color : "red"}}>*</span></div>
       <input type="text" placeholder="Phone Number"></input>
+      <div className="formTitle">Message  <span style={{color : "red"}}>*</span></div>
       <textarea
         className="MsgTextArea"
         type="text"
