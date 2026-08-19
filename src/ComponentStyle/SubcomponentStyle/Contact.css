@@ -75,6 +75,7 @@
   z-index: 2;
   align-items: center;
   padding-top: 1.875em;
+  border: solid 3px white;
 }
 
 .closePopUp {
