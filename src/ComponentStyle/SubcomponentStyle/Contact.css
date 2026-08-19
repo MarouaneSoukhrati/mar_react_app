@@ -43,7 +43,7 @@
   width: 30em;
   background-color: white;
   padding: 2em;
-  border-radius: 0px;
+  border-radius: 1.5em;
   border: solid 1px grey;
 }
 
@@ -115,7 +115,7 @@
 
 .MsgTextArea {
   height: 7em;
-  width: 100%;
+  width: 30em;
   margin-top: 0.35em;
   border-radius: 0px;
   font-family: Arial, Helvetica, sans-serif;
