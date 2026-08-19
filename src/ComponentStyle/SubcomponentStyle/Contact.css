@@ -10,11 +10,13 @@
 .contactWrapper {
   display: flex;
   flex-direction: row;
+  background-color: red;
 }
 
 .paraWrapper {
   display: flex;
   flex-direction: column;
+  background-color: blue;
 }
 
 .formTitle {
