@@ -16,7 +16,6 @@
 .paraWrapper {
   display: flex;
   flex-direction: column;
-  background-color: blue;
 }
 
 .formTitle {
