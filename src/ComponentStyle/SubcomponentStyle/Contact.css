@@ -40,7 +40,7 @@
 .contact-form {
   display: flex;
   flex-direction: column;
-  width: 30em;
+  width: 20em;
   background-color: white;
   padding: 2em;
   border-radius: 1.5em;
