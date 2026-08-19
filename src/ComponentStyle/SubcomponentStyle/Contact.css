@@ -35,7 +35,8 @@
   margin-left: 5em;
   width: 30em;
   background-color: #00000099;
-  padding: 5em;
+  padding: 10em;
+  border-radius: 30px;
 }
 
 .myFormInput {
