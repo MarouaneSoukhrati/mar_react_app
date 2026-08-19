@@ -32,11 +32,9 @@
 .contact-form {
   display: flex;
   flex-direction: column;
-  border-radius: 2em;
-  border: solid 2px white;
   margin-left: 5em;
   width: 30em;
-  background-color: yellow;
+  background-color: gray;
 }
 
 .contact-form input {
