@@ -62,13 +62,13 @@
 }
 
 .PopUp {
-  background-color: #00000099;
+  background-color: #ffffff99;
   display: flex;
   flex-direction: column;
   justify-content: center;
   border-radius: 3.125em;
   color: white;
-  height: 37em;
+  height: 25em;
   width: 21.875em;
   padding: 0.625em;
   position: absolute;
@@ -96,7 +96,8 @@
   flex-direction: column;
   align-items: center;
   font-size: 1.25em;
-  color: Orange;
+  color: black;
+  justify-content: center;
   z-index: 3;
   background-color: #0000ff55;
   padding: 3.125em;
