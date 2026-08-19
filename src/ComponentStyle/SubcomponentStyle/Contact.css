@@ -10,7 +10,7 @@
 .contactWrapper {
   display: flex;
   flex-direction: column;
-  background-color: red;
+  background-color: #00ff0099;
   margin-left: 5em;
   align-items: center;
   padding: 3em;
@@ -19,7 +19,7 @@
 .paraWrapper {
   display: flex;
   flex-direction: column;
-  background-color: green;
+  background-color: #00ff0099;
 }
 
 .formTitle {
