@@ -33,7 +33,7 @@
   display: flex;
   flex-direction: column;
   margin-left: 5em;
-  width: 30em;
+  width: 40em;
   background-color: gray;
 }
 
@@ -42,7 +42,7 @@
   margin-top: 0.35em;
   margin-bottom: 0.35em;
   font-family: Arial, Helvetica, sans-serif;
-  width: 10em;
+  width: 5em;
 }
 
 .PopUp {
