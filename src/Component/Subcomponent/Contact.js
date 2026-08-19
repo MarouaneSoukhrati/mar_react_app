@@ -109,13 +109,15 @@ export default function Contact() {
   return (
     <header className="App-contact">
       {popUpOn === 1 && <PopUp handler={(e) => handlePopUp(e)} />}
-      <div className="contactWrapper">
-        <ContactForm handler={(e) => handlePopUp(e)} />
-      </div>
-      <div className="paraWrapper">
+      <div className="cBox">
+        <div className="contactWrapper">
+          <ContactForm handler={(e) => handlePopUp(e)} />
+        </div>
+        <div className="paraWrapper">
           <h1>Get in touch</h1>
           <p>Wheter you have a question about our services, a proposal or anything else, we will be more than happy to answer all your questions.</p>
           <SimpleMap />
+        </div>
       </div>
     </header>
   );
