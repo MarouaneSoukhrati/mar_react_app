@@ -34,7 +34,7 @@
   flex-direction: column;
   margin-left: 5em;
   width: 30em;
-  background-color: white;
+  background-color: #ffffff66;
   padding: 5em;
   border-radius: 0px;
   border: solid 1px grey;
@@ -101,7 +101,7 @@
   background-color: black;
   color: white;
   padding: 0.625em;
-  width: 15em;
+  width: 10em;
   height: 1.5em;
   border-radius: 0em;
 }
