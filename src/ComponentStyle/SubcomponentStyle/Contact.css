@@ -38,9 +38,9 @@
 .contact-form {
   display: flex;
   flex-direction: column;
-  width: 30em;
+  width: 20em;
   background-color: transparent;
-  padding: 2em;
+  padding: 5em;
   border-radius: 1.5em;
 }
 
