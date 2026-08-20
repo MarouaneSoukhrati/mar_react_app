@@ -19,7 +19,7 @@ export default function ImageCarousel({ imgList, imgTitleList, imgStyleList }) {
           alt="left-arrow"
           whileHover={{ scale: 2.2 }}
           whileTap={{ scale: 2.2 }}
-          onClick={(imgIndex) =>
+          onClick={() =>
             setImgIndex(imgIndex === 0 ? imgList.length - 1 : imgIndex - 1)
           }
         />
