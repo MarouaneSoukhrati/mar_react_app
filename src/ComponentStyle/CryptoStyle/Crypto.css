@@ -31,7 +31,7 @@
   background-color: #ffffff11;
   padding: 5em;
   border-radius: 3em;
-  margin: 3em;
+  margin: -13em;
   width: 20em;
   border: solid 2px white;
   transform: rotate(45deg);
@@ -43,9 +43,8 @@
   align-items: center;
   justify-content: center;
   background-color: #ffffff11;
-  padding: 5em;
+  padding: 10em;
   border-radius: 3em;
-  margin: 3em;
   border: solid 2px white;
 }
 
