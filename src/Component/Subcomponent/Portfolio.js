@@ -12,6 +12,8 @@ import GomukoGame from "../Gomuko/Gomuko";
 import HexGame from "../Hex/Hex";
 import ChatBot from "../ChatBot/ChatBot";
 
+import PokerGame from "../Poker/Poker";
+
 //import PokerGame from "../Poker/Poker";
 /*
       <div className="Poker-part">
@@ -31,6 +33,9 @@ export default function Portfolio() {
       </div>
       <div className="Hex-part">
         <HexGame />
+      </div>
+      <div className="Poker-part">
+        <PokerGame playersCount={4} />
       </div>
     </header>
   );
