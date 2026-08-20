@@ -6,6 +6,46 @@ import Chart from "chart.js/auto";
 
 import CreditCardLogo from "../../Logos/MoorLogo.svg";
 
+
+const cardsData = [
+  { id: 1, title: "Card One", description: "This is the first card." },
+  { id: 2, title: "Card Two", description: "This is the second card." },
+  { id: 3, title: "Card Three", description: "This is the third card." },
+  { id: 4, title: "Card Four", description: "This is the fourth card." },
+  { id: 5, title: "Card Five", description: "This is the fifth card." },
+];
+
+function AutoScrollCards() {
+  return (
+    <div className="w-full py-10 bg-slate-900 overflow-hidden">
+      <h2 className="text-white text-center text-2xl font-bold mb-6">
+        Auto-Scrolling Cards
+      </h2>
+      
+      {/* Container with gradient fading edges */}
+      <div className="relative w-full overflow-hidden mask-gradient">
+        <div className="flex w-max animate-marquee gap-6 hover:[animation-play-state:paused]">
+          
+          {/* Render the list twice to create a seamless infinite loop */}
+          {[...cardsData, ...cardsData].map((card, index) => (
+            <div
+              key={`${card.id}-${index}`}
+              className="w-72 h-40 bg-slate-800 border border-slate-700 rounded-xl p-5 flex flex-col justify-between shadow-lg text-white flex-shrink-0"
+            >
+              <div>
+                <h3 className="text-lg font-semibold">{card.title}</h3>
+                <p className="text-slate-400 text-sm mt-1">{card.description}</p>
+              </div>
+              <span className="text-xs text-indigo-400 font-medium">Explore &rarr;</span>
+            </div>
+          ))}
+
+        </div>
+      </div>
+    </div>
+  );
+}
+
 export default function Crypto() {
   return (
     <header className="App-crypto">
@@ -33,6 +73,7 @@ export default function Crypto() {
           <p>The Moorish Coin</p>
           <CryptoFormulaire />
         </div>
+        <AutoScrollCards />
       </div>
       <CoinGraphics />
     </header>
