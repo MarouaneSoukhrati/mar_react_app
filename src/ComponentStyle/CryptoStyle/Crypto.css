@@ -116,7 +116,7 @@
 }
 
 .GraphicsBackGround {
-  border: solid 3px white;
+  /*border: solid 3px white;*/
   border-radius: 6em;
   padding: 3.75em;
   display: flex;
