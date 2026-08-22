@@ -75,7 +75,6 @@
   z-index: 2;
   align-items: center;
   padding-top: 1.875em;
-  border: solid 3px white;
 }
 
 .closePopUp {
@@ -86,7 +85,7 @@
 }
 
 .closePopUp button {
-  background-color: #ff000099;
+  background-color: #ff0000;
   border-radius: 0.3125em;
   color: white;
   z-index: 3;
