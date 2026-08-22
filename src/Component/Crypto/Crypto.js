@@ -200,7 +200,7 @@ function CoinGraphics() {
 
   return (
     <div className="GraphicsBackGround">
-      <h1 className="graphTitleBar">Famous Coins Prices:</h1>
+      <h1 className="graphTitleBar">Cryptocurrency Prices</h1>
       <input
         className="cryptoName"
         type="text"
