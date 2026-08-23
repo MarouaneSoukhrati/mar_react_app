@@ -30,19 +30,27 @@ export default function Crypto() {
 
 function CryptoCard(){
   return(
-    <div className="IntroPart">
-        <h3 className="CryptoCurrPara1">
+    <>
+      <motion.div className="IntroPart"
+        animate={{ x: ["0%", "-50%"] }}
+        transition={{
+          ease: "linear",
+          duration: 10,
+          repeat: Infinity,
+        }}>
+          <h3 className="CryptoCurrPara1">
             Explore the crypto world. Buy and cell crypto coins easy and secure.
-        </h3>
-        <p className="CryptoCurrPara2">
+          </h3>
+          <p className="CryptoCurrPara2">
             Explore the exciting world of cryptocurrency with ease. Our platform
             offers a secure and user-friendly environment. Benefit from
             lightning-fast transactions, competitive rates, and robust security
             measures. Join the crypto revolution today and start building your
             digital wealth.
-        </p>
-        <motion.div className="TryButton">Give it a Try</motion.div>
-    </div>
+          </p>
+          <motion.div className="TryButton">Give it a Try</motion.div>
+      </motion.div>
+    </>
     );
 }
 
