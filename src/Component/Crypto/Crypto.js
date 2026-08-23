@@ -7,8 +7,6 @@ import Chart from "chart.js/auto";
 import CreditCardLogo from "../../Logos/MoorLogo.svg";
 
 function InfiniteScrollFramer() {
-  const cards = ["Card 1", "Card 2", "Card 3", "Card 4"]; // Your cards data
-
   return (
     <div style={{ overflow: "hidden", width: "100%", display: "flex" }}>
       <motion.div
