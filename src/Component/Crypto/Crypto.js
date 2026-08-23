@@ -11,19 +11,8 @@ export default function Crypto() {
     <header className="App-crypto">
       <h1>Buy and sell trusted Crypto</h1>
       <div className="Crypto-Wrapper">
-        <div className="IntroPart">
-          <h3 className="CryptoCurrPara1">
-            Explore the crypto world. Buy and cell crypto coins easy and secure.
-          </h3>
-          <p className="CryptoCurrPara2">
-            Explore the exciting world of cryptocurrency with ease. Our platform
-            offers a secure and user-friendly environment. Benefit from
-            lightning-fast transactions, competitive rates, and robust security
-            measures. Join the crypto revolution today and start building your
-            digital wealth.
-          </p>
-          <motion.div className="TryButton">Give it a Try</motion.div>
-        </div>
+        <CryptoCard />
+        <CryptoCard />
         <div className="InformationPart">
           <img
             src={CreditCardLogo}
@@ -37,6 +26,24 @@ export default function Crypto() {
       <CoinGraphics />
     </header>
   );
+}
+
+function CryptoCard(){
+  return(
+    <div className="IntroPart">
+        <h3 className="CryptoCurrPara1">
+            Explore the crypto world. Buy and cell crypto coins easy and secure.
+        </h3>
+        <p className="CryptoCurrPara2">
+            Explore the exciting world of cryptocurrency with ease. Our platform
+            offers a secure and user-friendly environment. Benefit from
+            lightning-fast transactions, competitive rates, and robust security
+            measures. Join the crypto revolution today and start building your
+            digital wealth.
+        </p>
+        <motion.div className="TryButton">Give it a Try</motion.div>
+    </div>
+    );
 }
 
 function Coin({ CoinName, CoinValue, CoinLogo, CoinChange, isSelected }) {
