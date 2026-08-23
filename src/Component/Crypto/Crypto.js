@@ -22,19 +22,7 @@ function InfiniteScrollFramer() {
       >
         {/* Render the list twice to create the seamless loop */}
         {[...cards, ...cards].map((card, index) => (
-          <div
-            key={index}
-            style={{
-              minWidth: "200px",
-              height: "100px",
-              background: "#ddd",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-            }}
-          >
-            <CryptoCard />
-          </div>
+        <CryptoCard key={index}/>
         ))}
       </motion.div>
     </div>
@@ -47,7 +35,6 @@ export default function Crypto() {
     <header className="App-crypto">
       <h1>Buy and sell trusted Crypto</h1>
       <div className="Crypto-Wrapper">
-        <CryptoCard />
         <CryptoCard />
         <InfiniteScrollFramer />
         <div className="InformationPart">
