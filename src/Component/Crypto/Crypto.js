@@ -16,7 +16,7 @@ function InfiniteScrollFramer() {
         animate={{ x: ["0%", "100%"] }}
         transition={{
           ease: "linear",
-          duration: 5,
+          duration: 10,
           repeat: Infinity,
         }}
       >
