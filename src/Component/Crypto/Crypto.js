@@ -13,15 +13,14 @@ function InfiniteScrollFramer() {
     <div style={{ overflow: "hidden", width: "100%", display: "flex" }}>
       <motion.div
         style={{ display: "flex", gap: "1rem" }}
-        animate={{ x: ["0%", "-50%"] }}
+        animate={{ x: ["0%", "-100%"] }}
         transition={{
           ease: "linear",
           duration: 10,
           repeat: Infinity,
         }}
       >
-        {/* Render the list twice to create the seamless loop */}
-        {[...cards, ...cards].map((card, index) => (
+        {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((card, index) => (
         <CryptoCard key={index}/>
         ))}
       </motion.div>
