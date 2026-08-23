@@ -13,7 +13,7 @@ function InfiniteScrollFramer() {
     <div style={{ overflow: "hidden", width: "100%", display: "flex" }}>
       <motion.div
         style={{ display: "flex", gap: "1rem" }}
-        animate={{ x: ["0%", "-80%"] }}
+        animate={{ x: ["0%", "-50%"] }}
         transition={{
           ease: "linear",
           duration: 10,
