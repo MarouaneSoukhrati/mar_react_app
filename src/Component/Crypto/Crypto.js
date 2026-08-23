@@ -33,7 +33,7 @@ function InfiniteScrollFramer() {
               justifyContent: "center",
             }}
           >
-            {card}
+            <CryptoCard />
           </div>
         ))}
       </motion.div>
@@ -67,14 +67,7 @@ export default function Crypto() {
 
 function CryptoCard(){
   return(
-    <>
-      <motion.div className="IntroPart"
-        animate={{ x: ["0%", "-50%"] }}
-        transition={{
-          ease: "linear",
-          duration: 10,
-          repeat: Infinity,
-        }}>
+      <div className="IntroPart">
           <h3 className="CryptoCurrPara1">
             Explore the crypto world. Buy and cell crypto coins easy and secure.
           </h3>
@@ -86,8 +79,7 @@ function CryptoCard(){
             digital wealth.
           </p>
           <motion.div className="TryButton">Give it a Try</motion.div>
-      </motion.div>
-    </>
+      </div>
     );
 }
 
