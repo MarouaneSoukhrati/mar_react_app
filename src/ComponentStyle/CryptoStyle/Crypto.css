@@ -31,7 +31,8 @@
   width: 20em;
   padding: 10em;
   border-radius: 3em;
-  margin: 5em;
+  margin-top: 5em;
+  margin-bottom: 5em;
 }
 
 .InformationPart {
