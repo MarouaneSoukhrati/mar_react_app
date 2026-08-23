@@ -6,6 +6,42 @@ import Chart from "chart.js/auto";
 
 import CreditCardLogo from "../../Logos/MoorLogo.svg";
 
+function InfiniteScrollFramer() {
+  const cards = ["Card 1", "Card 2", "Card 3", "Card 4"]; // Your cards data
+
+  return (
+    <div style={{ overflow: "hidden", width: "100%", display: "flex" }}>
+      <motion.div
+        style={{ display: "flex", gap: "1rem" }}
+        animate={{ x: ["0%", "-50%"] }}
+        transition={{
+          ease: "linear",
+          duration: 10,
+          repeat: Infinity,
+        }}
+      >
+        {/* Render the list twice to create the seamless loop */}
+        {[...cards, ...cards].map((card, index) => (
+          <div
+            key={index}
+            style={{
+              minWidth: "200px",
+              height: "100px",
+              background: "#ddd",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
+            {card}
+          </div>
+        ))}
+      </motion.div>
+    </div>
+  );
+}
+
+
 export default function Crypto() {
   return (
     <header className="App-crypto">
@@ -13,6 +49,7 @@ export default function Crypto() {
       <div className="Crypto-Wrapper">
         <CryptoCard />
         <CryptoCard />
+        <InfiniteScrollFramer />
         <div className="InformationPart">
           <img
             src={CreditCardLogo}
