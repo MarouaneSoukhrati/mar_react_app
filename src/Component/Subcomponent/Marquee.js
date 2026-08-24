@@ -2,7 +2,7 @@ import "../../ComponentStyle/SubcomponentStyle/Marquee.css";
 import { useState } from "react";
 import { motion } from "framer-motion";
 
-export default function Marquee({ imgList }) {
+export default function Marquee({ itemsList }) {
   return (
     <div className="Marquee">
       <motion.div
@@ -14,7 +14,7 @@ export default function Marquee({ imgList }) {
           repeat: Infinity,
         }}
       >
-          {imgList.map(img => <div>Test</div>)}
+          {itemsList}
       </motion.div>
       <motion.div
         className="MarqueeCards"
