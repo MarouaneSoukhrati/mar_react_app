@@ -80,6 +80,7 @@ const PopUp = ({ handler }) => {
   return (
     <div className="PopUp">
       <div className="MsgPopUp">
+        <div className="xB" onClick={handler}>X</div>
         <h1>Speak soon!</h1>
         <p>We've received your request and will call you back within 48 hours.</p>
         <p>If you're unable to pick up or you've changed your mind, please email us.</p>
