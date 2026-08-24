@@ -16,6 +16,17 @@ export default function Marquee({ imgList }) {
       >
           {imgList.map(img => <div>Test</div>)}
       </motion.div>
+      <motion.div
+        className="MarqueeCards"
+        animate={{ x: ["0%", "-100%"] }}
+        transition={{
+          ease: "linear",
+          duration: 10,
+          repeat: Infinity,
+        }}
+      >
+          {imgList.map(img => <div>Test</div>)}
+      </motion.div>
     </div>
   );
 }
