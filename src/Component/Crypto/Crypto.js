@@ -8,7 +8,7 @@ import CreditCardLogo from "../../Logos/MoorLogo.svg";
 
 function InfiniteScrollFramer() {
   return (
-    <div style={{ overflow: "hidden", width: "100%", display: "flex" }}>
+    <div style={{ overflowX: "auto", width: "100%", display: "flex" }}>
       <motion.div
         style={{ display: "flex", gap: "1rem", paddingRight: "1rem" }}
         animate={{ x: ["0%", "-100%"] }}
