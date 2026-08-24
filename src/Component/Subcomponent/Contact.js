@@ -81,9 +81,8 @@ const PopUp = ({ handler }) => {
     <div className="PopUp">
       <div className="MsgPopUp">
         <h1>Speak soon!</h1>
-        <p>We've received your request and will call you back within 48 hours.
-           If you're unable to pick up or you've changed your mind, please email us. 
-        </p>
+        <p>We've received your request and will call you back within 48 hours.</p>
+        <p>If you're unable to pick up or you've changed your mind, please email us.</p>
       </div>
       <button className="closeButton" onClick={handler}>CLOSE</button>
     </div>
