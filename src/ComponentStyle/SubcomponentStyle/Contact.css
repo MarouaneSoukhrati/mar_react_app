@@ -70,6 +70,7 @@
   color: black;
   position: absolute;
   z-index: 2;
+  height: 20em;
   box-shadow: 0 0 15px 5px rgba(128, 128, 128, 0.7);
 }
 
