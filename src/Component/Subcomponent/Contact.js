@@ -80,7 +80,7 @@ const PopUp = ({ handler }) => {
   return (
     <div className="PopUp">
       <div className="MsgPopUp">
-        <p>Message sent with success</p>
+        <h1>Message sent with success</h1>
         <p>We've received your request and will call you back within 48 hours.
            If you're unable to pick up or you've changed your mind, please email us. 
         </p>
