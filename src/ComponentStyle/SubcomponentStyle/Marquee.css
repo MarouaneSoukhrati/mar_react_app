@@ -3,6 +3,7 @@
     flex-direction: row;
     border: solid 1px white;
     margin: 5em;
+    padding: 5em;
 }
 
 .MarqueeCards {
