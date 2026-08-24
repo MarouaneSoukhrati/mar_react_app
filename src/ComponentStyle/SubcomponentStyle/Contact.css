@@ -70,7 +70,7 @@
   color: black;
   height: 20em;
   width: 20em;
-  padding: 2em;
+  padding: 3em;
   position: absolute;
   z-index: 2;
   box-shadow: 0 0 15px 5px rgba(128, 128, 128, 0.7);
@@ -90,6 +90,7 @@
   align-items: center;
   color: black;
   z-index: 3;
+  padding: 2em;
 }
 
 .submitSendMsg {
