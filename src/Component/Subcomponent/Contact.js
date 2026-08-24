@@ -10,7 +10,6 @@ import { SocialMediaWrapper } from "../Afooter";
 import iconMarker from "leaflet/dist/images/marker-icon.png";
 import iconRetina from "leaflet/dist/images/marker-icon-2x.png";
 import iconShadow from "leaflet/dist/images/marker-shadow.png";
-import PopUpSuccess from "../../Logos/PopUpSuccess.svg";
 
 const icon = L.icon({
   iconRetinaUrl: iconRetina,
@@ -82,14 +81,12 @@ const PopUp = ({ handler }) => {
     <div className="PopUp">
       <div className="MsgPopUp">
         <p>Message sent with success</p>
-        <img
-          className="popup-success-img"
-          src={PopUpSuccess}
-          alt="PopUp-Success"
-        ></img>
+        <p>We've received your request and will call you back within 48 hours.
+           If you're unable to pick up or you've changed your mind, please email us. 
+        </p>
       </div>
       <div className="closePopUp">
-        <button onClick={handler}>close</button>
+        <button onClick={handler}>CLOSE</button>
       </div>
     </div>
   );
