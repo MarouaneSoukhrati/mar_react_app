@@ -25,7 +25,7 @@ export default function Marquee({ itemsList }) {
           repeat: Infinity,
         }}
       >
-          {imgList.map(img => <div>Test</div>)}
+          {itemsList}
       </motion.div>
     </div>
   );
