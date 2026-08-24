@@ -15,7 +15,7 @@ export default function Crypto() {
       <h1>Buy and sell trusted Crypto</h1>
       <div className="Crypto-Wrapper">
         <CryptoCard />
-        <Marquee imgList={[1,1,1]} />
+        <Marquee itemsList={[<CryptoCard />, <CryptoCard />]} />
         <div className="InformationPart">
           <img
             src={CreditCardLogo}
