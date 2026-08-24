@@ -10,7 +10,7 @@
 .MarqueeCards {
   display: flex;
   flex-shrink: 0;
-  gap: 5em;
+  gap: 1em;
   min-width: 100%;
   justify-content: space-around;
 }
