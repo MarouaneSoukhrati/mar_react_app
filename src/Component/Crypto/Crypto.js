@@ -18,10 +18,25 @@ function InfiniteScrollFramer() {
           repeat: Infinity,
         }}
       >
-        {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((card, index) => (
+        {[1, 2, 3].map((card, index) => (
         <CryptoCard key={index}/>
         ))}
       </motion.div>
+      
+       <motion.div
+        style={{ display: "flex", gap: "1rem" }}
+        animate={{ x: ["0%", "-100%"] }}
+        transition={{
+          ease: "linear",
+          duration: 10,
+          repeat: Infinity,
+        }}
+      >
+        {[1, 2, 3].map((card, index) => (
+        <CryptoCard key={index}/>
+        ))}
+      </motion.div>
+      
     </div>
   );
 }
