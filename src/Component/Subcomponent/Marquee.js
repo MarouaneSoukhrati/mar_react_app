@@ -2,7 +2,7 @@ import "../../ComponentStyle/SubcomponentStyle/Marquee.css";
 import { useState } from "react";
 import { motion } from "framer-motion";
 
-function InfiniteScrollFramer() {
+/*function InfiniteScrollFramer() {
   return (
     <div style={{ overflowX: "auto", width: "100%", display: "flex" }}>
       <motion.div
@@ -35,12 +35,13 @@ function InfiniteScrollFramer() {
     </div>
   );
 }
+*/
 
 
-export default function Marquee() {
+export default function Marquee({ imgList }) {
   return (
     <div className="Marquee">
-      {[1,1,1].map(img => <div>Test</div>)}
+      {imgList.map(img => <div>Test</div>)}
     </div>
   );
 }
