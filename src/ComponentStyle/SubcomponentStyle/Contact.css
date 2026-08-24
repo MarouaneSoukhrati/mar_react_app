@@ -70,9 +70,10 @@
   color: black;
   height: 20em;
   width: 20em;
-  padding: 0.625em;
+  padding: 5em;
   position: absolute;
   z-index: 2;
+  box-shadow: 0 0 15px 5px rgba(128, 128, 128, 0.7);
 }
 
 .closeButton {
@@ -89,7 +90,7 @@
   align-items: center;
   color: black;
   z-index: 3;
-  padding: 5em;
+  padding: 3em;
 }
 
 .submitSendMsg {
