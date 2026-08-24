@@ -85,7 +85,7 @@
 }
 
 .xB {
-  border: black;
+  border: solid 1px black;
   border-radius: 0em;
   color: black;
   z-index: 3;
