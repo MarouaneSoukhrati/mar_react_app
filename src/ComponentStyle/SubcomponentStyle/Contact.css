@@ -84,6 +84,13 @@
   z-index: 3;
 }
 
+.xB {
+  border: solid 2px black;
+  border-radius: 0em;
+  color: black;
+  z-index: 3;
+}
+
 .MsgPopUp {
   display: flex;
   flex-direction: column;
