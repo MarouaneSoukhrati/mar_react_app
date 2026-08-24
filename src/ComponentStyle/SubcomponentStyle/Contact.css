@@ -73,21 +73,13 @@
   padding: 0.625em;
   position: absolute;
   z-index: 2;
-  align-items: center;
-  padding-top: 1.875em;
 }
 
-.closePopUp {
-  border-radius: 0.3125em;
-  display: flex;
-  flex-direction: row;
-  justify-content: end;
-}
-
-.closePopUp button {
-  background-color: red;
-  border-radius: 0.3125em;
-  color: white;
+.closeButton {
+  background-color: white;
+  border-radius: 0em;
+  color: black;
+  border: solid 2px black;
   z-index: 3;
 }
 
@@ -135,8 +127,4 @@
   width: 12em;
   font-size: 1.5em;
   margin-bottom: 2.5em;
-}
-
-.test {
-  margin-bottom: 1em;
 }
