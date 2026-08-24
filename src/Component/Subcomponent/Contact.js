@@ -85,9 +85,7 @@ const PopUp = ({ handler }) => {
            If you're unable to pick up or you've changed your mind, please email us. 
         </p>
       </div>
-      <div className="closePopUp">
-        <button onClick={handler}>CLOSE</button>
-      </div>
+      <button className="closeButton" onClick={handler}>CLOSE</button>
     </div>
   );
 };
