@@ -4,7 +4,7 @@ import React, { useEffect, useState, useRef } from "react";
 import { motion } from "framer-motion";
 import Chart from "chart.js/auto";
 
-import Marquee from "../Subcomponent/Marquee";
+/*import Marquee from "../Subcomponent/Marquee";*/
 
 import CreditCardLogo from "../../Logos/MoorLogo.svg";
 
