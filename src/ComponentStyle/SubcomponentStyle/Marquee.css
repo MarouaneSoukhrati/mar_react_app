@@ -1,10 +1,16 @@
 .Marquee {
-    display: flex;
-    flex-direction: row;
-    border: solid 1px white;
-    margin: 5em;
+  display: flex;
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+  mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+  -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
 }
 
 .MarqueeCards {
-    display: flex;
+  display: flex;
+  flex-shrink: 0;
+  gap: 5em;
+  min-width: 100%;
+  justify-content: space-around;
 }
