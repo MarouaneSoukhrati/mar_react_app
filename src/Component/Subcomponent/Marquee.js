@@ -37,10 +37,10 @@ function InfiniteScrollFramer() {
 }
 
 
-export default function Marquee({ imgList }) {
+export default function Marquee() {
   return (
     <div className="Marquee">
-      {[...imgList].map(img => <div>Test</div>)}
+      {[1,1,1].map(img => <div>Test</div>)}
     </div>
   );
 }
