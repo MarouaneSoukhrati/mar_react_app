@@ -6,41 +6,6 @@ import Chart from "chart.js/auto";
 
 import CreditCardLogo from "../../Logos/MoorLogo.svg";
 
-function InfiniteScrollFramer() {
-  return (
-    <div style={{ overflowX: "auto", width: "100%", display: "flex" }}>
-      <motion.div
-        style={{ display: "flex" }}
-        animate={{ x: ["0%", "-100%"] }}
-        transition={{
-          ease: "linear",
-          duration: 10,
-          repeat: Infinity,
-        }}
-      >
-        {[1, 2, 3].map((card, index) => (
-        <CryptoCard key={index}/>
-        ))}
-      </motion.div>
-      
-       <motion.div
-        style={{ display: "flex" }}
-        animate={{ x: ["0%", "-100%"] }}
-        transition={{
-          ease: "linear",
-          duration: 10,
-          repeat: Infinity,
-        }}
-      >
-        {[1, 2, 3].map((card, index) => (
-        <CryptoCard key={index}/>
-        ))}
-      </motion.div>
-      
-    </div>
-  );
-}
-
 
 export default function Crypto() {
   return (
@@ -48,7 +13,7 @@ export default function Crypto() {
       <h1>Buy and sell trusted Crypto</h1>
       <div className="Crypto-Wrapper">
         <CryptoCard />
-        <InfiniteScrollFramer />
+        <Marquee imgList={[1,1,1]}/>
         <div className="InformationPart">
           <img
             src={CreditCardLogo}
