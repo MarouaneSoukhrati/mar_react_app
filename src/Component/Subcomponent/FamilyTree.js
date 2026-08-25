@@ -31,6 +31,8 @@ let imgStyleList = [
   "imgCar-images-wrapper",
 ];
 
+let marqueeList = [...imgList].map((img, index) => <img className={imgStyleList[2]} src={img} key={index} alt="Images" />);
+
 let Desctext =
   "The term Moor is an exonym first used by Christian Europeans to designate the Muslim populations of the Maghreb";
 Desctext +=
