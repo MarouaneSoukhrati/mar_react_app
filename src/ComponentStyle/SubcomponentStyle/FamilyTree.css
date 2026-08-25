@@ -30,6 +30,7 @@
   color: white;
   font-size: 1.25em;
   width: 46.875em;
+  margin-bottom: 3em;
 }
 
 .moorbutton {
@@ -46,4 +47,5 @@
   border-radius: 3.125em;
   height: 1.25em;
   width: 8.125em;
+  margin-top: 3em;
 }
