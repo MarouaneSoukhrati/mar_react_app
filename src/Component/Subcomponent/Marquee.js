@@ -13,8 +13,7 @@ export default function Marquee({ itemsList, speed = 50 }) {
       if (!firstCopyRef.current || !secondCopyRef.current) return;
       const firstLeft = firstCopyRef.current.getBoundingClientRect().left;
       const secondLeft = secondCopyRef.current.getBoundingClientRect().left;
-      // This is the exact distance to translate: it already includes
-      // the width of one copy PLUS the gap between the two copies.
+      
       setDistance(secondLeft - firstLeft);
     };
 
