@@ -1,6 +1,7 @@
 import "../../ComponentStyle/SubcomponentStyle/FamilyTree.css";
 import ImageCarousel from "./ImageCarousel";
 import { motion } from "framer-motion";
+import Marquee from "./Marquee";
 
 import familyTree from "../../Logos/familyTree.svg";
 
@@ -31,7 +32,7 @@ let imgStyleList = [
   "imgCar-images-wrapper",
 ];
 
-let marqueeList = [...imgList].map((img, index) => <img className={imgStyleList[2]} src={img} key={index} alt="Images" />);
+let marqueeList = [...imgList].map((img, index) => (<img className={imgStyleList[2]} src={img} key={index} alt="Images" />));
 
 let Desctext =
   "The term Moor is an exonym first used by Christian Europeans to designate the Muslim populations of the Maghreb";
