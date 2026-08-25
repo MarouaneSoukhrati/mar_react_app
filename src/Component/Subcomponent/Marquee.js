@@ -3,50 +3,43 @@ import { useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 
 export default function Marquee({ itemsList }) {
-  const [contentWidth, setContentWidth] = useState(0);
-  const containerRef = useRef(null);
+  const [trackWidth, setTrackWidth] = useState(0);
+  const trackRef = useRef(null);
 
   useEffect(() => {
-    if (!containerRef.current) return;
+    if (!trackRef.current) return;
 
     const observer = new ResizeObserver(([entry]) => {
       if (entry) {
-        setContentWidth(entry.contentRect.width);
+        // We measure ONE set of items
+        setTrackWidth(entry.contentRect.width);
       }
     });
 
-    observer.observe(containerRef.current);
+    observer.observe(trackRef.current);
     return () => observer.disconnect();
   }, [itemsList]);
 
   return (
     <div className="Marquee">
       <motion.div
-        ref={containerRef}
-        className="MarqueeCards"
-        animate={contentWidth > 0 ? { x: [0, -contentWidth] } : {}}
+        className="MarqueeTrack"
+        animate={trackWidth > 0 ? { x: [0, -trackWidth] } : {}}
         transition={{
           ease: "linear",
           duration: 10,
           repeat: Infinity,
         }}
       >
-        {itemsList}
-      </motion.div>
-
-      {contentWidth > 0 && (
-        <motion.div
-          className="MarqueeCards"
-          animate={{ x: [0, -contentWidth] }}
-          transition={{
-            ease: "linear",
-            duration: 10,
-            repeat: Infinity,
-          }}
-        >
+        {/* First copy - we attach the ref here to measure its exact width */}
+        <div ref={trackRef} className="MarqueeCards">
           {itemsList}
-        </motion.div>
-      )}
+        </div>
+        {/* Second identical copy right next to it */}
+        <div className="MarqueeCards">
+          {itemsList}
+        </div>
+      </motion.div>
     </div>
   );
 }
