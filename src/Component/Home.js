@@ -1,6 +1,5 @@
 import "../ComponentStyle/Home.css";
 import FamilyTree from "./Subcomponent/FamilyTree";
-import Academics from "./Subcomponent/Academics";
 
 import { motion } from "framer-motion";
 
@@ -23,7 +22,6 @@ export default function Home() {
       </h2>
       <img className="Moor-logo" src={MoorLogo} alt="logo" />
       <FamilyTree />
-      <Academics />
       <h2 className="Yellow-title">My various center of interests :</h2>
       <div className="App-blog-mobility">
         <h1 className="Yellow-subtitle">
