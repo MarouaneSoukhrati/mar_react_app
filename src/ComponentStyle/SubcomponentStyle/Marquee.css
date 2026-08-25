@@ -13,14 +13,14 @@
 
 .MarqueeTrack {
   display: flex;
-  gap: 1em; /* same gap as between items, so the seam matches */
+  gap: 0.5em; /* same gap */
   width: max-content;
 }
 
 .MarqueeCards {
   display: flex;
   flex-shrink: 0;
-  gap: 1em;
+  gap: 0.5em;
   width: max-content;
   align-items: center;
 }
