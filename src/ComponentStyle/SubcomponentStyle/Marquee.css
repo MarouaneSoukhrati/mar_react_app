@@ -22,9 +22,7 @@
   flex-shrink: 0;
   gap: 1em;
   align-items: center;
-  justify-content: space-around;
-  /* Ensures each track copy takes up the exact width of your items list */
-  min-width: 100%; 
+  width: max-content;
 }
 
 @keyframes scroll {
