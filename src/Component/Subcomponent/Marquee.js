@@ -5,13 +5,21 @@ import { motion } from "framer-motion";
 export default function Marquee({ itemsList }) {
   const [contentWidth, setContentWidth] = useState(0);
   const containerRef = useRef(null);
-  
+
   useEffect(() => {
-    if (containerRef.current) {
-      setContentWidth(containerRef.current.offsetWidth);
-    }
+    if (!containerRef.current) return;
+    
+    const observer = new ResizeObserver(([entry]) => {
+      if (entry) {
+        setContentWidth(entry.contentRect.width);
+      }
+    });
+
+    observer.observe(containerRef.current);
+
+    return () => observer.disconnect();
   }, [itemsList]);
-  
+
   return (
     <div className="Marquee">
       {contentWidth > 0 && (
