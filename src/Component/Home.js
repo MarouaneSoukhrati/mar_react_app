@@ -3,6 +3,8 @@ import FamilyTree from "./Subcomponent/FamilyTree";
 
 import { motion } from "framer-motion";
 
+import Academics from "./Subcomponent/Academicd";
+
 import MoorLogo from "../Logos/MoorLogo.svg";
 import Capsule from "../Logos/Capsule.svg";
 import pathLogo from "../Logos/PathLogo.svg";
@@ -17,6 +19,7 @@ mobtxt +=
 export default function Home() {
   return (
     <div className="App-about">
+      <Academics />
       <h2 className="Yellow-title">
         My origins - Learn about the Moorish Culture :
       </h2>
