@@ -7,29 +7,10 @@
   -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
 }
 
-.MarqueeTrack {
-  display: flex;
-  width: max-content;
-  animation: scroll 15s linear infinite;
-}
-
-.MarqueeTrack:hover {
-  animation-play-state: paused;
-}
-
 .MarqueeCards {
   display: flex;
   flex-shrink: 0;
   gap: 1em;
-  align-items: center;
   width: max-content;
-}
-
-@keyframes scroll {
-  from {
-    transform: translateX(0);
-  }
-  to {
-    transform: translateX(-50%);
-  }
+  align-items: center;
 }
