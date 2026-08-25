@@ -24,7 +24,6 @@ export default function Home() {
       </h2>
       <img className="Moor-logo" src={MoorLogo} alt="logo" />
       <FamilyTree />
-      <Academics />
       <h2 className="Yellow-title">My various center of interests :</h2>
       <div className="App-blog-mobility">
         <h1 className="Yellow-subtitle">
@@ -46,6 +45,7 @@ export default function Home() {
           Learn more
         </motion.a>
       </div>
+      <Academics />
     </div>
   );
 }
