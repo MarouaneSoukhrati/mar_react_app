@@ -16,38 +16,36 @@ export default function Marquee({ itemsList }) {
     });
 
     observer.observe(containerRef.current);
-
     return () => observer.disconnect();
   }, [itemsList]);
 
   return (
     <div className="Marquee">
+      <motion.div
+        ref={containerRef}
+        className="MarqueeCards"
+        animate={contentWidth > 0 ? { x: [0, -contentWidth] } : {}}
+        transition={{
+          ease: "linear",
+          duration: 10,
+          repeat: Infinity,
+        }}
+      >
+        {itemsList}
+      </motion.div>
+
       {contentWidth > 0 && (
-        <>
-          <motion.div
-            ref={containerRef}
-            className="MarqueeCards"
-            animate={{ x: [0, -contentWidth] }}
-            transition={{
-              ease: "linear",
-              duration: 10,
-              repeat: Infinity,
-            }}
-          >
-            {itemsList}
-          </motion.div>
-          <motion.div
-            className="MarqueeCards"
-            animate={{ x: [0, -contentWidth] }}
-            transition={{
-              ease: "linear",
-              duration: 10,
-              repeat: Infinity,
-            }}
-          >
-            {itemsList}
-          </motion.div>
-        </>
+        <motion.div
+          className="MarqueeCards"
+          animate={{ x: [0, -contentWidth] }}
+          transition={{
+            ease: "linear",
+            duration: 10,
+            repeat: Infinity,
+          }}
+        >
+          {itemsList}
+        </motion.div>
       )}
     </div>
   );
