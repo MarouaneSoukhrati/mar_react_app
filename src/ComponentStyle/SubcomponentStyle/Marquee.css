@@ -11,6 +11,5 @@
   display: flex;
   flex-shrink: 0;
   gap: 1em;
-  min-width: 10%;
   justify-content: space-around;
 }
