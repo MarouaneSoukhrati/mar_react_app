@@ -3,7 +3,7 @@ import FamilyTree from "./Subcomponent/FamilyTree";
 
 import { motion } from "framer-motion";
 
-import Academics from "./Subcomponent/Academicd";
+import Academics from "./Subcomponent/Academics";
 
 import MoorLogo from "../Logos/MoorLogo.svg";
 import Capsule from "../Logos/Capsule.svg";
