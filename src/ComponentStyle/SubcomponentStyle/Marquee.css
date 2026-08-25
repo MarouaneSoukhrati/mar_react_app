@@ -1,6 +1,6 @@
 .Marquee {
   display: flex;
-  width: 100%;
+  width: 70%;
   overflow: hidden;
   position: relative;
   mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
