@@ -44,14 +44,14 @@ Desctext +=
 export default function FamilyTree() {
   return (
     <div className="fam-wrapper">
-      <div className="img-wrapper">
+      {/*<div className="img-wrapper">
         <img className="fam-tree" src={familyTree} alt="Family-tree" />
         <ImageCarousel
           imgList={imgList}
           imgTitleList={imgTitleList}
           imgStyleList={imgStyleList}
         />
-      </div>
+      </div>*/}
       <Marquee itemsList={marqueeList} />
       <div className="fam-txt">
         <p className="moorparag">{Desctext}</p>
