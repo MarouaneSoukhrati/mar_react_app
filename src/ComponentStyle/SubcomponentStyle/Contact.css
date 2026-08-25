@@ -86,7 +86,7 @@
 
 .xB {
   border: solid 1px black;
-  border-radius: 0em;
+  border-radius: 30px;
   color: black;
   z-index: 3;
   align-items: center;
