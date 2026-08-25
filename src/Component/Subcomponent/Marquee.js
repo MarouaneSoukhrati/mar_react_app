@@ -1,42 +1,47 @@
 import "../../ComponentStyle/SubcomponentStyle/Marquee.css";
-import { useState, useEffect, useRef } from "react";
+import { useState, useLayoutEffect, useRef } from "react";
 import { motion } from "framer-motion";
 
-export default function Marquee({ itemsList }) {
-  const [trackWidth, setTrackWidth] = useState(0);
-  const trackRef = useRef(null);
+export default function Marquee({ itemsList, speed = 50 }) {
+  // speed = pixels per second, so longer content moves at a consistent pace
+  const [distance, setDistance] = useState(0);
+  const firstCopyRef = useRef(null);
+  const secondCopyRef = useRef(null);
 
-  useEffect(() => {
-    if (!trackRef.current) return;
+  useLayoutEffect(() => {
+    const measure = () => {
+      if (!firstCopyRef.current || !secondCopyRef.current) return;
+      const firstLeft = firstCopyRef.current.getBoundingClientRect().left;
+      const secondLeft = secondCopyRef.current.getBoundingClientRect().left;
+      // This is the exact distance to translate: it already includes
+      // the width of one copy PLUS the gap between the two copies.
+      setDistance(secondLeft - firstLeft);
+    };
 
-    const observer = new ResizeObserver(([entry]) => {
-      if (entry) {
-        // We measure ONE set of items
-        setTrackWidth(entry.contentRect.width);
-      }
-    });
+    measure();
 
-    observer.observe(trackRef.current);
+    const observer = new ResizeObserver(measure);
+    if (firstCopyRef.current) observer.observe(firstCopyRef.current);
     return () => observer.disconnect();
   }, [itemsList]);
+
+  const duration = distance > 0 ? distance / speed : 0;
 
   return (
     <div className="Marquee">
       <motion.div
         className="MarqueeTrack"
-        animate={trackWidth > 0 ? { x: [0, -trackWidth] } : {}}
+        animate={distance > 0 ? { x: [0, -distance] } : {}}
         transition={{
           ease: "linear",
-          duration: 10,
+          duration,
           repeat: Infinity,
         }}
       >
-        {/* First copy - we attach the ref here to measure its exact width */}
-        <div ref={trackRef} className="MarqueeCards">
+        <div ref={firstCopyRef} className="MarqueeCards">
           {itemsList}
         </div>
-        {/* Second identical copy right next to it */}
-        <div className="MarqueeCards">
+        <div ref={secondCopyRef} className="MarqueeCards">
           {itemsList}
         </div>
       </motion.div>
