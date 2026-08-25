@@ -3,7 +3,7 @@ import { useState, useLayoutEffect, useRef } from "react";
 import { motion } from "framer-motion";
 
 export default function Marquee({ itemsList, speed = 50 }) {
-  // speed = pixels per second, so longer content moves at a consistent pace
+  
   const [distance, setDistance] = useState(0);
   const firstCopyRef = useRef(null);
   const secondCopyRef = useRef(null);
