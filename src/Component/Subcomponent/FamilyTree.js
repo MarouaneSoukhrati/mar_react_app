@@ -51,8 +51,8 @@ export default function FamilyTree() {
           imgTitleList={imgTitleList}
           imgStyleList={imgStyleList}
         />
-      </div>*/}
-      <Marquee itemsList={marqueeList} />
+      </div>
+      <Marquee itemsList={marqueeList} />*/}
       <div className="fam-txt">
         <p className="moorparag">{Desctext}</p>
         <motion.a
