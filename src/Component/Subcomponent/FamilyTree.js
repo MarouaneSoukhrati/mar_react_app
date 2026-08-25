@@ -42,7 +42,7 @@ export default function FamilyTree() {
   return (
     <div className="fam-wrapper">
       <div className="img-wrapper">
-        {/*<img className="fam-tree" src={familyTree} alt="Family-tree" />*/}
+        <img className="fam-tree" src={familyTree} alt="Family-tree" />
         <ImageCarousel
           imgList={imgList}
           imgTitleList={imgTitleList}
