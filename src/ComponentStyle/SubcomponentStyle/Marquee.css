@@ -7,6 +7,12 @@
   -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
 }
 
+.MarqueeTrack {
+  display: flex;
+  width: max-content;
+  /* Framer motion handles the transform, so no CSS animation here */
+}
+
 .MarqueeCards {
   display: flex;
   flex-shrink: 0;
