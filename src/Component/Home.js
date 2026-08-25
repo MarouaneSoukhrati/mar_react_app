@@ -20,7 +20,7 @@ export default function Home() {
       <h2 className="Yellow-title">
         My origins - Learn about the Moorish Culture :
       </h2>
-      <img className="Moor-logo" src={MoorLogo} alt="logo" />
+      <img className="Moor-logoo" src={MoorLogo} alt="logo" />
       <FamilyTree />
       <h2 className="Yellow-title">My various center of interests :</h2>
       <div className="App-blog-mobility">
