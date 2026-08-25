@@ -19,12 +19,12 @@ mobtxt +=
 export default function Home() {
   return (
     <div className="App-about">
-      <Academics />
       <h2 className="Yellow-title">
         My origins - Learn about the Moorish Culture :
       </h2>
       <img className="Moor-logo" src={MoorLogo} alt="logo" />
       <FamilyTree />
+      <Academics />
       <h2 className="Yellow-title">My various center of interests :</h2>
       <div className="App-blog-mobility">
         <h1 className="Yellow-subtitle">
