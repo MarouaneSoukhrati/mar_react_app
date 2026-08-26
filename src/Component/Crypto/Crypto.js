@@ -79,7 +79,9 @@ function CryptoCardMarquee(){
   }, [cryptoList.length]);
   
   return(
-       <Marquee itemsList={cryptoCardList} />
+       <>
+         <Marquee itemsList={cryptoCardList} />
+       </>
     );
 }
 
