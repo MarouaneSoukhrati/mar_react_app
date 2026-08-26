@@ -76,6 +76,7 @@ function CryptoCardMarquee(){
   
   return(
        <div className="CryptoMarquee">
+          <h1>Explore Crypto rates :</h1>
           <Marquee itemsList={cryptoCardList} />
        </div>
     );
