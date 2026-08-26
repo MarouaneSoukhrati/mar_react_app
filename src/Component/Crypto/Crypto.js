@@ -31,20 +31,19 @@ export default function Crypto() {
   );
 }
 
-function CryptoCard(){
+function CryptoCard({ Coin }){
   return(
-      <div className="IntroPart">
-          <h3 className="CryptoCurrPara1">
-            Explore the crypto world. Buy and cell crypto coins easy and secure.
+      <div className="CryptoCard">
+          <h3 className="CryptoCardTitle">
+            {Coin.CoinName}
           </h3>
-          <p className="CryptoCurrPara2">
-            Explore the exciting world of cryptocurrency with ease. Our platform
-            offers a secure and user-friendly environment. Benefit from
-            lightning-fast transactions, competitive rates, and robust security
-            measures. Join the crypto revolution today and start building your
-            digital wealth.
-          </p>
-          <motion.div className="TryButton">Give it a Try</motion.div>
+          <img className="CryptoCardLogo" src={Coin.CoinLogo} alt="CryptoCard" />
+          <div className="CryptoCardValue">
+            {Coin.CoinValue + "$"}
+          </div>
+          <div className="CryptoCardChange">
+            {Coin.CoinChange}
+          </div>
       </div>
     );
 }
