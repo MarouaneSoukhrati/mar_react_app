@@ -20,15 +20,14 @@
   width: 20em;
   height: 30em;
   padding: 1em;
-  background-color: yellow;
+  background-color: #ffffff77;
   border-radius: 15px;
 }
 
 .CryptoCardTitle {
-  color: black;
+  color: yellow;
   font-size: 2em;
   text-align: center;
-  margin-top: 2em;
 }
 
 .CryptoCardLogo {
