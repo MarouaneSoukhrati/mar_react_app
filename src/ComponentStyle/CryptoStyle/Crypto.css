@@ -9,8 +9,6 @@
 
 .CryptoMarquee {
   margin-top: 10em;
-  background-color: #00ff0011;
-  border-radius: 15px;
 }
             
             
@@ -23,6 +21,7 @@
   height: 30em;
   padding: 1em;
   background-color: black;
+  border: 1px solid white;
   border-radius: 15px;
 }
 
@@ -30,6 +29,7 @@
   color: yellow;
   font-size: 2em;
   text-align: center;
+  margin-top: -1em;
 }
 
 .CryptoCardLogo {
