@@ -53,7 +53,7 @@ function CryptoCardMarquee(){
   const [responseValid, setResponseValid] = useState(false);
   
   let cryptoCardList = cryptoList.map((e, index) => (
-    <CryptoCard Coin={{
+    <CryptoCard key={index} Coin={{
       CoinName: e.name,
       CoinValue: e.price + "$",
       CoinLogo: e.iconUrl,
@@ -76,7 +76,7 @@ function CryptoCardMarquee(){
       });
 
     return () => {};
-  }, [cryptoList.length]);
+  }, []);
   
   return(
        <>
