@@ -10,7 +10,7 @@ import Abbas from "../../Logos/Abbas.svg";
 import Ibnbattuta from "../../Logos/Ibnbattuta.svg";
 import Averroes from "../../Logos/Averroes.svg";
 
-let imgList = [Tariq, Abdel, Abbas, Arthephius, Ibnbattuta, Averroes];
+let imgList = [Tariq, Abdel, Abbas, Ibnbattuta, Averroes];
 
 let imgTitleList = [
   "Tariq Ibn Ziyad",
