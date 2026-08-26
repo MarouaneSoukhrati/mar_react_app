@@ -39,8 +39,13 @@
   margin-top: 3em;
 }
 
-.CryptoCardChange {
+.CryptoCardChangeGreen {
   color: green;
+  font-size: 2em;
+}
+
+.CryptoCardChangeRed {
+  color: red;
   font-size: 2em;
 }
 
