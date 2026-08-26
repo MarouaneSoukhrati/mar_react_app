@@ -1,7 +1,6 @@
 import "../../ComponentStyle/SubcomponentStyle/FamilyTree.css";
 import ImageCarousel from "./ImageCarousel";
 import { motion } from "framer-motion";
-import Marquee from "./Marquee";
 
 import familyTree from "../../Logos/familyTree.svg";
 
@@ -65,7 +64,6 @@ export default function FamilyTree() {
           Learn more
         </motion.a>
       </div>
-      <Marquee itemsList={marqueeList} />
     </div>
   );
 }
