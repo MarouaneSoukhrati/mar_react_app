@@ -37,7 +37,7 @@ function CryptoCard({ Coin }){
             {Coin.CoinName}
           </h3>
           <img className="CryptoCardLogo" src={Coin.CoinLogo} alt="CryptoCard" />
-          <div className="CryptoCardChange">
+          <div className={Coin.CoinChange > 0 ? "CryptoCardChangeGreen" : "CryptoCardChangeRed"}>
             {Coin.CoinChange}
           </div>
       </div>
