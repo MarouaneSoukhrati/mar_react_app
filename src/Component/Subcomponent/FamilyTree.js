@@ -7,7 +7,6 @@ import familyTree from "../../Logos/familyTree.svg";
 import Tariq from "../../Logos/Tariq.svg";
 import Abdel from "../../Logos/Abdel.svg";
 import Abbas from "../../Logos/Abbas.svg";
-import Arthephius from "../../Logos/Arthephius.svg";
 import Ibnbattuta from "../../Logos/Ibnbattuta.svg";
 import Averroes from "../../Logos/Averroes.svg";
 
@@ -17,7 +16,6 @@ let imgTitleList = [
   "Tariq Ibn Ziyad",
   "Abd Al Rahman I",
   "Abbas Ibn Firnas",
-  "Arthephius",
   "Ibn Battuta",
   "Averroes",
 ];
