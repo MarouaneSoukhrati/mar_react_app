@@ -49,8 +49,34 @@ function CryptoCard({ Coin }){
 }
 
 function CryptoCardMarquee(){
-  const [cryptoCardsList, setCryptoCardsList] = useState([]);
+  const [cryptoList, setCryptoList] = useState([]);
   const [responseValid, setResponseValid] = useState(false);
+  
+  let CryptoCardList = cryptoList.map((e, index) => (
+    <CryptoCard Coin={new <Coin
+      CoinName={e.name}
+      CoinValue={e.price + "$"}
+      CoinLogo={e.iconUrl}
+      CoinChange={e.change}
+      isSelected={false}
+    />}));
+    
+  useEffect(() => {
+    const options = {
+      headers: {
+        "x-access-token":
+          "coinranking0932477bb045d38988b7564f24af2967be9ffbc7e5bf9799",
+      },
+    };
+    fetch("https://api.coinranking.com/v2/coins", options)
+      .then((response) => response.json())
+      .then((result) => {
+        setCryptoList(result.data.coins);
+        setResponseValid(true);
+      });
+
+    return () => {};
+  }, [cryptoList.length]);
   
   return(
       <div>
