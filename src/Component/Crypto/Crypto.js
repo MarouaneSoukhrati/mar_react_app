@@ -12,7 +12,7 @@ import CreditCardLogo from "../../Logos/MoorLogo.svg";
 export default function Crypto() {
   return (
     <header className="App-crypto">
-      <h1>Buy and sell trusted Crypto</h1>
+      <h1 className="graphTitleBar">Buy and sell trusted Crypto</h1>
       <div className="Crypto-Wrapper">
         <div className="InformationPart">
           <img
@@ -24,6 +24,7 @@ export default function Crypto() {
           <CryptoFormulaire />
         </div>
       </div>
+      <h1 className="graphTitleBar">Explore Crypto rates :</h1>
       <CryptoCardMarquee />
       <CoinGraphics />
     </header>
@@ -76,7 +77,6 @@ function CryptoCardMarquee(){
   
   return(
        <div className="CryptoMarquee">
-          <h1>Explore Crypto rates :</h1>
           <Marquee itemsList={cryptoCardList} />
        </div>
     );
