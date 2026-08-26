@@ -19,9 +19,9 @@
   justify-content: center;
   width: 20em;
   height: 30em;
-  margin-top: 2em;
   padding: 1em;
-  background: linear-gradient(180deg, #2c3e50 0%, #fd746c 100%);
+  background-color: yellow;
+  border-radius: 15px;
 }
 
 .CryptoCardTitle {
