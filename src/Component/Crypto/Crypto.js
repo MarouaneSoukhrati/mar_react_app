@@ -48,6 +48,16 @@ function CryptoCard({ Coin }){
     );
 }
 
+function CryptoCardMarquee(){
+  const [cryptoCardsList, setCryptoCardsList] = useState([]);
+  const [responseValid, setResponseValid] = useState(false);
+  
+  return(
+      <div>
+      </div>
+    );
+}
+
 function Coin({ CoinName, CoinValue, CoinLogo, CoinChange, isSelected }) {
   return (
     <>
