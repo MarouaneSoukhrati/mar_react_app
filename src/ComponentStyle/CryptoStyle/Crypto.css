@@ -9,6 +9,8 @@
 
 .CryptoMarquee {
   margin-top: 10em;
+  background-color: #00ff0011;
+  border-radius: 15px;
 }
             
             
@@ -20,7 +22,7 @@
   width: 20em;
   height: 30em;
   padding: 1em;
-  background-color: #ffffff77;
+  background-color: black;
   border-radius: 15px;
 }
 
