@@ -8,7 +8,7 @@
 }
 
 .CryptoMarquee {
-  margin-top: 10em;
+  margin-top: 3em;
 }
             
             
@@ -216,6 +216,7 @@
   align-items: center;
   justify-content: center;
   font-size: 5em;
+  text-align: center;
 }
 
 .coinName {
