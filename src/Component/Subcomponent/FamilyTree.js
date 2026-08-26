@@ -54,7 +54,6 @@ export default function FamilyTree() {
       </div>
       <div className="fam-txt">
         <p className="moorparag">{Desctext}</p>
-        <Marquee itemsList={marqueeList} />
         <motion.a
           whileHover={{ opacity: 0.4 }}
           whileTap={{ opacity: 0.4 }}
@@ -66,6 +65,7 @@ export default function FamilyTree() {
           Learn more
         </motion.a>
       </div>
+      <Marquee itemsList={marqueeList} />
     </div>
   );
 }
