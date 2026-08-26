@@ -15,7 +15,7 @@ export default function Crypto() {
       <h1>Buy and sell trusted Crypto</h1>
       <div className="Crypto-Wrapper">
         <CryptoCard />
-        <Marquee itemsList={[<CryptoCard />, <CryptoCard />]} />
+        <CryptoCardMarquee />
         <div className="InformationPart">
           <img
             src={CreditCardLogo}
@@ -52,7 +52,7 @@ function CryptoCardMarquee(){
   const [cryptoList, setCryptoList] = useState([]);
   const [responseValid, setResponseValid] = useState(false);
   
-  let CryptoCardList = cryptoList.map((e, index) => (
+  let cryptoCardList = cryptoList.map((e, index) => (
     <CryptoCard Coin={new <Coin
       CoinName={e.name}
       CoinValue={e.price + "$"}
@@ -79,8 +79,7 @@ function CryptoCardMarquee(){
   }, [cryptoList.length]);
   
   return(
-      <div>
-      </div>
+       <Marquee itemsList={cryptoCardList} />
     );
 }
 
