@@ -16,13 +16,28 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  border-radius: 3em;
-  border: solid 1px white;
-  backgound-color: linear-gradient(to right, #000000, #434343 50%, #000000 100%);
   width: 20em;
   height: 30em;
   margin-top: 2em;
   padding: 1em;
+  
+  background: linear-gradient(
+    135deg, 
+    rgba(0, 0, 0, 0.4) 0%, 
+    rgba(20, 20, 20, 0.2) 100%
+  );
+  
+  /* Frosted glass blur effect */
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px); /* Safari support */
+  
+  /* Subtle dark-tinted border to define edges */
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  
+  /* Drop shadow for depth */
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+  
 }
 
 .CryptoCardTitle {
