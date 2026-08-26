@@ -53,13 +53,13 @@ function CryptoCardMarquee(){
   const [responseValid, setResponseValid] = useState(false);
   
   let cryptoCardList = cryptoList.map((e, index) => (
-    <CryptoCard Coin={new <Coin
+    <CryptoCard Coin={{
       CoinName={e.name}
       CoinValue={e.price + "$"}
       CoinLogo={e.iconUrl}
       CoinChange={e.change}
       isSelected={false}
-    />}));
+    }}));
     
   useEffect(() => {
     const options = {
