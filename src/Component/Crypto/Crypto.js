@@ -14,7 +14,6 @@ export default function Crypto() {
     <header className="App-crypto">
       <h1>Buy and sell trusted Crypto</h1>
       <div className="Crypto-Wrapper">
-        <CryptoCardMarquee />
         <div className="InformationPart">
           <img
             src={CreditCardLogo}
@@ -25,6 +24,7 @@ export default function Crypto() {
           <CryptoFormulaire />
         </div>
       </div>
+      <CryptoCardMarquee />
       <CoinGraphics />
     </header>
   );
@@ -78,7 +78,9 @@ function CryptoCardMarquee(){
   }, []);
   
   return(
-       <Marquee itemsList={cryptoCardList} />
+       <div className=CryptoMarquee>
+          <Marquee itemsList={cryptoCardList} />
+       </div>
     );
 }
 
