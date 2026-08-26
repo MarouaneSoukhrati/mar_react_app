@@ -30,7 +30,7 @@ export default function Crypto() {
   );
 }
 
-function CryptoCard({ Coin }){
+/*function CryptoCard({ Coin }){
   return(
       <div className="CryptoCard">
           <h3 className="CryptoCardTitle">
@@ -82,7 +82,7 @@ function CryptoCardMarquee(){
          <Marquee itemsList={cryptoCardList} />
        </>
     );
-}
+}*/
 
 function Coin({ CoinName, CoinValue, CoinLogo, CoinChange, isSelected }) {
   return (
