@@ -78,7 +78,7 @@ function CryptoCardMarquee(){
   }, []);
   
   return(
-       <div className=CryptoMarquee>
+       <div className="CryptoMarquee">
           <Marquee itemsList={cryptoCardList} />
        </div>
     );
