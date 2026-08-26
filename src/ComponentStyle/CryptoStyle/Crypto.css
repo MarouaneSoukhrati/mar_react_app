@@ -19,30 +19,27 @@
   justify-content: center;
   border-radius: 5em;
   background-color: #00000011;
-  width: 17em;
+  width: 20em;
   height: 30em;
 }
 
 .CryptoCardTitle {
   color: yellow;
-  font-size: 3em;
-  margin-botom: 5em;
+  font-size: 2em;
+  text-align: center;
 }
 
 .CryptoCardLogo {
-  height: 10em;
-  width: 10em;
+  height: 7em;
+  width: 7em;
   border-radius: 30px;
-}
-
-.CryptoCardCardValue {
-  color: yellow;
-  margin-top: 5em;
+  margin-bottom: 2em;
+  margin-top: 2em;
 }
 
 .CryptoCardChange {
   color: green;
-  margin-top: 5em;
+  font-size: 1.5em;
 }
 
 .centeredCoinL {
