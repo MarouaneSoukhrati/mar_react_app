@@ -18,6 +18,7 @@
   align-items: center;
   border-radius: 3em;
   border: solid 1px white;
+  backgound-color: linear-gradient(to right, #000000, #434343 50%, #000000 100%);
   width: 20em;
   height: 30em;
   margin-top: 2em;
