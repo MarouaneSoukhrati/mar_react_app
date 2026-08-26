@@ -59,7 +59,7 @@ function CryptoCardMarquee(){
       CoinLogo: e.iconUrl,
       CoinChange: e.change,
       isSelected: false
-    }}));
+    }}/> ));
     
   useEffect(() => {
     const options = {
