@@ -17,9 +17,11 @@
   flex-direction: column;
   align-items: center;
   border-radius: 2em;
-  background-color: #00ff0011;
+  background-color: black;
   width: 20em;
   height: 30em;
+  margin-top: 2em;
+  padding: 1em;
 }
 
 .CryptoCardTitle {
@@ -37,7 +39,7 @@
 }
 
 .CryptoCardChange {
-  color: green;
+  color: yellow;
   font-size: 2em;
 }
 
