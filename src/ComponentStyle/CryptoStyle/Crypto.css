@@ -6,6 +6,11 @@
   align-items: center;
   padding: 6.25em;
 }
+
+.CryptoMarquee {
+  margin-top: 2em;
+  margin-bottom: 2em;
+}
             
             
 .CryptoCard {
@@ -14,27 +19,30 @@
   align-items: center;
   justify-content: center;
   border-radius: 1em;
-  background-color: black;
+  background-color: #00000011;
   border: 2px solid white;
-  width: 15em;
-  height: 20em;
+  width: 17em;
+  height: 30em;
 }
 
 .CryptoCardTitle {
   color: yellow;
+  margin-botoom: 2em;
 }
 
 .CryptoCardLogo {
-  height: 5em;
-  width: 5em;
+  height: 10em;
+  width: 10em;
 }
 
 .CryptoCardCardValue {
   color: yellow;
+  margin-top: 2em;
 }
 
 .CryptoCardChange {
   color: green;
+  margin-top: 2em;
 }
 
 .centeredCoinL {
