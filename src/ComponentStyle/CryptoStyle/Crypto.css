@@ -36,15 +36,17 @@
   height: 7em;
   width: 7em;
   border-radius: 30px;
-  margin-bottom: 5em;
-  margin-top: 3em;
 }
 
 .CryptoCardWrap {
-  background-color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #ff000011;
   border-radius: 15px;
   width: 15em;
   height: 15em;
+  margin-bottom: 2em;
 }
 
 .CryptoCardChangeGreen {
