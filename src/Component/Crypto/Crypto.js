@@ -34,10 +34,10 @@ export default function Crypto() {
 function CryptoCard({ Coin }){
   return(
       <div className="CryptoCard">
-          <h3 className="CryptoCardTitle">
-            {Coin.CoinName}
-          </h3>
           <div className="CryptoCardWrap">
+             <h3 className="CryptoCardTitle">
+               {Coin.CoinName}
+             </h3>
              <img className="CryptoCardLogo" src={Coin.CoinLogo} alt="CryptoCard" />
           </div>
           <div className={Coin.CoinChange > 0 ? "CryptoCardChangeGreen" : "CryptoCardChangeRed"}>
