@@ -46,11 +46,6 @@
   width: 15em;
   height: 15em;
   margin-bottom: 2em;
-  
-  border-left: 6px solid #3498db;
-  border-right: 6px solid #3498db;
-  border-bottom: 6px solid #3498db;
-  border-top: none; /* Leaves the top open to form the U */
   border-bottom-left-radius: 20px;
   border-bottom-right-radius: 20px;
 
