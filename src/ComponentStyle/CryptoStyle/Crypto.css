@@ -32,9 +32,10 @@
 .CryptoCardLogo {
   height: 7em;
   width: 7em;
-  border-radius: 3em;
+  padding: 3em;
+  border-radius: 50px;
   margin-bottom: 5em;
-  border: solid 1px white;
+  border: solid 3px white;
 }
 
 .CryptoCardWrap {
