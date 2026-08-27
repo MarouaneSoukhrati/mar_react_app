@@ -12,7 +12,7 @@ import CreditCardLogo from "../../Logos/MoorLogo.svg";
 export default function Crypto() {
   return (
     <header className="App-crypto">
-      <h1 className="graphTitleBar">Buy and sell trusted Crypto</h1>
+      <h1 className="graphTitleBar">Buy and sell trusted Crypto :</h1>
       <div className="Crypto-Wrapper">
         <div className="InformationPart">
           <img
