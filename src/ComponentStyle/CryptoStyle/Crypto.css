@@ -20,7 +20,7 @@
   height: 30em;
   background-color: black;
   border: 1px solid white;
-  border-radius: 20px;
+  border-radius: 3em;
 }
 
 .CryptoCardTitle {
@@ -33,7 +33,7 @@
 .CryptoCardLogo {
   height: 7em;
   width: 7em;
-  border-radius: 30px;
+  border-radius: 3em;
 }
 
 .CryptoCardWrap {
