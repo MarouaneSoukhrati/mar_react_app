@@ -40,6 +40,13 @@
   margin-top: 3em;
 }
 
+.CryptoCardWrap {
+  background-color: white;
+  border-radius: 15px;
+  width: 15em;
+  height: 15em;
+}
+
 .CryptoCardChangeGreen {
   color: green;
   font-size: 2em;
