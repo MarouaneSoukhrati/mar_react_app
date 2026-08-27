@@ -20,8 +20,7 @@
   height: 30em;
   background-color: black;
   border: 1px solid white;
-  border-bottom-left-radius: 20px;
-  border-bottom-right-radius: 20px;
+  border-radius: 20px;
 }
 
 .CryptoCardTitle {
@@ -43,10 +42,10 @@
   justify-content: center;
   background-color: white;
   width: 20em;
-  height: 13em;
+  height: 12em;
   margin-bottom: 2em;
-  border-bottom-left-radius: 20px;
-  border-bottom-right-radius: 20px;
+  border-radius: 20px;
+  margin-top: -6px;
 
 }
 
