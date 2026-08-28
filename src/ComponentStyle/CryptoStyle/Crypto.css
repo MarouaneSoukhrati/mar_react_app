@@ -24,7 +24,7 @@
 
 
 .CryptoCardTitle {
-  color: black;
+  color: yellow;
   font-size: 2em;
   text-align: center;
 }
@@ -32,7 +32,7 @@
 .CryptoCardLogo {
   height: 7em;
   width: 7em;
-  padding: 3em;
+  padding: 1em;
   border-radius: 50px;
   margin-bottom: 5em;
   border: solid 3px white;
@@ -45,18 +45,18 @@
   background-color: white;
   width: 20em;
   height: 12em;
-  margin-bottom: 5em;
+  margin-bottom: 2em;
   border-radius: 50px;
 }
 
 .CryptoCardChangeGreen {
   color: green;
-  font-size: 2em;
+  font-size: 3em;
 }
 
 .CryptoCardChangeRed {
   color: red;
-  font-size: 2em;
+  font-size: 3em;
 }
 
 .centeredCoinL {
