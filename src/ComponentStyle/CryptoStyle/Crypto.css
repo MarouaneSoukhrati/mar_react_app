@@ -46,6 +46,8 @@
   align-items: center;
   background-color: grey;
   border-radius: 15px;
+  width: 20em;
+  height: 20em;
 }
 
 .CryptoCardChangeGreen {
