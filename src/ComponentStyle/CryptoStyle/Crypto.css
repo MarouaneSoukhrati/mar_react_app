@@ -48,6 +48,7 @@
   border-radius: 0px 0px 15px 15px;
   width: 25em;
   height: 20em;
+  border: solid 3px white;
 }
 
 .CryptoCardChangeGreen {
