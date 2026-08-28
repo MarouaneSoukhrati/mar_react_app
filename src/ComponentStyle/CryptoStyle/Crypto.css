@@ -30,11 +30,12 @@
 }
 
 .CryptoCardLogo {
-  height: 7em;
-  width: 7em;
+  height: 5em;
+  width: 5em;
   padding: 1em;
   border-radius: 50px;
   margin-bottom: 5em;
+  margin-top: 3em;
   border: solid 3px white;
 }
 
