@@ -35,11 +35,13 @@ function CryptoCard({ Coin }){
   return(
       <div className="CryptoCard">
           <img className="CryptoCardLogo" src={Coin.CoinLogo} alt="CryptoCard" />
-           <h3 className="CryptoCardTitle">
+          <div className="wrapC">
+             <h3 className="CryptoCardTitle">
                {Coin.CoinName}
-          </h3>
-          <div className={Coin.CoinChange > 0 ? "CryptoCardChangeGreen" : "CryptoCardChangeRed"}>
-            {Coin.CoinChange > 0 ? "+" + Coin.CoinChange + "%" : Coin.CoinChange + "%"}
+             </h3>
+             <div className={Coin.CoinChange > 0 ? "CryptoCardChangeGreen" : "CryptoCardChangeRed"}>
+               {Coin.CoinChange > 0 ? "+" + Coin.CoinChange + "%" : Coin.CoinChange + "%"}
+             </div>
           </div>
       </div>
     );
