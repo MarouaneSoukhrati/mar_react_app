@@ -35,7 +35,7 @@ function CryptoCard({ Coin }){
   return(
       <div className="CryptoCard">
           <img className="CryptoCardLogo" src={Coin.CoinLogo} alt="CryptoCard" />
-          <div className="wrapC">
+          <div className="WrapC">
              <h3 className="CryptoCardTitle">
                {Coin.CoinName}
              </h3>
